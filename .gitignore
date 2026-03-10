@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.log
+followup_drafts/
+# Never commit real credentials
+automation_config.json
+!scripts/automation_config.json
