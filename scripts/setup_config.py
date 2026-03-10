@@ -27,6 +27,9 @@ config = {
     "notifications": {
         "lark_webhook_url": os.environ.get("LARK_WEBHOOK_URL", ""),
     },
+    "mapbox": {
+        "token": os.environ.get("MAPBOX_TOKEN", ""),
+    },
 }
 
 out = Path(__file__).parent / "automation_config.json"
