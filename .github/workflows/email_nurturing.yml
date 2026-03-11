@@ -1,0 +1,29 @@
+name: Email Nurturing Sequences
+
+on:
+  schedule:
+    - cron: '0 0 * * 1-5'  # 00:00 UTC weekdays = 09:00 JST weekdays
+  workflow_dispatch:
+
+jobs:
+  nurture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Run email nurturing sequences
+        run: python scripts/email_nurturing_sequences.py --scan --send
