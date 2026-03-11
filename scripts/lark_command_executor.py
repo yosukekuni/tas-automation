@@ -232,6 +232,41 @@ def run_script(script_name, args=None):
         return f"エラー: {script_name} 実行失敗 - {e}"
 
 
+# ── キーワードマッチ（無料） ──
+def keyword_match(msg):
+    """定型コマンドはClaude APIを使わずキーワードで直接マッチ。"""
+    m = msg.lower().strip()
+    # CRM系
+    if any(k in m for k in ["crm", "商談", "ステージ", "パイプライン"]):
+        return {"action": "crm_summary"}
+    # サイトチェック
+    if any(k in m for k in ["サイトチェック", "サイト確認", "サイト大丈夫", "site"]):
+        return {"action": "site_check"}
+    # 検証
+    if any(k in m for k in ["検証", "verify", "チェックバック"]):
+        return {"action": "run_script", "script": "verify_tasks.py", "args": []}
+    # KPI
+    if any(k in m for k in ["kpi", "営業数字", "週次", "売上"]):
+        return {"action": "run_script", "script": "weekly_sales_kpi.py", "args": []}
+    # 入札
+    if any(k in m for k in ["入札", "bid"]):
+        return {"action": "run_script", "script": "bid_scanner.py", "args": []}
+    # GA4
+    if any(k in m for k in ["ga4", "アクセス", "pv", "流入"]):
+        return {"action": "run_script", "script": "ga4_analytics.py", "args": []}
+    # フォロー
+    if any(k in m for k in ["フォロー対象", "フォローメール", "followup"]):
+        return {"action": "run_script", "script": "auto_followup_email.py", "args": ["--list"]}
+    # 品質
+    if any(k in m for k in ["品質", "データ品質", "quality"]):
+        return {"action": "run_script", "script": "lark_crm_monitor.py", "args": ["--quality"]}
+    # 実績更新
+    if any(k in m for k in ["実績更新", "ケース更新", "case update"]):
+        return {"action": "run_script", "script": "auto_case_updater.py", "args": ["--dry-run"]}
+    # マッチなし → Claude APIに委譲
+    return None
+
+
 # ── Claude API でコマンド解釈 ──
 def interpret_with_claude(message):
     """
@@ -316,8 +351,11 @@ def main():
     token = lark_get_token()
 
     try:
-        # Claude APIでコマンド解釈
-        action = interpret_with_claude(MESSAGE)
+        # キーワードマッチ（Claude API不要・無料）
+        action = keyword_match(MESSAGE)
+        if action is None:
+            # マッチしない場合のみClaude APIで解釈
+            action = interpret_with_claude(MESSAGE)
         print(f"Interpreted action: {json.dumps(action, ensure_ascii=False)}")
 
         result_text = ""
