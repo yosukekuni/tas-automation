@@ -4,10 +4,11 @@ Lark CRM Form Submission Monitor
 新規問い合わせ・商談報告のリアルタイム監視 & 携帯プッシュ通知
 
 Usage:
-  python3 lark_crm_monitor.py          # 1回実行（新着チェック）
+  python3 lark_crm_monitor.py          # 1回実行（新着チェック + 期限超過チェック）
   python3 lark_crm_monitor.py --loop   # 常駐モード（5分間隔で監視）
   python3 lark_crm_monitor.py --init   # 初期化（現在のレコード数を記録）
   python3 lark_crm_monitor.py --quality # データ品質チェック
+  python3 lark_crm_monitor.py --overdue # 期限超過アクションチェック
 
 通知先:
   1. Lark Webhook（グループチャット → 携帯プッシュ通知）
@@ -56,6 +57,7 @@ MONITORED_TABLES = {
 
 # CEO notification target
 CEO_EMAIL = "yosuke.toyoda@gmail.com"
+CEO_OPEN_ID = "ou_d2e2e520a442224ea9d987c6186341ce"
 
 # Sales rep mapping (Lark display name → email for Lark Bot DM)
 # Updated when we discover actual Lark user IDs
@@ -373,6 +375,142 @@ def check_data_quality():
     return len(warm_or_hot_no_action)
 
 
+def check_overdue_actions():
+    """Check for Hot/Warm deals with overdue next action dates.
+
+    Fetches all deals from the CRM, filters for Hot/Warm deals that are not
+    in '不在' or '失注' stage, and checks if the '次アクション日' has passed.
+    Sends a DM notification to CEO for each overdue deal.
+    """
+    token = lark_get_token()
+
+    # Fetch all deals
+    all_deals = []
+    page_token = None
+    while True:
+        url = (
+            f"https://open.larksuite.com/open-apis/bitable/v1/apps/"
+            f"{CRM_BASE_TOKEN}/tables/tbl1rM86nAw9l3bP/records?page_size=500"
+        )
+        if page_token:
+            url += f"&page_token={page_token}"
+        req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
+        with urllib.request.urlopen(req) as r:
+            result = json.loads(r.read())
+            data = result.get("data", {})
+            all_deals.extend(data.get("items", []))
+            if not data.get("has_more"):
+                break
+            page_token = data.get("page_token")
+            time.sleep(0.3)
+
+    now = datetime.now()
+    overdue_deals = []
+
+    for rec in all_deals:
+        fields = rec.get("fields", {})
+        temp = fields.get("温度感スコア", "")
+        stage = fields.get("商談ステージ", "")
+        next_action_date = fields.get("次アクション日", "")
+
+        # Only Hot/Warm, skip 不在/失注, must have a date
+        if temp not in ("Hot", "Warm"):
+            continue
+        if stage in ("不在", "失注"):
+            continue
+        if not next_action_date:
+            continue
+
+        # Parse date (Lark stores as Unix timestamp in milliseconds)
+        try:
+            if isinstance(next_action_date, (int, float)):
+                action_dt = datetime.fromtimestamp(next_action_date / 1000)
+            else:
+                continue
+        except (ValueError, OSError):
+            continue
+
+        overdue_days = (now - action_dt).days
+        if overdue_days <= 0:
+            continue
+
+        # Resolve deal name: prefer 商談名, fallback to 新規取引先名
+        deal_name = fields.get("商談名", "") or fields.get("新規取引先名", "") or "(名前なし)"
+
+        # Extract sales rep name
+        sales_rep = ""
+        tantou = fields.get("担当営業", "")
+        if isinstance(tantou, list) and tantou:
+            for person in tantou:
+                if isinstance(person, dict):
+                    sales_rep = person.get("name", "")
+                elif isinstance(person, str):
+                    sales_rep = person
+
+        # Next action text
+        next_action = fields.get("次アクション", "")
+        if isinstance(next_action, list):
+            next_action = ", ".join(str(a) for a in next_action)
+        next_action_other = fields.get("次アクション：その他", "") or ""
+        action_text = next_action
+        if next_action_other:
+            action_text = f"{next_action} {next_action_other}"
+
+        overdue_deals.append({
+            "deal_name": deal_name,
+            "sales_rep": sales_rep,
+            "action_date": action_dt.strftime("%Y-%m-%d"),
+            "overdue_days": overdue_days,
+            "next_action": action_text,
+            "temp": temp,
+        })
+
+    if not overdue_deals:
+        print("[OK] 期限超過のHot/Warm案件なし")
+        return 0
+
+    # Sort by overdue days descending
+    overdue_deals.sort(key=lambda x: x["overdue_days"], reverse=True)
+
+    print(f"[OVERDUE] {len(overdue_deals)}件の期限超過Hot/Warm案件を検出")
+
+    # Build summary message for CEO DM
+    summary_lines = [f"⚠️ 期限超過アラート（{len(overdue_deals)}件）\n"]
+    for d in overdue_deals:
+        summary_lines.append(
+            f"商談: {d['deal_name']}\n"
+            f"担当: {d['sales_rep']}\n"
+            f"期日: {d['action_date']}（{d['overdue_days']}日超過）\n"
+            f"次アクション: {d['next_action']}\n"
+            f"温度感: {d['temp']}\n"
+            f"{'─' * 30}"
+        )
+
+    full_msg = "\n".join(summary_lines)
+
+    # Send DM to CEO via open_id
+    sent = lark_send_bot_message(token, CEO_OPEN_ID, full_msg, id_type="open_id")
+    if sent:
+        print(f"  CEO DMに期限超過アラート送信完了（{len(overdue_deals)}件）")
+    else:
+        # Fallback to email
+        lark_send_bot_message(token, CEO_EMAIL, full_msg, id_type="email")
+
+    # Console output
+    print(f"\n{'='*60}")
+    print(f"⚠️ 期限超過アラート ({datetime.now().strftime('%Y-%m-%d %H:%M')})")
+    print(f"{'='*60}")
+    print(full_msg)
+    print(f"{'='*60}\n")
+
+    # Write to log
+    log_file = SCRIPT_DIR / "crm_notifications.log"
+    with open(log_file, "a") as f:
+        f.write(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M')}] 期限超過アラート\n{full_msg}\n{'─'*40}\n")
+
+    return len(overdue_deals)
+
+
 def main():
     args = sys.argv[1:]
 
@@ -400,11 +538,24 @@ def main():
         print(f"Found {issues} Warm/Hot deals without next action")
         return
 
-    # Default: single check
+    if "--overdue" in args:
+        print("Running overdue action check...")
+        overdue = check_overdue_actions()
+        print(f"Found {overdue} overdue Hot/Warm deals")
+        return
+
+    # Default: single check (new records + overdue actions)
     print(f"[{datetime.now().strftime('%H:%M:%S')}] Checking for new CRM records...")
     found = check_for_new_records()
     if not found:
         print("No new records.")
+
+    # Also check for overdue actions on every run
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] Checking for overdue actions...")
+    try:
+        check_overdue_actions()
+    except Exception as e:
+        print(f"[ERROR] Overdue check failed: {e}")
 
 
 if __name__ == "__main__":
