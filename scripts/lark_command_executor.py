@@ -174,11 +174,13 @@ def check_site_health():
     """主要ページのステータスコード確認。"""
     pages = [
         ("トップ", "https://www.tokaiair.com/"),
-        ("サービス", "https://www.tokaiair.com/service/"),
+        ("サービス", "https://www.tokaiair.com/services/"),
         ("お問い合わせ", "https://www.tokaiair.com/contact/"),
-        ("実績", "https://www.tokaiair.com/case/"),
-        ("ブログ", "https://www.tokaiair.com/blog/"),
+        ("実績", "https://www.tokaiair.com/case-library/cases/"),
+        ("コラム", "https://www.tokaiair.com/column/"),
         ("採用", "https://www.tokaiair.com/recruit/"),
+        ("FAQ", "https://www.tokaiair.com/faq/"),
+        ("会社情報", "https://www.tokaiair.com/company/"),
     ]
     results = []
     all_ok = True
