@@ -378,9 +378,11 @@ def check_data_quality():
 def check_overdue_actions():
     """Check for Hot/Warm deals with overdue next action dates.
 
-    Fetches all deals from the CRM, filters for Hot/Warm deals that are not
-    in '不在' or '失注' stage, and checks if the '次アクション日' has passed.
-    Sends a DM notification to CEO for each overdue deal.
+    Improved v2: Smart filtering to reduce noise.
+    - 30日超過 → 自動で「要クローズ判断」に分類（毎回通知しない）
+    - 次アクション未設定 → 除外（アクションなしを通知しても無意味）
+    - Hot案件のみ即時通知（Top5）、Warmは週次サマリーのみ
+    - テスト商談・空名は除外
     """
     token = lark_get_token()
 
@@ -405,7 +407,12 @@ def check_overdue_actions():
             time.sleep(0.3)
 
     now = datetime.now()
-    overdue_deals = []
+    urgent_deals = []    # Hot + 1-30日超過 → 即時通知
+    stale_deals = []     # 30日超過 → 週次サマリーのみ
+    warm_deals = []      # Warm + 1-30日超過 → 週次サマリーのみ
+
+    # Test/junk name patterns to skip
+    junk_patterns = ["テスト", "test", "サンプル", "sample", "ダミー"]
 
     for rec in all_deals:
         fields = rec.get("fields", {})
@@ -413,12 +420,23 @@ def check_overdue_actions():
         stage = fields.get("商談ステージ", "")
         next_action_date = fields.get("次アクション日", "")
 
-        # Only Hot/Warm, skip 不在/失注, must have a date
+        # Only Hot/Warm, skip 不在/失注/受注, must have a date
         if temp not in ("Hot", "Warm"):
             continue
-        if stage in ("不在", "失注"):
+        if stage in ("不在", "失注", "受注"):
             continue
         if not next_action_date:
+            continue
+
+        # Next action text — skip if no action is set
+        next_action = fields.get("次アクション", "")
+        if isinstance(next_action, list):
+            next_action = ", ".join(str(a) for a in next_action)
+        next_action_other = fields.get("次アクション：その他", "") or ""
+        action_text = next_action
+        if next_action_other:
+            action_text = f"{next_action} {next_action_other}"
+        if not action_text or action_text.strip() in ("", "None", "なし"):
             continue
 
         # Parse date (Lark stores as Unix timestamp in milliseconds)
@@ -435,7 +453,9 @@ def check_overdue_actions():
             continue
 
         # Resolve deal name: prefer 商談名, fallback to 新規取引先名
-        deal_name = fields.get("商談名", "") or fields.get("新規取引先名", "") or "(名前なし)"
+        deal_name = fields.get("商談名", "") or fields.get("新規取引先名", "") or ""
+        if not deal_name or any(p in deal_name.lower() for p in junk_patterns):
+            continue
 
         # Extract sales rep name
         sales_rep = ""
@@ -447,68 +467,78 @@ def check_overdue_actions():
                 elif isinstance(person, str):
                     sales_rep = person
 
-        # Next action text
-        next_action = fields.get("次アクション", "")
-        if isinstance(next_action, list):
-            next_action = ", ".join(str(a) for a in next_action)
-        next_action_other = fields.get("次アクション：その他", "") or ""
-        action_text = next_action
-        if next_action_other:
-            action_text = f"{next_action} {next_action_other}"
-
-        overdue_deals.append({
+        deal_info = {
             "deal_name": deal_name,
             "sales_rep": sales_rep,
             "action_date": action_dt.strftime("%Y-%m-%d"),
             "overdue_days": overdue_days,
             "next_action": action_text,
             "temp": temp,
-        })
+        }
 
-    if not overdue_deals:
+        if overdue_days > 30:
+            stale_deals.append(deal_info)
+        elif temp == "Hot":
+            urgent_deals.append(deal_info)
+        else:
+            warm_deals.append(deal_info)
+
+    # Sort urgent by overdue days
+    urgent_deals.sort(key=lambda x: x["overdue_days"], reverse=True)
+
+    total = len(urgent_deals) + len(warm_deals) + len(stale_deals)
+    print(f"[OVERDUE] 検出: urgent(Hot)={len(urgent_deals)}, warm={len(warm_deals)}, stale(30日超)={len(stale_deals)}")
+
+    if not urgent_deals and not warm_deals and not stale_deals:
         print("[OK] 期限超過のHot/Warm案件なし")
         return 0
 
-    # Sort by overdue days descending
-    overdue_deals.sort(key=lambda x: x["overdue_days"], reverse=True)
+    # === Immediate notification: Hot deals only, Top 5 ===
+    if urgent_deals:
+        top = urgent_deals[:5]
+        lines = [f"[要対応] Hot案件 期限超過（{len(urgent_deals)}件中Top{len(top)}）\n"]
+        for d in top:
+            lines.append(
+                f"{d['deal_name']}（{d['sales_rep']}）\n"
+                f"  {d['overdue_days']}日超過 | {d['next_action']}\n"
+            )
+        if len(urgent_deals) > 5:
+            lines.append(f"... 他{len(urgent_deals)-5}件")
 
-    print(f"[OVERDUE] {len(overdue_deals)}件の期限超過Hot/Warm案件を検出")
-
-    # Build summary message for CEO DM
-    summary_lines = [f"⚠️ 期限超過アラート（{len(overdue_deals)}件）\n"]
-    for d in overdue_deals:
-        summary_lines.append(
-            f"商談: {d['deal_name']}\n"
-            f"担当: {d['sales_rep']}\n"
-            f"期日: {d['action_date']}（{d['overdue_days']}日超過）\n"
-            f"次アクション: {d['next_action']}\n"
-            f"温度感: {d['temp']}\n"
-            f"{'─' * 30}"
-        )
-
-    full_msg = "\n".join(summary_lines)
-
-    # Send DM to CEO via open_id
-    sent = lark_send_bot_message(token, CEO_OPEN_ID, full_msg, id_type="open_id")
-    if sent:
-        print(f"  CEO DMに期限超過アラート送信完了（{len(overdue_deals)}件）")
+        full_msg = "\n".join(lines)
+        sent = lark_send_bot_message(token, CEO_OPEN_ID, full_msg, id_type="open_id")
+        if sent:
+            print(f"  CEO DM: Hot案件{len(top)}件送信")
+        else:
+            lark_send_bot_message(token, CEO_EMAIL, full_msg, id_type="email")
     else:
-        # Fallback to email
-        lark_send_bot_message(token, CEO_EMAIL, full_msg, id_type="email")
+        print("  Hot案件の期限超過なし — 即時通知スキップ")
 
-    # Console output
+    # === Stale deals: log only (30日超過は週次サマリーで別途対応) ===
+    if stale_deals:
+        print(f"  [INFO] 30日超過（要クローズ判断）: {len(stale_deals)}件")
+        for d in stale_deals[:5]:
+            print(f"    - {d['deal_name']}（{d['overdue_days']}日超過, {d['sales_rep']}）")
+
+    # === Warm deals: log only (週次サマリーで対応) ===
+    if warm_deals:
+        print(f"  [INFO] Warm期限超過（週次サマリー対象）: {len(warm_deals)}件")
+
+    # Console summary
     print(f"\n{'='*60}")
-    print(f"⚠️ 期限超過アラート ({datetime.now().strftime('%Y-%m-%d %H:%M')})")
-    print(f"{'='*60}")
-    print(full_msg)
+    print(f"期限超過サマリー ({datetime.now().strftime('%Y-%m-%d %H:%M')})")
+    print(f"  Hot即時通知: {len(urgent_deals)}件")
+    print(f"  Warm(週次): {len(warm_deals)}件")
+    print(f"  30日超過(要判断): {len(stale_deals)}件")
     print(f"{'='*60}\n")
 
     # Write to log
     log_file = SCRIPT_DIR / "crm_notifications.log"
     with open(log_file, "a") as f:
-        f.write(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M')}] 期限超過アラート\n{full_msg}\n{'─'*40}\n")
+        f.write(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M')}] 期限超過サマリー: "
+                f"urgent={len(urgent_deals)}, warm={len(warm_deals)}, stale={len(stale_deals)}\n{'─'*40}\n")
 
-    return len(overdue_deals)
+    return total
 
 
 def main():
