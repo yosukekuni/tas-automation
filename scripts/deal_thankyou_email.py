@@ -431,9 +431,43 @@ def queue_new_deals(specific_deal=None):
     for rec in new_deals:
         rid = rec.get("record_id", "")
         fields = rec.get("fields", {})
-        deal_name = str(fields.get("商談名", "") or "(名前なし)")
+
+        # 商談名の取得（list of text objects対応）
+        deal_name_raw = fields.get("商談名", "")
+        if isinstance(deal_name_raw, list) and deal_name_raw and isinstance(deal_name_raw[0], dict):
+            deal_name = deal_name_raw[0].get("text", "") or "(名前なし)"
+        else:
+            deal_name = str(deal_name_raw or "(名前なし)")
 
         print(f"\n  商談: {deal_name}")
+
+        # 商談日チェック: 直近3日以内のみ対象
+        deal_date = fields.get("商談日", 0)
+        if isinstance(deal_date, (int, float)) and deal_date > 0:
+            deal_dt = datetime.fromtimestamp(deal_date / 1000)
+            days_ago = (datetime.now() - deal_dt).days
+            if days_ago > 3:
+                print(f"  → 商談日が{days_ago}日前。スキップ。")
+                processed_ids.add(rid)
+                continue
+        else:
+            print(f"  → 商談日なし。スキップ。")
+            processed_ids.add(rid)
+            continue
+
+        # 温度感チェック: Cold・不在は除外
+        temp = str(fields.get("温度感スコア", "") or "")
+        if temp in ("Cold", "不在のため不明"):
+            print(f"  → 温度感「{temp}」。スキップ。")
+            processed_ids.add(rid)
+            continue
+
+        # ステージチェック: 不在・失注・納品完了は除外
+        stage = str(fields.get("商談ステージ", "") or "")
+        if stage in ("不在", "失注", "納品完了"):
+            print(f"  → ステージ「{stage}」。スキップ。")
+            processed_ids.add(rid)
+            continue
 
         # 担当営業
         rep_field = fields.get("担当営業", [])

@@ -110,9 +110,15 @@ def find_followup_targets(deals):
         if temp not in ("Hot", "Warm"):
             continue
 
-        # 次アクションチェック
+        # 次アクションチェック（両フィールドを確認）
         next_action = str(f.get("次アクション", "") or "")
-        if not any(kw in next_action for kw in ["メール", "フォロー", "連絡", "提案", "見積"]):
+        next_action_other_raw = f.get("次アクション：その他", "")
+        if isinstance(next_action_other_raw, list) and next_action_other_raw:
+            next_action_other = next_action_other_raw[0].get("text", "") if isinstance(next_action_other_raw[0], dict) else str(next_action_other_raw[0])
+        else:
+            next_action_other = str(next_action_other_raw or "")
+        combined_action = f"{next_action} {next_action_other}".strip()
+        if not any(kw in combined_action for kw in ["メール", "フォロー", "連絡", "提案", "見積"]):
             continue
 
         # ステージが不在・失注は除外
@@ -137,12 +143,50 @@ def find_followup_targets(deals):
             next_dt = datetime.fromtimestamp(next_date / 1000)
             overdue = next_dt < now
 
-        # ヒアリング内容・備考を収集
-        hearing = str(f.get("ヒアリング内容（まとめ）", "") or "")
-        notes = str(f.get("備考", "") or "")
-        deal_name = str(f.get("商談名", "") or "(名前なし)")
+        # ヒアリング内容・備考を収集（list of text objects対応）
+        hearing_raw = f.get("ヒアリング内容（まとめ）", "")
+        if isinstance(hearing_raw, list) and hearing_raw and isinstance(hearing_raw[0], dict):
+            hearing = hearing_raw[0].get("text", "")
+        else:
+            hearing = str(hearing_raw or "")
+
+        notes_raw = f.get("備考", "")
+        if isinstance(notes_raw, list) and notes_raw and isinstance(notes_raw[0], dict):
+            notes = notes_raw[0].get("text", "")
+        else:
+            notes = str(notes_raw or "")
+
+        # 商談内での気づき・備考も取得
+        insight_raw = f.get("商談内での気づき・備考", "")
+        if isinstance(insight_raw, list) and insight_raw and isinstance(insight_raw[0], dict):
+            insight = insight_raw[0].get("text", "")
+        elif isinstance(insight_raw, str):
+            insight = insight_raw
+        else:
+            insight = str(insight_raw or "")
+        if insight and insight not in notes:
+            notes = f"{notes}\n{insight}".strip() if notes else insight
+
+        deal_name_raw = f.get("商談名", "")
+        if isinstance(deal_name_raw, list) and deal_name_raw and isinstance(deal_name_raw[0], dict):
+            deal_name = deal_name_raw[0].get("text", "") or "(名前なし)"
+        else:
+            deal_name = str(deal_name_raw or "(名前なし)")
+
         category = str(f.get("客先カテゴリ", "") or "")
-        product = str(f.get("商材", "") or "")
+        # 客先カテゴリ：その他 も確認
+        if not category:
+            cat_other_raw = f.get("客先カテゴリ：その他", "")
+            if isinstance(cat_other_raw, list) and cat_other_raw and isinstance(cat_other_raw[0], dict):
+                category = cat_other_raw[0].get("text", "")
+            else:
+                category = str(cat_other_raw or "")
+
+        product_raw = f.get("商材種別", f.get("商材", ""))
+        if isinstance(product_raw, list):
+            product = ", ".join(str(p) for p in product_raw)
+        else:
+            product = str(product_raw or "")
 
         # 音声ファイル情報
         audio_files = []
@@ -169,7 +213,7 @@ def find_followup_targets(deals):
             "stage": stage,
             "temp": temp,
             "rep_name": rep_name,
-            "next_action": next_action,
+            "next_action": combined_action,
             "overdue": overdue,
             "hearing": hearing,
             "notes": notes,
