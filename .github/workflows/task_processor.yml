@@ -2,8 +2,8 @@ name: Task Processor (24/365)
 
 on:
   schedule:
-    # Every 15 minutes
-    - cron: '*/15 * * * *'
+    # Every hour
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
