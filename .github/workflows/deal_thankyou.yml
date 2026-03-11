@@ -1,0 +1,70 @@
+name: Deal Thank-You Email
+
+on:
+  schedule:
+    # キュー追加: 15分毎（crm_monitorと同期）
+    - cron: '*/15 * * * *'
+    # 送信: 平日8:30 JST (23:30 UTC前日) と 17:00 JST (8:00 UTC)
+    - cron: '30 23 * * 0-4'  # 月-金 8:30 JST
+    - cron: '0 8 * * 1-5'    # 月-金 17:00 JST
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Mode: queue, send, list, dry-run'
+        required: true
+        default: 'queue'
+
+jobs:
+  thankyou:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Restore state
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            scripts/thankyou_state.json
+            scripts/thankyou_queue.json
+          key: thankyou-state-${{ github.run_id }}
+          restore-keys: |
+            thankyou-state-
+
+      - name: Determine mode
+        id: mode
+        run: |
+          INPUT_MODE="${{ github.event.inputs.mode }}"
+          CRON="${{ github.event.schedule }}"
+          if [ -n "$INPUT_MODE" ]; then
+            echo "mode=--${INPUT_MODE}" >> $GITHUB_OUTPUT
+          elif [ "$CRON" = "30 23 * * 0-4" ] || [ "$CRON" = "0 8 * * 1-5" ]; then
+            echo "mode=--send" >> $GITHUB_OUTPUT
+          else
+            echo "mode=--queue" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run deal thank-you email
+        run: python scripts/deal_thankyou_email.py ${{ steps.mode.outputs.mode }}
+
+      - name: Save state
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            scripts/thankyou_state.json
+            scripts/thankyou_queue.json
+          key: thankyou-state-${{ github.run_id }}

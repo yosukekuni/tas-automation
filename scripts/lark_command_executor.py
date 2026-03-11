@@ -53,6 +53,7 @@ AVAILABLE_SCRIPTS = {
     "bid_scanner.py": "入札情報スキャン",
     "lead_nurturing.py": "リードナーチャリング実行",
     "auto_case_updater.py": "実績ページ自動更新",
+    "deal_thankyou_email.py": "商談サンクスメール（--queue/--send/--list）",
 }
 
 
@@ -263,6 +264,9 @@ def keyword_match(msg):
     # 実績更新
     if any(k in m for k in ["実績更新", "ケース更新", "case update"]):
         return {"action": "run_script", "script": "auto_case_updater.py", "args": ["--dry-run"]}
+    # サンクスメール
+    if any(k in m for k in ["サンクス", "thankyou", "サンクスメール"]):
+        return {"action": "run_script", "script": "deal_thankyou_email.py", "args": ["--list"]}
     # マッチなし → Claude APIに委譲
     return None
 
