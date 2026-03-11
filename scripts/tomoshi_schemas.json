@@ -1,0 +1,62 @@
+{
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "小さな会社でもTOMOSHIの事業承継支援の対象になりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。年商数百万円〜数千万円、従業員1〜20名程度の中小・零細企業が最も効果を発揮します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "TOMOSHIの業務自動化にパソコンの知識は必要ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "一切不要です。社長やスタッフにお話を聞かせていただくだけで、こちらで全て構築します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "事業承継で社員の雇用は守られますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。業務の自動化は社長がいなくても社員が働ける状態を作るためのものです。雇用と取引先の維持を最優先にしています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "TOMOSHIの費用はどれくらいですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "初回は無料で業務診断レポートをお出しします。その上でやるかやらないかをご判断いただけます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "後継者がいなくても事業は続けられますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。TOMOSHIは社長の頭の中にある業務を仕組みに移し替えることで、社長依存度を100%から10〜20%に下げ、後継者や新オーナーが安心して引き継げる状態を作ります。"
+        }
+      }
+    ]
+  },
+  "service": {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "TOMOSHI 事業承継バリューアップ",
+    "description": "後継者不在の中小企業の業務を自動化し、社長依存を解消。事業の灯を消さずに次につなぐプログラム。",
+    "provider": {
+      "@type": "Organization",
+      "name": "TOMOSHI",
+      "url": "https://www.tokaiair.com/services/ai-valueup/",
+      "telephone": "050-7117-7141"
+    },
+    "areaServed": "JP",
+    "serviceType": "事業承継支援・業務自動化"
+  }
+}
