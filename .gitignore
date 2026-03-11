@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.log
+followup_drafts/
+node_modules/
+# Never commit real credentials
+automation_config.json
+!scripts/automation_config.json
+# State files (managed by Actions cache)
+scripts/thankyou_state.json
+scripts/thankyou_queue.json
+scripts/quote_followup_state.json
+scripts/crm_monitor_state.json

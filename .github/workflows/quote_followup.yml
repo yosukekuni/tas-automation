@@ -1,0 +1,45 @@
+name: Quote Follow-up (Weekday 9AM JST)
+
+on:
+  schedule:
+    - cron: '0 0 * * 1-5'  # 00:00 UTC = 09:00 JST, Mon-Fri
+  workflow_dispatch:
+
+jobs:
+  followup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Restore state
+        uses: actions/cache@v4
+        with:
+          path: scripts/quote_followup_state.json
+          key: quote-followup-state-${{ github.run_number }}
+          restore-keys: |
+            quote-followup-state-
+
+      - name: List targets
+        run: python scripts/quote_followup.py --list
+
+      - name: Send follow-up notifications
+        run: python scripts/quote_followup.py --notify --send
+
+      - name: Save state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: scripts/quote_followup_state.json
+          key: quote-followup-state-${{ github.run_number }}

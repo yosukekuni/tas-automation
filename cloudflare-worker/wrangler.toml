@@ -1,0 +1,13 @@
+name = "tas-lark-bot"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Secrets are set via `wrangler secret put <NAME>`
+# Do NOT put secrets here. Use:
+#   wrangler secret put LARK_APP_ID
+#   wrangler secret put LARK_APP_SECRET
+#   wrangler secret put LARK_VERIFICATION_TOKEN
+#   wrangler secret put LARK_ENCRYPT_KEY
+#   wrangler secret put GITHUB_TOKEN
+#   wrangler secret put GITHUB_REPO
+#   wrangler secret put ALLOWED_OPEN_ID

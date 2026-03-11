@@ -1,0 +1,26 @@
+name: Weekly Sales KPI Report (Monday 9AM JST)
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # 00:00 UTC Monday = 09:00 JST Monday
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Generate Weekly KPI
+        run: python scripts/weekly_sales_kpi.py

@@ -1,0 +1,26 @@
+name: Site Health Audit (Weekly Sunday)
+
+on:
+  schedule:
+    - cron: '0 22 * * 6'  # 22:00 UTC Saturday = 07:00 JST Sunday
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: python scripts/setup_config.py
+
+      - name: Run Site Health Audit
+        run: python scripts/site_health_audit.py --notify
