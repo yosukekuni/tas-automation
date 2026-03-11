@@ -1,0 +1,72 @@
+{
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "AI業務自動化にプログラミングの知識は必要ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "一切不要です。全ての構築は日本語の指示だけで完結します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "どんな規模の会社がAI業務自動化の対象ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "年商数百万円〜数千万円、従業員1〜20名程度の中小・零細企業が最も効果を発揮します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "AI業務自動化の費用はいくらですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "初期費用は個別見積、月額運用費ありのプランです。SIerの500〜1000万円やSaaS月額5〜15万円と比較して大幅に低コストで導入可能です。初回パイロット案件は特別条件でご相談可能です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "事業承継・M&Aにおけるバリューアップとは？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "属人的な業務をAIで自動化し、社長依存度を100%から10〜20%に下げることで、想定売却倍率を年利益の1〜2倍から3〜5倍に引き上げるプログラムです。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "AI業務自動化にはどのくらいの期間がかかりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "標準3ヶ月プログラムです。1ヶ月目に業務可視化、2ヶ月目にシステム構築、3ヶ月目に定着・引継ぎを行います。"
+        }
+      }
+    ]
+  },
+  "service": {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "AI業務自動化プログラム（事業承継バリューアップ）",
+    "description": "買収後1〜3ヶ月の業務自動化で社長依存を解消し、バリュエーション3〜5倍を実現するプログラム",
+    "provider": {
+      "@type": "Organization",
+      "name": "東海エアサービス株式会社",
+      "url": "https://www.tokaiair.com/",
+      "telephone": "050-7117-7141",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "名古屋市",
+        "addressCountry": "JP"
+      }
+    },
+    "areaServed": "JP",
+    "serviceType": "AI業務自動化・事業承継支援",
+    "offers": {
+      "@type": "Offer",
+      "description": "初回パイロット案件は特別条件でご相談可能",
+      "priceCurrency": "JPY"
+    }
+  }
+}

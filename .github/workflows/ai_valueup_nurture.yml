@@ -1,0 +1,49 @@
+name: AI ValueUp Nurturing
+on:
+  schedule:
+    - cron: '0 0 * * 1-5'  # 平日 9:00 JST
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'scan / send / list / dry'
+        required: false
+        default: ''
+
+jobs:
+  nurture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python3 scripts/setup_config.py
+
+      - name: Restore state
+        uses: actions/cache/restore@v4
+        with:
+          path: scripts/ai_valueup_nurture_state.json
+          key: ai-vu-nurture-state-
+
+      - name: Run nurturing
+        run: |
+          cd scripts
+          MODE="${{ github.event.inputs.mode }}"
+          if [ -n "$MODE" ]; then
+            python3 ai_valueup_nurture.py --$MODE
+          else
+            python3 ai_valueup_nurture.py --scan --send
+          fi
+
+      - name: Save state
+        uses: actions/cache/save@v4
+        with:
+          path: scripts/ai_valueup_nurture_state.json
+          key: ai-vu-nurture-state-${{ github.run_id }}

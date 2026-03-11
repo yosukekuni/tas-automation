@@ -1,0 +1,36 @@
+name: AI ValueUp Lead Monitor
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # 15分毎
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python3 scripts/setup_config.py
+
+      - name: Restore state
+        uses: actions/cache/restore@v4
+        with:
+          path: scripts/ai_valueup_monitor_state.json
+          key: ai-vu-monitor-state-
+
+      - name: Monitor leads
+        run: |
+          cd scripts
+          python3 ai_valueup_lead_monitor.py
+
+      - name: Save state
+        uses: actions/cache/save@v4
+        with:
+          path: scripts/ai_valueup_monitor_state.json
+          key: ai-vu-monitor-state-${{ github.run_id }}
