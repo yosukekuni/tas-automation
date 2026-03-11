@@ -1,0 +1,36 @@
+name: Lark Command Executor
+
+on:
+  repository_dispatch:
+    types: [lark-command]
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          WEB_ANALYTICS_BASE_TOKEN: ${{ secrets.WEB_ANALYTICS_BASE_TOKEN }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+          MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
+        run: python scripts/setup_config.py
+
+      - name: Execute Lark command
+        env:
+          LARK_COMMAND_MESSAGE: ${{ github.event.client_payload.message }}
+          LARK_COMMAND_SENDER: ${{ github.event.client_payload.sender_open_id }}
+          LARK_COMMAND_MESSAGE_ID: ${{ github.event.client_payload.message_id }}
+        run: python scripts/lark_command_executor.py
