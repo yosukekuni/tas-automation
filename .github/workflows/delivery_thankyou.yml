@@ -51,5 +51,5 @@ jobs:
           LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
         run: python scripts/setup_config.py
 
-      - name: Send delivery thankyou
-        run: python scripts/delivery_thankyou_email.py --send
+      - name: Check delivery thankyou (dry-run, no auto-send)
+        run: python scripts/delivery_thankyou_email.py --check

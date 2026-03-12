@@ -34,8 +34,8 @@ jobs:
       - name: List targets
         run: python scripts/quote_followup.py --list
 
-      - name: Send follow-up notifications
-        run: python scripts/quote_followup.py --notify --send
+      - name: Check follow-up targets (dry-run, no auto-send)
+        run: python scripts/quote_followup.py --notify
 
       - name: Save state
         if: always()

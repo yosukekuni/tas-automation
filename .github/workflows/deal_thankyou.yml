@@ -4,7 +4,7 @@ on:
   schedule:
     # キュー追加: 15分毎（crm_monitorと同期）
     - cron: '*/15 * * * *'
-    # 送信: 平日8:30 JST (23:30 UTC前日) と 17:00 JST (8:00 UTC)
+    # 送信チェック: 平日8:30/17:00 → dry-runのみ（実送信は手動トリガー）
     - cron: '30 23 * * 0-4'  # 月-金 8:30 JST
     - cron: '0 8 * * 1-5'    # 月-金 17:00 JST
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
       mode:
         description: 'Mode: queue, send, list, dry-run'
         required: true
-        default: 'queue'
+        default: 'dry-run'
 
 jobs:
   thankyou:
@@ -52,7 +52,7 @@ jobs:
           if [ -n "$INPUT_MODE" ]; then
             echo "mode=--${INPUT_MODE}" >> $GITHUB_OUTPUT
           elif [ "$CRON" = "30 23 * * 0-4" ] || [ "$CRON" = "0 8 * * 1-5" ]; then
-            echo "mode=--send" >> $GITHUB_OUTPUT
+            echo "mode=--dry-run" >> $GITHUB_OUTPUT
           else
             echo "mode=--queue" >> $GITHUB_OUTPUT
           fi

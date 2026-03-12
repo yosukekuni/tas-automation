@@ -25,5 +25,5 @@ jobs:
           LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
         run: python scripts/setup_config.py
 
-      - name: Run email nurturing sequences
-        run: python scripts/email_nurturing_sequences.py --scan --send
+      - name: Scan nurturing targets (dry-run, no auto-send)
+        run: python scripts/email_nurturing_sequences.py --scan

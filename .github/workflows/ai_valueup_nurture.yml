@@ -39,7 +39,7 @@ jobs:
           if [ -n "$MODE" ]; then
             python3 ai_valueup_nurture.py --$MODE
           else
-            python3 ai_valueup_nurture.py --scan --send
+            python3 ai_valueup_nurture.py --scan
           fi
 
       - name: Save state
