@@ -74,6 +74,11 @@ SALES_REPS = {
 
 CEO_OPEN_ID = "ou_d2e2e520a442224ea9d987c6186341ce"
 
+# セーフガード設定
+MAX_SENDS_PER_DAY = 5          # 1日の送信上限
+DUPLICATE_WINDOW_DAYS = 30     # 同一メールアドレスへの重複防止期間
+CANCEL_KEYWORD = "キャンセル"   # Larkで返信するとキャンセル
+
 COMPANY_INFO = {
     "name": "東海エアサービス株式会社",
     "url": "https://www.tokaiair.com/",
@@ -383,6 +388,25 @@ def send_email_via_wordpress(to_email, subject, body, from_name="東海エアサ
         return False
 
 
+# ── セーフガード ──
+def is_duplicate_email(queue, to_email):
+    """同一メールアドレスに過去N日以内に送信済みならTrue"""
+    cutoff = (datetime.now() - timedelta(days=DUPLICATE_WINDOW_DAYS)).isoformat()
+    for item in queue:
+        if item.get("to_email") == to_email and item.get("status") == "sent":
+            sent_at = item.get("sent_at", "")
+            if sent_at > cutoff:
+                return True
+    return False
+
+
+def count_sent_today(queue):
+    """今日の送信件数"""
+    today = datetime.now().strftime("%Y-%m-%d")
+    return sum(1 for q in queue if q.get("status") == "sent"
+               and q.get("sent_at", "").startswith(today))
+
+
 # ── キューモード: 新規商談→メール生成→キュー保存 ──
 def queue_new_deals(specific_deal=None):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] 商談サンクスメール: キュー追加チェック")
@@ -494,6 +518,12 @@ def queue_new_deals(specific_deal=None):
 
         print(f"  → 宛先: {contact['company']} {contact['name']} <{contact['email']}>")
 
+        # 重複チェック: 同一メールアドレスに過去N日以内に送信済み
+        if is_duplicate_email(queue, contact["email"]):
+            print(f"  → 過去{DUPLICATE_WINDOW_DAYS}日以内に送信済み。スキップ。")
+            processed_ids.add(rid)
+            continue
+
         # Claude APIでメール生成
         try:
             email_text = generate_thankyou_email(fields, contact, rep_info)
@@ -527,12 +557,18 @@ def queue_new_deals(specific_deal=None):
 
         print(f"  → キュー追加。送信予定: {send_at}")
 
-        # CEOにキュー追加通知
+        # CEOにキュー追加通知（本文プレビュー付き）
+        preview_body = body[:300] + ("..." if len(body) > 300 else "")
         send_lark_dm(token, CEO_OPEN_ID,
             f"📋 サンクスメールキュー追加\n"
             f"商談: {deal_name}\n"
-            f"宛先: {contact['email']}\n"
-            f"送信予定: {send_at}")
+            f"宛先: {contact['company']} {contact['name']} <{contact['email']}>\n"
+            f"件名: {subject}\n"
+            f"送信予定: {send_at}\n"
+            f"─────────\n"
+            f"{preview_body}\n"
+            f"─────────\n"
+            f"⛔ 止める場合: 「キャンセル {deal_name}」と返信")
 
         time.sleep(1)
 
@@ -562,6 +598,15 @@ def send_queued_emails(dry_run=False):
     token = lark_get_token()
     sent = 0
 
+    # 1日の送信上限チェック
+    today_sent = count_sent_today(queue)
+    if today_sent >= MAX_SENDS_PER_DAY:
+        print(f"  ⚠️ 本日の送信上限({MAX_SENDS_PER_DAY}件)に達しています。送信なし。")
+        send_lark_dm(token, CEO_OPEN_ID,
+            f"⚠️ サンクスメール: 本日の送信上限({MAX_SENDS_PER_DAY}件)到達。"
+            f"残り{len(pending)}件は翌営業日に送信。")
+        return
+
     for item in queue:
         if item["status"] != "pending":
             continue
@@ -570,6 +615,17 @@ def send_queued_emails(dry_run=False):
         if now < send_at:
             remaining = send_at - now
             print(f"  [{item['deal_name']}] 送信予定: {item['send_at']} (あと{remaining})")
+            continue
+
+        # 送信上限チェック（ループ内）
+        if sent + today_sent >= MAX_SENDS_PER_DAY:
+            print(f"  ⚠️ 送信上限到達。残りは翌営業日。")
+            break
+
+        # 送信直前の重複チェック
+        if is_duplicate_email(queue, item["to_email"]):
+            print(f"  → {item['to_email']}は過去{DUPLICATE_WINDOW_DAYS}日以内に送信済み。スキップ。")
+            item["status"] = "skipped_duplicate"
             continue
 
         print(f"\n  送信中: {item['deal_name']} → {item['to_email']}")
