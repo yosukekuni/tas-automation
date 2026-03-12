@@ -62,6 +62,24 @@ TABLE_EMAIL_LOG = "tblfBahatPZMJEM5"
 # Lark open_ids
 CEO_OPEN_ID = "ou_d2e2e520a442224ea9d987c6186341ce"
 
+# セーフガード設定
+MAX_SENDS_PER_DAY = 5          # 1日の送信上限
+
+
+def run_email_review(subject, body, to_email, from_email="info@tokaiair.com"):
+    """送信前にreview_agent.pyのemailプロファイルでチェック。CRITICAL=送信中止"""
+    try:
+        script_dir = Path(__file__).parent
+        sys.path.insert(0, str(script_dir))
+        from review_agent import review
+        content = f"To: {to_email}\nFrom: {from_email}\nSubject: {subject}\n\n{body}"
+        result = review("email", content, output_json=True)
+        return result
+    except Exception as e:
+        log(f"  レビューエージェント実行エラー（送信は続行）: {e}")
+        return {"verdict": "OK", "issues": [], "summary": f"レビュースキップ: {e}"}
+
+
 COMPANY_INFO = {
     "name": "東海エアサービス株式会社",
     "url": "https://www.tokaiair.com/",
@@ -1184,6 +1202,36 @@ def send_queued_emails(dry_run=False):
                 print(f"    {line}")
             print(f"    --- ここまで ---\n")
             continue
+
+        # 1日の送信上限チェック
+        today = now.strftime("%Y-%m-%d")
+        today_sent = sum(1 for q in queue if q.get("status") == "sent"
+                         and q.get("sent_at", "").startswith(today))
+        if today_sent + sent_count >= MAX_SENDS_PER_DAY:
+            log(f"    送信上限({MAX_SENDS_PER_DAY}件/日)到達。残りは翌営業日。")
+            send_lark_dm(token, CEO_OPEN_ID,
+                f"ナーチャリングメール: 本日の送信上限({MAX_SENDS_PER_DAY}件)到達。")
+            break
+
+        # レビューエージェントによる送信前チェック
+        review_result = run_email_review(
+            item["subject"], item["text_body"],
+            item["to_email"], item.get("from_email", COMPANY_INFO["email"]))
+        if review_result["verdict"] == "NG":
+            critical_issues = [i for i in review_result.get("issues", []) if i["severity"] == "CRITICAL"]
+            issue_text = "\n".join(f"  - {i['description']}" for i in critical_issues)
+            log(f"    レビューNG: {review_result['summary']}")
+            item["status"] = "review_rejected"
+            item["review_result"] = review_result["summary"]
+            send_lark_dm(token, CEO_OPEN_ID,
+                f"ナーチャリングメール送信ブロック（レビューNG）\n"
+                f"[{seq_label}] {item['label']}\n"
+                f"宛先: {item['to_email']}\n"
+                f"理由:\n{issue_text}\n"
+                f"手動確認が必要です")
+            continue
+        else:
+            log(f"    レビューOK: {review_result['summary']}")
 
         # 送信
         success = send_email_via_wordpress(

@@ -79,6 +79,20 @@ MAX_SENDS_PER_DAY = 5          # 1日の送信上限
 DUPLICATE_WINDOW_DAYS = 30     # 同一メールアドレスへの重複防止期間
 CANCEL_KEYWORD = "キャンセル"   # Larkで返信するとキャンセル
 
+
+# ── レビューエージェント連携 ──
+def run_email_review(subject, body, to_email, from_email="info@tokaiair.com"):
+    """送信前にreview_agent.pyのemailプロファイルでチェック。CRITICAL=送信中止"""
+    try:
+        sys.path.insert(0, str(SCRIPT_DIR))
+        from review_agent import review
+        content = f"To: {to_email}\nFrom: {from_email}\nSubject: {subject}\n\n{body}"
+        result = review("email", content, output_json=True)
+        return result
+    except Exception as e:
+        print(f"  レビューエージェント実行エラー（送信は続行）: {e}")
+        return {"verdict": "OK", "issues": [], "summary": f"レビュースキップ: {e}"}
+
 COMPANY_INFO = {
     "name": "東海エアサービス株式会社",
     "url": "https://www.tokaiair.com/",
@@ -634,6 +648,26 @@ def send_queued_emails(dry_run=False):
         if dry_run:
             print(f"  [ドライラン] 送信スキップ")
             continue
+
+        # レビューエージェントによる送信前チェック
+        review_result = run_email_review(
+            item["subject"], item["body"],
+            item["to_email"], item.get("from_email", "info@tokaiair.com"))
+        if review_result["verdict"] == "NG":
+            critical_issues = [i for i in review_result.get("issues", []) if i["severity"] == "CRITICAL"]
+            issue_text = "\n".join(f"  - {i['description']}" for i in critical_issues)
+            print(f"  レビューNG: {review_result['summary']}")
+            item["status"] = "review_rejected"
+            item["review_result"] = review_result["summary"]
+            send_lark_dm(token, CEO_OPEN_ID,
+                f"メール送信ブロック（レビューNG）\n"
+                f"商談: {item['deal_name']}\n"
+                f"宛先: {item['to_email']}\n"
+                f"理由:\n{issue_text}\n"
+                f"手動確認が必要です")
+            continue
+        else:
+            print(f"  レビューOK: {review_result['summary']}")
 
         success = send_email_via_wordpress(
             to_email=item["to_email"],

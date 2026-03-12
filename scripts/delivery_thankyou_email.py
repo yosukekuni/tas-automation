@@ -83,6 +83,42 @@ SALES_REPS = {
 
 CEO_OPEN_ID = "ou_d2e2e520a442224ea9d987c6186341ce"
 
+# セーフガード設定
+MAX_SENDS_PER_DAY = 5          # 1日の送信上限
+DUPLICATE_WINDOW_DAYS = 30     # 同一メールアドレスへの重複防止期間
+
+
+def is_duplicate_email(queue, to_email):
+    """過去N日以内に同一アドレスに送信済みかチェック"""
+    cutoff = (datetime.now() - timedelta(days=DUPLICATE_WINDOW_DAYS)).isoformat()
+    for item in queue:
+        if item.get("to_email") == to_email and item.get("status") == "sent":
+            sent_at = item.get("sent_at", "")
+            if sent_at > cutoff:
+                return True
+    return False
+
+
+def count_sent_today(queue):
+    """本日の送信件数をカウント"""
+    today = datetime.now().strftime("%Y-%m-%d")
+    return sum(1 for q in queue if q.get("status") == "sent"
+               and q.get("sent_at", "").startswith(today))
+
+
+def run_email_review(subject, body, to_email, from_email="info@tokaiair.com"):
+    """送信前にreview_agent.pyのemailプロファイルでチェック。CRITICAL=送信中止"""
+    try:
+        sys.path.insert(0, str(SCRIPT_DIR))
+        from review_agent import review
+        content = f"To: {to_email}\nFrom: {from_email}\nSubject: {subject}\n\n{body}"
+        result = review("email", content, output_json=True)
+        return result
+    except Exception as e:
+        print(f"  レビューエージェント実行エラー（送信は続行）: {e}")
+        return {"verdict": "OK", "issues": [], "summary": f"レビュースキップ: {e}"}
+
+
 COMPANY_INFO = {
     "name": "東海エアサービス株式会社",
     "url": "https://www.tokaiair.com/",
@@ -588,6 +624,12 @@ def check_and_queue(specific_order=None):
 
         print(f"  -> 宛先: {contact['company']} {contact['name']} <{contact['email']}>")
 
+        # 重複チェック
+        if is_duplicate_email(queue, contact["email"]):
+            print(f"  -> 過去{DUPLICATE_WINDOW_DAYS}日以内に送信済み。スキップ。")
+            processed_ids.add(rid)
+            continue
+
         # 担当営業情報
         rep_info = SALES_REPS.get(order_info["rep_name"], {
             "display": order_info["rep_name"] or "東海エアサービス",
@@ -633,13 +675,19 @@ def check_and_queue(specific_order=None):
         print(f"  -> キュー追加。送信予定: {send_at}")
         print(f"  -> 件名: {subject}")
 
-        # CEOに通知
+        # CEOにキュー追加通知（本文プレビュー付き）
+        preview_body = body[:300] + ("..." if len(body) > 300 else "")
         send_lark_dm(token, CEO_OPEN_ID,
             f"納品サンクスメール キュー追加\n"
             f"案件: {order_info['case_name']}\n"
             f"取引先: {order_info['account_name']}\n"
             f"宛先: {contact['email']}\n"
-            f"送信予定: {send_at}")
+            f"件名: {subject}\n"
+            f"送信予定: {send_at}\n"
+            f"─────────\n"
+            f"{preview_body}\n"
+            f"─────────\n"
+            f"止める場合: 「キャンセル {order_info['case_name']}」と返信")
 
         time.sleep(1)
 
@@ -670,6 +718,15 @@ def send_queued_emails(dry_run=False):
     token = lark_get_token()
     sent_count = 0
 
+    # 1日の送信上限チェック
+    today_sent = count_sent_today(queue)
+    if today_sent >= MAX_SENDS_PER_DAY:
+        print(f"  本日の送信上限({MAX_SENDS_PER_DAY}件)に達しています。送信なし。")
+        send_lark_dm(token, CEO_OPEN_ID,
+            f"納品サンクスメール: 本日の送信上限({MAX_SENDS_PER_DAY}件)到達。"
+            f"残り{len(pending)}件は翌営業日に送信。")
+        return
+
     for item in queue:
         if item["status"] != "pending":
             continue
@@ -678,6 +735,17 @@ def send_queued_emails(dry_run=False):
         if now < send_at:
             remaining = send_at - now
             print(f"  [{item['case_name']}] 送信予定: {item['send_at']} (あと{remaining})")
+            continue
+
+        # 送信上限チェック（ループ内）
+        if sent_count + today_sent >= MAX_SENDS_PER_DAY:
+            print(f"  送信上限到達。残りは翌営業日。")
+            break
+
+        # 送信直前の重複チェック
+        if is_duplicate_email(queue, item["to_email"]):
+            print(f"  -> {item['to_email']}は過去{DUPLICATE_WINDOW_DAYS}日以内に送信済み。スキップ。")
+            item["status"] = "skipped_duplicate"
             continue
 
         print(f"\n  送信中: {item['case_name']} -> {item['to_email']}")
@@ -689,6 +757,26 @@ def send_queued_emails(dry_run=False):
             print(item["body"][:500])
             print(f"  --- ここまで ---")
             continue
+
+        # レビューエージェントによる送信前チェック
+        review_result = run_email_review(
+            item["subject"], item["body"],
+            item["to_email"], item.get("from_email", "info@tokaiair.com"))
+        if review_result["verdict"] == "NG":
+            critical_issues = [i for i in review_result.get("issues", []) if i["severity"] == "CRITICAL"]
+            issue_text = "\n".join(f"  - {i['description']}" for i in critical_issues)
+            print(f"  レビューNG: {review_result['summary']}")
+            item["status"] = "review_rejected"
+            item["review_result"] = review_result["summary"]
+            send_lark_dm(token, CEO_OPEN_ID,
+                f"納品メール送信ブロック（レビューNG）\n"
+                f"案件: {item['case_name']}\n"
+                f"宛先: {item['to_email']}\n"
+                f"理由:\n{issue_text}\n"
+                f"手動確認が必要です")
+            continue
+        else:
+            print(f"  レビューOK: {review_result['summary']}")
 
         # WordPress経由で送信
         success = send_email_via_wordpress(

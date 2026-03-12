@@ -2,14 +2,19 @@ name: Delivery Thank-You Email
 
 on:
   schedule:
-    # 15分毎チェック
+    # キュー追加: 15分毎
     - cron: '*/15 * * * *'
-    # 平日10:00 JST (01:00 UTC)
+    # 送信: 平日10:00 JST (01:00 UTC)
     - cron: '0 1 * * 1-5'
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Mode: check, send, list, dry-run'
+        required: true
+        default: 'check'
 
 jobs:
-  check:
+  delivery-thankyou:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,28 +33,37 @@ jobs:
           LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
         run: python scripts/setup_config.py
 
-      - name: Check delivery thankyou
-        run: python scripts/delivery_thankyou_email.py --check
-
-  send:
-    runs-on: ubuntu-latest
-    needs: check
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Restore state
+        uses: actions/cache/restore@v4
         with:
-          python-version: '3.12'
+          path: |
+            scripts/delivery_thankyou_state.json
+            scripts/delivery_thankyou_queue.json
+          key: delivery-thankyou-state-${{ github.run_id }}
+          restore-keys: |
+            delivery-thankyou-state-
 
-      - name: Setup config
-        env:
-          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
-          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
-          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          WP_USER: ${{ secrets.WP_USER }}
-          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
-        run: python scripts/setup_config.py
+      - name: Determine mode
+        id: mode
+        run: |
+          INPUT_MODE="${{ github.event.inputs.mode }}"
+          CRON="${{ github.event.schedule }}"
+          if [ -n "$INPUT_MODE" ]; then
+            echo "mode=--${INPUT_MODE}" >> $GITHUB_OUTPUT
+          elif [ "$CRON" = "0 1 * * 1-5" ]; then
+            echo "mode=--send" >> $GITHUB_OUTPUT
+          else
+            echo "mode=--check" >> $GITHUB_OUTPUT
+          fi
 
-      - name: Check delivery thankyou (dry-run, no auto-send)
-        run: python scripts/delivery_thankyou_email.py --check
+      - name: Run delivery thank-you email
+        run: python scripts/delivery_thankyou_email.py ${{ steps.mode.outputs.mode }}
+
+      - name: Save state
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            scripts/delivery_thankyou_state.json
+            scripts/delivery_thankyou_queue.json
+          key: delivery-thankyou-state-${{ github.run_id }}

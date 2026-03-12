@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 0 * * 1-5'  # 00:00 UTC weekdays = 09:00 JST weekdays
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Mode: scan, send, scan+send, list, dry-run'
+        required: false
+        default: ''
 
 jobs:
   nurture:
@@ -25,5 +30,30 @@ jobs:
           LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
         run: python scripts/setup_config.py
 
-      - name: Scan nurturing targets (dry-run, no auto-send)
-        run: python scripts/email_nurturing_sequences.py --scan
+      - name: Restore state
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            scripts/nurturing_state.json
+            scripts/nurturing_queue.json
+          key: nurturing-state-${{ github.run_id }}
+          restore-keys: |
+            nurturing-state-
+
+      - name: Run nurturing
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ -n "$MODE" ]; then
+            python scripts/email_nurturing_sequences.py --$MODE
+          else
+            python scripts/email_nurturing_sequences.py --scan --send
+          fi
+
+      - name: Save state
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            scripts/nurturing_state.json
+            scripts/nurturing_queue.json
+          key: nurturing-state-${{ github.run_id }}
