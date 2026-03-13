@@ -59,7 +59,7 @@ SALES_REPS = {
         "display": "新美",
         "full_name": "新美 光",
         "email": "h.niimi@tokaiair.com",
-        "cc_ceo": True,  # CEOにもコピー送信
+        "cc_ceo": False,  # info@tokaiair.com送信済みフォルダで確認可能
     },
     "ユーザー550372": {
         "display": "政木",
@@ -258,12 +258,14 @@ def find_untouched_accounts(deals, accounts):
         priority = extract_text(f.get("優先度", ""))
         category = extract_text(f.get("業種", "")) or extract_text(f.get("客先カテゴリ", ""))
         area = extract_text(f.get("エリア", "")) or extract_text(f.get("都道府県", ""))
+        phone = extract_text(f.get("電話番号", "")) or extract_text(f.get("TEL", ""))
 
         untouched.append({
             "company": company_name,
             "priority": priority,
             "category": category,
             "area": area,
+            "phone": phone,
         })
 
     # 優先度A → それ以外の順でソート
@@ -299,14 +301,14 @@ def find_contact_for_company(contacts, company_name):
 
 # ── Claude API ──
 def generate_followup_email(deal, contact, rep_name):
-    """Hot商談向けフォローメール案をClaude APIで生成"""
+    """Hot商談向けフォローメール文案をClaude APIで生成"""
     rep_info = SALES_REPS.get(rep_name, {})
     contact_str = ""
     if contact:
         contact_str = f"{contact.get('name', '')} {contact.get('title', '')}様"
 
     prompt = f"""東海エアサービス株式会社の営業 {rep_info.get('full_name', rep_name)} として、
-以下のHot商談に対するフォローメールの件名と本文を作成してください。
+以下のHot商談に対するフォローメールを作成してください。
 
 【商談情報】
 - 会社名: {deal['company']} {contact_str}
@@ -319,22 +321,23 @@ def generate_followup_email(deal, contact, rep_name):
 - 見積金額: {deal['amount'] or '(未定)'}
 
 【ルール】
-1. 件名は「件名：」で始める
-2. 本文は300文字以内で簡潔に
-3. ヒアリング内容に具体的に触れて信頼感を出す
-4. 押し売りしない。次のステップを自然に提示
-5. 敬語は丁寧すぎず、ビジネスライクに
+1. ヒアリング内容に具体的に触れて信頼感を出す
+2. 押し売りしない。次のステップを自然に提示
+3. 敬語は丁寧すぎず、ビジネスライクに
+4. 署名は「東海エアサービス株式会社」で統一
 
-【出力形式】
-件名：〇〇〇
-本文：
-（メール本文）"""
+【出力形式】必ずこの形式で出力：
+【件名】
+〇〇〇
+
+【本文】
+（メール本文 300文字以内）"""
 
     return _call_claude(prompt)
 
 
 def generate_call_script(deal, contact, rep_name):
-    """Warm商談向け架電トーク例をClaude APIで生成"""
+    """Warm商談向け架電トーク例をClaude APIで生成（ステップ分け形式）"""
     rep_info = SALES_REPS.get(rep_name, {})
     contact_str = ""
     if contact:
@@ -353,28 +356,41 @@ def generate_call_script(deal, contact, rep_name):
 - 次アクション: {deal['next_action']}
 
 【ルール】
-1. 冒頭の名乗り → 用件 → ヒアリング内容への言及 → 提案 → クロージング の流れ
-2. 200文字以内で簡潔に
-3. 相手が忙しい前提で端的に用件を伝える
-4. 「〜の件で」と具体的に切り出す
+1. ヒアリング内容に具体的に触れて信頼感を出す
+2. 相手が忙しい前提で端的に用件を伝える
+3. 「〜の件で」と具体的に切り出す
 
-【出力形式】
-（トーク例をそのまま出力）"""
+【出力形式】必ずこの5ステップ形式で出力：
+## 1. 開口一番・状況確認
+「（セリフ）」
+
+## 2. 進捗確認・お詫び
+「（セリフ）」
+
+## 3. 具体的な提案内容の確認
+「（セリフ）」
+
+## 4. アポイント調整
+「（セリフ）」
+
+## 5. クロージング
+「（セリフ）」"""
 
     return _call_claude(prompt)
 
 
 def generate_cold_call_script(account, rep_name):
-    """未接触取引先向けコールドコール台本をClaude APIで生成"""
+    """未接触取引先向け初回架電スクリプトをClaude APIで生成"""
     rep_info = SALES_REPS.get(rep_name, {})
 
     prompt = f"""東海エアサービス株式会社の営業 {rep_info.get('full_name', rep_name)} として、
-まだ接触したことがない取引先への初回架電トーク例を作成してください。
+まだ接触したことがない取引先への初回架電スクリプトを作成してください。
 
 【取引先情報】
 - 会社名: {account['company']}
 - 業種: {account.get('category', '(不明)')}
 - エリア: {account.get('area', '(不明)')}
+- 電話番号: {account.get('phone', '(不明)')}
 
 【東海エアサービスのサービス】
 - ドローン測量（公共測量対応・i-Construction）
@@ -382,13 +398,18 @@ def generate_cold_call_script(account, rep_name):
 - 建物赤外線調査（外壁タイル浮き等）
 
 【ルール】
-1. 150文字以内で端的に
-2. 「お忙しいところ恐れ入ります」で始める
-3. 相手の業種に合わせたサービスを1つだけ提案
-4. 「資料だけでもお送りしてよろしいでしょうか」でクロージング
+1. 「お忙しいところ失礼いたします。名古屋のドローン測量専門の東海エアサービスの○○と申します。」で始める
+2. 相手の業種に合わせたサービスを1つだけ提案
+3. 具体的な数値メリット（作業時間短縮等）を含める
+4. 「来週でしたら〇曜日と〇曜日、どちらかお時間いただけそうでしょうか？」でクロージング
 
 【出力形式】
-（トーク例をそのまま出力）"""
+（スクリプト本文）
+
+---
+*話し時間：約30秒*
+*訴求ポイント：（1行で要約）*
+*クロージング：（戦略を1行で）*"""
 
     return _call_claude(prompt)
 
@@ -463,98 +484,98 @@ def build_report(rep_name, rep_deals, untouched_accounts, contacts):
     now = datetime.now()
     lines = []
 
-    lines.append(f"{'═'*50}")
-    lines.append(f"  週次営業レポート（{rep_info['display']}担当分）")
-    lines.append(f"  {now.strftime('%Y年%m月%d日')} 生成")
-    lines.append(f"{'═'*50}")
+    weekday_names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    lines.append(f"{'━'*40}")
+    lines.append(f"📊 週次営業レポート")
+    lines.append(f"宛先: {rep_info['full_name']} さん")
+    lines.append(f"作成: {now.strftime('%Y/%m/%d')} ({weekday_names[now.weekday()]})")
+    lines.append(f"{'━'*40}")
     lines.append("")
 
     hot_deals = rep_deals.get("hot", [])
     warm_deals = rep_deals.get("warm", [])
 
     # AI生成の上限（API呼び出し数を制御）
-    MAX_HOT_AI = 5    # Hot商談: 全件表示、AI生成は上位5件
-    MAX_WARM_AI = 5   # Warm商談: 全件表示、AI生成は上位5件
+    MAX_HOT_AI = 5    # Hot商談: AI生成は上位5件
+    MAX_WARM_AI = 5   # Warm商談: AI生成は上位5件
     MAX_COLD_AI = 3   # 未接触: TOP3
 
-    # ── Hot商談 ──
-    lines.append(f"🔥 Hot商談: {len(hot_deals)}件")
-    lines.append(f"{'─'*50}")
+    # ── Hot商談（次アクション超過） ──
+    # 超過のものだけ先にフィルタ（超過なしなら全件表示）
+    hot_overdue = [d for d in hot_deals if d["overdue"]]
+    hot_display = hot_overdue if hot_overdue else hot_deals
+    label = "次アクション超過" if hot_overdue else ""
+    lines.append(f"🔥 Hot商談（{label}）: {len(hot_display)} 件")
+    lines.append("")
 
-    if not hot_deals:
+    if not hot_display:
         lines.append("  現在Hot商談はありません。")
         lines.append("")
     else:
-        for i, deal in enumerate(hot_deals, 1):
+        for i, deal in enumerate(hot_display, 1):
             contact = find_contact_for_company(contacts, deal["company"])
-            overdue_mark = " ⚠期限超過" if deal["overdue"] else ""
 
-            lines.append(f"\n  [{i}] {deal['company']}")
-            lines.append(f"      ステージ: {deal['stage']} | 商材: {deal['product']}")
-            if deal["amount"]:
-                lines.append(f"      見積金額: {deal['amount']}")
-            lines.append(f"      次アクション: {deal['next_action']} ({deal['next_date']}{overdue_mark})")
-
-            # AI生成フォローメール（上位N件のみ）
-            if i <= MAX_HOT_AI:
-                lines.append(f"\n      【フォローメール案】(Claude生成)")
-                email_draft = generate_followup_email(deal, contact, rep_name)
-                for line in email_draft.split("\n"):
-                    lines.append(f"      {line}")
-                time.sleep(1)  # API rate limit
+            lines.append(f"  [{i}] {deal['company']}")
+            lines.append(f"      商材: {deal['product']} ／ 次アクション日: {deal['next_date']}")
             lines.append("")
 
-    # ── Warm商談 ──
-    lines.append(f"\n🌤 Warm商談: {len(warm_deals)}件")
-    lines.append(f"{'─'*50}")
+            # AI生成フォローメール文案（上位N件のみ）
+            if i <= MAX_HOT_AI:
+                lines.append(f"      ▼ フォローメール文案（Claude生成）")
+                email_draft = generate_followup_email(deal, contact, rep_name)
+                for line in email_draft.split("\n"):
+                    lines.append(f"        {line}")
+                lines.append("")
+                time.sleep(1)  # API rate limit
 
-    if not warm_deals:
+    # ── Warm商談（次アクション超過） ──
+    warm_overdue = [d for d in warm_deals if d["overdue"]]
+    warm_display = warm_overdue if warm_overdue else warm_deals
+    label = "次アクション超過" if warm_overdue else ""
+    lines.append(f"🌤 Warm商談（{label}）: {len(warm_display)} 件")
+    lines.append("")
+
+    if not warm_display:
         lines.append("  現在Warm商談はありません。")
         lines.append("")
     else:
-        for i, deal in enumerate(warm_deals, 1):
+        for i, deal in enumerate(warm_display, 1):
             contact = find_contact_for_company(contacts, deal["company"])
-            overdue_mark = " ⚠期限超過" if deal["overdue"] else ""
 
-            lines.append(f"\n  [{i}] {deal['company']}")
-            lines.append(f"      ステージ: {deal['stage']} | 商材: {deal['product']}")
-            lines.append(f"      次アクション: {deal['next_action']} ({deal['next_date']}{overdue_mark})")
+            lines.append(f"  [{i}] {deal['company']}  ／ 次アクション日: {deal['next_date']}")
+            lines.append("")
 
             # AI生成架電トーク例（上位N件のみ）
             if i <= MAX_WARM_AI:
-                lines.append(f"\n      【架電トーク例】(Claude生成)")
+                lines.append(f"      ▼ 架電トーク例（Claude生成）")
                 call_script = generate_call_script(deal, contact, rep_name)
                 for line in call_script.split("\n"):
-                    lines.append(f"      {line}")
+                    lines.append(f"        {line}")
+                lines.append("")
                 time.sleep(1)
-            lines.append("")
 
     # ── 未接触取引先 TOP3 ──
     if untouched_accounts:
-        lines.append(f"\n📋 優先度A・未接触取引先 TOP3")
-        lines.append(f"{'─'*50}")
+        lines.append(f"⭐ 優先度A・未接触取引先 TOP3")
+        lines.append("")
 
         for i, acc in enumerate(untouched_accounts[:MAX_COLD_AI], 1):
-            lines.append(f"\n  [{i}] {acc['company']}")
-            if acc["category"]:
-                lines.append(f"      業種: {acc['category']}")
-            if acc["area"]:
-                lines.append(f"      エリア: {acc['area']}")
+            cat_str = f"（{acc['category']}）" if acc["category"] else ""
+            phone_str = f"  ☎ {acc['phone']}" if acc.get("phone") else ""
+            lines.append(f"  [{i}] {acc['company']}{cat_str}{phone_str}")
+            lines.append("")
 
-            # AI生成コールドコール台本
-            lines.append(f"\n      【初回架電トーク例】(Claude生成)")
+            # AI生成初回架電スクリプト
+            lines.append(f"      ▼ 初回架電スクリプト（Claude生成）")
             cold_script = generate_cold_call_script(acc, rep_name)
             for line in cold_script.split("\n"):
-                lines.append(f"      {line}")
+                lines.append(f"        {line}")
             lines.append("")
             time.sleep(1)
 
     # ── フッター ──
-    lines.append(f"\n{'═'*50}")
-    lines.append(f"  東海エアサービス株式会社 営業支援AI")
-    lines.append(f"  ※ メール案・トーク例はAI自動生成です。")
-    lines.append(f"    適宜修正のうえご活用ください。")
-    lines.append(f"{'═'*50}")
+    lines.append(f"{'━'*40}")
+    lines.append(f"東海エアサービス株式会社 自動レポートシステム")
 
     return "\n".join(lines)
 
