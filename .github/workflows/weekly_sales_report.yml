@@ -1,8 +1,8 @@
-name: Weekly Sales Report (Thursday 8AM JST)
+name: Weekly Sales Report (Tuesday 7AM JST)
 
 on:
   schedule:
-    - cron: '0 23 * * 3'  # 23:00 UTC Wednesday = 08:00 JST Thursday
+    - cron: '0 22 * * 1'  # 22:00 UTC Monday = 07:00 JST Tuesday
   workflow_dispatch:
 
 jobs:
