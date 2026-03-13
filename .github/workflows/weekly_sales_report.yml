@@ -2,8 +2,8 @@ name: Weekly Sales Report (per-rep schedule)
 
 on:
   schedule:
-    - cron: '0 22 * * 1'  # 22:00 UTC Monday = 07:00 JST Tuesday → 新美
-    - cron: '0 22 * * 4'  # 22:00 UTC Thursday = 07:00 JST Friday → 政木
+    - cron: '0 12 * * 1'  # 12:00 UTC Monday = 21:00 JST Monday → 新美（火曜前夜）
+    - cron: '0 12 * * 4'  # 12:00 UTC Thursday = 21:00 JST Thursday → 政木（金曜前夜）
   workflow_dispatch:
     inputs:
       rep:
@@ -31,12 +31,12 @@ jobs:
           WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
         run: python scripts/setup_config.py
 
-      - name: Send report (Tuesday = 新美)
-        if: github.event.schedule == '0 22 * * 1'
+      - name: Send report (Monday night = 新美)
+        if: github.event.schedule == '0 12 * * 1'
         run: python scripts/weekly_sales_report.py --send --rep 新美
 
-      - name: Send report (Friday = 政木)
-        if: github.event.schedule == '0 22 * * 4'
+      - name: Send report (Thursday night = 政木)
+        if: github.event.schedule == '0 12 * * 4'
         run: python scripts/weekly_sales_report.py --send --rep 政木
 
       - name: Send report (manual)
