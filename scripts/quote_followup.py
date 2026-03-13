@@ -53,7 +53,7 @@ REP_OPEN_IDS = {
 
 REP_SIGNATURES = {
     "新美 光": {"display": "新美 光", "email": "niimi@tokaiair.com"},
-    "ユーザー550372": {"display": "政木 勇治", "email": "masaki@tokaiair.com"},
+    "ユーザー550372": {"display": "政木 勇治", "email": "y-masaki@riseasone.jp"},
 }
 
 COMPANY_INFO = {

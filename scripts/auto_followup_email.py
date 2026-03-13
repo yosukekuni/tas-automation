@@ -49,7 +49,7 @@ REP_SIGNATURES = {
     },
     "ユーザー550372": {
         "display": "政木 勇治",
-        "email": "masaki@tokaiair.com",
+        "email": "y-masaki@riseasone.jp",
         "phone": "",
     },
 }

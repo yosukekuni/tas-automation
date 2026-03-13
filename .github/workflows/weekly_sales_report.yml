@@ -1,0 +1,38 @@
+name: Weekly Sales Report (Thursday 8AM JST)
+
+on:
+  schedule:
+    - cron: '0 23 * * 3'  # 23:00 UTC Wednesday = 08:00 JST Thursday
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Generate and send weekly sales reports
+        run: python scripts/weekly_sales_report.py --send
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-reports-${{ github.run_number }}
+          path: scripts/weekly_reports/
+          retention-days: 30
+        if: always()

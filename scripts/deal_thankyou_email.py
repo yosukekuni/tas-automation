@@ -66,7 +66,7 @@ SALES_REPS = {
     },
     "ユーザー550372": {
         "display": "政木 勇治",
-        "email": "masaki@tokaiair.com",
+        "email": "y-masaki@riseasone.jp",
         "open_id": None,
         "signature": "政木 勇治\n東海エアサービス株式会社\nTEL: 052-720-5885\nhttps://www.tokaiair.com/",
     },
