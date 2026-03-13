@@ -504,8 +504,10 @@ def build_report(rep_name, rep_deals, untouched_accounts, contacts):
     # 超過のものだけ先にフィルタ（超過なしなら全件表示）
     hot_overdue = [d for d in hot_deals if d["overdue"]]
     hot_display = hot_overdue if hot_overdue else hot_deals
-    label = "次アクション超過" if hot_overdue else ""
-    lines.append(f"🔥 Hot商談（{label}）: {len(hot_display)} 件")
+    if hot_overdue:
+        lines.append(f"🔥 Hot商談（次アクション超過）: {len(hot_display)} 件")
+    else:
+        lines.append(f"🔥 Hot商談: {len(hot_display)} 件")
     lines.append("")
 
     if not hot_display:
@@ -516,7 +518,8 @@ def build_report(rep_name, rep_deals, untouched_accounts, contacts):
             contact = find_contact_for_company(contacts, deal["company"])
 
             lines.append(f"  [{i}] {deal['company']}")
-            lines.append(f"      商材: {deal['product']} ／ 次アクション日: {deal['next_date']}")
+            date_part = f" ／ 次アクション日: {deal['next_date']}" if deal["next_date"] else ""
+            lines.append(f"      商材: {deal['product']}{date_part}")
             lines.append("")
 
             # AI生成フォローメール文案（上位N件のみ）
@@ -531,8 +534,10 @@ def build_report(rep_name, rep_deals, untouched_accounts, contacts):
     # ── Warm商談（次アクション超過） ──
     warm_overdue = [d for d in warm_deals if d["overdue"]]
     warm_display = warm_overdue if warm_overdue else warm_deals
-    label = "次アクション超過" if warm_overdue else ""
-    lines.append(f"🌤 Warm商談（{label}）: {len(warm_display)} 件")
+    if warm_overdue:
+        lines.append(f"🌤 Warm商談（次アクション超過）: {len(warm_display)} 件")
+    else:
+        lines.append(f"🌤 Warm商談: {len(warm_display)} 件")
     lines.append("")
 
     if not warm_display:
