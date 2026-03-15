@@ -14,12 +14,15 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // ── CORS preflight for contact form ──
-    if (request.method === "OPTIONS" && url.pathname === "/tomoshi-contact") {
+    // ── CORS preflight ──
+    if (request.method === "OPTIONS" && (url.pathname === "/tomoshi-contact" || url.pathname === "/tas-estimate")) {
+      const origin = request.headers.get("Origin") || "";
+      const allowedOrigins = ["https://tomoshi.jp", "https://www.tokaiair.com", "https://tokaiair.com"];
+      const allowOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
       return new Response(null, {
         status: 204,
         headers: {
-          "Access-Control-Allow-Origin": "https://tomoshi.jp",
+          "Access-Control-Allow-Origin": allowOrigin,
           "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type",
           "Access-Control-Max-Age": "86400",
@@ -30,6 +33,11 @@ export default {
     // ── TOMOSHI Contact Form endpoint ──
     if (request.method === "POST" && url.pathname === "/tomoshi-contact") {
       return handleTomoshiContact(request, env);
+    }
+
+    // ── TAS Quick Estimate endpoint ──
+    if (request.method === "POST" && url.pathname === "/tas-estimate") {
+      return handleTasEstimate(request, env);
     }
 
     if (request.method !== "POST") {
@@ -216,6 +224,90 @@ async function handleTomoshiContact(request, env) {
     });
   } catch (err) {
     console.error("Contact form error:", err);
+    return new Response(
+      JSON.stringify({ error: "Internal server error" }),
+      { status: 500, headers: corsHeaders }
+    );
+  }
+}
+
+
+// ── TAS Quick Estimate Handler ──
+async function handleTasEstimate(request, env) {
+  const origin = request.headers.get("Origin") || "";
+  const allowedOrigins = ["https://www.tokaiair.com", "https://tokaiair.com"];
+  const allowOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": allowOrigin,
+    "Content-Type": "application/json",
+  };
+
+  let formData;
+  try {
+    formData = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
+      status: 400, headers: corsHeaders,
+    });
+  }
+
+  const { service, address, email } = formData;
+  if (!service || !email) {
+    return new Response(
+      JSON.stringify({ error: "service and email are required" }),
+      { status: 400, headers: corsHeaders }
+    );
+  }
+
+  // Honeypot
+  if (formData._hp) {
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200, headers: corsHeaders,
+    });
+  }
+
+  try {
+    const token = await getLarkToken(env);
+    const baseToken = "BodWbgw6DaHP8FspBTYjT8qSpOe"; // TAS CRM Base
+    const tableId = "tblN53hFIQoo4W8j"; // 連絡先テーブル
+
+    const fields = {
+      "会社名": "",
+      "氏名": email.split("@")[0],
+      "メールアドレス": email,
+      "現場名": address || "",
+      "接触チャネル": "問い合わせフォーム",
+      "流入元": "Web検索",
+      "営業フェーズ": "未接触",
+      "お問い合わせ内容（自由記述）": "【概算見積依頼】用途: " + service + (address ? " / 現場: " + address : ""),
+    };
+
+    const resp = await fetch(
+      `https://open.larksuite.com/open-apis/bitable/v1/apps/${baseToken}/tables/${tableId}/records`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fields }),
+      }
+    );
+
+    const result = await resp.json();
+    if (result.code !== 0) {
+      console.error("Lark Base create failed:", JSON.stringify(result));
+      return new Response(
+        JSON.stringify({ error: "Failed to save" }),
+        { status: 500, headers: corsHeaders }
+      );
+    }
+
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200, headers: corsHeaders,
+    });
+  } catch (err) {
+    console.error("TAS estimate error:", err);
     return new Response(
       JSON.stringify({ error: "Internal server error" }),
       { status: 500, headers: corsHeaders }
