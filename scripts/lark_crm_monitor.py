@@ -76,11 +76,12 @@ MONITORED_TABLES = {
         "alert_label": "【商談報告】",
         "priority": "normal",
     },
-    "TOMOSHI問い合わせ": {
-        "table_id": "tblL40bqN0MPpLBG",
-        "key_fields": ["会社名", "担当者名", "メールアドレス", "電話番号", "問い合わせ内容"],
+    "TOMOSHI_リード": {
+        "table_id": "tblAmZMD8DEWQGw0",
+        "base_token": "UEHQbYevMaFvqIs60r3j92W6puu",
+        "key_fields": ["会社名", "担当者名", "メール", "電話", "メモ"],
         "alert_emoji": "🔥",
-        "alert_label": "【TOMOSHI問い合わせ】",
+        "alert_label": "【TOMOSHIリード】",
         "priority": "high",
     },
 }
@@ -115,21 +116,23 @@ def lark_get_token():
         return json.loads(r.read())["tenant_access_token"]
 
 
-def lark_get_record_count(token, table_id):
+def lark_get_record_count(token, table_id, base_token=None):
     """Get total record count for a table"""
-    url = f"https://open.larksuite.com/open-apis/bitable/v1/apps/{CRM_BASE_TOKEN}/tables/{table_id}/records?page_size=1"
+    bt = base_token or CRM_BASE_TOKEN
+    url = f"https://open.larksuite.com/open-apis/bitable/v1/apps/{bt}/tables/{table_id}/records?page_size=1"
     req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
     with urllib.request.urlopen(req) as r:
         result = json.loads(r.read())
         return result.get("data", {}).get("total", 0)
 
 
-def lark_get_latest_records(token, table_id, count=5):
+def lark_get_latest_records(token, table_id, count=5, base_token=None):
     """Get the latest N records from a table"""
+    bt = base_token or CRM_BASE_TOKEN
     all_records = []
     page_token = None
     while True:
-        url = f"https://open.larksuite.com/open-apis/bitable/v1/apps/{CRM_BASE_TOKEN}/tables/{table_id}/records?page_size=500"
+        url = f"https://open.larksuite.com/open-apis/bitable/v1/apps/{bt}/tables/{table_id}/records?page_size=500"
         if page_token:
             url += f"&page_token={page_token}"
         req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
@@ -380,7 +383,8 @@ def check_for_new_records():
 
     for table_name, table_config in MONITORED_TABLES.items():
         table_id = table_config["table_id"]
-        current_count = lark_get_record_count(token, table_id)
+        tbl_base_token = table_config.get("base_token")
+        current_count = lark_get_record_count(token, table_id, base_token=tbl_base_token)
         prev_count = state.get(table_id, {}).get("count", 0)
 
         if prev_count == 0:
@@ -394,7 +398,7 @@ def check_for_new_records():
             print(f"[NEW] {table_name}: {new_count} new records detected ({prev_count} → {current_count})")
 
             # Get the new records
-            latest = lark_get_latest_records(token, table_id, count=new_count)
+            latest = lark_get_latest_records(token, table_id, count=new_count, base_token=tbl_base_token)
 
             for rec in latest:
                 fields = rec.get("fields", {})

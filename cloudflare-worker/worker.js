@@ -174,19 +174,19 @@ async function handleTomoshiContact(request, env) {
 
   try {
     const token = await getLarkToken(env);
-    const baseToken = "BodWbgw6DaHP8FspBTYjT8qSpOe";
-    const tableId = "tblL40bqN0MPpLBG"; // TOMOSHI問い合わせ
+    const baseToken = "UEHQbYevMaFvqIs60r3j92W6puu"; // TOMOSHI独立CRM Base
+    const tableId = "tblAmZMD8DEWQGw0"; // TOMOSHI_リード
 
     // Create record in Lark Base
     const fields = {
       "会社名": company || "",
       "担当者名": name,
-      "メールアドレス": email,
-      "電話番号": phone || "",
-      "問い合わせ内容": message,
+      "メール": email,
+      "電話": phone || "",
+      "メモ": message,
       "流入元": source || "Web検索",
       "ステータス": "新規",
-      "問い合わせ日": Date.now(),
+      "初回接触日": Date.now(),
     };
 
     const resp = await fetch(
