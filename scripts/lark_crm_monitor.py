@@ -76,6 +76,13 @@ MONITORED_TABLES = {
         "alert_label": "【商談報告】",
         "priority": "normal",
     },
+    "TOMOSHI問い合わせ": {
+        "table_id": "tblL40bqN0MPpLBG",
+        "key_fields": ["会社名", "担当者名", "メールアドレス", "電話番号", "問い合わせ内容"],
+        "alert_emoji": "🔥",
+        "alert_label": "【TOMOSHI問い合わせ】",
+        "priority": "high",
+    },
 }
 
 # CEO notification target

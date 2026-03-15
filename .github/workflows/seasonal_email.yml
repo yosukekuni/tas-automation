@@ -1,0 +1,62 @@
+name: Seasonal Survey Planning Email
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Season: april or october'
+        required: false
+        default: ''
+      mode:
+        description: 'Mode: dry-run, send, list'
+        required: false
+        default: 'dry-run'
+
+jobs:
+  seasonal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Run seasonal email
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          SEASON="${{ github.event.inputs.season }}"
+          MODE="${{ github.event.inputs.mode }}"
+          ARGS=""
+          if [ -n "$SEASON" ]; then ARGS="$ARGS --season $SEASON"; fi
+          if [ "$MODE" = "send" ]; then
+            ARGS="$ARGS --send"
+          elif [ "$MODE" = "list" ]; then
+            ARGS="$ARGS --list"
+          else
+            ARGS="$ARGS --dry-run"
+          fi
+          python scripts/seasonal_email.py $ARGS
+
+      - name: Upload drafts
+        uses: actions/upload-artifact@v4
+        with:
+          name: seasonal-drafts-${{ github.run_number }}
+          path: scripts/seasonal_drafts/
+          retention-days: 30
+        if: always()

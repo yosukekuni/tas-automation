@@ -12,6 +12,26 @@
 
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+
+    // ── CORS preflight for contact form ──
+    if (request.method === "OPTIONS" && url.pathname === "/tomoshi-contact") {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          "Access-Control-Allow-Origin": "https://tomoshi.jp",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Max-Age": "86400",
+        },
+      });
+    }
+
+    // ── TOMOSHI Contact Form endpoint ──
+    if (request.method === "POST" && url.pathname === "/tomoshi-contact") {
+      return handleTomoshiContact(request, env);
+    }
+
     if (request.method !== "POST") {
       return new Response("Method Not Allowed", { status: 405 });
     }
@@ -116,6 +136,92 @@ export default {
     });
   },
 };
+
+
+// ── TOMOSHI Contact Form Handler ──
+async function handleTomoshiContact(request, env) {
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "https://tomoshi.jp",
+    "Content-Type": "application/json",
+  };
+
+  let formData;
+  try {
+    formData = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
+      status: 400,
+      headers: corsHeaders,
+    });
+  }
+
+  // Validate required fields
+  const { company, name, email, phone, message, source } = formData;
+  if (!name || !email || !message) {
+    return new Response(
+      JSON.stringify({ error: "name, email, message are required" }),
+      { status: 400, headers: corsHeaders }
+    );
+  }
+
+  // Simple spam check: honeypot field
+  if (formData._hp) {
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: corsHeaders,
+    });
+  }
+
+  try {
+    const token = await getLarkToken(env);
+    const baseToken = "BodWbgw6DaHP8FspBTYjT8qSpOe";
+    const tableId = "tblL40bqN0MPpLBG"; // TOMOSHI問い合わせ
+
+    // Create record in Lark Base
+    const fields = {
+      "会社名": company || "",
+      "担当者名": name,
+      "メールアドレス": email,
+      "電話番号": phone || "",
+      "問い合わせ内容": message,
+      "流入元": source || "Web検索",
+      "ステータス": "新規",
+      "問い合わせ日": Date.now(),
+    };
+
+    const resp = await fetch(
+      `https://open.larksuite.com/open-apis/bitable/v1/apps/${baseToken}/tables/${tableId}/records`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fields }),
+      }
+    );
+
+    const result = await resp.json();
+    if (result.code !== 0) {
+      console.error("Lark Base create failed:", JSON.stringify(result));
+      return new Response(
+        JSON.stringify({ error: "Failed to save inquiry" }),
+        { status: 500, headers: corsHeaders }
+      );
+    }
+
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: corsHeaders,
+    });
+  } catch (err) {
+    console.error("Contact form error:", err);
+    return new Response(
+      JSON.stringify({ error: "Internal server error" }),
+      { status: 500, headers: corsHeaders }
+    );
+  }
+}
 
 
 // ── Lark tenant_access_token 取得 ──
