@@ -897,7 +897,7 @@
 <link rel="icon" href="https://tokaiair.com/wp-content/uploads/2025/07/cropped-8abcfc88717523adffda22f8e06ec421-32x32.png" sizes="32x32">
 <link rel="canonical" href="https://tokaiair.com/">
 <meta property="og:type" content="website"><meta property="og:title" content="東海エアサービス｜現場の判断を、データで速くする"><meta property="og:description" content="建設現場の困りごとを正確なデータで解決。施工実績185件超。"><meta property="og:url" content="https://tokaiair.com/"><meta property="og:image" content="https://tokaiair.com/wp-content/uploads/2026/03/hero-construction-v0.jpg"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://tokaiair.com/#organization","name":"東海エアサービス株式会社","url":"https://tokaiair.com/","telephone":"+81-50-7117-7141","email":"info@tokaiair.com","address":{"@type":"PostalAddress","addressLocality":"名古屋市名東区","addressRegion":"愛知県","postalCode":"465-0077","addressCountry":"JP"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://tokaiair.com/#organization", "name": "東海エアサービス株式会社", "url": "https://tokaiair.com/", "telephone": "+81-50-7117-7141", "email": "info@tokaiair.com", "address": {"@type": "PostalAddress", "streetAddress": "植園町1-9-3", "addressLocality": "名古屋市名東区", "addressRegion": "愛知県", "postalCode": "465-0077", "addressCountry": "JP"}}, {"@type": "ProfessionalService", "@id": "https://tokaiair.com/#service", "name": "東海エアサービス株式会社", "url": "https://tokaiair.com/", "telephone": "+81-50-7117-7141", "email": "info@tokaiair.com", "address": {"@type": "PostalAddress", "streetAddress": "植園町1-9-3", "addressLocality": "名古屋市名東区", "addressRegion": "愛知県", "postalCode": "465-0077", "addressCountry": "JP"}, "priceRange": "¥150,000〜", "areaServed": "JP", "knowsAbout": ["ドローン測量", "3次元計測", "赤外線調査", "土量計算", "BIM/CIM"], "hasCredential": ["測量業者登録 第(1)-37730号", "全省庁統一資格", "国交省航空局包括飛行許可"]}]}</script>
 
 <!-- PAGE SPECIFIC CSS -->
 <style>
@@ -1053,11 +1053,11 @@
         </div>
       </a>
       <ul class="nav-links">
-        <li><a href="#pain">課題と解決</a></li>
-        <li><a href="#process">ご依頼の流れ</a></li>
-        <li><a href="#cases">導入事例</a></li>
-        <li><a href="#faq">よくある質問</a></li>
-        <li><a href="#estimate" class="nav-cta">概算見積を取得</a></li>
+        <li><a href="https://tokaiair.com/services/">サービス</a></li>
+        <li><a href="https://tokaiair.com/case-library/">導入事例</a></li>
+        <li><a href="https://tokaiair.com/faq/">よくある質問</a></li>
+        <li><a href="https://tokaiair.com/company/">会社情報</a></li>
+        <li><a href="https://tokaiair.com/contact/" class="nav-cta">お問い合わせ</a></li>
       </ul>
       <button class="nav-hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -1065,11 +1065,11 @@
     </div>
   </nav>
 <div class="mobile-menu" id="mobileMenu" role="menu">
-    <a href="#pain" role="menuitem">課題と解決</a>
-    <a href="#process" role="menuitem">ご依頼の流れ</a>
-    <a href="#cases" role="menuitem">導入事例</a>
-    <a href="#faq" role="menuitem">よくある質問</a>
-    <a href="#estimate" role="menuitem">概算見積を取得</a>
+    <a href="https://tokaiair.com/services/" role="menuitem">サービス</a>
+    <a href="https://tokaiair.com/case-library/" role="menuitem">導入事例</a>
+    <a href="https://tokaiair.com/faq/" role="menuitem">よくある質問</a>
+    <a href="https://tokaiair.com/company/" role="menuitem">会社情報</a>
+    <a href="https://tokaiair.com/contact/" role="menuitem">お問い合わせ</a>
   </div>
 
 <!-- PAGE CONTENT PLACEHOLDER -->
@@ -1095,7 +1095,7 @@ __PAGE_CONTENT__
             <li><a href="https://tokaiair.com/tools/earthwork/">土量計測・数量算出</a></li>
             <li><a href="https://tokaiair.com/services/3d-measurement/">3次元モデル作成</a></li>
             <li><a href="https://tokaiair.com/services/infrared-inspection/">外壁・構造物点検</a></li>
-            <li><a href="https://tokaiair.com/case-library/cases/">在庫棚卸し計測</a></li>
+            <li><a href="https://tokaiair.com/case-library/">在庫棚卸し計測</a></li>
           </ul>
         </div>
         <div>
@@ -1211,6 +1211,21 @@ __PAGE_CONTENT__
       el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
       observer.observe(el);
     });
+
+    // Breadcrumb structured data (dynamic)
+    (function(){
+      var path = location.pathname;
+      var crumbs = [{"@type":"ListItem","position":1,"name":"ホーム","item":"https://tokaiair.com/"}];
+      if(path !== '/'){
+        var title = document.title.split('｜')[0].trim();
+        crumbs.push({"@type":"ListItem","position":2,"name":title,"item":"https://tokaiair.com"+path});
+      }
+      var bcSchema = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":crumbs};
+      var s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.textContent = JSON.stringify(bcSchema);
+      document.head.appendChild(s);
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,986 @@
+{
+  "点群": {
+    "count": 993,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9",
+      "nagoya-dump-wait-time",
+      "coal-ore-yard-inventory-3d-scan",
+      "drone-vs-traditional-survey"
+    ]
+  },
+  "tS": {
+    "count": 542,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "aichi-earthwork-ordinance-summary",
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "drone-survey-accuracy",
+      "recycling-cost-co2-rc-soil",
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9"
+    ]
+  },
+  "ts": {
+    "count": 491,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "pointcloud-processing-pc-specs-guide",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "earthwork-calculation-pointcloud-bim-cim-workflow"
+    ]
+  },
+  "BIM": {
+    "count": 313,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "ton-m3-conversion-soil-moisture-density",
+      "recycling-cost-co2-rc-soil",
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9",
+      "pointcloud-processing-bottleneck-outsourcing-guide"
+    ]
+  },
+  "点群データ": {
+    "count": 303,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "drone-survey-accuracy",
+      "pointcloud-processing-bottleneck-outsourcing-guide",
+      "drone-survey-delivery-data-formats-bim-cim",
+      "coal-ore-yard-inventory-3d-scan",
+      "drone-earthwork-volume"
+    ]
+  },
+  "赤外線": {
+    "count": 210,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9",
+      "nagoya-dump-wait-time",
+      "coal-ore-yard-inventory-3d-scan",
+      "drone-vs-traditional-survey"
+    ]
+  },
+  "CIM": {
+    "count": 204,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "ton-m3-conversion-soil-moisture-density",
+      "recycling-cost-co2-rc-soil",
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9",
+      "pointcloud-processing-bottleneck-outsourcing-guide"
+    ]
+  },
+  "出来形": {
+    "count": 176,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "drone-survey-accuracy",
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9",
+      "soil-volume-calculator-27-media-coverage",
+      "construction-drone-use-cases"
+    ]
+  },
+  "ダンプ": {
+    "count": 133,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9",
+      "nagoya-dump-wait-time",
+      "coal-ore-yard-inventory-3d-scan",
+      "drone-vs-traditional-survey"
+    ]
+  },
+  "写真測量": {
+    "count": 95,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "drone-survey-accuracy",
+      "drone-survey-qualifications",
+      "coal-ore-yard-inventory-3d-scan",
+      "construction-drone-use-cases",
+      "drone-earthwork-volume"
+    ]
+  },
+  "TS": {
+    "count": 90,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "construction-drone-use-cases",
+      "drone-earthwork-volume",
+      "earthwork-cost",
+      "drone-vs-traditional-survey",
+      "i-construction-drone-survey"
+    ]
+  },
+  "UAV": {
+    "count": 70,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "drone-survey-accuracy",
+      "pointcloud-processing-bottleneck-outsourcing-guide",
+      "drone-survey-delivery-data-formats-bim-cim",
+      "coal-ore-yard-inventory-3d-scan",
+      "i-construction-drone-survey"
+    ]
+  },
+  "残土": {
+    "count": 68,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "nagoya-surplus-soil-acceptance-guide",
+      "soil-disposal-triple-guard",
+      "soil-volume-calculator-27-media-coverage",
+      "construction-drone-use-cases"
+    ]
+  },
+  "締固め": {
+    "count": 58,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "coal-ore-yard-inventory-3d-scan",
+      "soil-volume-calculator-27-media-coverage",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "soil-disposal-cost-dump-truck-count",
+      "coal-pks-inventory-accuracy"
+    ]
+  },
+  "LAS": {
+    "count": 52,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "coal-ore-yard-inventory-3d-scan",
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "drone-survey-company-selection",
+      "3d-survey-data-types"
+    ]
+  },
+  "3Dモデル": {
+    "count": 47,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "drone-survey-delivery-data-formats-bim-cim",
+      "coal-ore-yard-inventory-3d-scan",
+      "construction-drone-use-cases",
+      "drone-survey-dekigara-precision-failure-avoidance"
+    ]
+  },
+  "メッシュ": {
+    "count": 38,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "pointcloud-processing-pc-specs-guide",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "drone-survey-company-selection"
+    ]
+  },
+  "盛土": {
+    "count": 37,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "desk-optimization-route-stockpile",
+      "aichi-earthwork-ordinance-summary",
+      "construction-drone-use-cases",
+      "drone-earthwork-volume"
+    ]
+  },
+  "cim": {
+    "count": 33,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "slab-flatness-warehouse-3d",
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "pointcloud-data-storage-cloud-strategy",
+      "drone-survey-dekigara-precision-failure-avoidance"
+    ]
+  },
+  "トータルステーション": {
+    "count": 29,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "drone-vs-traditional-survey-2",
+      "drone-survey-delivery-data-formats-bim-cim",
+      "construction-drone-use-cases",
+      "drone-earthwork-volume",
+      "drone-vs-ground-survey-ultimate-guide"
+    ]
+  },
+  "法面": {
+    "count": 29,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "construction-drone-use-cases",
+      "drone-vs-ground-survey-ultimate-guide",
+      "earthwork-calculation-pointcloud-bim-cim-workflow",
+      "slab-flatness-warehouse-3d",
+      "i-construction-drone-survey"
+    ]
+  },
+  "LAZ": {
+    "count": 28,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "drone-survey-company-selection",
+      "3d-survey-data-types",
+      "bim-cim-drone-survey",
+      "slab-flatness-warehouse-3d"
+    ]
+  },
+  "センサー": {
+    "count": 27,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "drone-vs-ground-survey-ultimate-guide",
+      "factory-scan-ehs-no-scaffold-inspection",
+      "solar-panel-inspection-checklist-cost",
+      "sfm-pointcloud-software-selection-guide"
+    ]
+  },
+  "GeoTIFF": {
+    "count": 26,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "coal-ore-yard-inventory-3d-scan",
+      "3d-survey-data-types",
+      "bim-cim-drone-survey",
+      "slab-flatness-warehouse-3d"
+    ]
+  },
+  "ICT活用工事": {
+    "count": 24,
+    "categories": [
+      "i-Construction"
+    ],
+    "articles": [
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "i-construction-ict-steps-cost-solution"
+    ]
+  },
+  "Civil 3D": {
+    "count": 23,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "3d-survey-data-types",
+      "earthwork-calculation-pointcloud-bim-cim-workflow",
+      "bim-cim-drone-survey",
+      "sfm-pointcloud-software-selection-guide"
+    ]
+  },
+  "フィルタリング": {
+    "count": 21,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "coal-ore-yard-inventory-3d-scan",
+      "pointcloud-processing-pc-specs-guide",
+      "3d-survey-data-types",
+      "earthwork-calculation-pointcloud-bim-cim-workflow"
+    ]
+  },
+  "las": {
+    "count": 21,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "vehicle-restriction-optimal-loading",
+      "pointcloud-processing-pc-specs-guide",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "earthwork-calculation-pointcloud-bim-cim-workflow",
+      "solar-panel-inspection-checklist-cost"
+    ]
+  },
+  "切土": {
+    "count": 20,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "aichi-earthwork-ordinance-summary",
+      "drone-earthwork-volume",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "earthwork-calculation-pointcloud-bim-cim-workflow",
+      "i-construction-ict-steps-cost-solution"
+    ]
+  },
+  "積載量": {
+    "count": 20,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "soil-disposal-triple-guard",
+      "soil-volume-calculator-27-media-coverage",
+      "vehicle-restriction-optimal-loading",
+      "soil-disposal-cost-dump-truck-count",
+      "m3-ton-conversion-soil-density"
+    ]
+  },
+  "ノイズ除去": {
+    "count": 19,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "coal-ore-yard-inventory-3d-scan",
+      "drone-vs-ground-survey-ultimate-guide",
+      "factory-scan-ehs-no-scaffold-inspection",
+      "slab-flatness-warehouse-3d"
+    ]
+  },
+  "ほぐし率": {
+    "count": 18,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "earthwork-volume-cost-optimization-drone-case-study"
+    ]
+  },
+  "出来高": {
+    "count": 16,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "soil-disposal-triple-guard",
+      "drone-earthwork-volume",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "earthwork-calculation-pointcloud-bim-cim-workflow"
+    ]
+  },
+  "3次元設計データ": {
+    "count": 16,
+    "categories": [
+      "i-Construction"
+    ],
+    "articles": [
+      "i-construction-drone-survey",
+      "i-construction-ict-steps-cost-solution"
+    ]
+  },
+  "浮き": {
+    "count": 16,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "drone-infrared-inspection",
+      "construction-drone-use-cases"
+    ]
+  },
+  "土質": {
+    "count": 15,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "soil-disposal-cost-dump-truck-count",
+      "embankment-cut-volume-truck-count-checklist",
+      "quarry-stockpile-volume-management-drone-survey",
+      "nagoya-surplus-soil-acceptance-guide",
+      "earthwork-volume-cost-optimization-drone-case-study"
+    ]
+  },
+  "飛行計画": {
+    "count": 13,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "drone-vs-ground-survey-ultimate-guide",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "quarry-stockpile-volume-management-drone-survey",
+      "drone-survey-process",
+      "drone-survey-cost-nagoya"
+    ]
+  },
+  "剥離": {
+    "count": 13,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "drone-infrared-inspection",
+      "construction-drone-use-cases"
+    ]
+  },
+  "外壁調査": {
+    "count": 13,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "drone-vs-traditional-survey-2",
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "drone-infrared-inspection",
+      "drone-vs-ground-survey-ultimate-guide",
+      "drone-vs-traditional-survey"
+    ]
+  },
+  "Revit": {
+    "count": 12,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "sfm-pointcloud-software-selection-guide",
+      "drone-survey-vendor-selection-data-strategy",
+      "drone-survey-delivery-data-formats-bim-cim",
+      "3d-survey-data-types"
+    ]
+  },
+  "切盛": {
+    "count": 11,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "construction-drone-use-cases",
+      "bim-cim-earthwork-ifc-landxml-cost-link",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "earthwork-calculation-pointcloud-bim-cim-workflow",
+      "bim-cim-drone-survey"
+    ]
+  },
+  "対空標識": {
+    "count": 10,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "drone-earthwork-volume",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "3d-survey-data-types",
+      "quarry-stockpile-volume-management-drone-survey",
+      "earthwork-volume-cost-optimization-drone-case-study"
+    ]
+  },
+  "CloudCompare": {
+    "count": 10,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "3d-survey-data-types",
+      "earthwork-calculation-pointcloud-bim-cim-workflow",
+      "sfm-pointcloud-software-selection-guide",
+      "point-cloud-data-usage"
+    ]
+  },
+  "属性情報": {
+    "count": 10,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "bim-cim-drone-survey",
+      "sfm-pointcloud-software-selection-guide",
+      "urban-park-tree-measurement-pointcloud-dx",
+      "pointcloud-data-storage-cloud-strategy"
+    ]
+  },
+  "Metashape": {
+    "count": 10,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "pointcloud-processing-pc-specs-guide",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "bim-cim-drone-survey",
+      "drone-survey-accuracy",
+      "sfm-pointcloud-software-selection-guide"
+    ]
+  },
+  "DID": {
+    "count": 9,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "drone-survey-estimate-qa-checklist",
+      "drone-survey-process",
+      "drone-survey-qualifications",
+      "drone-survey-safety",
+      "woodchip-inventory-volume-drone-lidar"
+    ]
+  },
+  "航空法": {
+    "count": 9,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "construction-drone-use-cases",
+      "drone-survey-pros-cons",
+      "quarry-stockpile-volume-management-drone-survey",
+      "drone-survey-process",
+      "drone-survey-cost-nagoya"
+    ]
+  },
+  "DEM": {
+    "count": 9,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "coal-ore-yard-inventory-3d-scan",
+      "bim-cim-drone-survey",
+      "sfm-lidar-comparison-vegetation-bare-earth",
+      "earthwork-volume-cost-optimization-drone-case-study",
+      "pointcloud-to-volume"
+    ]
+  },
+  "包括許可": {
+    "count": 8,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "how-to-choose-drone-survey",
+      "drone-survey-qualifications",
+      "drone-survey-safety",
+      "drone-survey-process"
+    ]
+  },
+  "Structure from Motion": {
+    "count": 8,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "drone-survey-dekigara-precision-failure-avoidance",
+      "drone-survey-accuracy",
+      "quarry-stockpile-volume-management-drone-survey",
+      "point-cloud-data-usage"
+    ]
+  },
+  "打診調査": {
+    "count": 8,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "drone-infrared-inspection"
+    ]
+  },
+  "基準点測量": {
+    "count": 7,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "drone-survey-accuracy",
+      "drone-vs-ground-survey-ultimate-guide",
+      "drone-survey-qualifications",
+      "earthwork-calculation-pointcloud-bim-cim-workflow"
+    ]
+  },
+  "E57": {
+    "count": 7,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "pointcloud-processing-pc-specs-guide",
+      "slab-flatness-warehouse-3d",
+      "sfm-pointcloud-software-selection-guide",
+      "point-cloud-data-usage",
+      "pointcloud-processing-bottleneck-outsourcing-guide"
+    ]
+  },
+  "Pix4D": {
+    "count": 7,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "sfm-pointcloud-software-selection-guide",
+      "drone-survey-dekigara-precision-failure-avoidance"
+    ]
+  },
+  "含水比": {
+    "count": 7,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "quarry-stockpile-volume-management-drone-survey",
+      "ton-m3-conversion-soil-moisture-density",
+      "m3-ton-conversion-soil-density",
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9"
+    ]
+  },
+  "熱画像": {
+    "count": 7,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "solar-panel-inspection-checklist-cost",
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "coal-ore-yard-inventory-3d-scan"
+    ]
+  },
+  "無人航空機": {
+    "count": 5,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "solar-panel-inspection-checklist-cost",
+      "how-to-choose-drone-survey",
+      "drone-survey-qualifications"
+    ]
+  },
+  "人口集中地区": {
+    "count": 5,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "construction-drone-use-cases",
+      "drone-survey-qualifications",
+      "drone-survey-safety",
+      "drone-survey-process"
+    ]
+  },
+  "バッテリー": {
+    "count": 5,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "drone-survey-safety",
+      "drone-survey-process"
+    ]
+  },
+  "ICT施工": {
+    "count": 5,
+    "categories": [
+      "i-Construction"
+    ],
+    "articles": [
+      "slab-flatness-warehouse-3d",
+      "i-construction-drone-survey",
+      "drone-survey-dekigara-precision-failure-avoidance"
+    ]
+  },
+  "精度管理": {
+    "count": 5,
+    "categories": [
+      "i-Construction"
+    ],
+    "articles": [
+      "sfm-pointcloud-software-selection-guide",
+      "factory-bcp-pointcloud-bim-digital-twin",
+      "earthwork-volume-cost-optimization-drone-case-study",
+      "sfm-lidar-comparison-vegetation-bare-earth"
+    ]
+  },
+  "地山": {
+    "count": 5,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "earthwork-volume-cost-optimization-drone-case-study"
+    ]
+  },
+  "転圧": {
+    "count": 5,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "%e7%b7%a0%e5%9b%ba%e3%82%81%e5%ba%a6%e3%81%a8%e5%87%ba%e6%9d%a5%e5%bd%a2%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%9a%e9%81%8b%e6%90%ac%e3%82%b3%e3%82%b9%e3%83%88%e8%a6%8b%e7%a9%8d%e3%82%8a%e3%81%ab%e3%81%a9",
+      "m3-ton-conversion-soil-density"
+    ]
+  },
+  "横断図": {
+    "count": 4,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "pointcloud-processing-bottleneck-outsourcing-guide",
+      "quarry-stockpile-volume-management-drone-survey",
+      "drone-survey-cost-nagoya",
+      "drone-survey-company-selection"
+    ]
+  },
+  "ひび割れ": {
+    "count": 4,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim",
+      "drone-infrared-vs-scaffolding-cost-analysis",
+      "drone-vs-ground-survey-ultimate-guide"
+    ]
+  },
+  "正射投影": {
+    "count": 3,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "drone-infrared-inspection",
+      "3d-survey-data-types"
+    ]
+  },
+  "座標変換": {
+    "count": 3,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "pointcloud-processing-bottleneck-outsourcing-guide",
+      "drone-survey-cost-nagoya",
+      "sfm-pointcloud-software-selection-guide"
+    ]
+  },
+  "LOD": {
+    "count": 3,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "pointcloud-processing-bottleneck-outsourcing-guide"
+    ]
+  },
+  "クラック": {
+    "count": 3,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "solar-panel-inspection-checklist-cost",
+      "sfm-lidar-comparison-vegetation-bare-earth"
+    ]
+  },
+  "CBR": {
+    "count": 3,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "recycling-cost-co2-rc-soil"
+    ]
+  },
+  "数値地形モデル": {
+    "count": 2,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "point-cloud-data-usage",
+      "3d-survey-data-types"
+    ]
+  },
+  "ポイントクラウド": {
+    "count": 2,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "point-cloud-data-usage"
+    ]
+  },
+  "サーモグラフィ": {
+    "count": 2,
+    "categories": [
+      "赤外線・点検"
+    ],
+    "articles": [
+      "drone-infrared-inspection"
+    ]
+  },
+  "QGIS": {
+    "count": 2,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "drone-survey-delivery-data-formats-bim-cim"
+    ]
+  },
+  "Triangulated Irregular Network": {
+    "count": 2,
+    "categories": [
+      "点群・3D"
+    ],
+    "articles": [
+      "pointcloud-volume-algorithms",
+      "i-construction-ict-steps-cost-solution"
+    ]
+  },
+  "飛行時間": {
+    "count": 1,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "drone-earthwork-volume"
+    ]
+  },
+  "ジンバル": {
+    "count": 1,
+    "categories": [
+      "ドローン"
+    ],
+    "articles": [
+      "drone-survey-safety"
+    ]
+  },
+  "マシンコントロール": {
+    "count": 1,
+    "categories": [
+      "i-Construction"
+    ],
+    "articles": [
+      "i-construction-drone-survey"
+    ]
+  },
+  "InfraWorks": {
+    "count": 1,
+    "categories": [
+      "BIM/CIM"
+    ],
+    "articles": [
+      "pointcloud-processing-bottleneck-outsourcing-guide"
+    ]
+  },
+  "Shapefile": {
+    "count": 1,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "urban-park-tree-measurement-pointcloud-dx"
+    ]
+  },
+  "測地系": {
+    "count": 1,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "urban-park-tree-measurement-pointcloud-dx"
+    ]
+  },
+  "DJI Terra": {
+    "count": 1,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "sfm-pointcloud-software-selection-guide"
+    ]
+  },
+  "JGD2011": {
+    "count": 1,
+    "categories": [
+      "データ処理"
+    ],
+    "articles": [
+      "sfm-pointcloud-software-selection-guide"
+    ]
+  },
+  "水準測量": {
+    "count": 1,
+    "categories": [
+      "測量技術"
+    ],
+    "articles": [
+      "drone-vs-ground-survey-ultimate-guide"
+    ]
+  },
+  "運搬距離": {
+    "count": 1,
+    "categories": [
+      "土量・施工"
+    ],
+    "articles": [
+      "soil-volume-calculator-27-media-coverage"
+    ]
+  }
+}
