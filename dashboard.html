@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAS ダッシュボード</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1a2a3a;--amber:#e8a838;--warm:#fdf8f0;--text:#333;--muted:#666;--red:#c0392b;--green:#27ae60}
+body{font-family:-apple-system,'Noto Sans JP',sans-serif;background:#f0f2f5;color:var(--text);font-size:14px}
+.header{background:var(--navy);color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.header h1{font-size:1.2rem;font-weight:700}
+.header .updated{font-size:.8rem;color:#999}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+.section-title{font-size:1rem;font-weight:700;color:var(--navy);margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--amber)}
+.section-title:first-child{margin-top:0}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+.kpi-card{background:#fff;border-radius:10px;padding:20px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.kpi-card.accent{background:var(--navy);color:#fff}
+.kpi-card.accent .kpi-label{color:var(--amber)}
+.kpi-value{font-size:2rem;font-weight:900;line-height:1.2}
+.kpi-label{font-size:.8rem;color:var(--muted);margin-top:4px}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card h3{font-size:.9rem;color:var(--navy);margin-bottom:12px}
+
+/* BAR CHART */
+.bar-row{display:flex;align-items:center;margin-bottom:6px;gap:8px}
+.bar-label{width:80px;font-size:.8rem;color:var(--muted);text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:18px;background:#eee;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .5s}
+.bar-value{width:60px;font-size:.8rem;font-weight:600;flex-shrink:0}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{background:var(--navy);color:#fff;padding:8px 10px;text-align:left;font-weight:600;font-size:.8rem}
+td{padding:6px 10px;border-bottom:1px solid #eee}
+tr:hover td{background:var(--warm)}
+
+/* CHART */
+.chart-container{position:relative;height:250px}
+
+@media(max-width:768px){
+  .grid-2{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>TAS Dashboard</h1>
+  <span class="updated">更新: 2026-03-15 21:44</span>
+</div>
+
+<div class="container">
+
+  <!-- KPI -->
+  
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-value">582</div>
+        <div class="kpi-label">商談数</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">319</div>
+        <div class="kpi-label">連絡先</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">181</div>
+        <div class="kpi-label">受注件数</div>
+      </div>
+      <div class="kpi-card accent">
+        <div class="kpi-value">&yen;0</div>
+        <div class="kpi-label">受注金額合計</div>
+      </div>
+    </div>
+    
+
+  <!-- CRM Section -->
+  <h2 class="section-title">CRM</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3>商談ステージ（582件）</h3>
+      <div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:37.97250859106529%;background:#999"></div></div><span class="bar-value">221 (38%)</span></div>
+<div class="bar-row"><span class="bar-label">ヒアリング</span><div class="bar-track"><div class="bar-fill" style="width:37.628865979381445%;background:#e8a838"></div></div><span class="bar-value">219 (38%)</span></div>
+<div class="bar-row"><span class="bar-label">リード獲得</span><div class="bar-track"><div class="bar-fill" style="width:13.745704467353953%;background:#3498db"></div></div><span class="bar-value">80 (14%)</span></div>
+<div class="bar-row"><span class="bar-label">不在</span><div class="bar-track"><div class="bar-fill" style="width:10.309278350515463%;background:#95a5a6"></div></div><span class="bar-value">60 (10%)</span></div>
+<div class="bar-row"><span class="bar-label">受注</span><div class="bar-track"><div class="bar-fill" style="width:0.1718213058419244%;background:#27ae60"></div></div><span class="bar-value">1 (0%)</span></div>
+<div class="bar-row"><span class="bar-label">見積検討</span><div class="bar-track"><div class="bar-fill" style="width:0.1718213058419244%;background:#9b59b6"></div></div><span class="bar-value">1 (0%)</span></div>
+
+    </div>
+    <div class="card">
+      <h3>温度感スコア（319件）</h3>
+      <div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:47.02194357366771%;background:#999"></div></div><span class="bar-value">150</span></div>
+<div class="bar-row"><span class="bar-label">Cold</span><div class="bar-track"><div class="bar-fill" style="width:31.974921630094045%;background:#3498db"></div></div><span class="bar-value">102</span></div>
+<div class="bar-row"><span class="bar-label">Warm</span><div class="bar-track"><div class="bar-fill" style="width:10.031347962382444%;background:#e8a838"></div></div><span class="bar-value">32</span></div>
+<div class="bar-row"><span class="bar-label">不在のため不明</span><div class="bar-track"><div class="bar-fill" style="width:9.404388714733543%;background:#95a5a6"></div></div><span class="bar-value">30</span></div>
+<div class="bar-row"><span class="bar-label">Hot</span><div class="bar-track"><div class="bar-fill" style="width:1.5673981191222568%;background:#c0392b"></div></div><span class="bar-value">5</span></div>
+
+    </div>
+  </div>
+  <div class="grid-2" style="margin-top:12px">
+    <div class="card">
+      <h3>接触チャネル</h3>
+      <div class="bar-row"><span class="bar-label">訪問</span><div class="bar-track"><div class="bar-fill" style="width:52.97805642633229%;background:#e8a838"></div></div><span class="bar-value">169</span></div>
+<div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:41.37931034482759%;background:#e8a838"></div></div><span class="bar-value">132</span></div>
+<div class="bar-row"><span class="bar-label">土量計算機</span><div class="bar-track"><div class="bar-fill" style="width:5.6426332288401255%;background:#e8a838"></div></div><span class="bar-value">18</span></div>
+
+    </div>
+    <div class="card">
+      <h3>流入元</h3>
+      <div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:94.35736677115987%;background:#3498db"></div></div><span class="bar-value">301</span></div><div class="bar-row"><span class="bar-label">土量計算機</span><div class="bar-track"><div class="bar-fill" style="width:5.6426332288401255%;background:#3498db"></div></div><span class="bar-value">18</span></div>
+    </div>
+  </div>
+
+  <!-- Web Section -->
+  <h2 class="section-title">Web Analytics</h2>
+
+  <!-- Trend Chart -->
+  <div class="card" style="margin-bottom:12px">
+    <h3>週次トレンド</h3>
+    <div class="chart-container">
+      <canvas id="trendChart"></canvas>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>トップページ（PV順）</h3>
+      <div style="max-height:400px;overflow-y:auto">
+      <table>
+        <thead><tr><th>ページ</th><th>PV</th><th>UU</th><th>直帰率</th></tr></thead>
+        <tbody><tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+</tbody>
+      </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3>流入経路</h3>
+      <table>
+        <thead><tr><th>チャネル</th><th>ソース</th><th>セッション</th><th>UU</th></tr></thead>
+        <tbody><tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+</tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <h3>検索クエリ（GSC クリック順）</h3>
+    <div style="max-height:350px;overflow-y:auto">
+    <table>
+      <thead><tr><th>クエリ</th><th>クリック</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+new Chart(document.getElementById('trendChart'), {
+  type: 'line',
+  data: {
+    labels: ["","","","","","","","","","","","","",""],
+    datasets: [
+      {label:'PV', data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0], borderColor:'#e8a838', backgroundColor:'rgba(232,168,56,.1)', fill:true, tension:.3},
+      {label:'UU', data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0], borderColor:'#3498db', backgroundColor:'rgba(52,152,219,.1)', fill:true, tension:.3},
+      {label:'Session', data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0], borderColor:'#27ae60', backgroundColor:'rgba(39,174,96,.1)', fill:true, tension:.3}
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {legend: {position:'top', labels: {font: {size:11}}}},
+    scales: {y: {beginAtZero:true}}
+  }
+});
+</script>
+
+</body>
+</html>
