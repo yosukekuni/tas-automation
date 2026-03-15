@@ -1,0 +1,54 @@
+name: LP Stats Sync (Weekly)
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # 00:00 UTC Monday = 09:00 JST Monday
+  workflow_dispatch:
+    inputs:
+      lp:
+        description: '対象LP（空欄で全LP）: general-contractor / consultant'
+        required: false
+      dry_run:
+        description: 'DRY-RUNモード'
+        type: boolean
+        default: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Sync LP stats
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          if [ -n "${{ inputs.lp }}" ]; then
+            ARGS="$ARGS --lp ${{ inputs.lp }}"
+          fi
+          python scripts/lp_stats_sync.py $ARGS
+
+      - name: Upload backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp-stats-backup-${{ github.run_number }}
+          path: backups/*lp_*
+          retention-days: 30
+        if: always()

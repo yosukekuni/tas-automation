@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-03-15T10:21:57.515991",
+  "mode": "live",
+  "meta_descriptions": {
+    "/lp/consultant/": {
+      "page_id": 6149,
+      "before": "",
+      "after": "建設コンサルタント向けドローン測量・3D計測サービス。i-Construction対応の高精度測量データを提供。東海エアサービスは名古屋を拠点に、設計照査・出来形管理に必要な点群データ・オルソ画像を迅速に納品します。"
+    },
+    "/lp/general-contractor/": {
+      "page_id": 6148,
+      "before": "",
+      "after": "ゼネコン・建設会社向けドローン測量サービス。土量計算・現場管理の効率化を実現。東海エアサービスは名古屋拠点で愛知・岐阜・三重・静岡の現場へ即日対応。i-Construction基準の高精度データを提供します。"
+    },
+    "/services/dx-consulting/": {
+      "page_id": 5931,
+      "before": "",
+      "after": "建設業界のDX推進を支援するコンサルティングサービス。ドローン測量の導入支援から、3Dデータ活用、業務フロー改善まで。東海エアサービスが現場に即した実践的なデジタル変革をサポートします。"
+    },
+    "/meeting-reserve/": {
+      "page_id": 5526,
+      "before": "",
+      "after": "東海エアサービスの無料相談予約ページ。ドローン測量・3D計測・赤外線調査について、オンラインまたは対面でお気軽にご相談ください。最短翌営業日に対応可能です。"
+    },
+    "/case-library/whitepaper/resources/": {
+      "page_id": 5116,
+      "before": "",
+      "after": "ドローン測量・3D計測に関するホワイトペーパー・技術資料ダウンロードページ。土量計算の精度比較、i-Construction対応ガイドなど、建設業界の実務に役立つ資料を無料で提供しています。"
+    },
+    "/case-library/": {
+      "page_id": 5098,
+      "before": "",
+      "after": "東海エアサービスのドローン測量・3D計測の実績紹介。土木・建築・インフラ点検の事例、導入効果、お客様の声を掲載。愛知・岐阜・三重・静岡エリアでの豊富な実績をご覧ください。"
+    }
+  },
+  "faq_schemas": {
+    "/lp/consultant/": {
+      "page_id": 6149,
+      "before_content_length": 13398,
+      "faqs_added": 3
+    },
+    "/lp/general-contractor/": {
+      "page_id": 6148,
+      "before_content_length": 11359,
+      "faqs_added": 3
+    },
+    "/case-library/cases/": {
+      "page_id": 4846,
+      "before_content_length": 14021,
+      "faqs_added": 2
+    },
+    "/about/": {
+      "page_id": 5867,
+      "before_content_length": 139,
+      "faqs_added": 2
+    },
+    "/tools/": {
+      "page_id": 5550,
+      "before_content_length": 0,
+      "faqs_added": 2
+    },
+    "/meeting-reserve/": {
+      "page_id": 5526,
+      "before_content_length": 404,
+      "faqs_added": 2
+    },
+    "/case-library/whitepaper/resources/": {
+      "page_id": 5116,
+      "before_content_length": 1089,
+      "faqs_added": 2
+    },
+    "/case-library/": {
+      "page_id": 5098,
+      "before_content_length": 0,
+      "faqs_added": 2
+    }
+  },
+  "service_schema": {
+    "page_id": 4944,
+    "before_content_length": 11575
+  },
+  "h1_fixes": {}
+}

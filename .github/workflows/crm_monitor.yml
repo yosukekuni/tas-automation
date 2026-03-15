@@ -23,4 +23,6 @@ jobs:
         run: python scripts/setup_config.py
 
       - name: Run CRM Monitor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/lark_crm_monitor.py

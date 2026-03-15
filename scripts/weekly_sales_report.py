@@ -103,14 +103,29 @@ def get_all_records(token, table_id):
         if page_token:
             url += f"&page_token={page_token}"
         req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
-        with urllib.request.urlopen(req) as r:
-            result = json.loads(r.read())
-            d = result.get("data", {})
-            records.extend(d.get("items", []))
-            if not d.get("has_more"):
-                break
-            page_token = d.get("page_token")
-            time.sleep(0.3)
+        result = None
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    body = r.read()
+                    if not body:
+                        print(f"[WARN] Empty response (attempt {attempt+1}/3), retrying...")
+                        time.sleep(5 * (attempt + 1))
+                        continue
+                    result = json.loads(body)
+                    break
+            except (urllib.error.URLError, json.JSONDecodeError, ValueError) as e:
+                print(f"[WARN] API error (attempt {attempt+1}/3): {e}")
+                time.sleep(5 * (attempt + 1))
+        if result is None:
+            print(f"[ERROR] Failed to fetch records after 3 attempts for table {table_id}")
+            break
+        d = result.get("data", {})
+        records.extend(d.get("items", []))
+        if not d.get("has_more"):
+            break
+        page_token = d.get("page_token")
+        time.sleep(0.3)
     return records
 
 

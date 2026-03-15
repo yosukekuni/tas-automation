@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "created": "2026-03-14",
+  "description": "休眠顧客ナーチャリングメールテンプレート（B/C/D群 x 3通 = 9通）",
+  "segments": {
+    "B": {
+      "label": "過去問い合わせ・見積済み・未受注",
+      "cooldown_days": 14,
+      "templates": [
+        {
+          "step": 1,
+          "file": "b1_reactivation.html",
+          "type": "初回接触",
+          "subject": "ご無沙汰しております｜ドローン測量のご相談について｜東海エアサービス",
+          "send_day": 0
+        },
+        {
+          "step": 2,
+          "file": "b2_value_provision.html",
+          "type": "価値提供",
+          "subject": "i-Construction 2.0時代のドローン測量最新動向｜東海エアサービス",
+          "send_day": 7
+        },
+        {
+          "step": 3,
+          "file": "b3_action_cta.html",
+          "type": "アクション促進",
+          "subject": "無料お見積り・再見積りのご案内｜東海エアサービス",
+          "send_day": 14
+        }
+      ]
+    },
+    "C": {
+      "label": "過去受注あり・リピートなし",
+      "cooldown_days": 21,
+      "templates": [
+        {
+          "step": 1,
+          "file": "c1_reactivation.html",
+          "type": "初回接触",
+          "subject": "ご無沙汰しております｜東海エアサービス",
+          "send_day": 0
+        },
+        {
+          "step": 2,
+          "file": "c2_value_provision.html",
+          "type": "価値提供",
+          "subject": "定期測量プラン・新サービスのご案内｜東海エアサービス",
+          "send_day": 10
+        },
+        {
+          "step": 3,
+          "file": "c3_action_cta.html",
+          "type": "アクション促進",
+          "subject": "リピートご依頼のメリットのご案内｜東海エアサービス",
+          "send_day": 21
+        }
+      ]
+    },
+    "D": {
+      "label": "長期休眠（1年以上接点なし）",
+      "cooldown_days": 30,
+      "templates": [
+        {
+          "step": 1,
+          "file": "d1_reactivation.html",
+          "type": "初回接触",
+          "subject": "大変ご無沙汰しております｜東海エアサービス",
+          "send_day": 0
+        },
+        {
+          "step": 2,
+          "file": "d2_value_provision.html",
+          "type": "価値提供",
+          "subject": "ドローン測量の最新事情｜この1〜2年で変わったこと｜東海エアサービス",
+          "send_day": 14
+        },
+        {
+          "step": 3,
+          "file": "d3_action_cta.html",
+          "type": "アクション促進",
+          "subject": "無料現場診断のご案内｜東海エアサービス",
+          "send_day": 30
+        }
+      ]
+    }
+  },
+  "variables": {
+    "contact_name": "連絡先氏名",
+    "company_name": "東海エアサービス株式会社（固定）",
+    "phone": "052-720-5885（固定）",
+    "site_url": "https://www.tokaiair.com/（固定）",
+    "rep_name": "担当営業名（新美 光 or 政木 勇治）",
+    "last_service": "前回利用サービス名（C群で使用可）"
+  }
+}

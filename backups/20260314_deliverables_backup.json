@@ -1,0 +1,152 @@
+[
+  {
+    "record_id": "recvdyHUGwurB4",
+    "task_name": "tomoshi.jpドメイン取得",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGwZpA2",
+    "task_name": "tomoshi.jpサイト構築・公開(10ページ)",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGwTOoL",
+    "task_name": "E-E-A-T/AEO対策（構造化データ7種）",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGw422L",
+    "task_name": "SEOブログ6本公開",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGw7Prm",
+    "task_name": "info@tomoshi.jpメール設定",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGwths2",
+    "task_name": "Facebookページ作成・初回投稿",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGwrccb",
+    "task_name": "旧LP 301リダイレクト設定",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGwDQRm",
+    "task_name": "HTTPS強制有効化",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGwq8Vq",
+    "task_name": "GSC登録・サイトマップ送信",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHUGwqlhL",
+    "task_name": "SNS投稿文作成(X10/LinkedIn3/BATONZ/名刺)",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHV5XVLrq",
+    "task_name": "DKIM設定（tomoshi.jp）",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHV5XEiJB",
+    "task_name": "DMARC設定（tomoshi.jp）",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHV5XFy4y",
+    "task_name": "FAQページ30問作成",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHV5XHOPd",
+    "task_name": "DXコンサルページ更新",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHV5X5S5M",
+    "task_name": "買い手向け記事15本公開",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHV5X9Nn9",
+    "task_name": "メールナーチャリングスクリプト",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHVw0Mx0Z",
+    "task_name": "コストコ守山画像URLずれ修正",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHVw0ZmLt",
+    "task_name": "セキュリティヘッダー5種追加(tokaiair.com)",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHVw0YbDQ",
+    "task_name": "x-powered-by非表示(tokaiair.com)",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHVw06X8a",
+    "task_name": "DKIM設定（tokaiair.com）",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHVXhEbVS",
+    "task_name": "3/13撮影データ納品",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyHVXhY1K0",
+    "task_name": "Enforce HTTPS確認(tokaiair.com)",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyUA0Hv4i4",
+    "task_name": "DKIM設定（tomoshi.jp + tokaiair.com）",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyUA0Hg66j",
+    "task_name": "LiteSpeedキャッシュパージ（casesページ修正反映）",
+    "status": "完了",
+    "deliverable_before": ""
+  },
+  {
+    "record_id": "recvdyUA0HV0Hg",
+    "task_name": "撮影データ納品 3/13（パノラマ切出+明度補正）",
+    "status": "完了",
+    "deliverable_before": ""
+  }
+]

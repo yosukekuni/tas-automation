@@ -1,0 +1,2250 @@
+{
+  "snapshot_date": "2026-03-14",
+  "purpose": "Backup of Hot/Warm deals before/after deal_action_setter.py updates",
+  "note": "This is a post-update snapshot. Original values before update are not recoverable.",
+  "total_records": 27,
+  "records": [
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": "要対応\n東海エアサービスの担当者が3次元計測やドローン測量サービスの営業・紹介を目的に訪問したが、相手企業は自社でドローン運用や3次元計測を行っており現時点で外注はしていないものの、業務が忙しくなった際には検討の可能性がある。また相手企業の主な業務は民間向け土木工事で、技術者は日中現場に出ることが多くデータ加工は社内専門部隊が行い、公共案件は本社が主に担当している。今回は担当者の橋本氏が不在だったため資料を預け、今後は電話で事前連絡するなどのフォローアップが示唆されている。",
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": "内容のまとめ\n訪問の目的: 東海エアサービスの担当者が、3次元計測（点群計測、土量計算、データ加工）およびドローン測量サービスの営業・紹介のために訪問しました。\n相手企業の現状:すでに自社でドローンを保有・運用しており、3次元計測も内製化しています。\n主な業務は民間向けの土木工事であり、公共案件は主に本社が担当しています。\n技術者たちは日中現場に出ていることが多く、データの加工（内業）は社内の専門部隊が行っています。\n外注の可能性: 現時点ではドローン業務を外注することはありませんが、業務が立て込んで忙しくなった際には検討する可能性があるとのことです。\n今後の対応: 担当者である「橋本氏」が不在であったため、訪問者は資料を預けました。今後は電話で事前に連絡を取るなどの形でのフォローアップが示唆されています。",
+        "取引先": [
+          {
+            "record_ids": [
+              "recvdnslEsL43u"
+            ],
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": "株式会社きんそく",
+            "text_arr": [
+              "株式会社きんそく"
+            ],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": null,
+        "商材種別": [
+          "ドローン撮影",
+          "ドローン測量",
+          "３次元計測",
+          "土量・在庫計測"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recQeyqHFH",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "民間のみ",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1773282600000,
+        "営業見込みなしの理由": null,
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": null,
+        "客先カテゴリ：その他": "建設コンサルタント",
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": null,
+        "次アクション": [
+          "提案資料作成"
+        ],
+        "次アクション日": 1773836251910,
+        "次アクション：その他": null,
+        "温度感スコア": "Warm",
+        "現場位置": null,
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": "一部内製化",
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": [
+          {
+            "file_token": "LZRkbKkXUoOuVExUvrOj9lSyp0f",
+            "name": "2026-3-12-きんそく-新美.m4a",
+            "size": 2854179,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=LZRkbKkXUoOuVExUvrOj9lSyp0f",
+            "type": "audio/x-m4a",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/LZRkbKkXUoOuVExUvrOj9lSyp0f/download"
+          }
+        ],
+        "音声データ有無": true
+      },
+      "id": "recQeyqHFH",
+      "record_id": "recQeyqHFH"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": "住宅・マンション販売での販促支援（眺望シミュレーション、顧客への空撮写真・動画プレゼント、異なる角度からの外観撮影）、施工・現場管理での活用（進捗管理、高精度測量）、メンテナンス・点検での赤外線点検といった空撮を含むサービスを提案しており、担当者は単なる測量業務を超えたお客様へのサービス向上や販売促進に繋がる当該活用がアイフルホームの業務に最もマッチすると考えている。",
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": "1. 住宅・マンション販売における販促支援\n眺望のシミュレーション: マンション建設前に、ドローンを特定の高さ（例：7階など）まで飛ばし、その部屋から見える実際の景色を撮影します,。これを展示場などで案内することで、成約率の向上に繋げる提案です。\n顧客へのサービス: 分譲地の全体写真や、完成した住宅の空撮写真・動画を撮影し、施主へのプレゼントとして活用することを提案しています。\n外観の演出: 2階建ての住宅であっても、ドローンを使って屋根の上などの角度から撮影することで、地上からとは異なる物件の魅力を伝えることができます。\n2. 施工・現場管理における活用\n工事の進捗管理: 大規模な物件において、上空からの写真を定期的に撮影することで、一目で現場全体の状況を把握でき、進捗管理が容易になります,。\n高精度な測量: 3次元測量やICT建機、ドローンを用いた測量に対応しており、造成前の測量や土量計算なども行っています,。\n3. メンテナンス・点検\n赤外線点検: 持ち込まれた資料には、空撮だけでなく赤外線を用いた点検サービスについても記載されています。\n結論\n担当者は、単なる測量業務にとどまらず、「お客様へのサービス向上」や「販売促進」に繋がる空撮活用が、アイフルホームの業務に最もマッチすると考えて提案を行っています",
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": [
+          {
+            "file_token": "Vqttblev5o1i80xFbhzjSCdZp2g",
+            "name": "photo_1773303087584.JPEG",
+            "size": 747500,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=Vqttblev5o1i80xFbhzjSCdZp2g",
+            "type": "image/jpeg",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/Vqttblev5o1i80xFbhzjSCdZp2g/download"
+          }
+        ],
+        "商材種別": [
+          "ドローン撮影"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recpV6WHFv",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "無し",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1773297000000,
+        "営業見込みなしの理由": "肌感覚",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": "その他",
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": "アイフルホーム",
+        "次アクション": [
+          "提案資料作成"
+        ],
+        "次アクション日": 1773836251910,
+        "次アクション：その他": null,
+        "温度感スコア": "不明",
+        "現場位置": {
+          "address": "470-0165 愛知県 東郷町 清水1丁目1-1 プレシアスKUME 日本",
+          "adname": "清水",
+          "cityname": "東郷町",
+          "full_address": "アイフルホーム名古屋南店東郷展示場，愛知県東郷町清水470-0165 愛知県 東郷町 清水1丁目1-1 プレシアスKUME 日本",
+          "location": "137.0297293,35.0930494",
+          "name": "アイフルホーム名古屋南店東郷展示場",
+          "pname": "愛知県"
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": [
+          {
+            "file_token": "KCNZbiMlPoOrRAxCcLfjqRYMpsd",
+            "name": "2026-3-12-アイフルホーム-新美.m4a",
+            "size": 3327212,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=KCNZbiMlPoOrRAxCcLfjqRYMpsd",
+            "type": "audio/x-m4a",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/KCNZbiMlPoOrRAxCcLfjqRYMpsd/download"
+          }
+        ],
+        "音声データ有無": true
+      },
+      "id": "recpV6WHFv",
+      "record_id": "recpV6WHFv"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": null,
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": null,
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": null,
+        "商材種別": [
+          "ドローン測量",
+          "ドローン撮影",
+          "３次元計測",
+          "土量・在庫計測"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "rec9V0ferP",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "塩対応",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1773300600000,
+        "営業見込みなしの理由": "相手にされなかった",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": "建設会社（土木）",
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": "共和建設工業",
+        "次アクション": [
+          "提案資料作成"
+        ],
+        "次アクション日": 1773836251910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "472-0023 愛知県 知立市 西町宮後56 日本",
+          "adname": "西町",
+          "cityname": "知立市",
+          "full_address": "共和建設工業株式会社，愛知県知立市西町472-0023 愛知県 知立市 西町宮後56 日本",
+          "location": "137.0408229,35.0151209",
+          "name": "共和建設工業株式会社",
+          "pname": "愛知県"
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": null,
+        "音声データ有無": null
+      },
+      "id": "rec9V0ferP",
+      "record_id": "rec9V0ferP"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": null,
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": null,
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": [
+          {
+            "file_token": "KvRMb8QBdowl3Xxgo54jC3Z0pig",
+            "name": "IMG_9677.jpeg",
+            "size": 1808880,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=KvRMb8QBdowl3Xxgo54jC3Z0pig",
+            "type": "image/jpeg",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/KvRMb8QBdowl3Xxgo54jC3Z0pig/download"
+          }
+        ],
+        "商材種別": [
+          "その他"
+        ],
+        "商材種別：その他": "機材サポート",
+        "商談ID": [
+          {
+            "text": "rec3XvcTrj",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "測量はしていない、ドローン等の機材のサポートを行なっている。",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1773107340000,
+        "営業見込みなしの理由": "測量はやってない",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": "測量機器レンタル、修理",
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/default-avatar_v3_00nv_51af3064-89c2-4d7a-9011-10c75a5b027g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "en_name": "ユーザー550372",
+            "id": "ou_6ee633b968b9229655813af6e3a47e9f",
+            "name": "ユーザー550372"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": "NTジオテック中部",
+        "次アクション": [
+          "提案資料作成"
+        ],
+        "次アクション日": 1773836251910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "〒510-0062 三重県四日市市北浜田町１−２０",
+          "adname": "",
+          "cityname": "",
+          "full_address": "（株）ＮＴジオテック中部 本社，〒510-0062 三重県四日市市北浜田町１−２０",
+          "location": "136.6215886,34.9631638",
+          "name": "（株）ＮＴジオテック中部 本社",
+          "pname": ""
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": null,
+        "音声データ有無": false
+      },
+      "id": "rec3XvcTrj",
+      "record_id": "rec3XvcTrj"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": null,
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": null,
+        "取引先": [
+          {
+            "record_ids": [
+              "recvc6b2lcSZDL"
+            ],
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": "株式会社 ジオフォーラム",
+            "text_arr": [
+              "株式会社 ジオフォーラム"
+            ],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": null,
+        "商材種別": [
+          "その他"
+        ],
+        "商材種別：その他": "なし",
+        "商談ID": [
+          {
+            "text": "recDpJAzfO",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "ドローン測量はしていない。うちはソフト開発しています。",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1772776560000,
+        "営業見込みなしの理由": "測量していない",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": null,
+        "客先カテゴリ：その他": "ソフト開発",
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/default-avatar_v3_00nv_51af3064-89c2-4d7a-9011-10c75a5b027g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "en_name": "ユーザー550372",
+            "id": "ou_6ee633b968b9229655813af6e3a47e9f",
+            "name": "ユーザー550372"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": null,
+        "次アクション": [
+          "提案資料作成"
+        ],
+        "次アクション日": 1773836251910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "〒514-0028 三重県津市東丸之内１８−１４",
+          "adname": "",
+          "cityname": "",
+          "full_address": "（株）ジオフォーラム，〒514-0028 三重県津市東丸之内１８−１４",
+          "location": "136.5118387,34.7165478",
+          "name": "（株）ジオフォーラム",
+          "pname": ""
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": null,
+        "音声データ有無": null
+      },
+      "id": "recDpJAzfO",
+      "record_id": "recDpJAzfO"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": "東海エアサービスは5年前からドローンを活用した体積測定や土量計算を手掛け、港湾在庫測定などの実績があり、建設現場の測量に当該技術を活用することを提案した。しかし、メイン業務がコンサルタント業務で自社で測量を行わず、3次元計測の経験もなく提携測量業者が従来手法を使う相手方企業は、ドローン活用業務の実績がなく今後も当該業務が発生した場合は専門業者へ外注するとして直接的な需要はないと回答し、新美氏が資料を渡して今後の可能性を模索したが相手方はドローン測量を活用する予定はないとの回答をした。",
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": "東海エアサービスによる提案内容\n事業内容: 同社は5年前からドローンを活用した体積測定や土量計算を行っており、工業分野での計測も手掛けています。\n主な実績・用途: 港湾でのチップや石炭の在庫量の測定、床面や山のレーザー計測、およびそれらに基づく土量計算などの実績があります。\n提案の目的: 建設現場の切り出しや起工時の測量において、最新のドローン・レーザー技術の活用を提案しています。\n2. 相手方（コンサルタント企業）の現状と反応\n現在の業務形態: 相手方はコンサルタント業務がメインであり、自社で測量業務自体を行っているわけではありません。\n3次元計測の導入状況: これまで3次元での体積計測といった仕事の経験はなく、既存の測量についても、提携している測量業者が従来の手法で行っているのが現状です。\n今後の見通し: 現時点ではドローンを活用した業務の実績はなく、今後についても、そのような業務が発生した場合は専門業者へ外注することになるため、直接的な需要はないとの見解を示しています。\n結論\n新美氏は資料を渡して今後の可能性を模索しましたが、相手方からは「現状および今後もドローン測量を活用する予定はない」という旨の回答を得る結果となりました",
+        "取引先": [
+          {
+            "record_ids": [
+              "recvc6b2lcd4Xz"
+            ],
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": "株式会社 アイコ",
+            "text_arr": [
+              "株式会社 アイコ"
+            ],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": null,
+        "商材種別": [
+          "ドローン撮影",
+          "ドローン測量",
+          "３次元計測",
+          "土量・在庫計測"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "rec6Rg6iUi",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "ここは需要なし",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1772584500000,
+        "営業見込みなしの理由": "取扱する気はないと言われた為",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": null,
+        "客先カテゴリ：その他": "建設コンサルタント",
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": null,
+        "次アクション": [
+          "提案資料作成"
+        ],
+        "次アクション日": 1773836251910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "470-0356 愛知県 豊田市 八草町荒山1251 日本",
+          "adname": "八草町",
+          "cityname": "豊田市",
+          "full_address": "八草町荒山1251 (八草町荒山)，愛知県豊田市八草町470-0356 愛知県 豊田市 八草町荒山1251 日本",
+          "location": "137.10726501879603,35.18225569076939",
+          "name": "八草町荒山1251 (八草町荒山)",
+          "pname": "愛知県"
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": [
+          {
+            "file_token": "Ln3RbP9jFoZvg1xYyBmjlR6IpRf",
+            "name": "2026-3-4-アイコ-新美.m4a",
+            "size": 2171146,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=Ln3RbP9jFoZvg1xYyBmjlR6IpRf",
+            "type": "audio/x-m4a",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/Ln3RbP9jFoZvg1xYyBmjlR6IpRf/download"
+          }
+        ],
+        "音声データ有無": true
+      },
+      "id": "rec6Rg6iUi",
+      "record_id": "rec6Rg6iUi"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": "要対応\n東海エアサービスはドローンを活用した3次元測量業務を行っており、従来法に比べ広範囲を短時間で計測できるメリットがあり、ゼネコン向け業務や公共測量への活用が進んでいる。設計専門の建設コンサルタントであるダイム社は自社で測量業務を行っておらず、現時点で直接の発注予定はないが、設計現場で3次元データや体積計算が必要になったり顧客から要望があったりした際には、新美氏への紹介や協力依頼を検討する可能性があると前向きな姿勢を示し、名刺や資料の交換も行われた。",
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": "東海エアサービスによる提案内容\n事業内容: 5年前に3次元測量の部署を立ち上げ、ドローンを活用した体積測量や土量計算を行っています。\n技術のメリット: 従来のトランジットを用いた測量と比較して、広範囲を短時間で計測できる点が強みです。\n実績と用途: ゼネコン向けに、ドローンで計測したデータからソフトを用いてトラックの必要台数を算出するなどの業務を行っており、最近では公共測量（河川や山間部）での活用も増えています。\n2. ダイム社の現状と反応\n業務形態: 同社は設計専門の建設コンサルタントであり、大手コンサルタントからダムや砂防、土石流対策などの公共事業の設計を請け負っています。\n測量に関する状況: 業務でBIM/CIMなどを活用していますが、測量業務そのものを自社で直接行うことはありません。\n今後の見通し: 現時点で直接の発注予定はありませんが、設計の現場で3次元データや体積計算が必要になった際や、顧客からの要望があった場合には、新美氏へ紹介や協力依頼を検討する可能性があるとしています。\n結論\n新美氏の提案に対し、ダイム社は「設計専門のため直接の測量需要はないが、将来的に協力・紹介の余地はある」という前向きな姿勢を示し、名刺や資料の交換が行われました",
+        "取引先": [
+          {
+            "record_ids": [
+              "recvc6b2lcdqPB"
+            ],
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": "株式会社 ダイム技術サービス",
+            "text_arr": [
+              "株式会社 ダイム技術サービス"
+            ],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": [
+          {
+            "file_token": "Iv3ebYtWNoci8rxI1fvj5SuKpAB",
+            "name": "photo_1772586914332.JPEG",
+            "size": 586719,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=Iv3ebYtWNoci8rxI1fvj5SuKpAB",
+            "type": "image/jpeg",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/Iv3ebYtWNoci8rxI1fvj5SuKpAB/download"
+          }
+        ],
+        "商材種別": [
+          "ドローン撮影",
+          "ドローン測量",
+          "３次元計測",
+          "土量・在庫計測"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recRcARPqe",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "建設コンサルタントの下請けの建設コンサルタントであった",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1772585400000,
+        "営業見込みなしの理由": "建設コンサルタントの下請けで図面作成の会社のため",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": null,
+        "客先カテゴリ：その他": "建設コンサルタント",
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": null,
+        "次アクション": [
+          "提案資料作成"
+        ],
+        "次アクション日": 1773836251910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "470-0356 愛知県 豊田市 八草町荒山1251 日本",
+          "adname": "八草町",
+          "cityname": "豊田市",
+          "full_address": "八草町荒山1251 (八草町荒山)，愛知県豊田市八草町470-0356 愛知県 豊田市 八草町荒山1251 日本",
+          "location": "137.10750206586152,35.18221799243149",
+          "name": "八草町荒山1251 (八草町荒山)",
+          "pname": "愛知県"
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": [
+          {
+            "file_token": "QPwzbDc6SoUgyhxNlKujdJIipad",
+            "name": "2026-3-4-ダイム-新美.m4a",
+            "size": 3147128,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=QPwzbDc6SoUgyhxNlKujdJIipad",
+            "type": "audio/x-m4a",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/QPwzbDc6SoUgyhxNlKujdJIipad/download"
+          }
+        ],
+        "音声データ有無": true
+      },
+      "id": "recRcARPqe",
+      "record_id": "recRcARPqe"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": "要対応\nドローンを用いた高精度な3次元測量を営業している東海エアサービスの新美氏が、半田港運の榊原氏・山口氏にバラ貨物の在庫管理や建設現場測量、高所点検などへの活用を提案した。半田港運は現在、入出庫時の計測にドラフトサーベイやトラックスケールを使うが中間在庫の正確な計測ができず、天候や人為的誤差、水分量変化などで管理が困難であり契約上のペナルティや損失が発生する課題がある。同社は即時導入の予定はないが、ドローン測量を今後顧客への提案や自社倉庫の修繕点検の選択肢として検討したいとしている。",
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": "新美氏（東海エアサービス）\n事業背景： 測量会社から独立し、現在はドローンを用いた3次元測量の営業を行っている。\nドローンの活用提案：在庫管理： バラ貨物（石炭、チップなど）の体積（ボリューム）をドローンで計測し、係数をかけることでトラックの台数や在庫量を算出できる。\n建設現場： 建設業界では、土の切り盛りの量を正確に把握するために体積計算の需要がある。\n点検・撮影： 倉庫などの高所点検（足場代の削減）や、ホームページ用のプロモーション動画撮影にも活用できる。\n技術・制度： 写真を重ね合わせて解析することで1〜2cm程度の誤差で体積を測れることや、ドローンの国家資格制度、飛行許可などの法規制について説明。\n榊原氏・山口氏（半田港運）\n現状の在庫管理：入庫時は「ドラフトサーベイ（船の喫水による計算）」、出庫時は「トラックスケール」で計測しているが、中間在庫の正確な計測は現在行われていない。\n顧客（荷主）からの在庫証明も基本的には台帳ベースであり、現物確認も目視の範囲に留まっている。\n業界の課題：ドラフトサーベイは天候や海上の状況に左右されやすく、人間の目による計算のため誤差が生じやすい。\n入庫量と出庫量の差異により、契約上ペナルティや損失が発生する場合がある。\n屋外保管のため、水分量によって重量が変化することも管理を難しくしている。\n提案への反応：すぐに導入が必要な状況ではないが、「ドローンで体積が測れる」という手法を知ったことは収穫であり、今後顧客への提案や、自社倉庫の修繕点検（足場コスト削減）の選択肢として検討したい。\n\n--------------------------------------------------------------------------------\n内容のまとめ\n本対話は、ドローンを活用した最新の測量技術を持つ新氏が、港湾物流を担う半田港運に対し、業務効率化の提案を行う形で行われました。\n1. ドローンによる在庫管理の可能性 現在、半田港運が扱う石炭や木材チップなどのバラ貨物は、入出庫の差分で在庫を管理しており、積み上がった山（山積）の正確な量を途中で測ることは困難とされています。新氏は、ドローンで撮影したデータを解析することで、**「誰でも手軽に、高精度な体積計算ができる」**という利点を強調しました。\n2. 港湾物流における計測の誤差問題 物流現場では、船での入庫時に行うドラフトサーベイの不確かさや、水分の付着による重量変化が課題となっています。ドローン測量が「公的な数量」として認められれば、通関や在庫証明のコストを大幅に下げられる可能性があるという展望が語られました。\n3. 多角的なドローン活用 測量以外にも、倉庫の屋根や外壁の点検にドローンを用いることで、従来数百万円単位でかかっていた足場費用を大幅に削減できる可能性について、双方が強い関心を示しました。\n結論として 現時点で半田港運側に即時の導入予定はないものの、顧客から「在庫を正確に把握したい」という要望が出た際や、自社施設のメンテナンス時における有力な解決策の一つとして、ドローン技術が認識されました。",
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": [
+          {
+            "file_token": "FzRmbbrHmoCivNxhA2Hjax9Gp6b",
+            "name": "photo_1772614542251.JPEG",
+            "size": 652858,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=FzRmbbrHmoCivNxhA2Hjax9Gp6b",
+            "type": "image/jpeg",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/FzRmbbrHmoCivNxhA2Hjax9Gp6b/download"
+          }
+        ],
+        "商材種別": [
+          "ドローン撮影",
+          "ドローン測量",
+          "３次元計測",
+          "土量・在庫計測"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recTheK1Ln",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "バラ物貨物の現場実態は把握出来たが、海事検定など守られた港湾地区の改革は困難であろう",
+        "商談名": null,
+        "商談形態": "テレアポ",
+        "商談日": 1772604000000,
+        "営業見込みなしの理由": "今すぐ困ってはいない",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": "物流会社",
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": "半田港運",
+        "次アクション": [
+          "提案資料作成"
+        ],
+        "次アクション日": 1773836251910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "475-0831 愛知県 半田市 十一号地18-2 日本",
+          "adname": "十一号地",
+          "cityname": "半田市",
+          "full_address": "半田埠頭駅，愛知県半田市十一号地475-0831 愛知県 半田市 十一号地18-2 日本",
+          "location": "136.950143,34.8826603",
+          "name": "半田埠頭駅",
+          "pname": "愛知県"
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": [
+          {
+            "file_token": "AarFbc2OooDOtZxDWEsjfrVtprg",
+            "name": "2026-3-4-半田港運-新美.m4a",
+            "size": 22921042,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=AarFbc2OooDOtZxDWEsjfrVtprg",
+            "type": "audio/x-m4a",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/AarFbc2OooDOtZxDWEsjfrVtprg/download"
+          }
+        ],
+        "音声データ有無": true
+      },
+      "id": "recTheK1Ln",
+      "record_id": "recTheK1Ln"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": "要対応\n東海エアサービスの新美氏が近藤組にドローンを用いた3次元計測および土量計算サービスを提案したが、近藤組では業務の内製化が進んで技術課を中心に専用体制を整え、社内リソースで全案件を処理できるため外注ニーズが低く、また同サービスの3次元データ活用は土木部門に限られ建築部門に需要がない。担当者は中堅以上のゼネコンは内製化ケースが多いが、規模の小さい会社では普及していない可能性があると見ている。",
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": "営業の目的: 東海エアサービスの新美氏による、ドローンを用いた3次元計測および土量計算サービスの提案。\n• 近藤組の現状: すでに業務の**内製化（自社対応）**が進んでおり、技術課が中心となって専用の体制を整えている。\n• 活用範囲: 3次元データの活用は主に土木部門に限られており、建築部門では特段の需要がない。\n• 業界の傾向: 担当者の見解によれば、中堅以上のゼネコン（元請け）は内製化しているケースが多いが、より規模の小さい会社ではまだ普及していない可能性がある。\n• 外注の可能性: 現状では社内のリソースで全案件を処理できており、外部へ委託（アウトソーシング）するニーズは低い。",
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": null,
+        "商材種別": [
+          "３次元計測",
+          "ドローン測量",
+          "土量・在庫計測"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recwNDKqcs",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "肌感覚では土木会社(元請)は内製化済でかつ外注はしない。中小の土木会社は元請が３次元測量をやってしまうので需要はほぼ無いのでは。",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1771918200000,
+        "営業見込みなしの理由": "全て内製化、外注化しない為",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": "建設会社（土木）",
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": "近藤組",
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "448-0002 愛知県 刈谷市 一里山町伐払123 日本",
+          "adname": "一里山町",
+          "cityname": "刈谷市",
+          "full_address": "近藤組本社，愛知県刈谷市一里山町448-0002 愛知県 刈谷市 一里山町伐払123 日本",
+          "location": "137.0384654,35.0232018",
+          "name": "近藤組本社",
+          "pname": "愛知県"
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": "なし",
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": [
+          {
+            "file_token": "XmBJbh7Mdo5Vc8xObyGjNpdQpqf",
+            "name": "2026-2-24-近藤組-新美.m4a",
+            "size": 2360956,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=XmBJbh7Mdo5Vc8xObyGjNpdQpqf",
+            "type": "audio/x-m4a",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/XmBJbh7Mdo5Vc8xObyGjNpdQpqf/download"
+          }
+        ],
+        "音声データ有無": true
+      },
+      "id": "recwNDKqcs",
+      "record_id": "recwNDKqcs"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": null,
+        "不在時の対応": "受付で断られる",
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": null,
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": null,
+        "商材種別": null,
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "rec8rrCrxH",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "不在",
+        "商談内での気づき・備考": null,
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1771898580000,
+        "営業見込みなしの理由": "飛び込みお断りの為",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": "建設コンサル",
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": "中日本コンサルタント",
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "460-0002 愛知県 名古屋市 丸の内1丁目16 日本",
+          "adname": "中区",
+          "cityname": "名古屋市",
+          "full_address": "丸の内1丁目16 (丸の内1丁目)，愛知県名古屋市中区460-0002 愛知県 名古屋市 丸の内1丁目16 日本",
+          "location": "136.89526372558146,35.173382475108426",
+          "name": "丸の内1丁目16 (丸の内1丁目)",
+          "pname": "愛知県"
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": null,
+        "音声データ有無": null
+      },
+      "id": "rec8rrCrxH",
+      "record_id": "rec8rrCrxH"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": null,
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": null,
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": [
+          {
+            "file_token": "BjzZbL8TEoEaUyxf7otj4KTmp8g",
+            "name": "IMG_9122.jpeg",
+            "size": 879611,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=BjzZbL8TEoEaUyxf7otj4KTmp8g",
+            "type": "image/jpeg",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/BjzZbL8TEoEaUyxf7otj4KTmp8g/download"
+          }
+        ],
+        "商材種別": [
+          "ドローン撮影",
+          "ドローン測量"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recxpIHPgN",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "弊社もドローンは何十台何百台あるので\nお役に立つことはできない",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1769660280000,
+        "営業見込みなしの理由": "依頼はなさそう",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": "測量会社",
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/default-avatar_v3_00nv_51af3064-89c2-4d7a-9011-10c75a5b027g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "en_name": "ユーザー550372",
+            "id": "ou_6ee633b968b9229655813af6e3a47e9f",
+            "name": "ユーザー550372"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": "株式会社イソビク",
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "次アクション：その他": null,
+        "温度感スコア": "Cold",
+        "現場位置": {
+          "address": "〒503-0854 岐阜県大垣市築捨町３丁目102番地",
+          "adname": "",
+          "cityname": "",
+          "full_address": "（株）イビソク，〒503-0854 岐阜県大垣市築捨町３丁目102番地",
+          "location": "136.6206959,35.3408316",
+          "name": "（株）イビソク",
+          "pname": ""
+        },
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": "完全内製化",
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": null,
+        "音声データ有無": false
+      },
+      "id": "recxpIHPgN",
+      "record_id": "recxpIHPgN"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": "同社は内製と外注の両方を行っており、外注先は基本的に県内で取引のある業者に限定している",
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": "内製もしていて外注もしている。基本的に県内の付き合いしている業者に依頼している",
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": [
+          {
+            "file_token": "M7XSbrROuohPUkxFf7tjYbs1pje",
+            "name": "IMG_9053.jpeg",
+            "size": 2642555,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=M7XSbrROuohPUkxFf7tjYbs1pje",
+            "type": "image/jpeg",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/M7XSbrROuohPUkxFf7tjYbs1pje/download"
+          }
+        ],
+        "商材種別": [
+          "ドローン撮影",
+          "ドローン測量",
+          "３次元計測"
+        ],
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recWodk0UZ",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": "現在、仮事務で営業。特に困り事もない",
+        "商談名": null,
+        "商談形態": "飛び込み",
+        "商談日": 1769134560000,
+        "営業見込みなしの理由": "県内業者であり、今の現状で困り事もない",
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": "建設会社（土木）",
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": null,
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/default-avatar_v3_00nv_51af3064-89c2-4d7a-9011-10c75a5b027g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "en_name": "ユーザー550372",
+            "id": "ou_6ee633b968b9229655813af6e3a47e9f",
+            "name": "ユーザー550372"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "新規取引先名": "水谷建設株式会社",
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "次アクション：その他": null,
+        "温度感スコア": "不在のため不明",
+        "現場位置": null,
+        "確定金額": null,
+        "競合名": null,
+        "競合有無": "あり",
+        "結果": null,
+        "見積・予算金額": null,
+        "関連営業ログ": null,
+        "音声データアップロード": [
+          {
+            "file_token": "BuWLbKGUzo4NQhxxTBWjiS84pEd",
+            "name": "2026-1-23水谷建設政木勇治.m4a",
+            "size": 2255603,
+            "tmp_url": "https://open.larksuite.com/open-apis/drive/v1/medias/batch_get_tmp_download_url?file_tokens=BuWLbKGUzo4NQhxxTBWjiS84pEd",
+            "type": "audio/x-m4a",
+            "url": "https://open.larksuite.com/open-apis/drive/v1/medias/BuWLbKGUzo4NQhxxTBWjiS84pEd/download"
+          }
+        ],
+        "音声データ有無": true
+      },
+      "id": "recWodk0UZ",
+      "record_id": "recWodk0UZ"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "この会話は、ドローン測量サービスを提供する**東海エアサービス（TAS）**の担当者と、採石場および鉱山を運営する**ダイセン**の担当者（中根氏）との間で行われました。ダイセンはドローン測量を内製化しつつも、行政対応のために外部コンサルタントを利用しており、TASは外注先の候補として検討されることになりました。\n\n### 1. 東海エアサービス（TAS）の提案とサービス\n\nTASは、建設現場の効率化を目的として、ドローン測量サービスと土量計算アプリを提供しています。\n\n*   **主要な提案:** 採石場や鉱山における在庫管理（物量、残鉱量）のためのドローン測量を案内しました。\n*   **土量計算アプリ:** 建設現場で発生するダンプ台数の計算誤差や手戻りを減らすため、ドローンで測った体積データに基づき、数量を確定できる**無料の土量計算アプリ**（QRコードでアクセス可能）を開発し提供しています。\n*   **その他のサービス:** 3Dで作成したデータからの**図面作成**や、物流センターや新築記念などの**動画データを含む空撮サービス**も提供可能です。\n\n### 2. ダイセンのドローン活用と在庫管理の現状\n\nダイセンは、採石場および鉱山（計3地点）を運営しており、在庫管理を目的としたドローン測量を内製化しています。\n\n*   **内製化の状況:** **月に1回程度**の頻度で**自社でドローンを飛ばして**在庫管理を行っています。担当者（中根氏）は、ドローン操縦、データ処理（Pix4DなどのSFMソフト使用）、体積計算までを一通り実施しています。\n*   **内製化の目的:** 内製化は、**厳密な精度（100%の数字）は求めない**「大枠」の在庫量や、出荷システム上の数値との「差分」を把握することが目的です。そのため、標定点を置かず、相対的な位置情報のみで運用しています。\n*   **鉱山法の管理の厳格化:** 砕石法から鉱山法に転換したことで、管理が一段と厳しくなっており、熱海での土砂災害以降、行政の管理も厳格化し、目安ではなくきちんとした測量が必要とされています。\n\n### 3. 正式測量（外注）の状況と協業の可能性\n\n行政に提出する図面や申請書類が必要な「ちゃんとした測量」は、外部のコンサルタントに依頼しています。\n\n*   **外注の基準:** **採掘計画の変更時**など、**書面として図面や申請書類が必要な時**に、鉱山に特化したコンサルタント会社（「サニーなんとかさん」という名東区の業者）に業務を**全て丸投げ**しています。\n*   **外注先とのコスト比較:** 現在のコンサルタントは高額ですが、その明細には**ドローン測量の業務が切り分けられて記載されている**ため、TASが安価であれば、そのドローン測量部分だけを切り出して外注する運用も可能であるという考えを示しました。\n*   **外注の頻度:** 正式な測量の頻度は、年1回ではなく、**数年に1回程度**（例：2～3年に1回）です。\n*   **TASへの要望:** 検討を進めるため、TASに対して**「ドローンで測量して図面起こしまで」**行った場合の目安の金額（平米単価など）を提示するよう求めました。\n\n### 4. 業界動向とTASへの助言\n\n*   **建設業界の取引構造:** 採石場からゼネコンへの仕事の流れは、間に山陽建設、丸建設、長坂建設工業といった**中規模の建設業者**が入って地域に仕事をまとめる構造になっており、ゼネコンからの直取引はないのが一般的です。\n*   **TASへの営業アドバイス:** TASの提供する土量計算アプリや正確な測量データのニーズは、ダンプ台数の誤差が予算に直結する**建設業者（特に地元の規模の大きいところ）**の方が高いため、そちらに営業をかける方が効率的だろうと助言しました。\n\n---\n\nこの会話は、**内製化と外注の役割分担**が明確になっている企業との対話であり、行政対応という高精度のニーズとコスト削減のニーズが交錯する中で、TASは「低コストで専門的な測量部分を請け負う」という役割での協業の可能性を探ることになりました。TASは今後、提示された目安金額をダイセンに提出し、正式な検討機会を待つことになります。",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnskIgoUcN"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量",
+          "ドローン撮影",
+          "赤外線"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntamXvVYG",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "リード獲得",
+        "商談内での気づき・備考": [
+          {
+            "text": "サニー設計のドローン測量部分のみの当て馬的になる可能性もあるので、サニー設計への営業も検討必要かも\n①採石場のドローン測量\n②定期的な体積計算は内製化(PIX4D)\n③新たな採掘の時にサニー設計に書類作成含めて依頼(高額の様子)\n④その価格の内訳があるのでドローン測量だけ切り出す事を検討する為に目安金額が必要",
+            "type": "text"
+          }
+        ],
+        "商談名": [
+          {
+            "text": "株式会社ダイセン_2025/11/14",
+            "type": "text"
+          }
+        ],
+        "商談日": 1763079300000,
+        "客先カテゴリ": "鉱山",
+        "対象物件・現場名": [
+          {
+            "text": "株式会社ダイセン",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "掘り起こしメール"
+        ],
+        "次アクション日": 1774009051910,
+        "温度感スコア": "Warm",
+        "競合名": [
+          {
+            "text": "ドローン測量は内製化、新たな採掘場の書類作成時にドローン測量はサニー設計に依頼",
+            "type": "text"
+          }
+        ],
+        "競合有無": "あり, 一部内製化",
+        "音声データ有無": true
+      },
+      "record_id": "recvdntamXvVYG"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "①ドローン測量と土量計算を案内\n②もう少し早かったら良かったと",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvc6b2lcn7SV"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntamXbk17",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "リード獲得",
+        "商談内での気づき・備考": [
+          {
+            "text": "カリツー安城里町物流センター新築工事は矢作建設(土屋産業) 別途アプローチ必要",
+            "type": "text"
+          }
+        ],
+        "商談名": [
+          {
+            "text": "土屋株式会社_2025/10/14",
+            "type": "text"
+          }
+        ],
+        "商談日": 1760404500000,
+        "客先カテゴリ": "物流会社",
+        "対象物件・現場名": [
+          {
+            "text": "カリツー安城里町物流センター新築工事事務所",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "掘り起こしメール"
+        ],
+        "次アクション日": 1774009051910,
+        "温度感スコア": "Warm",
+        "競合名": [
+          {
+            "text": "矢作建設の下請の土屋産業が当該工事担当、土屋産業としてはドローン測量既存業者無し",
+            "type": "text"
+          }
+        ],
+        "競合有無": "なし",
+        "音声データ有無": true
+      },
+      "record_id": "recvdntamXbk17"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "①阿知和工業団地造成JV工事事務所を訪問\n②伊藤所長(鹿島建設)からドローン測量は実施中(進捗管理含めて週一回程度)内製化\n③敷地内の切土盛土で外には出さない、外からも入れない予定\n④測量会社は2社使用しているが10月から繁忙期となり不足する為、丁張りなど通常の測量はやって無いのかと聞かれたので、グループの東海工測もあるので確認すると回答\n",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnskIgOl6u"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntamXQHO3",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": [
+          {
+            "text": "測量会社は2社使用しているが10月から繁忙期となり不足する為、丁張りなど通常の測量業者が必要の様子",
+            "type": "text"
+          }
+        ],
+        "商談名": [
+          {
+            "text": "鹿島・竹中・朝日阿知和工業団地JV_2025/10/07",
+            "type": "text"
+          }
+        ],
+        "商談日": 1759803300000,
+        "客先カテゴリ": "建設会社（ゼネコン・サブコン）",
+        "対象物件・現場名": [
+          {
+            "text": "阿知和工業団地造成JV工事",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "温度感スコア": "Warm",
+        "競合有無": "あり, 一部内製化",
+        "音声データ有無": true
+      },
+      "record_id": "recvdntamXQHO3"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "①建設前の土木出張所を訪問\n②令和3年2月18日から令和9年3月31日迄\n③但し、土木工事もほぼ終了\n④興味は示されたが、タイミングが遅かったこと、登録測量業社に依頼する商習慣\n\n2025-10-02西松建設株式会社 - 新美光.m4a\n営業担当: 失礼 し ます。はい。失礼 し ます。こんにちは。失礼 し ます。あ、すい ませ ん。お 忙しい ところ。ちょっと 私、あの、え っ と、 東 海 エ ア サ ー ビ ス 会 社 っ て と こ ろ で ち ょ っ と 今 測 料 の 関 係 さ せ て い た だ い て ま し て、 い ま し てすいません。はい。ちょっと今あの都僕工事始まってる中であのちょっと音社の方困りごはないかっていうことでヒアリングをこういろんなところ今回らさせていただいてましてで実は私のもはうん、えっとこういう土量計算機だ。あ、いいですかね?すいません。ありがとうございます。すいません。結構大きな工事。 現場担当: まだもう終わりかけなんです。あ、そうなんですか。ちょっとタイミング遅かったですかね。終わりかけですか?あ、例は 3 年からずっと。そう。 営業担当: ああ、それでも 9 年まで 現場担当: でももう 営業担当: はい。土は 現場担当: あ、そっか。そうですよね。失礼します。すいません。あ、そうですか。あ、そんな前からやってたんですね。 営業担当: はい。ちょっと実は私 は、今、あの、えっと、この最近ちょっと開発した 営業担当: 土量コスト計算機っていうのが 現場担当: うん。 営業担当: 土量コスト計算、ええ、ま、あの、要するにドローンでした物理、あの、土僚の体積から、えっと、このアプリで落とし、数量を落とし込むことによって、で、えっと、その実際にどれぐらいの体積の物量があって、で、トラックのうん、積 コストがどれだけかかるか、ま、単価とかとか各者でやってらっしゃる単価を入れ込んでで、この重とか比率も、ま、音社で変えることによって大体コスト計算ができる 現場担当: へえ。 営業担当: ていう仕組みアプリを、ま、これ無料で今あの展開してるもんですから。で、そうは言っても実際の全体の体積の部分は 現場担当: うん。うん。 営業担当: が、あの、キーになるのと、あとトラックの台数も当然トラックの積裁 現場担当: うん。 営業担当: え、効率 とかの係数によって、え、計算値が変わってくるんで、ただその計算値を社が各者で入れていただくことで、え、リアルな数字になって、で、単価も支払い単価を入れていただくと大体それがトータルになるのかっていうのが計算できるような仕組みなんです。で、それをちょっと無料で開発しまして。 現場担当: おお。で、 営業担当: これは勝手に取れるんですか?あ、取れますね。あ 現場担当: あ、なるほどね。 営業担当: はい。なんでこれただただの 現場担当: いや、あの、もし今後もうここ終わってるんであればもうほとんど土がないんです。で、入ってくるんが、ま、あ、そうですか。これが最初だったらなんかこういいなとは思ったんですけどね。え、ちなみにどうやって音社は音社で計算 現場担当: そうですね。もうロジックがあって 営業担当: はあ。なんか 現場担当: ロジックていうかまあまあまあ一般的一般的なもう一社感じですけどね。 営業担当: ああ、はあ、は、は。なんかこうそれが計算区来るとだいぶ大きく 現場担当: そうですね。手戻りになったり費用も 営業担当: そうですね。はい。ということで実は私どもこのドローン測量の 3 次元でえっと体積ん 確認をしてで、その数値を元に 現場担当: そうです。そうです。 営業担当: ええ、そういうこれは無料なんですよってこと。 現場担当: まあ、ま、そう、ま、そうですね。ただ無料なんで逆に音社自社であのドローンやってらっしゃるんであればそこの積裁率でできちゃうっていうそんな仕組みなんですよ。ええ、あの、 営業担当: もうじゃあこれ初めの頃だったらひょっとしたら 現場担当: そうですね、もう私はちょっと途中から来たんでね、同じようにドローンで料して弾いていう 営業担当: で、毎月毎月 現場担当: あ、もうすでにじゃあそれはどっかでやってらっしゃったんですね。で、もう終わったんで。 営業担当: あ、そうですね。で、計算はど者でそのじゃあその対に業者さんにやってもらってたっていう。あ 現場担当: あ、そうなんですか。あ、なるほど。じゃ、月南流兵っていうのですね。うん。 営業担当: あの、お、よろしかったらお飯、あの、あ、ごめんなさい。あの、本社引き続きあの、あれですか、このところでこう 末建設なんで、今これは東海がここですね。 現場担当: そうですね。 営業担当: はい。こうやっぱりこういうお話って土木の出張とかも現場が動き出してから、ま、今回遅かったんですけど、この事務所ができた頃に来るとそういうお話がもっとリアルに 現場担当: あ、そうなんですね。 営業担当: ただただその測料となるとちょっとなかなか今までやられてるところが多分ある。 現場担当: なるほど。トロ 足戦足たからてるもんね。 営業担当: あ、はい。あ、そういですね。なるほどなるほど。ああ、登録してる業者さんにな、まずならないとってとこですか。 現場担当: うん。なるほど。 営業担当: もうやっぱり大体こう使ってるんですよね。 現場担当: 多分そうですね。同じよう作成して。そうですか。 営業担当: そうですか。あう。うん。分かりました。ちょっと 1 回ちょっと今はね、あんまり余裕がないんで。基準的なちょっと検査前なんで。 現場担当: はい。ええ、ええ、ええ、ええ。うん。ちょっと見ときます。 営業担当: あ、なるほど。はい、わかりました。ちょっと是非 また機会があればはい、分かりました。すいません。 現場担当: はい。 営業担当: 忙しいとこありがとうございます。突然で 現場担当: はい。 営業担当: ちょっとこの辺の工事機間中のとことか写真だけ撮らさせてもらっていいですかね?あ、あのこの工いつからまでとかこの工事が 現場担当: どっかでなんか表に出されるんだった。あ 営業担当: あ、じゃなくてあの営業報告で使う程度なんですけどいいですかね? このこの工事機関中のとこだ。はい。すいません。 現場担当: はい。 営業担当: すいません。ありがとうございます。お忙すごいとかありがとうございます。",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnskIgumrW"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntd24DxUf",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": [
+          {
+            "text": "建設前の更地の土木事務所に訪問したが、令和3年から開始しており遅かった様子",
+            "type": "text"
+          }
+        ],
+        "商談名": [
+          {
+            "text": "西松建設株式会社_2025/10/02",
+            "type": "text"
+          }
+        ],
+        "商談日": 1759379400000,
+        "客先カテゴリ": "建設会社（ゼネコン・サブコン）",
+        "対象物件・現場名": [
+          {
+            "text": "西松建設株式会社　中部支社　東海太田川土木出張所",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "温度感スコア": "Warm",
+        "音声データ有無": true
+      },
+      "record_id": "recvdntd24DxUf"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "工期:2024/10〜2026/1\n現象:外装内装\n・工場新設が終わると、隣建物の改修工事あり。その際に赤外線診断がドローンがあるといいかもしれない\n・土量計算は経験と勘でやっている。汚染土地なので余分に多めに出した。1億円ほどかかったとのこと。\n・三次元データ活用は社内でも過渡期で、使えはするが、古い人間には難しい。若い人間は使えるかもしれない。\n・ドローンは使ったことがない。\n\nソース3: \"2025-9-16-不動建設株式会社 - 田村哲平.mp3\"\nSpeaker 2: 失礼します。 Speaker 1: はい。 Speaker 1: あ、すいません。お忙しいところ失礼します。 Speaker 2: うん。 Speaker 1: 私東海イヤサービス会社というものなんですけど、今ちょっと名古屋の建設現場1個1個回らしてもらっていて、弊社ちょっと弊社ちょっと測料会社させてもらってるんですけど、様々なちょっとドローンを扱っているっていうことで何か現場にお役に立てることないかなということで回らしてもらっていいて、ま、ただの空に限らず最近ではこういった3次元の継続だったり外線での、え、調査っていうところもあったりして、一番最近ではIGアリーナ前田建設さんがはい。あそこでえっと、土の計測とか、あと停点の撮影とかさしてはもらってたんですけど Speaker 2: うん。 Speaker 1: あちらの現場は後期はいつからまでなんですか? Speaker 2: えっとね、去年なんで、 Speaker 1: あ、去年 Speaker 2: もう結構 Speaker 1: うん。 Speaker 2: 終盤にはかかってます。 Speaker 2: ていうかね、ま、ずっとやったので、今日本週やってるもんで、 Speaker 1: あ、去年、 Speaker 2: 去年の10月から始まってはい。 Speaker 2: で、え、で、今作った建物は来年の1月の所以内中旬に終わって Speaker 1: ああ、はい。 Speaker 2: そこからまた隣の建物の回収が始まってくるんだけど。 Speaker 1: あ、また別のはいはいはい。 Speaker 2: すぐ隣のね。 Speaker 1: はい。 Speaker 2: 今これ作ったんだわ。 Speaker 1: あ、失礼します。 Speaker 2: おお。はい。 Speaker 2: で、今この回収しなかったので Speaker 1: はい。ああ、なるほど。 Speaker 2: こちら3月の末か。 Speaker 2: こちらは元々季節で今もあるけどこれを回収するんですね。 Speaker 1: 元々これはさっちゃっですか? Speaker 2: いや、違う。壊した。違う。 Speaker 1: あ、解体して新しく。 Speaker 2: そうだ。で、それやったのは俺この前それ作ったんだ。リチ。2年前に向にある建物に Speaker 1: はい。 Speaker 2: こに中があるんだけど Speaker 2: そいつ作っとる時にこればらした壊した建物。 Speaker 1: はいはいはいはいはい。 Speaker 2: 元々そこの会社はね、えっとスポンバナリとなりの Speaker 1: はい。はい。 Speaker 2: の本社があったんですよ。ここに。 Speaker 1: ほうほうほう。はい。で、これはここも貼ってい Speaker 2: ああはいはいはい。こ Speaker 2: 壊してこでまた作っていて。 Speaker 1: へえ。なるほどなるほど。 Speaker 2: で、うちはこうあのお車だもんね。 Speaker 1: あ、そうなんですね。ああ。コアさんってすいません。私全くちょっと Speaker 2: あのゆラ園メッキの会社 Speaker 1: あメッキですか Speaker 2: で日本では一番大きいか Speaker 1: へえな。 Speaker 2: でうちが部門としてうち建設部門で昔別なんだけど運素部門が Speaker 1: ああそこのグリーンのトラックあれ高っていんだけどあれもちの力会社 Speaker 2: へえ Speaker 2: あそこも結構大きい会社だけど Speaker 1: おおここが本社において周辺にま建設あ会社もあるって感じなんで Speaker 2: そうで今今 Speaker 2: 今日1人ここに来たが良かったあのうちの若いやつは Speaker 1: はい。 Speaker 2: で、あと豊橋にも作る工場。 Speaker 1: あ、新しい工場 Speaker 2: もう今動いとる。 Speaker 1: へえ。 Speaker 2: それ232年ぐらいから高級。 Speaker 1: はいはいはいはい。あ、そういうことなん。へ、ありがとうございます。 Speaker 1: で、今ちょっと色々話聞いて回ってるんですけど、今もう現状としましてはもうほとんどあとえっと今体が Speaker 2: そう、今外速工事が終わつあごえっとLCが終わって Speaker 1: はい。 Speaker 2: 今あの外装の仕上げとかあと内装工人入ってるとああ、なるほどなるほど。そういうことですね。ま、大魔のところはだいぶ終わってきたっていうとこなんですね。 Speaker 2: まあまあまあま、大きいものは Speaker 1: 大きいものはそういうことですね。しました。 Speaker 1: 元々じゃあさらちだったというところで、 Speaker 1: 土の計算とかそういうのありました?あ Speaker 2: あ、俺、俺、俺がした。 Speaker 1: あ、やっぱりされました。 Speaker 1: 結構やっぱり大きい現場とかでやっぱ、ま、関さんのところが大きくてそこで誤差とか生じてそこで結構課題を感じているってところはあったんですけどどうでした?あ、あれぐらいの規模だったらそこまでなかったですか? Speaker 2: いや、もうあの、今回は何、大きくホール計算したから。 Speaker 1: ああ、そうなんですね。はい。 Speaker 2: うん。元々ま、ここら辺はね、あの、というのは汚染道って言って Speaker 1: ああ、 Speaker 2: ちょっとね、タ価が10倍ぐらいなるんだわ。 Speaker 2: ちょっと間違えると鬱しくてだったら面台出しとこうかなっていう。 Speaker 1: ああ、そういうことですね。 Speaker 2: で、ここどうだろう?何千やったかな?ちょっと忘れたけど1億弱かかってんで。 Speaker 1: ええ、 Speaker 2: そのや Speaker 2: 本当に何?10頭1台出すのに10万、20万すぐいるから。 Speaker 1: ああ、そんなもんなですね。うん。トン大体処分台が1万円から1万5000ぐらいするもんで10tう Speaker 2: それ運搬チもいるから処分じゃなくて Speaker 1: うんうん。 Speaker 2: 結構かかるのよ。 Speaker 1: うーん。なるほど。 Speaker 1: これ教会とかもやるの? Speaker 2: 教会 Speaker 2: 教会の位置のあの食い入れとかもやるの? Speaker 1: あ、食い入れですか?食い入れ Speaker 2: 自分とか気では何?こういう観察が大きいってこと? Speaker 1: えっと、ま、測量で Speaker 1: そうですね。実際に悔を入れたりっていうところまでは Speaker 2: やってない。 Speaker 1: やって今んところはうん。うん。 Speaker 2: あとうちとしてはあのやって欲しかったのは Speaker 2: うち今食い食いあのなんだ食料屋 Speaker 1: はい。 Speaker 2: が内側の適当なとこが今今なくて Speaker 1: はい。 Speaker 2: 実はだけどあの建物壊す時に Speaker 2: 今度こっち側の Speaker 1: はい。 Speaker 2: あ、ごめん。今の建物を壊す時に Speaker 1: はい。 Speaker 2: 依存 Speaker 2: 南川が名古屋市の環境事業所だったの。 Speaker 1: はい。 Speaker 2: で、そこの万ダイベっていう古いま、今ちょっとちょっと前昔ニュースなったんだけど Speaker 1: はい。 Speaker 2: あCって2次製品の壁があるんだけど Speaker 1: はい。 Speaker 2: それ倒しちゃってたやんて。 Speaker 1: へえ。はい。 Speaker 2: 響ちゃって。おお。 Speaker 2: で、全部俺壊したの今回で今回うち直したの全部。直したっていうか、あの新しいアルミノフェンスとかスチールとかに Speaker 1: はい。 Speaker 2: やり替いってそん時にやっぱり教会部のあの壁壊すとは意が飛ぶよね。 Speaker 1: ふーん。 Speaker 2: で逃げ取ったるんだけど新しい本入れる時に今度名古屋市と一緒に共同で入れようかなって思っんだけどうん。はい。 Speaker 2: ちょっと今適当なとこはいないなと思って。 Speaker 1: ああ、なるほど。ちょちょっとそこよろしければ一度お話させてもらってもいいですか?全然でき Speaker 2: いや、自分とこがね、 Speaker 2: あ、本ちゃんでやるならいいけど。 Speaker 1: はいはい。 Speaker 2: いや、実はもうあのお客さんも打信がしてあって Speaker 1: ああ、そうなんですね。 Speaker 2: ていうのは Speaker 2: 今回和工業書とその名古屋市の教会になるんだけど Speaker 1: はい。 Speaker 2: だったら俺公和工業所に紹介してもらことなのしたらあの文句言わんかなっていうお客さんも Speaker 2: で名古屋市は別にちゃんとやれば別な文句言いとじゃないし Speaker 1: はい。 Speaker 2: もし自分ところがあのそういう即料部門があるとしたら Speaker 2: 今今この機会であるもんであどうかな思っあ、 Speaker 2: やっぱり専門職の方がいいもんでさ。 Speaker 1: はいはいはいはいはい。 Speaker 2: ちょっと私も後から揉めるのやだもんで。 Speaker 1: そういうことですね。 Speaker 1: すいません。 Speaker 2: 自分とこの何、あの1番あのなんだ、1番いい会社のあの強みとしてはこういうこういう何、経験察が一番大きいてこと? Speaker 1: いや、違います。一応もう測料会社としてもうそういう資格はありますんで、 Speaker 1: えっと実際に区いを打つっていうより、 Speaker 1: えっと、もう完全に3次元で、えっと、データをお渡しするっていう形です。 Speaker 2: ああ、そういことね。 Speaker 1: はい。 Speaker 1: ああ。ああ。最近そうです。そうです。最近ゼネコンさんとか結構、ま、使っていただいてるとこは多いんですけど、なかなか、ま、中所さんとかそこのハードルが高いとこもあって Speaker 2: うん。 Speaker 1: 一応こういった形で提供はさしてもらいます。 Speaker 2: うちもなんかね、返したソフトがあるらしいんだけど Speaker 1: はい。はい。 Speaker 2: 積産した方が早いもんね。ていうのは Speaker 2: 自分でこうしたいなっていうのがあるじゃない。 Speaker 1: うん。 Speaker 2: こういう風に掘ってこうかなとか成功してこうかなっていうのが Speaker 2: その細かいところのそういう部分はあの計算っていうかソフトに入れ入れきれ部分があるもんでどのみより即せずっていうもの書くんだけど、 Speaker 2: そん時に土をどんだけで掘ってこうかなってよりね。 Speaker 1: うん。 Speaker 2: 要するにあの土のあのなんだその財質というか砂尻りとか粘土とか Speaker 2: 色々あるんだけど Speaker 2: 今までの経験上でまこういう風のの方が安全かなっていうその角度があるんだけど土僚のあ Speaker 2: それが今自分で自分で決めとるもんで Speaker 2: そん時にもかなっていうま Speaker 1: あ Speaker 2: まそれで今までそんな失敗中失敗はないもんで Speaker 1: うん Speaker 1: だまあ今までのま適当って違う Speaker 2: はい。 Speaker 2: 監督適当でやっとる。 Speaker 1: うーん。そういうことですね。ま、そこであまり Speaker 2: ま、ラグだね。 Speaker 2: 簡単に言うと Speaker 1: まそうですね。やっぱりま Speaker 2: イメージしやすい。 Speaker 1: そうですね。量的にしっかり数値でこうやってバシって出せるんで。 Speaker 2: で、まあ1ランパあたりの努シンプルにどんだけダンプが必要ってこともう分かるわね。 Speaker 1: はい。分かるんでもう間違いなく精度はいいとは自付してますね。 Speaker 2: うん。 Speaker 1: うん。 Speaker 1: うん。これがドローンの即用でこいつが Speaker 1: こちらが結構回収工事とかそういう時に使っていただいてるんですけど、積外線を使ってこういうタイルの浮きしみとか Speaker 1: を、ま、わざわざ足場とか作って、ま、職人さんがこうやって脱線して Speaker 1: やる手間を省くっていうとこですね。 Speaker 2: うん。うーん。ちなみにこういうのに平あたりでまいかんか。 Speaker 1: はい。 Speaker 1: まずこれ一式いくらなる?大体最低限。 Speaker 1: 最低10万からです。 Speaker 2: あ、本当? Speaker 1: はい。 Speaker 2: そんなもんなんだ。 Speaker 1: うん。確かにね、見つもりできんもんね、こうやつって。まあ、そうですね。そこもちょっとお話しするしてっていうとこはあるんですけど、どれだけの広さ Speaker 1: をやるっていうところは Speaker 2: うちもこうやつで言うとね、よく東方ガスでよくあるのうちは。 Speaker 1: はい。おお。はい。 Speaker 2: 東方ガスの仕事もしったんだけど、大体回収工事がうち東ガスが多いんで、 Speaker 2: え、各 Speaker 2: 結構態度が多いんで。 Speaker 1: ああ、はいはい。 Speaker 2: ま、打調査とかするんだけど結局足枠までわからんていう話で。 Speaker 1: はい。やっぱりそうですよね。あ、うん。楽だよね。 Speaker 1: そうですよね。やっぱり、ま、打結構時間もお金もかかるっていうとこがあるんで、それだったら先に飛ばして Speaker 2: 今週うちの若いやつに会社帰るもんで、週末に Speaker 2: これ会社に置いとくわ。 Speaker 1: はい。あ、ありがとうございます。 Speaker 2: それか Speaker 2: 会社に帰るっていうのは事務所が Speaker 1: うん。いや、うち、うん。うちの会社すぐそこなんすわ。あ、小学なんで。 Speaker 1: はい。 Speaker 1: あ、小学なんですね。 Speaker 2: うん。ただね、それ会社はもう、あ、停車渡してくわ。 Speaker 1: あ、ありがとうございます。会社、あの、すごい保的な会社なんで新しい人がやる。 Speaker 1: はい。はい。はい。はい。 Speaker 1: だから、ま、会社でも正直あんまり期待はし、ま、建設会社はある意味多いですよね、結構。はい、 Speaker 1: ありがとうございます。頂戴します。で、今ちょっと Speaker 1: またすごいお勧めしているっていうのがうん。 Speaker 1: 今もうだいぶ Speaker 1: 工事が進んでると思うんですけど、まるっと3次元の計測をして3Dとしてデータを渡してそれを持って進捗管理出来型 の管理とかをもう Speaker 1: やっていただく。そうすることで現場のさんが現場に行ってわざだ写真を撮ったり図るっていう、ま、そういったことをもう完全になくす。ま、うちが週に1回、月に1回そういうデータを渡していくことで、 Speaker 2: 今うちはね、その段階までらずに今アバッドってやつってなんか管理してる。 Speaker 1: はい。お、 Speaker 2: アパッドでもう初めに写真を撮る位置とか Speaker 2: あと状況を入力しといて Speaker 1: はい。はい。 Speaker 2: 後から、ま、俺がここの事務所から若い人間に指示してくっていう風になっとるもんで、今自分の Speaker 1: はい Speaker 2: はもう全体の話だよね。しかもその管理のえっと状況確認を任せてことだよね。 Speaker 1: そう。もうそうですね。はい。 Speaker 2: ま、うちはそれ絶対いかんていうな。 Speaker 1: はい。 Speaker 2: あの、やっぱりちゃんと自分格管理してって Speaker 1: ありますよね、決まりは。 Speaker 2: ま、とりあえずそこやっとるんだね。 Speaker 1: そうですね。もうただうちの場合は取って終わりじゃなくて取ってそっからどのように運用していくかっていうところも一括してるっていうのが強みなんで Speaker 1: うん。 Speaker 1: ただ上から空殺するっていうだけではなくて Speaker 1: うん。 Speaker 1: ドローンってちなみに使われてます? Speaker 2: いや、使ってない。今度やる現場はどうなるかわからんけど Speaker 2: 今度やる現場はでかすぎてどうするんかなっていう風に思って Speaker 1: おむしろめちゃめちゃでかければでかいほどやっぱりこういう空殺とか Speaker 2: そう Speaker 2: ものすごく威力を発揮するんで Speaker 2: い今度豊橋であるんだけど今度静岡方面の業者使ってやろうかなって言ってた Speaker 1: はいああそうなんですねあっち側ですもんね結構 Speaker 2: うんだでもうちもちょっと人側あんまりおらんもんで Speaker 1: うんほぼ丸投げというか Speaker 2: でま今度またここの高工業所の仕事なんだけど Speaker 2: ここのうち内場しとるもんで監督の人数も Speaker 1: ああはいはい。 Speaker 2: で、そっちにね、4人も5人も行って監督が行っとってこっちが手にならんかっていうの心配しとって Speaker 1: はい。お Speaker 2: だったらもう投げちゃおうかっていう Speaker 2: お客さん公認で Speaker 1: はいはいはいはい Speaker 2: でただそこん時に釘が多分建物の区で多分1000本2000本になってくるんで Speaker 1: はい Speaker 2: そん時にどうするんかなっていう Speaker 1: うん Speaker 2: 目で見て即なんかできるのかなっていう Speaker 1: うんうんうんうん Speaker 2: 長編がなんか150mぐらいあるで Speaker 1: あ結構大きいですねそうするともう見えない話してくれ Speaker 1: はいはいはい Speaker 2: 結構大きい1万5000ま、でもこんな感じだよね。 Speaker 1: そうですよね。これぐらい大きい現場で、ま、マとデータで終わってこれ何平?3200米。 Speaker 2: そうですね。 Speaker 1: あ、3万2000。 Speaker 1: 3万2000ですね。 Speaker 2: だって今1万5000平だ。これ半分ぐらいか。 Speaker 1: うん。うん。 Speaker 2: うん。これはでかいね。 Speaker 1: めちゃくちゃでかいですね。 Speaker 1: すごい。ま、こういった感じで本当に細かく Speaker 1: うん。 Speaker 1: もう現場の管理人さんが現場に行かずともうもうデータで全て剥れてしまう。よな。 Speaker 2: 本当。 Speaker 1: はい。 Speaker 2: ええ。 Speaker 1: もちろん進捗管理でこういった形で使っていただくっていうこともできるんですけど。 Speaker 2: ええ、すごいね。これも俺もアンドパクトっていうそういうやつもあんまりちょっとね、よわから Speaker 1: うーん。なかなかやっぱり新しくこういうのを使おうと思ってもハードルがやっぱり高いと思います。 Speaker 2: 結局ね、加きなんだよね。多分 Speaker 1: ああ、そうですね。 Speaker 2: 手掛けの爪の昔の段階からパソコンに変わった。と一緒で Speaker 1: はい。 Speaker 2: 今こでいいろんなソフトが出てきて Speaker 2: それに俺らが俺らの年代が対応できはいはいはいはい。いや、 Speaker 1: 逆に対応しろって言われても難しいですよね。ず Speaker 2: だその代わりにうちの若い人間が俺みたいな経験がないかもしれんけどそっちが重能できるんで Speaker 1: はい。 Speaker 2: ま、いいフなっとるかは逆に。 Speaker 1: うん。はい。はい。はい。そういうことですね。 Speaker 1: うん。 Speaker 1: うん。 Speaker 1: 分かりました。 Speaker 1: とりあえずは分かりました。とりあえず一ぺあの送っときます。 Speaker 2: ありがとうございます。 Speaker 2: すいません。うん。 Speaker 2: で、もしなんかあったらうちの方から連絡させてもらいます。 Speaker 1: あ、承知しました。 Speaker 2: 多分1番いいのは多分こいつかな。 Speaker 1: あ、そうだった。 Speaker 2: 多分これ。 Speaker 1: はい。 Speaker 2: これが1番多分 Speaker 1: 結構刺さります。 Speaker 2: 一応実用で Speaker 1: はい。はい。しょうがないもん。 Speaker 1: まあ、そうですね。 Speaker 2: うん。 Speaker 2: 確かに Speaker 1: ね。ま、全然うちもスポット的に、ま、今回ちょっと試してみたいなっていう、そういう使い方もすごいしていただいてるんで、 Speaker 1: うん。 Speaker 1: もうそれで1回だけもう10万円からちょっとお試しでっていう風なやり方っていうのもさせてもらってるんで。うん。だ、全然。 Speaker 1: そうですね。あちらのちなみに工場新しくできたら Speaker 1: うん。 Speaker 1: えっとなんですかね?まるまるこういうデータとか3次元のデータで Speaker 1: うん。 Speaker 1: 持っといたら良くないですか?結構できて完成した後に Speaker 2: と言っても Speaker 1: はい。 Speaker 2: あそこねもうお客さんからまんま不評なんだわっていうのは1回の工場1回1回工場で2 Speaker 2: 回3系が食堂金なんだわ。 Speaker 1: ああ。はい。 Speaker 2: で工場としての規模はいいか工場としての建物としてはあんまり機能発揮しなこ Speaker 1: うん。 Speaker 2: 狭すぎて。 Speaker 2: で、正直お客さんとしては、まあ2回3回の食堂がメイン。 Speaker 1: うん。うん。うん。 Speaker 2: で、1階の工場は、ま、たまた開いたもんでスペース的にあ、とワ入れて Speaker 1: はい。 Speaker 2: だってもう全体のね、本とこんだけでも工場っちゃいんですね。 Speaker 2: そう。で、あの、第3回のこのフロアが全部 Speaker 2: 直であって、あそことしてはもう、 Speaker 2: あの、ご飯作って、 Speaker 2: 各工場配ってくっていうところで、あとこの辺のこっちが名古屋工場って言うんだけど、すぐ隣が Speaker 2: こから向こう全部は Speaker 2: 名古屋工場と水工場と本社のこの3工場というか3の Speaker 2: 人人が来るだけ Speaker 2: であとはその作ったあの Speaker 2: お昼を配るっていう場なんで Speaker 1: うん。 Speaker 2: あんまりそういう建物の実速どのこの多分ふって多分終わると思います。うん。なるほどなるほど。結構やっぱり、ま、古くなってきた工場とかこれから回収工事するにあたってやっぱりもう呪面が残っていない Speaker 2: そういうところとか結構ありましてそういうのに入る前に Speaker 1: うん Speaker 1: 1度3次元でこういうのを残しておくっていうとこに結構需要はあったりするんですけど。 Speaker 2: ああ。 Speaker 2: で、それで言ったら今うちはやっとるあうちの若2人ここにおるんだけど Speaker 1: はい。 Speaker 2: 水をコードって言ってすぐそこに工場があるんだけどボロボロすぎて Speaker 1: はいはい Speaker 2: それを今回収しとるんだわ。 Speaker 1: おお。はいはいはい。 Speaker 2: で対震工事とか色々やって Speaker 1: はい。 Speaker 2: ま、これでとりあえず演命ができるかなっていう風に今しとるんだけど Speaker 1: はい。 Speaker 2: そういう工場路は何体積でおるの?その例えば平米ベ数じゃないじゃんね。高さもあるんですが、 Speaker 2: 例えば Speaker 1: 一応大体面積ですね。 Speaker 1: たパは関係ないです。 Speaker 1: パパはないです。えっとですね、1クー大体3万円 Speaker 1: で増えていはい。 Speaker 2: うん。 Speaker 2: そんな安いの? Speaker 1: 安いです。 Speaker 2: 平らじゃなくて Speaker 1: そうですね。1クーですね。1 Speaker 2: ベア何平米?1 Speaker 1: ヘクタはええっと、1001ですね。あ、ちゃいましたっけ?やったっけ? Speaker 2: それ安すぎな。元 Speaker 1: 元のえっと基礎費は5万円プラス出動でベッドはかかるんですけど。 Speaker 2: うん。 Speaker 1: うん。 Speaker 2: それって何?工場なんかバンで見て Speaker 1: はい。 Speaker 2: 映像で撮って Speaker 1: はい。 Speaker 2: その映像は多分 Speaker 2: 距離とか色ってくる出た。映像取ってたらクテクと Speaker 1: えっとですね、やり方としては、ま、工場の中にも入らしてもらうことはあるんですけど、まず、え、そ、工場の外周をレーザーうん。 Speaker 1: うん。 Speaker 1: で、ビって測りまして、 Speaker 1: で、あまりにも高かったらドローンで Speaker 1: 同じくレーザースキャンりまして、 Speaker 1: で、天軍のデータ Speaker 1: うん。 Speaker 1: を出すっていう形ですね。 Speaker 2: 中は Speaker 1: 中もえっと基本的にはいらずとも赤外線通っていくんで大丈夫なんですけど広すぎる場合とかあまりにもコンクリートのブロックがちょっと熱かった場合とか Speaker 1: うん。 Speaker 1: は中に入らしてもらってさしてもらってるって。 Speaker 2: うん。 Speaker 2: うん。 Speaker 2: いや、既存のさ、今言ったらレーズが好きなんで、中の構造とかも全部データができたら Speaker 1: はい。 Speaker 2: それめっちゃ楽だ。 Speaker 1: そうですね。 Speaker 1: こういったやっぱり配管とかなかなか難しいと思うんで。 Speaker 1: うん。 Speaker 1: それが何?データができるってこと? Speaker 1: あ、もちろんです。3次元で Speaker 1: うん。 Speaker 2: へえ。 Speaker 1: 専用のソフトとか、ま、ちょっと慣れは必要ではあるんですけど、やっぱり使い方変換できるんかな? Speaker 1: J変換。 Speaker 2: できな。Dはな。オートじゃない。せめて。 Speaker 2: うん。 Speaker 2: あ、そう。いや、実際それ悩みだね。ちょっと Speaker 1: やっぱそうですよね。 Speaker 2: うん。あの、既存がきれんもん。 Speaker 1: うん。 Speaker 2: 3Dで測れんもんと一応。 Speaker 1: うん。うん。うん。うん。 Speaker 2: ま、1個1個ね、からここに柱がここに入とるねって話。あとメンバー考えて履いてくるんだけど Speaker 1: はい。はい。 Speaker 2: 今度それを負する今行った配管とかね、配線 Speaker 1: はい。 Speaker 2: あとはラックとか全部測っとれへんもんで。 Speaker 1: いや、そうですね。 Speaker 2: 正直辛い。 Speaker 1: そこ1回良かったら試してみません?お試しでっていう形で。 Speaker 2: いや、もうそこの工場もうあのもあの残りの第1工場やって終わりだもんで。あ Speaker 1: あ、そうなんですね。 Speaker 2: 正直もどうだろうと Speaker 2: あの先月か先月一応残請求してもうほぼ終わっとって Speaker 1: あはい。 Speaker 2: やれんかった新工事の部分を最後に今月ぐらいからや22日やったかなからやってくんかな。朝 Speaker 2: やってって多分1ヶ月ぐらいで終わると思るんでちは。 Speaker 1: うん。 Speaker 2: もうそれやって終わりだもんで。 Speaker 1: うん。うん。うん。うん。 Speaker 2: で、結構うん。 Speaker 2: 何事とかもあったもんで。あ。 Speaker 1: あ、そうなんですか。 Speaker 2: あんまりもう早くタっと割れたい。 Speaker 1: ああ、なるほど。 Speaker 2: あんまりに入りしたくない。 Speaker 1: うーん。僕もその道まっすぐ1個付けたわと。 Speaker 2: あ、は Speaker 2: 切ったね。50だ。 Speaker 2: ま、とりあえず分かっ、とりあえずあのここ検索したで。 Speaker 1: もちろんです。はい。 Speaker 2: うん。 Speaker 2: 一応それ設ımに行っとくわ。 Speaker 1: あ、ありがとうございます。 Speaker 2: ちょっと人間は若かせるわ。 Speaker 1: 気楽に何でも電話いただければ再させていただきますんで。すいません。もう忙しいところありがとうございました。 Speaker 1: 失礼します。よいしょ。よいしょ。よいしょ。ETカードがしました。\n",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": [
+            "recvcLRr7t1AQO"
+          ]
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnslEsX2Fh"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量",
+          "赤外線"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntd24nPHx",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談名": [
+          {
+            "text": "不動建設株式会社_2025/09/16",
+            "type": "text"
+          }
+        ],
+        "商談日": 1758005400000,
+        "客先カテゴリ": "工場",
+        "対象物件・現場名": [
+          {
+            "text": "瑞穂無電解南工場新築工事",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "温度感スコア": "Warm",
+        "競合名": [
+          {
+            "text": "三次元データは内製？",
+            "type": "text"
+          }
+        ],
+        "競合有無": "一部内製化",
+        "音声データ有無": true
+      },
+      "record_id": "recvdntd24nPHx"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "工期:2025/5〜2027/2\n現状:コンクリート補修工事進捗率25%\n・北日本でドローンを使った3次元計測の実績はあるが、東海エリアではない。\n・工事前の調査で、施主の許可さえあればがドローンの赤外線調査は試してみたい。\n・1径間の足場を組むのに450万かかるので、もしドローン調査で済むのであればとても有効だと思う\n・現場代理人に話してみて、必要であれば連絡するとのこと。",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnslEspL2X"
+          ]
+        },
+        "商材種別": [
+          "赤外線"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntd246HGX",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": [
+          {
+            "text": "高速道路の補修工事は熱いかもしれない。",
+            "type": "text"
+          }
+        ],
+        "商談名": [
+          {
+            "text": "ショーボンド建設株式会社_2025/09/02",
+            "type": "text"
+          }
+        ],
+        "商談日": 1756791000000,
+        "客先カテゴリ": "工場",
+        "対象物件・現場名": [
+          {
+            "text": "東名阪自動車道桑名管内コンクリート構造物補修工事",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/default-avatar_v3_00nv_51af3064-89c2-4d7a-9011-10c75a5b027g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "en_name": "ユーザー550372",
+            "id": "ou_6ee633b968b9229655813af6e3a47e9f",
+            "name": "ユーザー550372"
+          }
+        ],
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "温度感スコア": "Warm",
+        "競合名": [
+          {
+            "text": "三次元計測",
+            "type": "text"
+          }
+        ],
+        "競合有無": "一部内製化"
+      },
+      "record_id": "recvdntd246HGX"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "この対話は、ドローン技術を活用した3次元測量やICT施工支援サービスの提案と、建設・物流業界の現状、および具体的な今後の案件に関する情報交換を目的としています。\n1. 東海エアサービスの事業と技術\n• 背景と専門性: 測量会社（東海高速）から独立したスタートアップ企業であり、新美氏自身も測量士の資格を保有しています。\n• 主要技術: ドローン（RTK/GPS搭載）を用い、センチメートル単位の精度で飛行・撮影を行います。撮影した大量の写真を解析ソフト（SfM）で合成し、高精度な**3次元データ（点群データ）**を作成します,。\n• 主なサービス:\n    ◦ 土量計算: 3次元データ化により、現場の「勘」に頼らない正確な体積・物量の算出が可能です。\n    ◦ 床面平坦度測定: 地上レーザーを用いて、**AGV（自動搬送ロボット）**の走行に必要な5mm単位の床の凹凸を計測します,。Amazon名古屋での実績もあります。\n    ◦ 赤外線点検: 外壁の浮きや太陽光パネルの不具合を温度差で調査し、足場費用（数百万単位）の削減を提案しています,。\n2. 業界の課題とビジネスチャンス\n• 高齢化と人手不足: 測量・建設業界では高齢化が進み、ICTなどの新技術への対応や若手（一級建築士等）の確保が困難になっています,,。\n• ICT施工の普及: 国交省がBIM/CIMを推進していますが、現場の対応が追いついていない実態があり、そこに外注先としてのチャンスを見出しています,。\n• 費用感: 写真撮影のみであれば5万5,000円から、土量計算を含む測量業務は25万円〜26万円程度から対応可能です,。\n3. 具体的な案件と今後の展開\n• 「星崎」プロジェクト: NX商事の注目案件として挙げられましたが、昨年の予算申請は通りませんでした。しかし、依然として検討事項には残っており、大規模な土量計算などの需要が見込まれます,。ただし、新幹線の高架が近接しているため、ドローン飛行には条件が伴う可能性があります。\n• ゼネコンとの連携: NX商事は、中堅ゼネコンなどの協力会社への紹介を検討しており、新美氏は前田建設や中野組などとの既存の取引実績を共有しました,。\n• 人脈の確認: 石森氏、藤原氏、今西氏といった関係者の人事異動や定年に関する情報交換が行われ、今後の営業ルートの確認がなされました,。\nまとめると、この会話は「測量技術をベースとしたドローン活用」という強みを活かし、人手不足やコスト削減に悩む建設現場や最新鋭の物流倉庫に対し、具体的な解決策を提示しつつ、将来の大型案件への食い込みを図る営業活動の一環です。\n",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnskIg0j1Q"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量",
+          "ドローン撮影",
+          "データ処理",
+          "不陸測量",
+          "赤外線"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntamXEoBH",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談名": [
+          {
+            "text": "NX商事株式会社_2026/01/07",
+            "type": "text"
+          }
+        ],
+        "商談日": 1767747600000,
+        "客先カテゴリ": "物流会社",
+        "対象物件・現場名": [
+          {
+            "text": "NX商事　不動産営業部",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "温度感スコア": "Cold",
+        "競合有無": "なし",
+        "音声データ有無": true
+      },
+      "record_id": "recvdntamXEoBH"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "NX商事 名古屋支店　物流商品・機器部",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnskIg0j1Q"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量",
+          "不陸測量",
+          "赤外線"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntamXeGCe",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談名": [
+          {
+            "text": "NX商事株式会社_2026/01/07",
+            "type": "text"
+          }
+        ],
+        "商談日": 1767751200000,
+        "客先カテゴリ": "物流会社",
+        "対象物件・現場名": [
+          {
+            "text": "事務所",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "温度感スコア": "Cold",
+        "競合有無": "なし"
+      },
+      "record_id": "recvdntamXeGCe"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "1. ドローンおよび最新技術を活用したビジネス展開\n会話では、ドローンや3Dレーザー測量を用いた新しいビジネスチャンスについて具体的に検討されています。\n• 物流倉庫とAGV（自動搬送ロボット）： 日本の倉庫の床の平滑度（数ミリ単位の凹凸）がAGVの走行に支障をきたすケースがあり、地上レーザーで3D計測して高低差を可視化する技術に需要があると考えています。\n• ブラザー不動産への提案： 住宅開発の施工前後の撮影や、ホームページ用の空撮、赤外線による外壁検査などのネタを持って、ブラザー不動産への営業を画策しています。\n• その他の案件： 名城大学の100周年記念に伴うアリーナ建設やイベントの撮影、中京病院の改修工事記録、アジアパラリンピックの会場記録 など、具体的なターゲットが挙げられています。\n2. 人脈を活用した営業戦略\nターゲット企業へのアプローチには、ゴルフや個人的なつながりが重要な鍵となっています。\n• ブラザーグループへの窓口： ブラザー不動産のシニア層に実力者である「Sさん」という知り合いがおり、彼を介して紹介を受ける計画です。\n• 多方面のコネクション： 中日ビルの関係者、中日新聞社出身の役員、ブラザーの協力会社（日進）の社長など、ゴルフを通じて得たトップ層との繋がりが語られています。\n• 名城大学： 話し手の一人が名城大学出身であり、事務のトップ（事務長）が同級生であるため、話を通しやすい状況にあります。\n3. ブラザー工業および周辺の動向\n• 港工場のオープン： 名古屋のららぽーとやドン・キホーテの裏側に、ブラザーの港工場が5月に移転オープンする予定です。\n• 本社跡地： 本社跡地の工事は一旦凍結され、2030年頃に延期されています。\n• 中部サラ住宅： サラ物流との繋がりから、ここも攻めやすいターゲットとして名前が挙がっています。\n--------------------------------------------------------------------------------\n今回の会話を例えるなら、**「古い地図（既存の人間関係）を使いながら、最新のドローンで新しい宝（ビジネスチャンス）を空から探している」**ような状態です。地道なゴルフ人脈を大切にしつつ、技術的なソリューションをどう組み合わせて提案するかが議論の焦点となっています。",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnskIg6Rc4"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量",
+          "ドローン撮影",
+          "不陸測量",
+          "赤外線"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntamXdkdg",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談名": [
+          {
+            "text": "日本通運株式会社_2026/01/07",
+            "type": "text"
+          }
+        ],
+        "商談日": 1767758400000,
+        "客先カテゴリ": "物流会社",
+        "対象物件・現場名": [
+          {
+            "text": "事務所",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "案内をメール送信(ブラザー不動産に展開)"
+        ],
+        "温度感スコア": "Cold",
+        "競合有無": "なし",
+        "音声データ有無": true
+      },
+      "record_id": "recvdntamXdkdg"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "日本通運株式会社　中部営業部",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnskIg6Rc4"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量",
+          "不陸測量",
+          "赤外線"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntamX4yHf",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談名": [
+          {
+            "text": "日本通運株式会社_2026/01/07",
+            "type": "text"
+          }
+        ],
+        "商談日": 1767765600000,
+        "客先カテゴリ": "物流会社",
+        "対象物件・現場名": [
+          {
+            "text": "中部営業部",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "温度感スコア": "Cold",
+        "競合有無": "なし"
+      },
+      "record_id": "recvdntamX4yHf"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "要対応\n①建設前の土木出張所を訪問した。\n②工事期間は令和3年2月18日から令和9年3月31日で、現在はほぼ終了している。\n③営業担当者が新開発の土量コスト計算機アプリ（無料）を紹介したが、現場担当者は登録測量業社に依頼する商習慣があり、またタイミングが遅かったため興味はあるものの導入は検討できない様子。\n④営業担当者は写真を営業報告用に撮りたい旨を伝え、現場担当者は了承した。",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "原文アップロード": [
+          {
+            "text": "①建設前の土木出張所を訪問\n②令和3年2月18日から令和9年3月31日迄\n③但し、土木工事もほぼ終了\n④興味は示されたが、タイミングが遅かったこと、登録測量業社に依頼する商習慣\n\n2025-10-02西松建設株式会社 - 新美光.m4a\r\n営業担当: 失礼 し ます。はい。失礼 し ます。こんにちは。失礼 し ます。あ、すい ませ ん。お 忙しい ところ。ちょっと 私、あの、え っ と、 東 海 エ ア サ ー ビ ス 会 社 っ て と こ ろ で ち ょ っ と 今 測 料 の 関 係 さ せ て い た だ い て ま し て、 い ま し てすいません。はい。ちょっと今あの都僕工事始まってる中であのちょっと音社の方困りごはないかっていうことでヒアリングをこういろんなところ今回らさせていただいてましてで実は私のもはうん、えっとこういう土量計算機だ。あ、いいですかね?すいません。ありがとうございます。すいません。結構大きな工事。 現場担当: まだもう終わりかけなんです。あ、そうなんですか。ちょっとタイミング遅かったですかね。終わりかけですか?あ、例は 3 年からずっと。そう。 営業担当: ああ、それでも 9 年まで 現場担当: でももう 営業担当: はい。土は 現場担当: あ、そっか。そうですよね。失礼します。すいません。あ、そうですか。あ、そんな前からやってたんですね。 営業担当: はい。ちょっと実は私 は、今、あの、えっと、この最近ちょっと開発した 営業担当: 土量コスト計算機っていうのが 現場担当: うん。 営業担当: 土量コスト計算、ええ、ま、あの、要するにドローンでした物理、あの、土僚の体積から、えっと、このアプリで落とし、数量を落とし込むことによって、で、えっと、その実際にどれぐらいの体積の物量があって、で、トラックのうん、積 コストがどれだけかかるか、ま、単価とかとか各者でやってらっしゃる単価を入れ込んでで、この重とか比率も、ま、音社で変えることによって大体コスト計算ができる 現場担当: へえ。 営業担当: ていう仕組みアプリを、ま、これ無料で今あの展開してるもんですから。で、そうは言っても実際の全体の体積の部分は 現場担当: うん。うん。 営業担当: が、あの、キーになるのと、あとトラックの台数も当然トラックの積裁 現場担当: うん。 営業担当: え、効率 とかの係数によって、え、計算値が変わってくるんで、ただその計算値を社が各者で入れていただくことで、え、リアルな数字になって、で、単価も支払い単価を入れていただくと大体それがトータルになるのかっていうのが計算できるような仕組みなんです。で、それをちょっと無料で開発しまして。 現場担当: おお。で、 営業担当: これは勝手に取れるんですか?あ、取れますね。あ 現場担当: あ、なるほどね。 営業担当: はい。なんでこれただただの 現場担当: いや、あの、もし今後もうここ終わってるんであればもうほとんど土がないんです。で、入ってくるんが、ま、あ、そうですか。これが最初だったらなんかこういいなとは思ったんですけどね。え、ちなみにどうやって音社は音社で計算 現場担当: そうですね。もうロジックがあって 営業担当: はあ。なんか 現場担当: ロジックていうかまあまあまあ一般的一般的なもう一社感じですけどね。 営業担当: ああ、はあ、は、は。なんかこうそれが計算区来るとだいぶ大きく 現場担当: そうですね。手戻りになったり費用も 営業担当: そうですね。はい。ということで実は私どもこのドローン測量の 3 次元でえっと体積ん 確認をしてで、その数値を元に 現場担当: そうです。そうです。 営業担当: ええ、そういうこれは無料なんですよってこと。 現場担当: まあ、ま、そう、ま、そうですね。ただ無料なんで逆に音社自社であのドローンやってらっしゃるんであればそこの積裁率でできちゃうっていうそんな仕組みなんですよ。ええ、あの、 営業担当: もうじゃあこれ初めの頃だったらひょっとしたら 現場担当: そうですね、もう私はちょっと途中から来たんでね、同じようにドローンで料して弾いていう 営業担当: で、毎月毎月 現場担当: あ、もうすでにじゃあそれはどっかでやってらっしゃったんですね。で、もう終わったんで。 営業担当: あ、そうですね。で、計算はど者でそのじゃあその対に業者さんにやってもらってたっていう。あ 現場担当: あ、そうなんですか。あ、なるほど。じゃ、月南流兵っていうのですね。うん。 営業担当: あの、お、よろしかったらお飯、あの、あ、ごめんなさい。あの、本社引き続きあの、あれですか、このところでこう 末建設なんで、今これは東海がここですね。 現場担当: そうですね。 営業担当: はい。こうやっぱりこういうお話って土木の出張とかも現場が動き出してから、ま、今回遅かったんですけど、この事務所ができた頃に来るとそういうお話がもっとリアルに 現場担当: あ、そうなんですね。 営業担当: ただただその測料となるとちょっとなかなか今までやられてるところが多分ある。 現場担当: なるほど。トロ 足戦足たからてるもんね。 営業担当: あ、はい。あ、そういですね。なるほどなるほど。ああ、登録してる業者さんにな、まずならないとってとこですか。 現場担当: うん。なるほど。 営業担当: もうやっぱり大体こう使ってるんですよね。 現場担当: 多分そうですね。同じよう作成して。そうですか。 営業担当: そうですか。あう。うん。分かりました。ちょっと 1 回ちょっと今はね、あんまり余裕がないんで。基準的なちょっと検査前なんで。 現場担当: はい。ええ、ええ、ええ、ええ。うん。ちょっと見ときます。 営業担当: あ、なるほど。はい、わかりました。ちょっと是非 また機会があればはい、分かりました。すいません。 現場担当: はい。 営業担当: 忙しいとこありがとうございます。突然で 現場担当: はい。 営業担当: ちょっとこの辺の工事機間中のとことか写真だけ撮らさせてもらっていいですかね?あ、あのこの工いつからまでとかこの工事が 現場担当: どっかでなんか表に出されるんだった。あ 営業担当: あ、じゃなくてあの営業報告で使う程度なんですけどいいですかね? このこの工事機関中のとこだ。はい。すいません。 現場担当: はい。 営業担当: すいません。ありがとうございます。お忙すごいとかありがとうございます。",
+            "type": "text"
+          }
+        ],
+        "取引先": {
+          "link_record_ids": null
+        },
+        "商材種別": [
+          "土量・在庫計測",
+          "３次元計測",
+          "ドローン測量"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recv7L82aR4oWw",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": [
+          {
+            "text": "取込み中の様子でタイミングも悪く塩対応\n[TAS-Auto 2026/03/13] 自動提案(見込みなし): 工期ほぼ終了+塩対応。タイミング逸失。",
+            "type": "text"
+          }
+        ],
+        "商談名": [
+          {
+            "text": "西松建設株式会社",
+            "type": "text"
+          }
+        ],
+        "商談日": 1759379400000,
+        "客先カテゴリ": "建設会社（ゼネコン・サブコン）",
+        "対象物件・現場名": [
+          {
+            "text": "西松建設株式会社　中部支社　東海太田川土木出張所",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "次アクション：その他": [
+          {
+            "text": "無し",
+            "type": "text"
+          }
+        ],
+        "温度感スコア": "Warm",
+        "競合有無": "不明"
+      },
+      "record_id": "recv7L82aR4oWw"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "工期は2023年から2026年1月。建設工事は予定通り進み、工期どおりに終わる見込みで、土量計測も実施済み。2年前に社員で測量を行い、各辺の値を測って角錐台の公式に当てはめる方法で誤差が大きく、数百万円の損失が発生。その際に測量依頼を受ければよかったとのこと。工期初期にドローンを導入し、進捗管理は内製済み。\n要対応 今後の測量等の対応の可能性があり、これに関連する相談や依頼に備える必要がある。",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "原文アップロード": [
+          {
+            "text": "工期:2023年〜2026年1月\n現状:建設工事も予定通り進んでおり、順調に工期で終わる見込み。既に土量計測は実施済み\n課題:実際、2年前に外注せず社員で測量実施済み。角錐台に各辺の値を測り、公式に当てはめる方法なので、誤差が大きい。実際に数百万円の損失が出た。とても苦労したので2年前に話を持ってきてくれたら喜んでお願いしたとのこと。\nその他:工期初期にドローンを導入し、進捗管理等については内製済み。",
+            "type": "text"
+          }
+        ],
+        "取引先": {
+          "link_record_ids": null
+        },
+        "商材種別": [
+          "土量・在庫計測"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recv7L82aRM4QB",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": [
+          {
+            "text": "なし\n[TAS-Auto 2026/03/13] 自動提案(見込みなし): 工期2026/1終了。測量済み。過去の損失は認識あり。",
+            "type": "text"
+          }
+        ],
+        "商談名": [
+          {
+            "text": "東急建設",
+            "type": "text"
+          }
+        ],
+        "商談日": 1754015400000,
+        "客先カテゴリ": "建設会社（ゼネコン・サブコン）",
+        "対象物件・現場名": [
+          {
+            "text": "〒455-0018 愛知県名古屋市港区港明１丁目１０−１０１５",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "新規・既存客の別": "新規",
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "次アクション：その他": [
+          {
+            "text": "なし",
+            "type": "text"
+          }
+        ],
+        "温度感スコア": "Warm",
+        "競合有無": "あり"
+      },
+      "record_id": "recv7L82aRM4QB"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": [
+          {
+            "text": "工期:2023年〜2026年1月\n現状:建設工事も予定通り進んでおり、順調に工期で終わる見込み。既に土量計測は実施済み\n課題:実際、2年前に外注せず社員で測量実施済み。角錐台に各辺の値を測り、公式に当てはめる方法なので、誤差が大きい。実際に数百万円の損失が出た。とても苦労したので2年前に話を持ってきてくれたら喜んでお願いしたとのこと。\nその他:工期初期にドローンを導入し、進捗管理等については内製済み。",
+            "type": "text"
+          }
+        ],
+        "主連絡先": {
+          "link_record_ids": null
+        },
+        "取引先": {
+          "link_record_ids": [
+            "recvdnslEsADch"
+          ]
+        },
+        "商材種別": [
+          "土量・在庫計測"
+        ],
+        "商談ID": {
+          "type": 1,
+          "value": [
+            {
+              "text": "recvdntd24jBDy",
+              "type": "text"
+            }
+          ]
+        },
+        "商談ステージ": "ヒアリング",
+        "商談内での気づき・備考": [
+          {
+            "text": "資料をお渡した。機会があれば、次回現場や、社内で共有するとのこと。",
+            "type": "text"
+          }
+        ],
+        "商談名": [
+          {
+            "text": "東急建設_2025/08/01",
+            "type": "text"
+          }
+        ],
+        "商談日": 1754015400000,
+        "客先カテゴリ": "建設会社（ゼネコン・サブコン）",
+        "対象物件・現場名": [
+          {
+            "text": "〒455-0018 愛知県名古屋市港区港明１丁目１０−１０１５",
+            "type": "text"
+          }
+        ],
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00q9_03c835ee-bbb0-482a-a0e0-00c68c5f4cix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "hysy2131@gmail.com",
+            "en_name": "新美 光",
+            "id": "ou_189dc637b61a83b886d356becb3ae18e",
+            "name": "新美 光"
+          }
+        ],
+        "次アクション": [
+          "なし",
+          "未定"
+        ],
+        "温度感スコア": "Cold",
+        "競合有無": "なし"
+      },
+      "record_id": "recvdntd24jBDy"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": null,
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": null,
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": null,
+        "商材種別": null,
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recvdhOZRBPY5w",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "リード獲得",
+        "商談内での気づき・備考": "[自動登録] 出典: Larkメール (受信)\n件名: 2026年2月度　請求書",
+        "商談名": null,
+        "商談形態": null,
+        "商談日": 1772323200000,
+        "営業見込みなしの理由": null,
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": null,
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": "営業代行",
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00vf_61698aaf-fcab-4e50-b915-65f3ef30f3ix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "",
+            "en_name": "TAS-Automation",
+            "id": "ou_74cbc6cca06dcd3403d1849a3272b160",
+            "name": "TAS-Automation"
+          }
+        ],
+        "新規・既存客の別": null,
+        "新規取引先名": "東海エアーサービス株式会社",
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "次アクション：その他": null,
+        "温度感スコア": null,
+        "現場位置": null,
+        "確定金額": "110000",
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": "110,000",
+        "関連営業ログ": null,
+        "音声データアップロード": null,
+        "音声データ有無": null
+      },
+      "id": "recvdhOZRBPY5w",
+      "record_id": "recvdhOZRBPY5w"
+    },
+    {
+      "fields": {
+        "ヒアリング内容（まとめ）": null,
+        "不在時の対応": null,
+        "主連絡先": [
+          {
+            "record_ids": null,
+            "table_id": "tblN53hFIQoo4W8j",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "原文アップロード": null,
+        "取引先": [
+          {
+            "record_ids": null,
+            "table_id": "tblTfGScQIdLTYxA",
+            "text": null,
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "受注日": null,
+        "名刺アップロード": null,
+        "商材種別": null,
+        "商材種別：その他": null,
+        "商談ID": [
+          {
+            "text": "recvdhOZy7oz22",
+            "type": "text"
+          }
+        ],
+        "商談ステージ": "リード獲得",
+        "商談内での気づき・備考": "[自動登録] 出典: Larkメール (受信)\n件名: Re: 2月末締めご請求（昭和区広路町マンション眺望撮影　ロケハン・測量・RTK運用検証実施分）",
+        "商談名": null,
+        "商談形態": null,
+        "商談日": 1772150400000,
+        "営業見込みなしの理由": null,
+        "売上計上額": null,
+        "失注理由": null,
+        "失注理由　詳細": null,
+        "契約形態": null,
+        "客先カテゴリ": null,
+        "客先カテゴリ：その他": null,
+        "対象物件・現場名": "昭和区広路町マンション眺望撮影　ロケハン・測量・RTK運用検証実施分",
+        "担当営業": [
+          {
+            "avatar_url": "https://s16-imfile-sg.feishucdn.com/static-resource/v1/v3_00vf_61698aaf-fcab-4e50-b915-65f3ef30f3ix~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp",
+            "email": "",
+            "en_name": "TAS-Automation",
+            "id": "ou_74cbc6cca06dcd3403d1849a3272b160",
+            "name": "TAS-Automation"
+          }
+        ],
+        "新規・既存客の別": null,
+        "新規取引先名": "空 小林",
+        "次アクション": [
+          "状況確認電話"
+        ],
+        "次アクション日": 1773663451910,
+        "次アクション：その他": null,
+        "温度感スコア": null,
+        "現場位置": null,
+        "確定金額": "435000",
+        "競合名": null,
+        "競合有無": null,
+        "結果": null,
+        "見積・予算金額": "435,000",
+        "関連営業ログ": null,
+        "音声データアップロード": null,
+        "音声データ有無": null
+      },
+      "id": "recvdhOZy7oz22",
+      "record_id": "recvdhOZy7oz22"
+    }
+  ]
+}

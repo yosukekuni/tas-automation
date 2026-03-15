@@ -1,0 +1,58 @@
+name: Monthly Payroll
+
+on:
+  schedule:
+    - cron: '0 0 3 * *'  # 毎月3日 00:00 UTC = 09:00 JST
+  workflow_dispatch:
+    inputs:
+      month:
+        description: '対象月 (YYMM形式、空欄で前月自動計算)'
+        required: false
+
+jobs:
+  payroll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install reportlab gspread google-auth
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+        run: |
+          python scripts/setup_config.py
+          echo "$GOOGLE_SA_JSON" > /tmp/google_sa.json
+
+      - name: Calculate payroll
+        run: |
+          MONTH="${{ github.event.inputs.month }}"
+          if [ -z "$MONTH" ]; then
+            MONTH="auto"
+          fi
+          python scripts/payroll_calc.py --month "$MONTH" --no-notify
+
+      - name: Send preview DM to Kunimoto
+        run: |
+          MONTH="${{ github.event.inputs.month }}"
+          if [ -z "$MONTH" ]; then
+            MONTH="auto"
+          fi
+          python scripts/payslip_lark_sender.py --month "$MONTH"
+
+      - name: Upload payroll artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: payroll-${{ github.run_number }}
+          path: |
+            payroll/*.pdf
+            payroll/*.csv
+          retention-days: 90
+        if: always()

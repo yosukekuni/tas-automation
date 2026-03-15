@@ -1,0 +1,147 @@
+[
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvdnslEsMhVI",
+    "fields": {
+      "住所": "ＫＩ開発　株式会社, 名張市夏見５７０－７, 三重県, 日本",
+      "電話番号": "0595-63-8199",
+      "業種": [
+        "測量会社"
+      ],
+      "市区町村": "名張市",
+      "都道府県": "三重県"
+    },
+    "result_code": 0
+  },
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvc6b2lclF6H",
+    "fields": {
+      "注意事項・備考": "【重複統合済み - 削除予定】",
+      "取引ステータス": "その他"
+    },
+    "result_code": 0
+  },
+  {
+    "action": "update",
+    "table": "tbl1rM86nAw9l3bP",
+    "record": "recvdntd24E8Pl",
+    "fields": {
+      "取引先": {
+        "link_record_ids": [
+          "recvdnslEso7Nm"
+        ]
+      }
+    },
+    "result_code": 1254074
+  },
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvdnslEs0k1m",
+    "fields": {
+      "注意事項・備考": "【重複統合済み - 削除予定】営業訪問記録から自動作成",
+      "取引ステータス": "その他"
+    },
+    "result_code": 0
+  },
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvdnslEsejns",
+    "fields": {
+      "会社名（正式）": "五洋建設株式会社",
+      "会社名（略称）": "五洋建設"
+    },
+    "result_code": 0
+  },
+  {
+    "action": "update",
+    "table": "tblN53hFIQoo4W8j",
+    "record": "recvdnsZMlANHj",
+    "fields": {
+      "取引先": {
+        "link_record_ids": [
+          "recvdnslEsejns"
+        ]
+      }
+    },
+    "result_code": 1254074
+  },
+  {
+    "action": "update",
+    "table": "tbl1rM86nAw9l3bP",
+    "record": "recvdntd24aelL",
+    "fields": {
+      "取引先": {
+        "link_record_ids": [
+          "recvdnslEsejns"
+        ]
+      }
+    },
+    "result_code": 1254074
+  },
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvdnslEs9AWE",
+    "fields": {
+      "注意事項・備考": "【重複統合済み - 削除予定】営業訪問記録から自動作成",
+      "取引ステータス": "その他"
+    },
+    "result_code": 0
+  },
+  {
+    "action": "update",
+    "table": "tbl1rM86nAw9l3bP",
+    "record": "recvdntd24AXU9",
+    "fields": {
+      "取引先": {
+        "link_record_ids": [
+          "recvdnskIgoE8l"
+        ]
+      }
+    },
+    "result_code": 1254074
+  },
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvdnslEsuwvY",
+    "fields": {
+      "注意事項・備考": "【重複統合済み - 削除予定】営業訪問記録から自動作成",
+      "取引ステータス": "その他"
+    },
+    "result_code": 0
+  },
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvdnslEsuwvY",
+    "fields": {
+      "注意事項・備考": "【重複分割済み - 削除予定】名工建設とrecvdnskIgoE8lに統合、鈴中工業はrecvdnslEs6baIで管理"
+    },
+    "result_code": 0
+  },
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvdnslEsUV6y",
+    "fields": {
+      "注意事項・備考": "池田支店情報を統合済み"
+    },
+    "result_code": 0
+  },
+  {
+    "action": "update",
+    "table": "tblTfGScQIdLTYxA",
+    "record": "recvdnslEsRivh",
+    "fields": {
+      "注意事項・備考": "【重複統合済み - 削除予定】営業訪問記録から自動作成",
+      "取引ステータス": "その他"
+    },
+    "result_code": 0
+  }
+]

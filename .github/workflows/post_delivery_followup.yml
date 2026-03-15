@@ -1,0 +1,69 @@
+name: Post-Delivery Followup Email
+
+on:
+  schedule:
+    # キュー追加: 毎日9:00 JST (00:00 UTC)
+    - cron: '0 0 * * *'
+    # 送信: 毎日10:00 JST (01:00 UTC)
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Mode: check, send, list, dry-run'
+        required: true
+        default: 'check'
+
+jobs:
+  post-delivery-followup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Restore state
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            scripts/post_delivery_followup_state.json
+            scripts/post_delivery_followup_queue.json
+          key: post-delivery-followup-state-${{ github.run_id }}
+          restore-keys: |
+            post-delivery-followup-state-
+
+      - name: Determine mode
+        id: mode
+        run: |
+          INPUT_MODE="${{ github.event.inputs.mode }}"
+          CRON="${{ github.event.schedule }}"
+          if [ -n "$INPUT_MODE" ]; then
+            echo "mode=--${INPUT_MODE}" >> $GITHUB_OUTPUT
+          elif [ "$CRON" = "0 1 * * *" ]; then
+            echo "mode=--send" >> $GITHUB_OUTPUT
+          else
+            echo "mode=--check" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run post-delivery followup email
+        run: python scripts/post_delivery_followup.py ${{ steps.mode.outputs.mode }}
+
+      - name: Save state
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            scripts/post_delivery_followup_state.json
+            scripts/post_delivery_followup_queue.json
+          key: post-delivery-followup-state-${{ github.run_id }}
