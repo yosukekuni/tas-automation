@@ -1,0 +1,1006 @@
+{
+  "generated_at": "2026-03-15T23:46:33.217190",
+  "company_id": 2259197,
+  "period": "2020/02 - 2022/02",
+  "note": "月次値は期首からの累計差分で算出",
+  "monthly": [
+    {
+      "year_month": "2021/02",
+      "year": 2021,
+      "month": 2,
+      "revenue": 0,
+      "expense": 0,
+      "profit": 0,
+      "details": {}
+    },
+    {
+      "year_month": "2021/03",
+      "year": 2021,
+      "month": 3,
+      "revenue": 1862960,
+      "expense": 1501495,
+      "profit": 361465,
+      "details": {
+        "売上高": {
+          "account_item_name": "売上高",
+          "account_category_name": "売上高",
+          "hierarchy_level": 2,
+          "monthly_amount": 1862960,
+          "cumulative": 1862960
+        },
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 44300,
+          "cumulative": 44300
+        },
+        "福利厚生費": {
+          "account_item_name": "福利厚生費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 254100,
+          "cumulative": 254100
+        },
+        "広告宣伝費": {
+          "account_item_name": "広告宣伝費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1320,
+          "cumulative": 1320
+        },
+        "会議費": {
+          "account_item_name": "会議費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 42261,
+          "cumulative": 42261
+        },
+        "旅費交通費": {
+          "account_item_name": "旅費交通費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 72891,
+          "cumulative": 72891
+        },
+        "通信費": {
+          "account_item_name": "通信費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 4495,
+          "cumulative": 4495
+        },
+        "消耗品費": {
+          "account_item_name": "消耗品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 6127,
+          "cumulative": 6127
+        },
+        "修繕費": {
+          "account_item_name": "修繕費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1000000,
+          "cumulative": 1000000
+        },
+        "水道光熱費": {
+          "account_item_name": "水道光熱費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 971,
+          "cumulative": 971
+        },
+        "諸会費": {
+          "account_item_name": "諸会費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 8980,
+          "cumulative": 8980
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 2970,
+          "cumulative": 2970
+        },
+        "車両費": {
+          "account_item_name": "車両費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 23948,
+          "cumulative": 23948
+        },
+        "租税公課": {
+          "account_item_name": "租税公課",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1226,
+          "cumulative": 1226
+        },
+        "雑費": {
+          "account_item_name": "雑費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 37906,
+          "cumulative": 37906
+        },
+        "受取利息": {
+          "account_item_name": "受取利息",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": 5,
+          "cumulative": 5
+        },
+        "雑収入": {
+          "account_item_name": "雑収入",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": -6331,
+          "cumulative": -6331
+        }
+      }
+    },
+    {
+      "year_month": "2021/04",
+      "year": 2021,
+      "month": 4,
+      "revenue": 0,
+      "expense": 2900557,
+      "profit": -2900557,
+      "details": {
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 22167,
+          "cumulative": 66467
+        },
+        "外注費": {
+          "account_item_name": "外注費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 2250000,
+          "cumulative": 2250000
+        },
+        "荷造運賃": {
+          "account_item_name": "荷造運賃",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 358,
+          "cumulative": 358
+        },
+        "交際費": {
+          "account_item_name": "交際費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 48380,
+          "cumulative": 48380
+        },
+        "会議費": {
+          "account_item_name": "会議費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 52457,
+          "cumulative": 94718
+        },
+        "旅費交通費": {
+          "account_item_name": "旅費交通費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 12270,
+          "cumulative": 85161
+        },
+        "通信費": {
+          "account_item_name": "通信費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 5206,
+          "cumulative": 9701
+        },
+        "消耗品費": {
+          "account_item_name": "消耗品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 6262,
+          "cumulative": 12389
+        },
+        "事務用品費": {
+          "account_item_name": "事務用品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 9479,
+          "cumulative": 9479
+        },
+        "修繕費": {
+          "account_item_name": "修繕費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 373610,
+          "cumulative": 1373610
+        },
+        "水道光熱費": {
+          "account_item_name": "水道光熱費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1024,
+          "cumulative": 1995
+        },
+        "諸会費": {
+          "account_item_name": "諸会費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 8980,
+          "cumulative": 17960
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1650,
+          "cumulative": 4620
+        },
+        "車両費": {
+          "account_item_name": "車両費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 26908,
+          "cumulative": 50856
+        },
+        "租税公課": {
+          "account_item_name": "租税公課",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 54800,
+          "cumulative": 56026
+        },
+        "雑費": {
+          "account_item_name": "雑費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 27006,
+          "cumulative": 64912
+        },
+        "雑収入": {
+          "account_item_name": "雑収入",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": -291609,
+          "cumulative": -297940
+        }
+      }
+    },
+    {
+      "year_month": "2021/05",
+      "year": 2021,
+      "month": 5,
+      "revenue": 1064843,
+      "expense": 1332328,
+      "profit": -267485,
+      "details": {
+        "売上高": {
+          "account_item_name": "売上高",
+          "account_category_name": "売上高",
+          "hierarchy_level": 2,
+          "monthly_amount": 1064843,
+          "cumulative": 2927803
+        },
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 22167,
+          "cumulative": 88634
+        },
+        "交際費": {
+          "account_item_name": "交際費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 7100,
+          "cumulative": 55480
+        },
+        "会議費": {
+          "account_item_name": "会議費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 31233,
+          "cumulative": 125951
+        },
+        "旅費交通費": {
+          "account_item_name": "旅費交通費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 15050,
+          "cumulative": 100211
+        },
+        "通信費": {
+          "account_item_name": "通信費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 6082,
+          "cumulative": 15783
+        },
+        "消耗品費": {
+          "account_item_name": "消耗品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 14297,
+          "cumulative": 26686
+        },
+        "事務用品費": {
+          "account_item_name": "事務用品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 10444,
+          "cumulative": 19923
+        },
+        "修繕費": {
+          "account_item_name": "修繕費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1058716,
+          "cumulative": 2432326
+        },
+        "水道光熱費": {
+          "account_item_name": "水道光熱費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 785,
+          "cumulative": 2780
+        },
+        "新聞図書費": {
+          "account_item_name": "新聞図書費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1100,
+          "cumulative": 1100
+        },
+        "諸会費": {
+          "account_item_name": "諸会費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 8980,
+          "cumulative": 26940
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1100,
+          "cumulative": 5720
+        },
+        "車両費": {
+          "account_item_name": "車両費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 27252,
+          "cumulative": 78108
+        },
+        "地代家賃": {
+          "account_item_name": "地代家賃",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 10000,
+          "cumulative": 10000
+        },
+        "租税公課": {
+          "account_item_name": "租税公課",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 102422,
+          "cumulative": 158448
+        },
+        "雑費": {
+          "account_item_name": "雑費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 15600,
+          "cumulative": 80512
+        },
+        "雑収入": {
+          "account_item_name": "雑収入",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": -1192,
+          "cumulative": -299132
+        }
+      }
+    },
+    {
+      "year_month": "2021/06",
+      "year": 2021,
+      "month": 6,
+      "revenue": 1747964,
+      "expense": 555192,
+      "profit": 1192772,
+      "details": {
+        "売上高": {
+          "account_item_name": "売上高",
+          "account_category_name": "売上高",
+          "hierarchy_level": 2,
+          "monthly_amount": 1747964,
+          "cumulative": 4675767
+        },
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 22167,
+          "cumulative": 110801
+        },
+        "福利厚生費": {
+          "account_item_name": "福利厚生費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 75000,
+          "cumulative": 329100
+        },
+        "外注費": {
+          "account_item_name": "外注費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 27500,
+          "cumulative": 2277500
+        },
+        "荷造運賃": {
+          "account_item_name": "荷造運賃",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 358,
+          "cumulative": 716
+        },
+        "広告宣伝費": {
+          "account_item_name": "広告宣伝費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 2500,
+          "cumulative": 3820
+        },
+        "交際費": {
+          "account_item_name": "交際費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 3800,
+          "cumulative": 59280
+        },
+        "会議費": {
+          "account_item_name": "会議費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 39385,
+          "cumulative": 165336
+        },
+        "旅費交通費": {
+          "account_item_name": "旅費交通費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 23976,
+          "cumulative": 124187
+        },
+        "通信費": {
+          "account_item_name": "通信費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 5673,
+          "cumulative": 21456
+        },
+        "消耗品費": {
+          "account_item_name": "消耗品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 61288,
+          "cumulative": 87974
+        },
+        "事務用品費": {
+          "account_item_name": "事務用品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 9328,
+          "cumulative": 29251
+        },
+        "修繕費": {
+          "account_item_name": "修繕費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 224662,
+          "cumulative": 2656988
+        },
+        "水道光熱費": {
+          "account_item_name": "水道光熱費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 837,
+          "cumulative": 3617
+        },
+        "諸会費": {
+          "account_item_name": "諸会費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 8980,
+          "cumulative": 35920
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1595,
+          "cumulative": 7315
+        },
+        "車両費": {
+          "account_item_name": "車両費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 37626,
+          "cumulative": 115734
+        },
+        "租税公課": {
+          "account_item_name": "租税公課",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 5015,
+          "cumulative": 163463
+        },
+        "雑費": {
+          "account_item_name": "雑費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 5501,
+          "cumulative": 86013
+        },
+        "受取配当金": {
+          "account_item_name": "受取配当金",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": 246,
+          "cumulative": 246
+        },
+        "雑収入": {
+          "account_item_name": "雑収入",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": -48631,
+          "cumulative": -347763
+        },
+        "雑損失": {
+          "account_item_name": "雑損失",
+          "account_category_name": "営業外費用",
+          "hierarchy_level": 3,
+          "monthly_amount": 1,
+          "cumulative": 1
+        }
+      }
+    },
+    {
+      "year_month": "2021/07",
+      "year": 2021,
+      "month": 7,
+      "revenue": 0,
+      "expense": 414502,
+      "profit": -414502,
+      "details": {
+        "福利厚生費": {
+          "account_item_name": "福利厚生費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 14080,
+          "cumulative": 343180
+        },
+        "荷造運賃": {
+          "account_item_name": "荷造運賃",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 4595,
+          "cumulative": 5311
+        },
+        "広告宣伝費": {
+          "account_item_name": "広告宣伝費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 7573,
+          "cumulative": 11393
+        },
+        "交際費": {
+          "account_item_name": "交際費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 37206,
+          "cumulative": 96486
+        },
+        "会議費": {
+          "account_item_name": "会議費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 39611,
+          "cumulative": 204947
+        },
+        "旅費交通費": {
+          "account_item_name": "旅費交通費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 45010,
+          "cumulative": 169197
+        },
+        "通信費": {
+          "account_item_name": "通信費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 5684,
+          "cumulative": 27140
+        },
+        "消耗品費": {
+          "account_item_name": "消耗品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 8443,
+          "cumulative": 96417
+        },
+        "水道光熱費": {
+          "account_item_name": "水道光熱費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 736,
+          "cumulative": 4353
+        },
+        "新聞図書費": {
+          "account_item_name": "新聞図書費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 2200,
+          "cumulative": 3300
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 2665,
+          "cumulative": 9980
+        },
+        "車両費": {
+          "account_item_name": "車両費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 46422,
+          "cumulative": 162156
+        },
+        "地代家賃": {
+          "account_item_name": "地代家賃",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 10000,
+          "cumulative": 20000
+        },
+        "租税公課": {
+          "account_item_name": "租税公課",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 141599,
+          "cumulative": 305062
+        },
+        "雑費": {
+          "account_item_name": "雑費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 48670,
+          "cumulative": 134683
+        },
+        "雑収入": {
+          "account_item_name": "雑収入",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": -18657,
+          "cumulative": -366420
+        },
+        "雑損失": {
+          "account_item_name": "雑損失",
+          "account_category_name": "営業外費用",
+          "hierarchy_level": 3,
+          "monthly_amount": 8,
+          "cumulative": 9
+        }
+      }
+    },
+    {
+      "year_month": "2021/08",
+      "year": 2021,
+      "month": 8,
+      "revenue": 1329130,
+      "expense": -1292959,
+      "profit": 2622089,
+      "details": {
+        "売上高": {
+          "account_item_name": "売上高",
+          "account_category_name": "売上高",
+          "hierarchy_level": 2,
+          "monthly_amount": 1329130,
+          "cumulative": 6004897
+        },
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 44334,
+          "cumulative": 155135
+        },
+        "福利厚生費": {
+          "account_item_name": "福利厚生費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -65000,
+          "cumulative": 278180
+        },
+        "外注費": {
+          "account_item_name": "外注費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 11000,
+          "cumulative": 2288500
+        },
+        "会議費": {
+          "account_item_name": "会議費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -62519,
+          "cumulative": 142428
+        },
+        "旅費交通費": {
+          "account_item_name": "旅費交通費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -46510,
+          "cumulative": 122687
+        },
+        "通信費": {
+          "account_item_name": "通信費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -6282,
+          "cumulative": 20858
+        },
+        "消耗品費": {
+          "account_item_name": "消耗品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -11926,
+          "cumulative": 84491
+        },
+        "事務用品費": {
+          "account_item_name": "事務用品費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -11784,
+          "cumulative": 17467
+        },
+        "修繕費": {
+          "account_item_name": "修繕費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -1102719,
+          "cumulative": 1554269
+        },
+        "水道光熱費": {
+          "account_item_name": "水道光熱費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -736,
+          "cumulative": 3617
+        },
+        "新聞図書費": {
+          "account_item_name": "新聞図書費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -4620,
+          "cumulative": -1320
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1100,
+          "cumulative": 11080
+        },
+        "車両費": {
+          "account_item_name": "車両費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -32695,
+          "cumulative": 129461
+        },
+        "雑費": {
+          "account_item_name": "雑費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": -4602,
+          "cumulative": 130081
+        },
+        "受取利息": {
+          "account_item_name": "受取利息",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": 5,
+          "cumulative": 10
+        },
+        "雑収入": {
+          "account_item_name": "雑収入",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": 74832,
+          "cumulative": -291588
+        }
+      }
+    },
+    {
+      "year_month": "2021/09",
+      "year": 2021,
+      "month": 9,
+      "revenue": 0,
+      "expense": 891367,
+      "profit": -891367,
+      "details": {
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 879267,
+          "cumulative": 1034402
+        },
+        "外注費": {
+          "account_item_name": "外注費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 11000,
+          "cumulative": 2299500
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1100,
+          "cumulative": 12180
+        },
+        "受取利息": {
+          "account_item_name": "受取利息",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": 2,
+          "cumulative": 12
+        }
+      }
+    },
+    {
+      "year_month": "2021/10",
+      "year": 2021,
+      "month": 10,
+      "revenue": 0,
+      "expense": 12100,
+      "profit": -12100,
+      "details": {
+        "外注費": {
+          "account_item_name": "外注費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 11000,
+          "cumulative": 2310500
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1100,
+          "cumulative": 13280
+        }
+      }
+    },
+    {
+      "year_month": "2021/11",
+      "year": 2021,
+      "month": 11,
+      "revenue": 82060,
+      "expense": 342134,
+      "profit": -260074,
+      "details": {
+        "売上高": {
+          "account_item_name": "売上高",
+          "account_category_name": "売上高",
+          "hierarchy_level": 2,
+          "monthly_amount": 82060,
+          "cumulative": 6086957
+        },
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 330034,
+          "cumulative": 1364436
+        },
+        "外注費": {
+          "account_item_name": "外注費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 11000,
+          "cumulative": 2321500
+        },
+        "支払手数料": {
+          "account_item_name": "支払手数料",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 1100,
+          "cumulative": 14380
+        }
+      }
+    },
+    {
+      "year_month": "2021/12",
+      "year": 2021,
+      "month": 12,
+      "revenue": 0,
+      "expense": 0,
+      "profit": 0,
+      "details": {}
+    },
+    {
+      "year_month": "2022/01",
+      "year": 2022,
+      "month": 1,
+      "revenue": 1712205,
+      "expense": 330034,
+      "profit": 1382171,
+      "details": {
+        "売上高": {
+          "account_item_name": "売上高",
+          "account_category_name": "売上高",
+          "hierarchy_level": 2,
+          "monthly_amount": 1712205,
+          "cumulative": 7799162
+        },
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 330034,
+          "cumulative": 1694470
+        }
+      }
+    },
+    {
+      "year_month": "2022/02",
+      "year": 2022,
+      "month": 2,
+      "revenue": 0,
+      "expense": 192517,
+      "profit": -192517,
+      "details": {
+        "法定福利費": {
+          "account_item_name": "法定福利費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 165017,
+          "cumulative": 1859487
+        },
+        "外注費": {
+          "account_item_name": "外注費",
+          "account_category_name": "販売管理費",
+          "hierarchy_level": 3,
+          "monthly_amount": 27500,
+          "cumulative": 2349000
+        },
+        "受取利息": {
+          "account_item_name": "受取利息",
+          "account_category_name": "営業外収益",
+          "hierarchy_level": 3,
+          "monthly_amount": 12,
+          "cumulative": 24
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total_revenue": 7799162,
+    "total_expense": 7179267,
+    "total_profit": 619895,
+    "months_count": 13,
+    "avg_revenue": 599935.5384615385,
+    "avg_expense": 552251.3076923077,
+    "avg_profit": 47684.230769230766
+  }
+}

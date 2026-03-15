@@ -1,0 +1,672 @@
+[
+  {
+    "id": 5537,
+    "type": "post",
+    "title": "工場・プラントのBCPを「復旧できる計画」にする：3D点群・BIMで設備保全と災害復旧を最短化する実務ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (4箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5507,
+    "type": "post",
+    "title": "測量会社の点群データ処理「内業渋滞」を解消する外注活用ガイド｜内業切り出しで高品質・短納期を両立する方法",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (4箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5508,
+    "type": "post",
+    "title": "都市公園の維持管理DX：点群データから樹木の本数と胸高直径を正確に抽出する技術ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (5箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5505,
+    "type": "post",
+    "title": "植生下の裸地データをどう測る？SfM写真測量とLiDAR測量の正しい使い分けと機材選定の実務ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (4箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5501,
+    "type": "post",
+    "title": "ドローン出来形管理の「精度が出ない」を解消する方法：ゼネコン内製化を失敗させない実務プロトコル",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (4箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5499,
+    "type": "post",
+    "title": "【土量計算の落とし穴】ドローン測量と専用アプリで数百万円規模の土量コスト超過を防いだ大手ゼネコン事例",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (6箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5497,
+    "type": "post",
+    "title": "砕石場・残土処理場向け：ドローン測量で在庫（物量）を正確に把握する実務ワークフロー",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (5箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5228,
+    "type": "post",
+    "title": "太陽光パネル点検で失敗しないための「業者選びチェックリスト」と最新費用相場",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (4箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5220,
+    "type": "post",
+    "title": "土量計算の誤差を極限まで抑える【公共工事・大規模造成向け】点群計測×BIM/CIM土量管理ワークフロー",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (6箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5217,
+    "type": "post",
+    "title": "点群処理が止まらないPCスペック完全ガイド：大規模プラント計測・BIM活用を支えるハード選定術",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (3箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5213,
+    "type": "post",
+    "title": "SfM点群処理ソフト徹底比較ガイド：用途別（土量／構造物／工場設備）で失敗しない選定とワークフロー設計",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (7箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5200,
+    "type": "post",
+    "title": "点群データ容量とクラウド保存の落とし穴：LAS/LAZ運用で失敗しないストレージ戦略と共有設計ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (3箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5195,
+    "type": "post",
+    "title": "ドローン赤外線調査 vs 足場外壁点検：工期・安全・総合コストを数値で比較する実務ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5191,
+    "type": "post",
+    "title": "ドローン測量データの納品形式 完全ガイド｜BIM/CIM連携と現場活用を最大化する実務戦略",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5188,
+    "type": "post",
+    "title": "i-Constructionとは？ICT活用工事の5ステップと費用対効果、今すぐ始めるための実装ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5185,
+    "type": "post",
+    "title": "ドローン測量 vs 地上測量を徹底比較｜精度・コスト・工期から選ぶ最終判断ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (2箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5180,
+    "type": "post",
+    "title": "【Q&amp;A徹底解説】ドローン測量の見積もり・料金を正しく読むための完全チェックリスト",
+    "changes": [
+      "  /privacy → /privacy-policy/ (1箇所)",
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5161,
+    "type": "post",
+    "title": "【プロ厳選】ドローン測量業者の賢い選び方と費用相場：データ活用まで見据えた選定基準",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (5箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5159,
+    "type": "post",
+    "title": "プラント敷地内の「設備用スペアパーツ」棚卸し：3Dスキャンで倉庫スペースを最適化",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5157,
+    "type": "post",
+    "title": "産業廃棄物・鉄スクラップの容積計測：正確な重量換算と安全管理のための3D活用",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5155,
+    "type": "post",
+    "title": "石炭・鉄鉱石ヤードの在庫を正確に計測：自然発火リスクを抑える3Dスキャン戦略",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5152,
+    "type": "post",
+    "title": "サイロ・倉庫内の穀物在庫を正確に把握：LiDARと超音波を組み合わせた高精度計測ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5150,
+    "type": "post",
+    "title": "鉱石・石灰石の3D計測：広大なヤードの体積を「数時間」で確定させるワークフロー",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5148,
+    "type": "post",
+    "title": "砂利・砕石ヤードの在庫はドローンで測る：原価計算を狂わせる「パイルの誤差」をなくす方法",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5145,
+    "type": "post",
+    "title": "石炭・PKSの在庫差異を解消：ボイラー停止を招かない正確な燃料棚卸し術",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5143,
+    "type": "post",
+    "title": "木質チップの在庫管理は「目視・概算」から卒業する：ドローン×点群で堆積量を正確に把握する方法",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5135,
+    "type": "post",
+    "title": "RTKドローンによるマンション眺望撮影の完全ガイド：各階バルコニー眺望を正確に再現する建設DX手法",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (3箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5131,
+    "type": "post",
+    "title": "物流倉庫スラブの不陸基準まとめ｜JASS5・FF/FL・Fminをどう使い分けるか？",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (3箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5125,
+    "type": "post",
+    "title": "高所・狭所を“足場不要”で安全点検する工場スキャン設計：EHSが主導する無足場点検プロセス",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (4箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5114,
+    "type": "post",
+    "title": "スラブ打設後の不陸測定を“即日で数値化”する方法── 物流倉庫の床平滑性と最新3D計測の完全ガイド",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5110,
+    "type": "post",
+    "title": "“現況が図面と違う”を終わらせる｜3Dスキャンでレイアウト変更のムダを0に",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (3箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5089,
+    "type": "post",
+    "title": "停止時間を最小化する工場内部スキャン｜事前計画・計測〜復旧までの実務手順",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (3箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5061,
+    "type": "post",
+    "title": "残土委託のリスクを潰す：契約・測量・引合時の三重ガード",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5059,
+    "type": "post",
+    "title": "数万m³案件の“机上で”コストを削る：ルートと仮置きの最適化思考",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5057,
+    "type": "post",
+    "title": "再資源化で削れるコストとCO₂：RC材・再生土の使いどころ",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5055,
+    "type": "post",
+    "title": "車両制限令と積載の最適点：合法・安全・コスト最小の境界線",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5053,
+    "type": "post",
+    "title": "BIM/CIM土工の実装：IFC/LandXMLの土量→工程→コスト連携レシピ",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5051,
+    "type": "post",
+    "title": "締固め度と出来形の関係：運搬コスト見積りにどう反映する？",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5048,
+    "type": "post",
+    "title": "粒度・含水・比重が“トン↔立米”を狂わせる：実務に効く試験値の読み方",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5046,
+    "type": "post",
+    "title": "点群→体積のアルゴリズム比較：TIN/ボクセル/クロスセクションの誤差特性",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5040,
+    "type": "post",
+    "title": "“今日欲しい”残土見積テンプレ：数量根拠と注意文言つき【DL可】",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5036,
+    "type": "post",
+    "title": "公共案件の数量根拠を整える：出来形→土量→概算の“書式セット”",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5033,
+    "type": "post",
+    "title": "名古屋の渋滞でどう見る？ダンプ台数の“待機時間”入力を実例で",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5030,
+    "type": "post",
+    "title": "小規模造成の“抜け”がちな費目：外構/伐根/路盤/残土を一枚で把握",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5028,
+    "type": "post",
+    "title": "残土の“行き先”を早く決めるには：受入条件・距離・単価の三点見比べ",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5019,
+    "type": "post",
+    "title": "台数を“増やさず回す”技：積込サイクル×ルート×待機時間の数理",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5008,
+    "type": "post",
+    "title": "土量コストの完全ガイド：立米（m³）とトン（t）の換算比重、ダンプ台数計算、現場実務のチェックリスト",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (6箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4991,
+    "type": "post",
+    "title": "点群から土量を出す最短手順：出来形→土量→概算コストまで一気通貫",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4989,
+    "type": "post",
+    "title": "愛知の土砂条例まとめ：届出・受入条件・罰則とコスト影響を整理【無料計算付き】",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4987,
+    "type": "post",
+    "title": "愛知の残土処分費はいくら？距離×車種×量で“ざっくり当てる”方法【無料計算付き】",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (2箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4985,
+    "type": "post",
+    "title": "名古屋で残土受入を探すコツ：受入条件・距離・概算コスト早見表【無料計算付き】",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (3箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4981,
+    "type": "post",
+    "title": "造成コスト早見表（ダンプ台数/距離/車種別）：ダウンロード可＋その場で概算",
+    "changes": [
+      "  リンク削除(テキスト残す): sandbox:/mnt/data/ (1箇所)",
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4979,
+    "type": "post",
+    "title": "盛土/切土の体積からダンプ台数まで：最短ルートで概算するチェックリスト",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (2箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4972,
+    "type": "post",
+    "title": "30秒で出せる残土コスト：ダンプ台数と処分費の“当て”をサクッと出す方法【無料計算付き】",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (3箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4964,
+    "type": "post",
+    "title": "無料「土量コスト計算機」が主要メディア 27媒体 に掲載",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (7箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4892,
+    "type": "post",
+    "title": "土量コストの完全ガイド—— ダンプ台数・運搬・処分費を“式”で掌握する",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (2箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 212,
+    "type": "page",
+    "title": "HOME",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (6箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4846,
+    "type": "page",
+    "title": "導入事例",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4944,
+    "type": "page",
+    "title": "公共測量対応",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4895,
+    "type": "page",
+    "title": "コラム",
+    "changes": [
+      "  /column/tag/earthwork/ → /column/ (1箇所)",
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4885,
+    "type": "page",
+    "title": "インサイドセールス",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4882,
+    "type": "page",
+    "title": "施工DXコンサルタント（セールス/導入）",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4880,
+    "type": "page",
+    "title": "点群処理・BIM/CIMエンジニア",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4876,
+    "type": "page",
+    "title": "UAVオペレーター",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4858,
+    "type": "page",
+    "title": "料金目安",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4850,
+    "type": "page",
+    "title": "よくあるご質問（FAQ）",
+    "changes": [
+      "  /cases/ → /case-library/cases/ (1箇所)"
+    ],
+    "status": "failed: HTTP 403"
+  },
+  {
+    "id": 4843,
+    "type": "page",
+    "title": "3次元計測",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4831,
+    "type": "page",
+    "title": "ドローン測量",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (6箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4837,
+    "type": "page",
+    "title": "事業内容",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (7箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4834,
+    "type": "page",
+    "title": "赤外線調査",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4721,
+    "type": "page",
+    "title": "土量コスト計算機",
+    "changes": [
+      "  リンク削除(テキスト残す): tokaiair\\.com/wp-content/uploads/2025/09/入力画面_page-0001\\.jpg (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4611,
+    "type": "page",
+    "title": "ニュース",
+    "changes": [
+      "  /feed/ → /news/ (1箇所)",
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4537,
+    "type": "page",
+    "title": "採用",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 16,
+    "type": "page",
+    "title": "会社情報",
+    "changes": [
+      "  www.tokaiair.com → tokaiair.com 正規化 (2箇所)"
+    ],
+    "status": "success"
+  }
+]

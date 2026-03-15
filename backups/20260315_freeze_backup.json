@@ -1,0 +1,200 @@
+{
+  "recvdyHV5XZIcs": {
+    "name": "TOMOSHI用GBP作成",
+    "record": {
+      "fields": {
+        "Text": "TOMOSHI用GBP作成",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "TOMOSHI",
+        "備考": null,
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/tomoshi_gbp_guide.md"
+      },
+      "id": "recvdyHV5XZIcs",
+      "record_id": "recvdyHV5XZIcs"
+    }
+  },
+  "recvdyHV5Xg6he": {
+    "name": "公的機関登録(BATONZ等)",
+    "record": {
+      "fields": {
+        "Text": "公的機関登録(BATONZ等)",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "TOMOSHI",
+        "備考": null,
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/tomoshi_public_registration_guide.md"
+      },
+      "id": "recvdyHV5Xg6he",
+      "record_id": "recvdyHV5Xg6he"
+    }
+  },
+  "recvdyHV5XoRdC": {
+    "name": "紹介パートナー制度設計",
+    "record": {
+      "fields": {
+        "Text": "紹介パートナー制度設計",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "TOMOSHI",
+        "備考": null,
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/referral_partner_design.md"
+      },
+      "id": "recvdyHV5XoRdC",
+      "record_id": "recvdyHV5XoRdC"
+    }
+  },
+  "recvdyHVXhTMkN": {
+    "name": "Core Web Vitals改善",
+    "record": {
+      "fields": {
+        "Text": "Core Web Vitals改善",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "TAS",
+        "備考": null,
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/core_web_vitals_improvement.md"
+      },
+      "id": "recvdyHVXhTMkN",
+      "record_id": "recvdyHVXhTMkN"
+    }
+  },
+  "recvdz94HsUUSI": {
+    "name": "TOMOSHI用050番号取得",
+    "record": {
+      "fields": {
+        "Text": "TOMOSHI用050番号取得（ララコール追加番号）",
+        "オーダー元": "セッション",
+        "オーダー日": 1773187200000,
+        "ステータス": "設計完了",
+        "プロジェクト": "TOMOSHI",
+        "備考": "現状TASとTOMOSHIで050-7117-7141を共用→ブランド混在事故リスク。ララコール月110円で追加番号取得。取得後tomoshi.jp全ページ差替+GitHub Pagesデプロイ。",
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/phone_operation_design.md（統合済み）"
+      },
+      "id": "recvdz94HsUUSI",
+      "record_id": "recvdz94HsUUSI"
+    }
+  },
+  "recvdzm0LXJxZm": {
+    "name": "Agent Teams導入",
+    "record": {
+      "fields": {
+        "Text": "Agent Teams導入（複数エージェントのチーム編成）",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "インフラ",
+        "備考": "Claude Code公式Agent Teams機能。複数セッション間でタスク共有・ブロードキャスト。マルチエージェント24/365体制の正式構築。",
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/claude_code_agent_teams_design.md"
+      },
+      "id": "recvdzm0LXJxZm",
+      "record_id": "recvdzm0LXJxZm"
+    }
+  },
+  "recvdzmhFqaENz": {
+    "name": "Claude Code Tasks機能導入",
+    "record": {
+      "fields": {
+        "Text": "Claude Code Tasks機能導入（セッション間タスク共有）",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "インフラ",
+        "備考": "CLAUDE_CODE_TASK_LIST_IDで複数セッション間のタスク永続化・ブロードキャスト。現在のLark Baseタスク管理と統合し、セッション起動時に自動読み込み→完了時に自動更新。",
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/claude_code_tasks_design.md"
+      },
+      "id": "recvdzmhFqaENz",
+      "record_id": "recvdzmhFqaENz"
+    }
+  },
+  "recvdzmioO4YIC": {
+    "name": "レビューループ自動化",
+    "record": {
+      "fields": {
+        "Text": "レビューループ自動化（実装→別AIレビュー→修正反映サイクル）",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "インフラ",
+        "備考": "Claude Code（実装）→review_agent（レビュー）→Claude Code（修正）の自動サイクル。現在は手動トリガーだが、記事作成・CSS変更時に自動で壁打ちループを回す。NG→修正→再レビューを人間介入なしで完結。",
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/autonomous_improvement_loop_design.md"
+      },
+      "id": "recvdzmioO4YIC",
+      "record_id": "recvdzmioO4YIC"
+    }
+  },
+  "recvdzmRkSJyeB": {
+    "name": "Claude Code技術キャッチアップ自動化",
+    "record": {
+      "fields": {
+        "Text": "Claude Code技術キャッチアップ自動化（週次トレンドスキャン）",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "インフラ",
+        "備考": "GitHub Actions週次で実行。Claude Code公式ブログ・Changelog・HN・X・Zennを自動スキャン→新機能・ベストプラクティス・MCPサーバー新着を検出→Lark通知。有用なものはタスクとして自動投入。",
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/changelog_scanner_design.md"
+      },
+      "id": "recvdzmRkSJyeB",
+      "record_id": "recvdzmRkSJyeB"
+    }
+  },
+  "recvdBgXRFWf8S": {
+    "name": "t-as.net ドメイン活用方針決定",
+    "record": {
+      "fields": {
+        "Text": "t-as.net ドメイン活用方針決定",
+        "オーダー元": "ユーザー",
+        "オーダー日": 1773273600000,
+        "ステータス": "設計完了",
+        "プロジェクト": "TAS",
+        "備考": "サービス別LP用ドメイン。現状未使用。活用案: ①広告用LP専用(SEO汚さない) ②サービス別マイクロサイト ③営業用短縮URL ④tokaiair.comへのリダイレクト。ランウェイ考慮し当面凍結。広告出稿時に再検討。",
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/tasnet_domain_plan.md"
+      },
+      "id": "recvdBgXRFWf8S",
+      "record_id": "recvdBgXRFWf8S"
+    }
+  },
+  "recvdCnW4xGCIL": {
+    "name": "AI検索自社言及モニタリング",
+    "record": {
+      "fields": {
+        "Text": "AI検索（ChatGPT/Perplexity）自社言及モニタリングスクリプト",
+        "オーダー元": null,
+        "オーダー日": null,
+        "ステータス": "設計完了",
+        "プロジェクト": "TAS",
+        "備考": "Phase3 Day90。「名古屋 ドローン測量」「愛知県 ドローン測量会社」等でAI検索し自社言及を月次チェック。AEO効果測定用",
+        "優先度": "低",
+        "完了日": null,
+        "成果物": "docs/seasonal_email_aeo_design.md"
+      },
+      "id": "recvdCnW4xGCIL",
+      "record_id": "recvdCnW4xGCIL"
+    }
+  }
+}

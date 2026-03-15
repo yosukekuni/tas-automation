@@ -1,0 +1,391 @@
+[
+  {
+    "id": 5943,
+    "type": "post",
+    "title": "ドローン測量の流れ｜依頼から納品まで7つのステップ",
+    "changes": [
+      "  href=\"/drone-survey-cost-nagoya/\" → href=\"/info/drone-survey-cost-nagoya/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5537,
+    "type": "post",
+    "title": "工場・プラントのBCPを「復旧できる計画」にする：3D点群・BIMで設備保全と災害復旧を最短化する実務ガイド",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/earthwork-cost-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/slab-flatness-3d-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5507,
+    "type": "post",
+    "title": "測量会社の点群データ処理「内業渋滞」を解消する外注活用ガイド｜内業切り出しで高品質・短納期を両立する方法",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/earthwork-cost-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (2箇所)",
+      "  href=\"https://tokaiair.com/column/slab-unevenness-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5508,
+    "type": "post",
+    "title": "都市公園の維持管理DX：点群データから樹木の本数と胸高直径を正確に抽出する技術ガイド",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/earth-volume-cost-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (2箇所)",
+      "  href=\"https://tokaiair.com/column/slab-unevenness-3d-measurement-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/piping-isometric-pointcloud-bim-route/\" → href=\"https://tokaiair.com/column/pointcloud-bim/factory-3dscan-guide/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5505,
+    "type": "post",
+    "title": "植生下の裸地データをどう測る？SfM写真測量とLiDAR測量の正しい使い分けと機材選定の実務ガイド",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/earthwork-volume-cost-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/slab-unevenness-3d-measurement/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/3d-measurement-case-studies/\" → href=\"https://tokaiair.com/case-library/cases/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5501,
+    "type": "post",
+    "title": "ドローン出来形管理の「精度が出ない」を解消する方法：ゼネコン内製化を失敗させない実務プロトコル",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/earthwork-cost-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/slab-unevenness-3d-measurement-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/piping-isometric-pointcloud-bim-route/\" → href=\"https://tokaiair.com/column/pointcloud-bim/factory-3dscan-guide/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5499,
+    "type": "post",
+    "title": "【土量計算の落とし穴】ドローン測量と専用アプリで数百万円規模の土量コスト超過を防いだ大手ゼネコン事例",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/slab-unevenness-3d-measurement/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (2箇所)",
+      "  href=\"https://tokaiair.com/column/earthwork-cost-reduction-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (2箇所)",
+      "  href=\"https://tokaiair.com/service/drone-survey/\" → href=\"https://tokaiair.com/services/uav-survey/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5497,
+    "type": "post",
+    "title": "砕石場・残土処理場向け：ドローン測量で在庫（物量）を正確に把握する実務ワークフロー",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/slab-unevenness-3d-measurement-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/construction-dx-case-studies/\" → href=\"https://tokaiair.com/case-library/cases/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/volume-cost-management-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5228,
+    "type": "post",
+    "title": "太陽光パネル点検で失敗しないための「業者選びチェックリスト」と最新費用相場",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/slab-unevenness-3d-measurement-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/earthwork-cost-reduction-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/piping-renewal-pointcloud-isometric-bim-speedup/\" → href=\"https://tokaiair.com/column/pointcloud-bim/factory-3dscan-guide/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5220,
+    "type": "post",
+    "title": "土量計算の誤差を極限まで抑える【公共工事・大規模造成向け】点群計測×BIM/CIM土量管理ワークフロー",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/earthwork-cost-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/slab-unevenness-3d-measurement/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (2箇所)",
+      "  href=\"https://tokaiair.com/column/plant-piping-renewal-stop-time-reduction/\" → href=\"https://tokaiair.com/column/pointcloud-bim/factory-3dscan-guide/\" (2箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5217,
+    "type": "post",
+    "title": "点群処理が止まらないPCスペック完全ガイド：大規模プラント計測・BIM活用を支えるハード選定術",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/sfm-pointcloud-software-selection-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/sfm-pointcloud-software-selection-guide/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/factory-scan-introduction-for-equipment-manager/\" → href=\"https://tokaiair.com/column/pointcloud-bim/factory-3dscan-guide/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5213,
+    "type": "post",
+    "title": "SfM点群処理ソフト徹底比較ガイド：用途別（土量／構造物／工場設備）で失敗しない選定とワークフロー設計",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/piping-isometric-pointcloud-bim-route/\" → href=\"https://tokaiair.com/column/pointcloud-bim/factory-3dscan-guide/\" (2箇所)",
+      "  href=\"https://tokaiair.com/column/volume-cost-management/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (2箇所)",
+      "  href=\"https://tokaiair.com/column/sfm-pointcloud-software-selection-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/sfm-pointcloud-software-selection-guide/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/slab-flatness-drone-3d\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (2箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5200,
+    "type": "post",
+    "title": "点群データ容量とクラウド保存の落とし穴：LAS/LAZ運用で失敗しないストレージ戦略と共有設計ガイド",
+    "changes": [
+      "  href=\"https://tokaiair.com/calc-volume-cost/\" → href=\"https://tokaiair.com/tools/earthwork/calculator/\" (2箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5161,
+    "type": "post",
+    "title": "【プロ厳選】ドローン測量業者の賢い選び方と費用相場：データ活用まで見据えた選定基準",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/soil-volume-cost-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (2箇所)",
+      "  href=\"https://tokaiair.com/column/slab-leveling-3d-measurement-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/piping-isometric-pointcloud-renewal-speed/\" → href=\"https://tokaiair.com/column/pointcloud-bim/factory-3dscan-guide/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5145,
+    "type": "post",
+    "title": "石炭・PKSの在庫差異を解消：ボイラー停止を招かない正確な燃料棚卸し術",
+    "changes": [
+      "  href=\"/column/3d-volume-measurement-guide/\" → href=\"/column/earthwork-cost/pointcloud-to-volume/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5135,
+    "type": "post",
+    "title": "RTKドローンによるマンション眺望撮影の完全ガイド：各階バルコニー眺望を正確に再現する建設DX手法",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/doryo-cost-complete-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/slab-3d-measure-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5131,
+    "type": "post",
+    "title": "物流倉庫スラブの不陸基準まとめ｜JASS5・FF/FL・Fminをどう使い分けるか？",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/slab-flatness-3d-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/doyou-cost-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5125,
+    "type": "post",
+    "title": "高所・狭所を“足場不要”で安全点検する工場スキャン設計：EHSが主導する無足場点検プロセス",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/doryo-cost-complete-guide/\" → href=\"https://tokaiair.com/column/earthwork-cost/earthwork-cost/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/slab-leveling-3d-scan-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5110,
+    "type": "post",
+    "title": "“現況が図面と違う”を終わらせる｜3Dスキャンでレイアウト変更のムダを0に",
+    "changes": [
+      "  href=\"https://tokaiair.com/blog/\" → href=\"https://tokaiair.com/column/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5089,
+    "type": "post",
+    "title": "停止時間を最小化する工場内部スキャン｜事前計画・計測〜復旧までの実務手順",
+    "changes": [
+      "  href=\"https://tokaiair.com/blog/\" → href=\"https://tokaiair.com/column/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5059,
+    "type": "post",
+    "title": "数万m³案件の“机上で”コストを削る：ルートと仮置きの最適化思考",
+    "changes": [
+      "  href=\"/tools/earthwork-cost/\" → href=\"/tools/earthwork/calculator/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5057,
+    "type": "post",
+    "title": "再資源化で削れるコストとCO₂：RC材・再生土の使いどころ",
+    "changes": [
+      "  href=\"/tools/recycle-sim/\" → href=\"/tools/earthwork/calculator/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5055,
+    "type": "post",
+    "title": "車両制限令と積載の最適点：合法・安全・コスト最小の境界線",
+    "changes": [
+      "  href=\"/tools/earthwork-cost/\" → href=\"/tools/earthwork/calculator/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5053,
+    "type": "post",
+    "title": "BIM/CIM土工の実装：IFC/LandXMLの土量→工程→コスト連携レシピ",
+    "changes": [
+      "  href=\"/tools/earthwork-cost/\" → href=\"/tools/earthwork/calculator/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5046,
+    "type": "post",
+    "title": "点群→体積のアルゴリズム比較：TIN/ボクセル/クロスセクションの誤差特性",
+    "changes": [
+      "  href=\"/tools/earthwork-cost/\" → href=\"/tools/earthwork/calculator/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5014,
+    "type": "post",
+    "title": "搬出計画の“詰みポイント”5選：交通/待機/搬出動線でコストはこう変わる",
+    "changes": [
+      "  href=\"/news/choose-dump-truck/\" → href=\"/column/earthwork-cost/choose-dump-truck/\" (2箇所)",
+      "  href=\"/news/m3-ton-conversion-soil-density/\" → href=\"/column/earthwork-cost/m3-ton-conversion-soil-density/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 5008,
+    "type": "post",
+    "title": "土量コストの完全ガイド：立米（m³）とトン（t）の換算比重、ダンプ台数計算、現場実務のチェックリスト",
+    "changes": [
+      "  href=\"https://tokaiair.com/column/slab-level-3d-measurement-guide/\" → href=\"https://tokaiair.com/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (1箇所)",
+      "  href=\"https://tokaiair.com/column/dron-earthwork-measurement/\" → href=\"https://tokaiair.com/column/drone-earthwork-volume/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4964,
+    "type": "post",
+    "title": "無料「土量コスト計算機」が主要メディア 27媒体 に掲載",
+    "changes": [
+      "  href=\"https://tokaiair.com/uav-survey/\" → href=\"https://tokaiair.com/services/uav-survey/\" (1箇所)",
+      "  href=\"https://tokaiair.com/3d-measurement/\" → href=\"https://tokaiair.com/services/3d-measurement/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4892,
+    "type": "post",
+    "title": "土量コストの完全ガイド—— ダンプ台数・運搬・処分費を“式”で掌握する",
+    "changes": [
+      "  href=\"/tools/earthwork-cost/\" → href=\"/tools/earthwork/calculator/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 6149,
+    "type": "page",
+    "title": "建設コンサル向けドローン測量｜i-Construction対応",
+    "changes": [
+      "  href=\"/uav-survey/\" → href=\"/services/uav-survey/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 212,
+    "type": "page",
+    "title": "HOME",
+    "changes": [
+      "  href=\"https://tokaiair.com/service/infrared-inspection/\" → href=\"https://tokaiair.com/services/infrared-inspection/\" (1箇所)",
+      "  href=\"https://tokaiair.com/cases/#list\" → href=\"https://tokaiair.com/case-library/cases/\" (3箇所)",
+      "  href=\"https://tokaiair.com/news/soil-volume-calculator-27-media-coverage/\" → href=\"https://tokaiair.com/info/soil-volume-calculator-27-media-coverage/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4895,
+    "type": "page",
+    "title": "コラム",
+    "changes": [
+      "  href=\"/tools/earthwork-cost/\" → href=\"/tools/earthwork/calculator/\" (3箇所)",
+      "  href=\"/column/earthwork-cost/\" → href=\"/column/earthwork-cost/earthwork-cost/\" (3箇所)",
+      "  href=\"/column/drone-survey-qa-before-quotation/\" → href=\"/column/earthwork-cost/drone-survey-estimate-qa-checklist/\" (1箇所)",
+      "  href=\"/column/construction-dx/\" → href=\"/column/construction-drone-use-cases/\" (2箇所)",
+      "  href=\"/column/factory-scan-roi/\" → href=\"/column/pointcloud-bim/factory-3dscan-guide/\" (2箇所)",
+      "  href=\"/column/floor-flatness-warehouse/\" → href=\"/column/pointcloud-bim/slab-flatness-warehouse-3d/\" (2箇所)",
+      "  href=\"/column/i-construction-ict-steps-cost-solution/\" → href=\"/column/earthwork-cost/i-construction-ict-steps-cost-solution/\" (2箇所)",
+      "  href=\"/column/pointcloud-bim/\" → href=\"/column/point-cloud-data-usage/\" (3箇所)",
+      "  href=\"/column/uav-survey/\" → href=\"/column/drone-survey-accuracy/\" (3箇所)",
+      "  href=\"/column/tag/quality-control/\" → href=\"/column/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4858,
+    "type": "page",
+    "title": "料金目安",
+    "changes": [
+      "  href=\"/uav-survey/\" → href=\"/services/uav-survey/\" (3箇所)",
+      "  href=\"/3d-measurement/\" → href=\"/services/3d-measurement/\" (3箇所)",
+      "  href=\"/infrared-inspection/\" → href=\"/services/infrared-inspection/\" (3箇所)",
+      "  href=\"https://tokaiair.com/pricing/\" → href=\"https://tokaiair.com/case-library/pricing/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4850,
+    "type": "page",
+    "title": "よくあるご質問（FAQ）",
+    "changes": [
+      "  href=\"/cases/\" → href=\"/case-library/cases/\" (1箇所)"
+    ],
+    "status": "failed: HTTP 403"
+  },
+  {
+    "id": 4843,
+    "type": "page",
+    "title": "3次元計測",
+    "changes": [
+      "  href=\"https://tokaiair.com/3d-measurement/\" → href=\"https://tokaiair.com/services/3d-measurement/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4831,
+    "type": "page",
+    "title": "ドローン測量",
+    "changes": [
+      "  href=\"https://tokaiair.com/cases/#list\" → href=\"https://tokaiair.com/case-library/cases/\" (2箇所)",
+      "  href=\"https://tokaiair.com/pricing/\" → href=\"https://tokaiair.com/case-library/pricing/\" (1箇所)",
+      "  href=\"https://tokaiair.com/uav-survey/\" → href=\"https://tokaiair.com/services/uav-survey/\" (1箇所)",
+      "  href=\"https://tokaiair.com/3d-measurement/\" → href=\"https://tokaiair.com/services/3d-measurement/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4837,
+    "type": "page",
+    "title": "事業内容",
+    "changes": [
+      "  href=\"https://tokaiair.com/uav-survey/\" → href=\"https://tokaiair.com/services/uav-survey/\" (1箇所)",
+      "  href=\"https://tokaiair.com/3d-measurement/\" → href=\"https://tokaiair.com/services/3d-measurement/\" (1箇所)",
+      "  href=\"https://tokaiair.com/infrared-inspection/\" → href=\"https://tokaiair.com/services/infrared-inspection/\" (1箇所)"
+    ],
+    "status": "success"
+  },
+  {
+    "id": 4834,
+    "type": "page",
+    "title": "赤外線調査",
+    "changes": [
+      "  href=\"https://tokaiair.com/infrared-inspection/\" → href=\"https://tokaiair.com/services/infrared-inspection/\" (1箇所)"
+    ],
+    "status": "success"
+  }
+]
