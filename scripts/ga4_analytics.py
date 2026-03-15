@@ -37,6 +37,28 @@ DATE_TODAY = TODAY.strftime("%Y-%m-%d")
 # ── Find Service Account Key ─────────────────────────────────────────────
 def find_service_account_key():
     """Search for service account JSON key file."""
+    # Priority 0: Check automation_config.json for explicit path
+    config_paths = [
+        Path("/mnt/c/Users/USER/Documents/_data/automation_config.json"),
+        Path(__file__).parent / "automation_config.json",
+    ]
+    for cp in config_paths:
+        if cp.exists():
+            try:
+                cfg = json.loads(cp.read_text(encoding="utf-8"))
+                sa_path = cfg.get("google", {}).get("service_account_json", "")
+                if sa_path and Path(sa_path).exists():
+                    print(f"  Found key file (config): {sa_path}")
+                    return Path(sa_path)
+            except Exception:
+                pass
+
+    # Priority 0.5: GitHub Actions /tmp path
+    tmp_sa = Path("/tmp/google_sa.json")
+    if tmp_sa.exists():
+        print(f"  Found key file (GitHub Actions): {tmp_sa}")
+        return tmp_sa
+
     search_dirs = [
         DATA_DIR,
         DATA_DIR.parent,
@@ -707,6 +729,250 @@ def print_dashboard(ga4_data, gsc_data):
     print("=" * 72 + "\n")
 
 
+# ── Lark Base API ─────────────────────────────────────────────────────
+LARK_API_BASE = "https://open.larksuite.com/open-apis"
+
+# Web分析Base
+WEB_ANALYTICS_BASE_TOKEN = "Vy65bp8Wia7UkZs8CWCjPSqJpyf"
+TABLE_PAGE_ANALYSIS = "tbluRdPdhuyjH5a3"     # GA4_ページ分析
+TABLE_WEEKLY_TREND = "tblYHA6j48u7TiZj"       # GA4_週次トレンド
+TABLE_TRAFFIC_SOURCE = "tbl8fBPQMxlF2JyJ"     # GA4_流入経路
+TABLE_GSC_QUERIES = "tbl5sk2e1MfjtsUz"         # GSC_検索クエリ
+
+
+def load_lark_config():
+    """Load Lark credentials from automation_config.json."""
+    config_paths = [
+        Path("/mnt/c/Users/USER/Documents/_data/automation_config.json"),
+        Path(__file__).parent / "automation_config.json",
+    ]
+    for cp in config_paths:
+        if cp.exists():
+            with open(cp) as f:
+                return json.load(f)
+    return None
+
+
+def lark_get_token(config):
+    """Get Lark tenant access token."""
+    data = json.dumps({
+        "app_id": config["lark"]["app_id"],
+        "app_secret": config["lark"]["app_secret"],
+    }).encode()
+    req = urllib.request.Request(
+        f"{LARK_API_BASE}/auth/v3/tenant_access_token/internal",
+        data=data, headers={"Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(req) as r:
+        return json.loads(r.read())["tenant_access_token"]
+
+
+def lark_delete_all_records(token, table_id):
+    """Delete all existing records from a table."""
+    base = WEB_ANALYTICS_BASE_TOKEN
+    deleted = 0
+    while True:
+        # Get batch of record IDs
+        url = f"{LARK_API_BASE}/bitable/v1/apps/{base}/tables/{table_id}/records?page_size=500"
+        req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
+        try:
+            with urllib.request.urlopen(req) as r:
+                resp = json.loads(r.read())
+        except Exception as e:
+            print(f"    List error: {e}")
+            break
+
+        items = resp.get("data", {}).get("items", [])
+        if not items:
+            break
+
+        record_ids = [item["record_id"] for item in items]
+
+        # Batch delete (max 500 per call)
+        del_url = f"{LARK_API_BASE}/bitable/v1/apps/{base}/tables/{table_id}/records/batch_delete"
+        del_data = json.dumps({"records": record_ids}).encode()
+        del_req = urllib.request.Request(
+            del_url, data=del_data,
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        )
+        try:
+            with urllib.request.urlopen(del_req) as r:
+                json.loads(r.read())
+            deleted += len(record_ids)
+        except Exception as e:
+            print(f"    Delete error: {e}")
+            break
+        time.sleep(0.5)
+
+    if deleted:
+        print(f"    Deleted {deleted} old records")
+    return deleted
+
+
+def lark_batch_create(token, table_id, records, batch_size=450):
+    """Batch create records in Lark Base table."""
+    base = WEB_ANALYTICS_BASE_TOKEN
+    total_created = 0
+    for i in range(0, len(records), batch_size):
+        batch = records[i:i + batch_size]
+        url = f"{LARK_API_BASE}/bitable/v1/apps/{base}/tables/{table_id}/records/batch_create"
+        body = {"records": [{"fields": rec} for rec in batch]}
+        data = json.dumps(body).encode()
+        req = urllib.request.Request(
+            url, data=data,
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                resp = json.loads(r.read())
+                if resp.get("code") != 0:
+                    print(f"    Batch create error: {resp.get('msg', 'unknown')}")
+                else:
+                    total_created += len(batch)
+        except Exception as e:
+            print(f"    Batch create exception: {e}")
+        time.sleep(0.5)
+    return total_created
+
+
+def classify_channel(source, medium):
+    """Classify traffic channel from source/medium."""
+    medium_lower = (medium or "").lower()
+    source_lower = (source or "").lower()
+    if medium_lower in ("organic", "organic search"):
+        return "自然検索"
+    if medium_lower in ("cpc", "ppc", "paid"):
+        return "有料検索"
+    if medium_lower == "referral":
+        return "参照"
+    if medium_lower in ("social", "social-media"):
+        return "ソーシャル"
+    if medium_lower == "email":
+        return "メール"
+    if source_lower == "(direct)" or medium_lower in ("(none)", "(not set)"):
+        return "ダイレクト"
+    return "その他"
+
+
+def classify_query_category(query, clicks, impressions, ctr, position):
+    """Classify GSC query improvement category."""
+    if position <= 3 and ctr > 0.05:
+        return "維持"
+    if position <= 10 and ctr < 0.03:
+        return "CTR改善"
+    if 10 < position <= 20:
+        return "順位改善"
+    if impressions > 50 and clicks < 3:
+        return "未獲得"
+    return "未獲得"
+
+
+def sync_to_lark_base(ga4_data, gsc_data, gsc_page_lookup, top_query_lookup):
+    """Sync GA4/GSC data to Web分析 Lark Base."""
+    print("\n[LARK] Web分析Base へデータ投入中...")
+
+    config = load_lark_config()
+    if not config:
+        print("  ERROR: automation_config.json が見つかりません。Lark投入スキップ。")
+        return False
+
+    try:
+        lark_token = lark_get_token(config)
+        print("  Lark認証OK")
+    except Exception as e:
+        print(f"  ERROR: Lark認証失敗 - {e}")
+        return False
+
+    # ── 1. GA4_ページ分析 ──
+    print("\n  [1/4] GA4_ページ分析...")
+    lark_delete_all_records(lark_token, TABLE_PAGE_ANALYSIS)
+    page_records = []
+    for p in ga4_data.get("pages", [])[:500]:
+        path = p.get("pagePath", "")
+        section = classify_page(path)
+        section_label = {"column": "コラム", "glossary": "用語集", "other": "その他"}.get(section, "その他")
+        gsc_info = gsc_page_lookup.get(path, {})
+        search_clicks = gsc_info.get("clicks", 0)
+        top_query = top_query_lookup.get(path, "")
+
+        rec = {
+            "ページパス": path,
+            "ページビュー": int(float(p.get("screenPageViews", "0"))),
+            "ユーザー数": int(float(p.get("totalUsers", "0"))),
+            "平均滞在秒": round(float(p.get("averageSessionDuration", "0")), 1),
+            "直帰率": round(float(p.get("bounceRate", "0")), 4),
+            "セクション": section_label,
+        }
+        if search_clicks:
+            rec["GSC検索クリック"] = int(search_clicks)
+        if top_query:
+            rec["トップ検索クエリ"] = top_query
+        page_records.append(rec)
+
+    created = lark_batch_create(lark_token, TABLE_PAGE_ANALYSIS, page_records)
+    print(f"    Created {created} records")
+
+    # ── 2. GA4_週次トレンド ──
+    print("\n  [2/4] GA4_週次トレンド...")
+    lark_delete_all_records(lark_token, TABLE_WEEKLY_TREND)
+    weekly_records = []
+    for w in ga4_data.get("weekly", []):
+        week_str = w.get("isoYearIsoWeek", "")
+        weekly_records.append({
+            "週": week_str,
+            "セッション": int(float(w.get("sessions", "0"))),
+            "ユーザー数": int(float(w.get("totalUsers", "0"))),
+            "ページビュー": int(float(w.get("screenPageViews", "0"))),
+            "新規ユーザー": int(float(w.get("newUsers", "0"))),
+        })
+    created = lark_batch_create(lark_token, TABLE_WEEKLY_TREND, weekly_records)
+    print(f"    Created {created} records")
+
+    # ── 3. GA4_流入経路 ──
+    print("\n  [3/4] GA4_流入経路...")
+    lark_delete_all_records(lark_token, TABLE_TRAFFIC_SOURCE)
+    source_records = []
+    for s in ga4_data.get("sources", []):
+        source = s.get("sessionSource", "")
+        medium = s.get("sessionMedium", "")
+        channel = classify_channel(source, medium)
+        source_records.append({
+            "ソース": source,
+            "メディア": medium,
+            "セッション": int(float(s.get("sessions", "0"))),
+            "ユーザー数": int(float(s.get("totalUsers", "0"))),
+            "チャネル": channel,
+        })
+    created = lark_batch_create(lark_token, TABLE_TRAFFIC_SOURCE, source_records)
+    print(f"    Created {created} records")
+
+    # ── 4. GSC_検索クエリ ──
+    print("\n  [4/4] GSC_検索クエリ...")
+    lark_delete_all_records(lark_token, TABLE_GSC_QUERIES)
+    query_records = []
+    for q in gsc_data.get("queries", [])[:500]:
+        keys = q.get("keys", [])
+        query_text = keys[0] if keys else ""
+        clicks = q.get("clicks", 0)
+        impressions = q.get("impressions", 0)
+        ctr = q.get("ctr", 0)
+        position = q.get("position", 0)
+        category = classify_query_category(query_text, clicks, impressions, ctr, position)
+        query_records.append({
+            "検索クエリ": query_text,
+            "クリック数": int(clicks),
+            "表示回数": int(impressions),
+            "CTR": round(ctr, 4),
+            "平均掲載順位": round(position, 1),
+            "改善カテゴリ": category,
+        })
+    created = lark_batch_create(lark_token, TABLE_GSC_QUERIES, query_records)
+    print(f"    Created {created} records")
+
+    print("\n  [LARK] Web分析Base 投入完了!")
+    return True
+
+
 def main():
     print("\n[1/6] サービスアカウントキーを検索中...")
     key_path = find_service_account_key()
@@ -942,8 +1208,17 @@ def main():
     write_csv("11i_SEO改善提案.csv",
               ["ページ", "現在順位", "表示回数", "クリック", "CTR", "提案"], rows)
 
+    # ── Lark Base Sync ────────────────────────────────────────────────
+    print("\n[6/7] Lark Base へデータ投入...")
+    try:
+        sync_to_lark_base(ga4_data, gsc_data, gsc_page_lookup, top_query_lookup)
+    except Exception as e:
+        print(f"  WARNING: Lark Base投入エラー - {e}")
+        import traceback
+        traceback.print_exc()
+
     # ── Dashboard ─────────────────────────────────────────────────────
-    print("\n[6/6] ダッシュボード表示...")
+    print("\n[7/7] ダッシュボード表示...")
     print_dashboard(ga4_data, gsc_data)
 
     print("完了!")
