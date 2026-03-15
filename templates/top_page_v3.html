@@ -6,15 +6,18 @@
 
 <style>
 /* ══════════════════════════════════════════════════
-   CSS RESET — Override x-t9 theme completely
+   CSS RESET — Neutralize GeneratePress theme styles
    ══════════════════════════════════════════════════ */
 #tas-lp,
 #tas-lp *,
 #tas-lp *::before,
 #tas-lp *::after {
-  all: revert !important;
   box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
 }
+#tas-lp a { text-decoration: none !important; }
+#tas-lp img { max-width: 100% !important; display: block !important; }
 #tas-lp {
   display: block !important;
   max-width: none !important;

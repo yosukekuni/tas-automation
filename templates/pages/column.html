@@ -1,0 +1,191 @@
+<!-- Column List Page Content - page ID 4895 -->
+<style>
+.column-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.column-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--gray-light);
+  transition: box-shadow 0.25s, transform 0.2s;
+  background: var(--white);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+.column-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
+}
+.column-thumb {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: var(--gray-bg);
+}
+.column-thumb-placeholder {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #1647FB 0%, #0f3ed4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.column-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.column-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--gray-mid);
+}
+.column-category {
+  display: inline-block;
+  background: rgba(22,71,251,0.08);
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+.column-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.column-excerpt {
+  font-size: 13.5px;
+  color: var(--gray-mid);
+  line-height: 1.6;
+  flex: 1;
+}
+.column-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brand);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 14px;
+}
+.column-loading {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--gray-mid);
+  font-size: 15px;
+}
+.column-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gray-light);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@media (max-width: 768px) {
+  .column-grid { grid-template-columns: 1fr; max-width: 480px; }
+}
+</style>
+
+<div class="page-hero">
+  <h1>コラム・お知らせ</h1>
+  <p>ドローン測量の最新動向、技術解説、現場活用のヒントをお届けします。</p>
+</div>
+
+<section style="background:var(--white);padding:80px 24px;">
+  <div class="container">
+    <div id="columnGrid" class="column-grid">
+      <div class="column-loading" id="columnLoading">
+        <div class="column-loading-spinner"></div>
+        記事を読み込んでいます...
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding:0 24px;">
+  <div class="cta-banner">
+    <h2>現場のデータ活用、ご相談ください</h2>
+    <p>ドローン測量・3次元データに関するお悩みは、お気軽にお問い合わせください。</p>
+    <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
+      <a href="https://tokaiair.com/contact/" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3H15C15.825 3 16.5 3.675 16.5 4.5V13.5C16.5 14.325 15.825 15 15 15H3C2.175 15 1.5 14.325 1.5 13.5V4.5C1.5 3.675 2.175 3 3 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.5 4.5L9 9.75L1.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        お問い合わせ
+      </a>
+      <a href="tel:050-7117-7141" class="btn-final-phone">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 2.25H6.75L8.1 5.85L6.3 6.75C7.05 8.85 9.15 10.95 11.25 11.7L12.15 9.9L15.75 11.25V13.5C15.75 14.742 14.742 15.75 13.5 15.75C7.536 15.75 2.25 10.464 2.25 4.5C2.25 3.258 3.258 2.25 4.5 2.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        050-7117-7141
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var grid = document.getElementById('columnGrid');
+  var loading = document.getElementById('columnLoading');
+
+  fetch('/wp-json/wp/v2/posts?per_page=12&_embed=1')
+    .then(function(res) { return res.json(); })
+    .then(function(posts) {
+      loading.style.display = 'none';
+      if (!posts.length) {
+        grid.innerHTML = '<p style="text-align:center;color:var(--gray-mid);padding:40px;">記事がまだありません。</p>';
+        return;
+      }
+      var html = '';
+      posts.forEach(function(post) {
+        var thumb = '';
+        var featuredMedia = post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0];
+        if (featuredMedia && featuredMedia.source_url) {
+          thumb = '<img class="column-thumb" src="' + featuredMedia.source_url + '" alt="' + (post.title.rendered || '') + '" loading="lazy">';
+        } else {
+          thumb = '<div class="column-thumb-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M8.5 10C9.328 10 10 9.328 10 8.5C10 7.672 9.328 7 8.5 7C7.672 7 7 7.672 7 8.5C7 9.328 7.672 10 8.5 10Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M21 15L16 10L5 21" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/></svg></div>';
+        }
+
+        var categories = post._embedded && post._embedded['wp:term'] && post._embedded['wp:term'][0];
+        var catHtml = '';
+        if (categories && categories.length > 0) {
+          catHtml = '<span class="column-category">' + categories[0].name + '</span>';
+        }
+
+        var date = new Date(post.date);
+        var dateStr = date.getFullYear() + '.' + String(date.getMonth()+1).padStart(2,'0') + '.' + String(date.getDate()).padStart(2,'0');
+
+        var excerpt = post.excerpt ? post.excerpt.rendered.replace(/<[^>]+>/g, '').substring(0, 100) : '';
+        if (excerpt.length >= 100) excerpt += '...';
+
+        html += '<a href="' + post.link + '" class="column-card">'
+          + thumb
+          + '<div class="column-body">'
+          + '<div class="column-meta">' + catHtml + '<span>' + dateStr + '</span></div>'
+          + '<h3 class="column-title">' + post.title.rendered + '</h3>'
+          + '<p class="column-excerpt">' + excerpt + '</p>'
+          + '<span class="column-readmore">続きを読む <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5.25 3.5L8.75 7L5.25 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
+          + '</div></a>';
+      });
+      grid.innerHTML = html;
+    })
+    .catch(function() {
+      loading.innerHTML = '記事の読み込みに失敗しました。ページを再読み込みしてください。';
+    });
+})();
+</script>

@@ -1,0 +1,147 @@
+<!-- page-hero -->
+<section class="page-hero">
+  <h1>現場の困りごと、まずはお聞かせください</h1>
+  <p>ドローン測量・3Dスキャン・赤外線調査のご相談を承ります。</p>
+</section>
+
+<!-- 連絡方法カード -->
+<section class="page-content" style="background:var(--white);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;">
+
+      <!-- メールで相談 -->
+      <a href="#contactForm" style="text-decoration:none;display:block;">
+        <div class="service-card" style="text-align:center;cursor:pointer;">
+          <div style="width:56px;height:56px;background:rgba(22,71,251,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 6l-10 7L2 6" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="margin-bottom:8px;">メールで相談</h3>
+          <p style="font-size:13px;color:var(--gray-mid);">下記フォームからお気軽にご相談ください。最短当日にご返信します。</p>
+        </div>
+      </a>
+
+      <!-- 面談を予約 -->
+      <a href="https://tokaiair.com/meeting-reserve/" style="text-decoration:none;display:block;">
+        <div class="service-card" style="text-align:center;cursor:pointer;">
+          <div style="width:56px;height:56px;background:rgba(22,71,251,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="#1647FB" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="margin-bottom:8px;">面談を予約</h3>
+          <p style="font-size:13px;color:var(--gray-mid);">オンライン面談をご予約いただけます。画面共有で具体的にご相談可能です。</p>
+        </div>
+      </a>
+
+      <!-- 電話で相談 -->
+      <a href="tel:050-7117-7141" style="text-decoration:none;display:block;">
+        <div class="service-card" style="text-align:center;cursor:pointer;">
+          <div style="width:56px;height:56px;background:rgba(251,191,36,0.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 2.5H7.5L9 6.5L7 7.5C7.833 9.833 10.167 12.167 12.5 13L13.5 11L17.5 12.5V15C17.5 16.38 16.38 17.5 15 17.5C8.373 17.5 2.5 11.627 2.5 5C2.5 3.62 3.62 2.5 5 2.5Z" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="margin-bottom:8px;">電話で相談</h3>
+          <p style="font-size:13px;color:var(--gray-mid);">050-7117-7141<br>平日 9:00〜18:00</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせフォーム -->
+<section class="estimate" id="contactForm">
+  <div class="estimate-inner">
+    <span class="section-tag">CONTACT</span>
+    <h2 class="estimate-title">お問い合わせフォーム</h2>
+    <p class="estimate-sub">内容を確認後、最短当日にご連絡いたします。</p>
+    <div class="form-card">
+      <form id="contactPageForm">
+        <div class="form-group">
+          <label class="form-label" for="company">会社名</label>
+          <input type="text" id="company" name="company" class="form-control" placeholder="株式会社○○">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="name">お名前<span>*</span></label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">メールアドレス<span>*</span></label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="example@company.co.jp" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">電話番号</label>
+          <input type="tel" id="phone" name="phone" class="form-control" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="service">ご用途<span>*</span></label>
+          <select id="service" name="service" class="form-control" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="drone_survey">ドローン測量</option>
+            <option value="earthwork">土量計算・数量算出</option>
+            <option value="3d_scan">3Dスキャン・点群計測</option>
+            <option value="infrared">赤外線調査・外壁点検</option>
+            <option value="consulting">データコンサルティング</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">ご相談内容<span>*</span></label>
+          <textarea id="message" name="message" class="form-control" rows="5" placeholder="現場の状況やご要望をお聞かせください。" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">送信する</button>
+        <p class="form-note">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 1.667A8.333 8.333 0 1 0 18.333 10 8.333 8.333 0 0 0 10 1.667Zm0 3.333v5m0 2.5h.008" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          通常1営業日以内にご連絡いたします
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+@media (max-width: 768px) {
+  .page-content .container > div[style*="grid-template-columns:repeat(3"] {
+    grid-template-columns: 1fr !important;
+    max-width: 400px;
+    margin: 0 auto 48px;
+  }
+}
+</style>
+
+<script>
+document.getElementById('contactPageForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var btn = this.querySelector('.btn-submit');
+  var name = this.querySelector('#name').value.trim();
+  var email = this.querySelector('#email').value.trim();
+  var service = this.querySelector('#service').value;
+  var message = this.querySelector('#message').value.trim();
+  if (!name || !email || !service || !message) {
+    alert('必須項目を入力してください。');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('正しいメールアドレスを入力してください。');
+    return;
+  }
+  btn.textContent = '送信中...';
+  btn.disabled = true;
+  fetch('https://tas-lark-bot.yosuke-toyoda.workers.dev/tas-estimate', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      company: this.querySelector('#company').value.trim(),
+      name: name,
+      email: email,
+      phone: this.querySelector('#phone').value.trim(),
+      service: service,
+      message: message
+    })
+  }).then(function() {
+    btn.textContent = 'ありがとうございます。最短当日にご連絡いたします。';
+    btn.style.background = '#16a34a';
+  }).catch(function() {
+    btn.textContent = '送信に失敗しました。050-7117-7141にお電話ください。';
+    btn.style.background = '#ef4444';
+    btn.disabled = false;
+  });
+});
+</script>

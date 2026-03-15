@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="東海エアサービスのサービス一覧。ドローン測量・3次元計測・赤外線調査・DXコンサルで建設現場のデータ課題を解決します。" />
+  <title>サービス一覧｜東海エアサービス</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #1647FB;
+      --brand-dark: #0f3ed4;
+      --accent: #fbbf24;
+      --dark: #0f172a;
+      --dark-mid: #1e2d4a;
+      --gray-bg: #f4f6f9;
+      --gray-mid: #64748b;
+      --gray-light: #e2e8f0;
+      --text: #1e293b;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: var(--brand);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-text {
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+    }
+    .logo-sub {
+      color: rgba(255,255,255,0.5);
+      font-size: 10px;
+      font-weight: 400;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--brand);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--brand-dark) !important; }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 88px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      color: var(--gray-mid);
+      font-size: 16px;
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--dark);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+    .btn-primary:hover {
+      background: #f0f4ff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 64px 24px 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 14px;
+    }
+    .footer-col-title {
+      color: rgba(255,255,255,0.35);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13.5px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-phone {
+      color: var(--white);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .footer-hours {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+    }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 24px;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      color: rgba(255,255,255,0.3);
+      font-size: 12px;
+    }
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-legal a {
+      color: rgba(255,255,255,0.3);
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+    /* ── MOBILE NAV MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(15,23,42,0.98);
+      z-index: 99;
+      padding: 24px;
+      flex-direction: column;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 64px 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+    }
+    @media (max-width: 480px) {
+      .service-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YYJ7NQZ71J"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-YYJ7NQZ71J");</script>
+<link rel="icon" href="https://tokaiair.com/wp-content/uploads/2025/07/cropped-8abcfc88717523adffda22f8e06ec421-32x32.png" sizes="32x32">
+<link rel="canonical" href="https://tokaiair.com/services/">
+<meta property="og:type" content="website"><meta property="og:title" content="サービス一覧｜東海エアサービス"><meta property="og:description" content="建設現場のデータ課題を解決する4つのサービス。ドローン測量・3次元計測・赤外線調査・DXコンサル。"><meta property="og:url" content="https://tokaiair.com/services/"><meta property="og:locale" content="ja_JP">
+
+<!-- PAGE SPECIFIC CSS -->
+<style>
+.page-hero {
+  background: var(--dark);
+  padding: 120px 24px 60px;
+  text-align: center;
+}
+.page-hero h1 {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.page-hero p {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.page-content {
+  padding: 80px 24px;
+}
+.page-content h2 {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.page-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.page-content p, .page-content li {
+  color: var(--gray-mid);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 40px 0;
+}
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-left: 4px solid var(--brand);
+  border-radius: 12px;
+  padding: 32px;
+  transition: box-shadow 0.25s, transform 0.2s;
+}
+.service-card:hover {
+  box-shadow: 0 12px 40px rgba(22,71,251,0.1);
+  transform: translateY(-3px);
+}
+.service-card h3 {
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.service-card p {
+  font-size: 14px;
+}
+.service-card .btn-service {
+  margin-top: 16px;
+  font-size: 13px;
+  padding: 10px 20px;
+  background: var(--brand);
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.service-card .btn-service:hover {
+  background: var(--brand-dark);
+}
+.service-icon {
+  width: 56px; height: 56px;
+  background: rgba(22,71,251,0.08);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.cta-banner {
+  background: linear-gradient(135deg, #1647FB 0%, #0f3ed4 60%, #1e2d4a 100%);
+  padding: 64px 24px;
+  text-align: center;
+  border-radius: 16px;
+  margin: 40px 0;
+}
+.cta-banner h2 {
+  color: var(--white) !important;
+  margin-bottom: 12px;
+}
+.cta-banner p {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 28px;
+}
+.cta-banner .btn-primary {
+  background: var(--white);
+  color: var(--brand);
+}
+@media (max-width: 768px) {
+  .service-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav role="navigation" aria-label="メインナビゲーション">
+    <div class="nav-inner">
+      <a href="https://tokaiair.com/" class="logo" aria-label="東海エアサービス トップページ">
+        <img src="https://tokaiair.com/wp-content/uploads/2025/07/8abcfc88717523adffda22f8e06ec421.png" alt="東海エアサービス" style="height:32px;width:auto;">
+        <div class="logo-text">
+          東海エアサービス株式会社
+          <span class="logo-sub">Tokai Air Service Inc.</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="https://tokaiair.com/services/">サービス</a></li>
+        <li><a href="https://tokaiair.com/case-library/cases/">導入事例</a></li>
+        <li><a href="https://tokaiair.com/company/">会社概要</a></li>
+        <li><a href="https://tokaiair.com/contact/" class="nav-cta">お問い合わせ</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+<div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="https://tokaiair.com/services/" role="menuitem">サービス</a>
+    <a href="https://tokaiair.com/case-library/cases/" role="menuitem">導入事例</a>
+    <a href="https://tokaiair.com/company/" role="menuitem">会社概要</a>
+    <a href="https://tokaiair.com/contact/" role="menuitem">お問い合わせ</a>
+  </div>
+
+<!-- PAGE CONTENT -->
+<div class="page-hero">
+  <p class="section-tag">SERVICES</p>
+  <h1>建設現場のデータ課題を解決する</h1>
+  <p>測量から解析、コンサルティングまで。現場が本当に必要としているデータを、最適な手法でお届けします。</p>
+</div>
+
+<section class="page-content" style="background: var(--gray-bg);">
+  <div class="container">
+    <div class="service-grid">
+
+      <!-- ドローン測量 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 15V3m0 12l-4-4m4 4l4-4"/>
+            <path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
+            <circle cx="12" cy="3" r="2"/>
+            <path d="M5 3h3M16 3h3"/>
+          </svg>
+        </div>
+        <h3>ドローン測量</h3>
+        <p style="color: var(--gray-mid); line-height: 1.7;">高精度な地表面データを短時間で取得。土量計算・出来形管理・i-Constructionに対応。精度±3cm、最短翌日納品。</p>
+        <a href="https://tokaiair.com/services/uav-survey/" class="btn-service">
+          詳しく見る
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- 3次元計測 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>3次元計測</h3>
+        <p style="color: var(--gray-mid); line-height: 1.7;">点群データ・3Dモデルで図面と現況のズレを可視化。BIM/CIM連携、各種CADフォーマットに対応します。</p>
+        <a href="https://tokaiair.com/services/3d-measurement/" class="btn-service">
+          詳しく見る
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- 赤外線調査 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </div>
+        <h3>赤外線調査</h3>
+        <p style="color: var(--gray-mid); line-height: 1.7;">足場不要で外壁の劣化を広範囲にスクリーニング。建築基準法12条点検対応。従来比コスト50%削減。</p>
+        <a href="https://tokaiair.com/services/infrared-inspection/" class="btn-service">
+          詳しく見る
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- DXコンサル -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+            <path d="M7 8l3 3-3 3M13 14h4"/>
+          </svg>
+        </div>
+        <h3>DXコンサルティング</h3>
+        <p style="color: var(--gray-mid); line-height: 1.7;">測量データの活用から業務プロセス改善まで。i-Construction対応・BIM/CIM導入を現場目線でサポートします。</p>
+        <a href="https://tokaiair.com/services/dx-consulting/" class="btn-service">
+          詳しく見る
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+      <h2>概算見積を30秒で取得</h2>
+      <p>サービス・現場住所・メールアドレスを入力するだけ。最短当日にお見積りをお送りします。</p>
+      <a href="https://tokaiair.com/contact/" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        お問い合わせ・見積依頼
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="https://tokaiair.com/" class="logo" aria-label="東海エアサービス トップページ">
+            <img src="https://tokaiair.com/wp-content/uploads/2025/07/8abcfc88717523adffda22f8e06ec421.png" alt="東海エアサービス" style="height:32px;width:auto;">
+            <div class="logo-text">
+              東海エアサービス株式会社
+              <span class="logo-sub">Tokai Air Service Inc.</span>
+            </div>
+          </a>
+          <p>ドローン測量・3次元データによる<br>建設現場のデータ活用を支援する<br>専門コンサルティング会社です。</p>
+        </div>
+        <div>
+          <p class="footer-col-title">サービス</p>
+          <ul class="footer-links">
+            <li><a href="https://tokaiair.com/services/uav-survey/">ドローン測量</a></li>
+            <li><a href="https://tokaiair.com/tools/earthwork/">土量計測・数量算出</a></li>
+            <li><a href="https://tokaiair.com/services/3d-measurement/">3次元モデル作成</a></li>
+            <li><a href="https://tokaiair.com/services/infrared-inspection/">外壁・構造物点検</a></li>
+            <li><a href="https://tokaiair.com/case-library/cases/">在庫棚卸し計測</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">会社情報</p>
+          <ul class="footer-links">
+            <li><a href="https://tokaiair.com/company/">会社概要</a></li>
+            <li><a href="https://tokaiair.com/company/">代表挨拶</a></li>
+            <li><a href="https://tokaiair.com/company/">資格・認定</a></li>
+            <li><a href="https://tokaiair.com/recruit/">採用情報</a></li>
+            <li><a href="https://tokaiair.com/column/">ニュース</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">お問い合わせ</p>
+          <div class="footer-phone">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 2.5H7.5L9 6.5L7 7.5C7.833 9.833 10.167 12.167 12.5 13L13.5 11L17.5 12.5V15C17.5 16.38 16.38 17.5 15 17.5C8.373 17.5 2.5 11.627 2.5 5C2.5 3.62 3.62 2.5 5 2.5Z" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <a href="tel:050-7117-7141" style="color:var(--white);text-decoration:none;">050-7117-7141</a>
+          </div>
+          <p class="footer-hours">平日 9:00〜18:00</p>
+          <ul class="footer-links" style="margin-top:16px;">
+            <li><a href="mailto:info@tokaiair.com">info@tokaiair.com</a></li>
+            <li><a href="https://tokaiair.com/contact/">お問い合わせフォーム</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 東海エアサービス株式会社 All rights reserved.</p>
+        <nav class="footer-legal" aria-label="法的情報">
+          <a href="https://tokaiair.com/privacy-policy/">プライバシーポリシー</a>
+          <a href="https://tokaiair.com/terms/">利用規約</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 20) {
+        nav.style.background = 'rgba(15, 23, 42, 0.98)';
+      } else {
+        nav.style.background = 'rgba(15, 23, 42, 0.92)';
+      }
+    });
+  </script>
+</body>
+</html>

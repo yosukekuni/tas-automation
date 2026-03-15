@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="東海エアサービスは、ドローン測量・3次元データによる建設現場の課題を解決するデータコンサルティング会社です。施工実績185件超。翌日納品対応。" />
+  <title>東海エアサービス｜現場の判断を、データで速くする。</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #1647FB;
+      --brand-dark: #0f3ed4;
+      --accent: #fbbf24;
+      --dark: #0f172a;
+      --dark-mid: #1e2d4a;
+      --gray-bg: #f4f6f9;
+      --gray-mid: #64748b;
+      --gray-light: #e2e8f0;
+      --text: #1e293b;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: var(--brand);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-text {
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+    }
+    .logo-sub {
+      color: rgba(255,255,255,0.5);
+      font-size: 10px;
+      font-weight: 400;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--brand);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--brand-dark) !important; }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--dark);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://tokaiair.com/wp-content/uploads/2026/03/hero-construction-v0.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.32;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(22,71,251,0.18) 60%, rgba(15,23,42,0.85) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(22,71,251,0.2);
+      border: 1px solid rgba(22,71,251,0.45);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    .hero h1 {
+      font-size: clamp(34px, 5.5vw, 64px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero-subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: clamp(15px, 1.8vw, 17px);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--dark);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+    .btn-primary:hover {
+      background: #f0f4ff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.6);
+      transform: translateY(-1px);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      padding: 18px 32px 18px 0;
+      margin-right: 32px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stat:last-child { border-right: none; margin-right: 0; }
+    .hero-stat-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .hero-stat-num sup { font-size: 14px; font-weight: 700; }
+    .hero-stat-label {
+      color: rgba(255,255,255,0.5);
+      font-size: 11.5px;
+      font-weight: 500;
+      margin-top: 4px;
+      letter-spacing: 0.03em;
+    }
+    .hero-stat-sub {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 88px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      color: var(--gray-mid);
+      font-size: 16px;
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* ── PAIN POINTS ── */
+    .pain { background: var(--white); }
+    .pain-header { text-align: center; margin-bottom: 56px; }
+    .pain-header .section-lead { margin: 0 auto; }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .pain-card {
+      background: var(--white);
+      border: 1px solid var(--gray-light);
+      border-left: 4px solid var(--brand);
+      border-radius: 12px;
+      padding: 32px;
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+    .pain-card:hover {
+      box-shadow: 0 12px 40px rgba(22,71,251,0.1);
+      transform: translateY(-3px);
+    }
+    .pain-icon {
+      width: 48px; height: 48px;
+      background: rgba(22,71,251,0.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .pain-problem {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .pain-arrow {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gray-mid);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .pain-solution {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--brand);
+      line-height: 1.5;
+    }
+
+    /* ── PROCESS ── */
+    .process { background: var(--gray-bg); }
+    .process-header { text-align: center; margin-bottom: 56px; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(12.5% + 24px);
+      right: calc(12.5% + 24px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--brand) 0%, var(--accent) 100%);
+      z-index: 0;
+    }
+    .step {
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-circle {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 20px rgba(22,71,251,0.35);
+      border: 3px solid var(--gray-bg);
+    }
+    .step:last-child .step-circle { background: var(--accent); color: var(--dark); box-shadow: 0 4px 20px rgba(251,191,36,0.4); }
+    .step-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: var(--gray-mid);
+      line-height: 1.6;
+    }
+
+    /* ── TRUST STRIP ── */
+    .trust { background: var(--dark); padding: 64px 24px; }
+    .trust-numbers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    .trust-num-item {
+      background: rgba(255,255,255,0.03);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .trust-num {
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .trust-num span { color: var(--accent); }
+    .trust-num-label {
+      color: rgba(255,255,255,0.5);
+      font-size: 12.5px;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 10px 18px;
+      color: rgba(255,255,255,0.8);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+    .trust-badge svg { flex-shrink: 0; }
+
+    /* ── TOOL CTA ── */
+    .tool-cta { background: var(--dark-mid); padding: 88px 24px; }
+    .tool-cta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .tool-title {
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .tool-title .accent { color: var(--accent); }
+    .tool-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .tool-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.8);
+      font-size: 14.5px;
+    }
+    .check-icon {
+      width: 20px; height: 20px;
+      background: rgba(22,71,251,0.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .btn-accent {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-accent:hover { background: #f59e0b; transform: translateY(-1px); }
+    .tool-image {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .tool-image img { width: 100%; height: auto; display: block; }
+
+    /* ── ESTIMATE FORM ── */
+    .estimate { background: var(--gray-bg); }
+    .estimate-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .estimate-title {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .estimate-sub {
+      color: var(--gray-mid);
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+    .form-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+      text-align: left;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+    .form-label span { color: var(--brand); margin-left: 4px; }
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 8px;
+      font-family: system-ui, "Noto Sans JP", sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(22,71,251,0.12);
+    }
+    select.form-control {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      background: var(--brand);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: system-ui, "Noto Sans JP", sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: var(--brand-dark); transform: translateY(-1px); }
+    .form-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--gray-mid);
+      font-size: 12.5px;
+      margin-top: 16px;
+    }
+
+    /* ── CASE STUDIES ── */
+    .cases { background: var(--white); }
+    .cases-header { text-align: center; margin-bottom: 48px; }
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .case-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--gray-light);
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+    .case-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-3px); }
+    .case-visual {
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+    .case-visual-1 { background: linear-gradient(135deg, #1647FB 0%, #0f3ed4 100%); }
+    .case-visual-2 { background: linear-gradient(135deg, #0f172a 0%, #1e2d4a 100%); }
+    .case-visual-3 { background: linear-gradient(135deg, #0f3ed4 0%, #1647FB 80%, #fbbf24 100%); }
+    .case-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+    }
+    .case-body { padding: 24px; }
+    .case-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .case-desc {
+      font-size: 13.5px;
+      color: var(--gray-mid);
+      line-height: 1.6;
+    }
+    .case-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 14px;
+    }
+    .case-link:hover { text-decoration: underline; }
+
+    /* ── FAQ ── */
+    .faq { background: var(--gray-bg); }
+    .faq-header { text-align: center; margin-bottom: 48px; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+    .faq-item {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--gray-light);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      text-align: left;
+      font-family: system-ui, "Noto Sans JP", sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: background 0.15s;
+    }
+    .faq-question:hover { background: var(--gray-bg); }
+    .faq-chevron {
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s;
+      padding: 0 24px;
+      color: var(--gray-mid);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 240px;
+      padding: 0 24px 20px;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: linear-gradient(135deg, #1647FB 0%, #0f3ed4 60%, #1e2d4a 100%);
+      padding: 96px 24px;
+      text-align: center;
+    }
+    .final-cta-title {
+      font-size: clamp(24px, 3.5vw, 42px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .final-cta-sub {
+      color: rgba(255,255,255,0.7);
+      font-size: 16px;
+      margin-bottom: 44px;
+    }
+    .final-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-final-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--brand);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-final-primary:hover { background: #f0f4ff; transform: translateY(-1px); }
+    .btn-final-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-final-ghost:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+    .btn-final-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-final-phone:hover { background: #f59e0b; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 64px 24px 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 14px;
+    }
+    .footer-col-title {
+      color: rgba(255,255,255,0.35);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13.5px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-phone {
+      color: var(--white);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .footer-hours {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+    }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 24px;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      color: rgba(255,255,255,0.3);
+      font-size: 12px;
+    }
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-legal a {
+      color: rgba(255,255,255,0.3);
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+    /* ── MOBILE NAV MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(15,23,42,0.98);
+      z-index: 99;
+      padding: 24px;
+      flex-direction: column;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .tool-cta-inner { grid-template-columns: 1fr; gap: 40px; }
+      .tool-image { max-width: 560px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 64px 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .steps::before { display: none; }
+      .trust-numbers { grid-template-columns: 1fr 1fr; }
+      .cases-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .form-card { padding: 28px 20px; }
+      .hero-stats { gap: 0; }
+      .hero-stat { padding: 12px 24px 12px 0; margin-right: 24px; }
+      .hero-stat-num { font-size: 22px; }
+    }
+    @media (max-width: 480px) {
+      .steps { grid-template-columns: 1fr; }
+      .trust-numbers { grid-template-columns: 1fr 1fr; }
+      .trust-num { font-size: 32px; }
+      .final-actions { flex-direction: column; align-items: center; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-ghost { justify-content: center; }
+    }
+  </style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YYJ7NQZ71J"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-YYJ7NQZ71J");</script>
+<link rel="icon" href="https://tokaiair.com/wp-content/uploads/2025/07/cropped-8abcfc88717523adffda22f8e06ec421-32x32.png" sizes="32x32">
+<link rel="canonical" href="https://tokaiair.com/">
+<meta property="og:type" content="website"><meta property="og:title" content="東海エアサービス｜現場の判断を、データで速くする"><meta property="og:description" content="建設現場の困りごとを正確なデータで解決。施工実績185件超。"><meta property="og:url" content="https://tokaiair.com/"><meta property="og:image" content="https://tokaiair.com/wp-content/uploads/2026/03/hero-construction-v0.jpg"><meta property="og:locale" content="ja_JP"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://tokaiair.com/#organization","name":"東海エアサービス株式会社","url":"https://tokaiair.com/","telephone":"+81-50-7117-7141","email":"info@tokaiair.com","address":{"@type":"PostalAddress","addressLocality":"名古屋市名東区","addressRegion":"愛知県","postalCode":"465-0077","addressCountry":"JP"}}]}</script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav role="navigation" aria-label="メインナビゲーション">
+    <div class="nav-inner">
+      <a href="https://tokaiair.com/" class="logo" aria-label="東海エアサービス トップページ">
+        <img src="https://tokaiair.com/wp-content/uploads/2025/07/8abcfc88717523adffda22f8e06ec421.png" alt="東海エアサービス" style="height:32px;width:auto;">
+        <div class="logo-text">
+          東海エアサービス株式会社
+          <span class="logo-sub">Tokai Air Service Inc.</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#pain">課題と解決</a></li>
+        <li><a href="#process">ご依頼の流れ</a></li>
+        <li><a href="#cases">導入事例</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#estimate" class="nav-cta">概算見積を取得</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="#pain" role="menuitem">課題と解決</a>
+    <a href="#process" role="menuitem">ご依頼の流れ</a>
+    <a href="#cases" role="menuitem">導入事例</a>
+    <a href="#faq" role="menuitem">よくある質問</a>
+    <a href="#estimate" role="menuitem">概算見積を取得</a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" role="banner">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content container">
+      <div class="hero-badge" aria-label="施工実績 185件超">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        施工実績 185件超
+      </div>
+      <h1>現場の判断を、<br><span class="accent">データで速くする。</span></h1>
+      <p class="hero-subtitle">
+        「土量が合わない」「手戻りが出る」「数字の根拠がない」<br>
+        建設現場の困りごとを、正確なデータで解決します。
+      </p>
+      <div class="hero-actions">
+        <a href="#estimate" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5L13.5 7.5M13.5 7.5L8 13.5M13.5 7.5H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          概算見積を30秒で取得
+        </a>
+        <a href="#pain" class="btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 5V8.5M8 10.5V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          課題を相談する
+        </a>
+      </div>
+      <div class="hero-stats" role="list" aria-label="主要実績数値">
+        <div class="hero-stat" role="listitem">
+          <div class="hero-stat-num">185<sup>+</sup></div>
+          <div class="hero-stat-label">施工実績件数</div>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <div class="hero-stat-num" aria-label="手戻り削減60パーセント">60<sup>%</sup></div>
+          <div class="hero-stat-label">手戻り削減</div>
+          <div class="hero-stat-sub">平均実績</div>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <div class="hero-stat-num">翌日</div>
+          <div class="hero-stat-label">最短納品</div>
+          <div class="hero-stat-sub">計測翌日対応</div>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <div class="hero-stat-num">全国</div>
+          <div class="hero-stat-label">対応エリア</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAIN POINTS -->
+  <section class="pain" id="pain">
+    <div class="container">
+      <div class="pain-header">
+        <span class="section-tag">課題と解決</span>
+        <h2 class="section-title">こんなお悩みはありませんか？</h2>
+        <p class="section-lead">多くの建設現場で繰り返される3つの課題を、最新の測量技術で根本から解決します。</p>
+      </div>
+      <div class="pain-grid">
+        <!-- Card 1 -->
+        <article class="pain-card">
+          <div class="pain-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17H3M9 12H3M9 7H3" stroke="#1647FB" stroke-width="1.75" stroke-linecap="round"/>
+              <path d="M21 7L13 17L10 14" stroke="#1647FB" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="pain-problem">土量の数字に根拠がない</p>
+          <div class="pain-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M6 10L3 7M6 10L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            ドローン測量で解決
+          </div>
+          <p class="pain-solution">高精度な地表面データで数量を確定。cm精度の点群で、誰もが納得できる根拠を提示できます。</p>
+        </article>
+        <!-- Card 2 -->
+        <article class="pain-card">
+          <div class="pain-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="#1647FB" stroke-width="1.75"/>
+              <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="#1647FB" stroke-width="1.75"/>
+              <rect x="3" y="13" width="8" height="8" rx="1.5" stroke="#1647FB" stroke-width="1.75"/>
+              <path d="M13 17H21M17 13V21" stroke="#1647FB" stroke-width="1.75" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="pain-problem">手戻りが多い</p>
+          <div class="pain-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M6 10L3 7M6 10L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            3次元モデルで解決
+          </div>
+          <p class="pain-solution">3次元データで施工前に差異を可視化。設計との照合を自動化し、着工前にリスクを排除します。</p>
+        </article>
+        <!-- Card 3 -->
+        <article class="pain-card">
+          <div class="pain-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="#1647FB" stroke-width="1.75"/>
+              <path d="M12 7V12L15 15" stroke="#1647FB" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="pain-problem">測量に時間がかかりすぎる</p>
+          <div class="pain-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M6 10L3 7M6 10L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            スピード納品で解決
+          </div>
+          <p class="pain-solution">半日の計測で翌日にデータ納品。従来測量の1/5の時間で、同等以上の精度のデータを提供します。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="process-header">
+        <span class="section-tag">ご利用方法</span>
+        <h2 class="section-title">ご依頼の流れ</h2>
+        <p class="section-lead" style="margin: 0 auto;">お問い合わせから最短翌日納品まで、シンプルなプロセスで対応します。</p>
+      </div>
+      <div class="steps" role="list">
+        <div class="step" role="listitem">
+          <div class="step-circle" aria-hidden="true">01</div>
+          <div class="step-name">ヒアリング</div>
+          <p class="step-desc">現場の状況・課題・データ用途をお聞きします。オンライン・電話どちらでも対応。</p>
+        </div>
+        <div class="step" role="listitem">
+          <div class="step-circle" aria-hidden="true">02</div>
+          <div class="step-name">計測</div>
+          <p class="step-desc">現地でドローン計測を実施。広大な現場も半日で完了します。</p>
+        </div>
+        <div class="step" role="listitem">
+          <div class="step-circle" aria-hidden="true">03</div>
+          <div class="step-name">納品</div>
+          <p class="step-desc">点群・3Dモデル・数量計算書を翌日に納品。各種CADフォーマット対応。</p>
+        </div>
+        <div class="step" role="listitem">
+          <div class="step-circle" aria-hidden="true">04</div>
+          <div class="step-name">サポート</div>
+          <p class="step-desc">データ活用から次工程の計画まで、継続的にサポートします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust" aria-label="実績数値と認定情報">
+    <div class="container">
+      <div class="trust-numbers" role="list">
+        <div class="trust-num-item" role="listitem">
+          <div class="trust-num">185<span>+</span></div>
+          <div class="trust-num-label">施工実績件数</div>
+        </div>
+        <div class="trust-num-item" role="listitem">
+          <div class="trust-num">±<span>3</span>cm</div>
+          <div class="trust-num-label">計測精度</div>
+        </div>
+        <div class="trust-num-item" role="listitem">
+          <div class="trust-num">最短<span>翌日</span></div>
+          <div class="trust-num-label">データ納品</div>
+        </div>
+        <div class="trust-num-item" role="listitem">
+          <div class="trust-num"><span>全国</span></div>
+          <div class="trust-num-label">対応エリア</div>
+        </div>
+      </div>
+      <div class="trust-badges" role="list" aria-label="認定・資格情報">
+        <div class="trust-badge" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L8.5 5H13L9.5 7.5L11 11L7 8.5L3 11L4.5 7.5L1 5H5.5L7 1Z" stroke="#fbbf24" stroke-width="1.2" fill="rgba(251,191,36,0.15)"/></svg>
+          測量業登録
+        </div>
+        <div class="trust-badge" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L8.5 5H13L9.5 7.5L11 11L7 8.5L3 11L4.5 7.5L1 5H5.5L7 1Z" stroke="#fbbf24" stroke-width="1.2" fill="rgba(251,191,36,0.15)"/></svg>
+          全省庁統一資格
+        </div>
+        <div class="trust-badge" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L8.5 5H13L9.5 7.5L11 11L7 8.5L3 11L4.5 7.5L1 5H5.5L7 1Z" stroke="#fbbf24" stroke-width="1.2" fill="rgba(251,191,36,0.15)"/></svg>
+          国交省包括許可
+        </div>
+        <div class="trust-badge" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L8.5 5H13L9.5 7.5L11 11L7 8.5L3 11L4.5 7.5L1 5H5.5L7 1Z" stroke="#fbbf24" stroke-width="1.2" fill="rgba(251,191,36,0.15)"/></svg>
+          i-Construction対応
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOL CTA -->
+  <section class="tool-cta">
+    <div class="container">
+      <div class="tool-cta-inner">
+        <div>
+          <span class="section-tag" style="color: var(--accent);">土量コスト計算機</span>
+          <h2 class="tool-title"><span class="accent">土量コスト、</span><br>30秒で概算できます。</h2>
+          <ul class="tool-checklist" role="list">
+            <li>
+              <div class="check-icon" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              現場の面積・深さを入力するだけ
+            </li>
+            <li>
+              <div class="check-icon" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              ドローン測量の費用対効果を即算出
+            </li>
+            <li>
+              <div class="check-icon" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              会員登録不要・完全無料
+            </li>
+            <li>
+              <div class="check-icon" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4 7L8 3" stroke="#1647FB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              結果はPDFでダウンロード可能
+            </li>
+          </ul>
+          <a href="#estimate" class="btn-accent">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5L13.5 7.5M13.5 7.5L8 13.5M13.5 7.5H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            土量コスト計算機を使う
+          </a>
+        </div>
+        <div class="tool-image">
+          <img src="https://tokaiair.com/wp-content/uploads/2026/03/pointcloud-3d-survey-result.jpg" alt="土量コスト計算機のダッシュボード画面。3Dポイントクラウドデータと数量計算結果を表示。" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK ESTIMATE FORM -->
+  <section class="estimate" id="estimate">
+    <div class="container">
+      <div class="estimate-inner">
+        <span class="section-tag" style="display:block; text-align:center;">お問い合わせ</span>
+        <h2 class="estimate-title">概算見積を30秒で取得</h2>
+        <p class="estimate-sub">サービス内容と現場の概要をご入力いただくだけで、すぐに概算見積をお届けします。</p>
+        <div class="form-card">
+          <form id="estimateForm" novalidate>
+            <div class="form-group">
+              <label for="service" class="form-label">サービス種別<span>必須</span></label>
+              <select id="service" name="service" class="form-control" required aria-required="true">
+                <option value="" disabled selected>サービスを選択してください</option>
+                <option value="drone-survey">ドローン測量・点群データ</option>
+                <option value="volume">土量計測・数量算出</option>
+                <option value="3d-model">3次元モデル作成</option>
+                <option value="inspection">外壁・構造物点検</option>
+                <option value="inventory">在庫棚卸し計測</option>
+                <option value="other">その他・相談</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="location" class="form-label">現場の所在地<span>必須</span></label>
+              <input type="text" id="location" name="location" class="form-control" placeholder="例：愛知県名古屋市○○区" required aria-required="true" />
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">メールアドレス<span>必須</span></label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="例：example@company.co.jp" required aria-required="true" />
+            </div>
+            <button type="submit" class="btn-submit">
+              概算見積を受け取る
+            </button>
+          </form>
+          <p class="form-note">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6" stroke="#64748b" stroke-width="1.2"/><path d="M7 4.5V7.5M7 9V9.5" stroke="#64748b" stroke-width="1.2" stroke-linecap="round"/></svg>
+            営業電話は一切しません
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="cases" id="cases">
+    <div class="container">
+      <div class="cases-header">
+        <span class="section-tag">導入事例</span>
+        <h2 class="section-title">現場で実証された導入実績</h2>
+        <p class="section-lead" style="margin: 0 auto;">様々な建設・インフラ現場でのデータ活用事例をご紹介します。</p>
+      </div>
+      <div class="cases-grid">
+        <article class="case-card">
+          <div class="case-visual case-visual-1" aria-hidden="true">
+            <span class="case-tag">造成工事</span>
+          </div>
+          <div class="case-body">
+            <h3 class="case-title">大規模造成工事の土量管理</h3>
+            <p class="case-desc">約15haの大規模造成現場にて、ドローン測量で土量を毎月管理。従来比70%の測量コスト削減を実現。</p>
+            <a href="https://tokaiair.com/case-library/cases/" class="case-link">
+              詳細を見る
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+        <article class="case-card">
+          <div class="case-visual case-visual-2" aria-hidden="true">
+            <span class="case-tag">外壁調査</span>
+          </div>
+          <div class="case-body">
+            <h3 class="case-title">高層建築物の外壁ひび割れ調査</h3>
+            <p class="case-desc">地上20階建ての外壁をドローンで全面点検。足場設置ゼロで調査完了し、工期を2週間短縮。</p>
+            <a href="https://tokaiair.com/case-library/cases/" class="case-link">
+              詳細を見る
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+        <article class="case-card">
+          <div class="case-visual case-visual-3" aria-hidden="true">
+            <span class="case-tag">在庫棚卸し</span>
+          </div>
+          <div class="case-body">
+            <h3 class="case-title">砕石ヤードの在庫数量計測</h3>
+            <p class="case-desc">複数の骨材ストックパイルを3Dスキャンで計測。目視計測との誤差±1.2%で、月次棚卸しを自動化。</p>
+            <a href="https://tokaiair.com/case-library/cases/" class="case-link">
+              詳細を見る
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <span class="section-tag">よくある質問</span>
+        <h2 class="section-title">よくあるご質問</h2>
+      </div>
+      <ul class="faq-list" role="list">
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false">
+            どのような現場・規模に対応できますか？
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#64748b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">
+            土工・造成工事・ダム工事などの大規模土工から、中小規模の建築現場、構造物点検、在庫管理まで幅広く対応しています。面積・規模に関わらずお気軽にご相談ください。最小実績は500㎡、最大は約200haです。
+          </div>
+        </li>
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false">
+            費用の目安を教えてください。
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#64748b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">
+            現場の面積・地形・必要な成果物によって異なります。1haあたりの計測であれば15万円〜が目安です。概算見積フォームからご連絡いただければ、24時間以内にお見積もりをお送りします。追加費用は一切発生しません。
+          </div>
+        </li>
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false">
+            納品データのフォーマットは何に対応していますか？
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#64748b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">
+            点群データ（LAS / LAZ / CSV）、3次元モデル（OBJ / FBX / IFC）、CADデータ（DXF / DWG）、数量計算書（Excel / PDF）に対応しています。使用しているソフトウェアに合わせてお選びいただけます。
+          </div>
+        </li>
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false">
+            計測精度はどの程度ですか？
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#64748b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">
+            RTK-GNSSによる地上基準点（GCP）を使用した場合、水平±2cm・垂直±3cmの精度を保証しています。国土交通省の基準点測量同等の精度で、公共工事の出来高管理にもご利用いただけます。
+          </div>
+        </li>
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false">
+            官公庁・公共工事の案件は受けられますか？
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#64748b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer">
+            はい、対応しています。全省庁統一資格を取得しており、国土交通省・農林水産省・地方自治体など官公庁案件の実績が多数あります。i-Construction（ICT施工）対応の成果物にも対応しています。
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" aria-labelledby="final-cta-title">
+    <div class="container">
+      <h2 class="final-cta-title" id="final-cta-title">現場の困りごと、まずは<br>お聞かせください。</h2>
+      <p class="final-cta-sub">初回相談は無料です。データ活用に詳しい専門スタッフが丁寧に対応します。</p>
+      <div class="final-actions">
+        <a href="#estimate" class="btn-final-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5L13.5 7.5M13.5 7.5L8 13.5M13.5 7.5H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          概算見積を取得
+        </a>
+        <a href="https://tokaiair.com/meeting-reserve/" class="btn-final-ghost">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 5.5L8 9.5L14 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          無料相談を予約
+        </a>
+        <a href="tel:050-7117-7141" class="btn-final-phone">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 2H6.5L7.5 5.5L6 6.5C6.667 8 8 9.333 9.5 10L10.5 8.5L14 9.5V12C14 13.1 13.1 14 12 14C6.477 14 2 9.523 2 4C2 2.9 2.9 2 4 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          050-7117-7141
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="https://tokaiair.com/" class="logo" aria-label="東海エアサービス トップページ">
+            <img src="https://tokaiair.com/wp-content/uploads/2025/07/8abcfc88717523adffda22f8e06ec421.png" alt="東海エアサービス" style="height:32px;width:auto;">
+            <div class="logo-text">
+              東海エアサービス株式会社
+              <span class="logo-sub">Tokai Air Service Inc.</span>
+            </div>
+          </a>
+          <p>ドローン測量・3次元データによる<br>建設現場のデータ活用を支援する<br>専門コンサルティング会社です。</p>
+        </div>
+        <div>
+          <p class="footer-col-title">サービス</p>
+          <ul class="footer-links">
+            <li><a href="https://tokaiair.com/services/uav-survey/">ドローン測量</a></li>
+            <li><a href="https://tokaiair.com/tools/earthwork/">土量計測・数量算出</a></li>
+            <li><a href="https://tokaiair.com/services/3d-measurement/">3次元モデル作成</a></li>
+            <li><a href="https://tokaiair.com/services/infrared-inspection/">外壁・構造物点検</a></li>
+            <li><a href="https://tokaiair.com/case-library/cases/">在庫棚卸し計測</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">会社情報</p>
+          <ul class="footer-links">
+            <li><a href="https://tokaiair.com/company/">会社概要</a></li>
+            <li><a href="https://tokaiair.com/company/">代表挨拶</a></li>
+            <li><a href="https://tokaiair.com/company/">資格・認定</a></li>
+            <li><a href="https://tokaiair.com/recruit/">採用情報</a></li>
+            <li><a href="https://tokaiair.com/column/">ニュース</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">お問い合わせ</p>
+          <div class="footer-phone">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 2.5H7.5L9 6.5L7 7.5C7.833 9.833 10.167 12.167 12.5 13L13.5 11L17.5 12.5V15C17.5 16.38 16.38 17.5 15 17.5C8.373 17.5 2.5 11.627 2.5 5C2.5 3.62 3.62 2.5 5 2.5Z" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <a href="tel:050-7117-7141" style="color:var(--white);text-decoration:none;">050-7117-7141</a>
+          </div>
+          <p class="footer-hours">平日 9:00〜18:00</p>
+          <ul class="footer-links" style="margin-top:16px;">
+            <li><a href="mailto:info@tokaiair.com">info@tokaiair.com</a></li>
+            <li><a href="https://tokaiair.com/contact/">お問い合わせフォーム</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 東海エアサービス株式会社 All rights reserved.</p>
+        <nav class="footer-legal" aria-label="法的情報">
+          <a href="https://tokaiair.com/privacy-policy/">プライバシーポリシー</a>
+          <a href="https://tokaiair.com/terms/">利用規約</a>
+          
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        // Toggle current
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Form submission
+    document.getElementById('estimateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.btn-submit');
+      const service = this.querySelector('#service').value;
+      const location = this.querySelector('#location').value.trim();
+      const email = this.querySelector('#email').value.trim();
+      if (!service || !location || !email) {
+        alert('すべての項目を入力してください。');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('正しいメールアドレスを入力してください。');
+        return;
+      }
+      btn.textContent = '送信中...';
+      btn.disabled = true;
+      fetch('https://tas-lark-bot.yosuke-toyoda.workers.dev/tas-estimate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service:service,address:location,email:email})}).then(function(){btn.textContent='ありがとうございます。最短当日にお見積りをお送りします。';btn.style.background='#16a34a';}).catch(function(){btn.textContent='送信に失敗しました。050-7117-7141にお電話ください。';btn.style.background='#ef4444';btn.disabled=false;});
+    });
+
+    // Scroll-based nav background opacity
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 20) {
+        nav.style.background = 'rgba(15, 23, 42, 0.98)';
+      } else {
+        nav.style.background = 'rgba(15, 23, 42, 0.92)';
+      }
+    });
+
+    // Intersection Observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.pain-card, .step, .case-card, .trust-num-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
