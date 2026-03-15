@@ -19,9 +19,15 @@ from datetime import datetime
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
 SCRIPT_DIR = Path(__file__).parent
 OUTPUT_PATH = SCRIPT_DIR.parent / "dashboard.html"
 CONFIG_PATH = Path("/mnt/c/Users/USER/Documents/_data/automation_config.json")
+SERVICE_ACCOUNT_PATH = Path("/mnt/c/Users/USER/Documents/_data/google_service_account.json")
+PL_SPREADSHEET_ID = "1ag_f3oKcLIrqWzAj-21Owhlye-a7aNiyscRf71dBbbQ"
+PL_SHEET_NAME = "2025年度"
 
 
 def load_config():
@@ -56,6 +62,66 @@ def get_records(token, base_token, table_id, max_pages=5):
     return records
 
 
+def get_pl_data():
+    """Google SheetsからP&Lデータを取得"""
+    creds = service_account.Credentials.from_service_account_file(
+        str(SERVICE_ACCOUNT_PATH),
+        scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
+    )
+    service = build("sheets", "v4", credentials=creds)
+    sheet = service.spreadsheets()
+
+    # A1:S30 を一括取得（月次データは列H=index7 以降）
+    result = sheet.values().get(
+        spreadsheetId=PL_SPREADSHEET_ID,
+        range=f"{PL_SHEET_NAME}!A1:S30"
+    ).execute()
+    rows = result.get("values", [])
+
+    if len(rows) < 30:
+        print(f"  P&Lデータ: {len(rows)}行（不足の可能性あり）")
+
+    DATA_START_COL = 7  # 列H = index 7
+
+    def parse_row(row_idx):
+        """指定行の月次数値データを取得（列H以降）"""
+        if row_idx >= len(rows):
+            return []
+        row = rows[row_idx]
+        values = []
+        for cell in row[DATA_START_COL:]:
+            try:
+                cleaned = str(cell).replace(",", "").replace("¥", "").replace("￥", "").replace(" ", "").replace("円", "")
+                if cleaned in ("", "-", "―"):
+                    values.append(0)
+                else:
+                    values.append(float(cleaned))
+            except (ValueError, TypeError):
+                values.append(0)
+        return values
+
+    # Row 2 (index 1): 月名（列H以降）
+    months_row = rows[1] if len(rows) > 1 else []
+    month_labels = []
+    for m in months_row[DATA_START_COL:]:
+        # 全角数字を半角に変換
+        label = str(m)
+        for zf, hf in zip("０１２３４５６７８９", "0123456789"):
+            label = label.replace(zf, hf)
+        month_labels.append(label)
+
+    pl_data = {
+        "months": month_labels,
+        "revenue": parse_row(2),       # Row 3: 全売上
+        "cost": parse_row(3),          # Row 4: 全コスト
+        "operating_profit": parse_row(8),  # Row 9: 営業利益
+        "net_profit": parse_row(9),    # Row 10: 純利益
+        "tokai_revenue": parse_row(12),  # Row 13: 東海工測売上
+        "direct_revenue": parse_row(29),  # Row 30: 直取引売上
+    }
+    return pl_data
+
+
 def generate_dashboard():
     cfg = load_config()
     token = get_token(cfg)
@@ -63,6 +129,16 @@ def generate_dashboard():
     web_base = "Vy65bp8Wia7UkZs8CWCjPSqJpyf"
 
     print("データ取得中...")
+
+    # P&L
+    print("  P&Lデータ取得中...")
+    try:
+        pl = get_pl_data()
+        print(f"  P&L: {len(pl['months'])}ヶ月分")
+    except Exception as e:
+        print(f"  P&L取得エラー: {e}")
+        pl = {"months": [], "revenue": [], "cost": [], "operating_profit": [],
+              "net_profit": [], "tokai_revenue": [], "direct_revenue": []}
 
     # CRM
     deals = get_records(token, crm_base, "tbl1rM86nAw9l3bP")
@@ -126,7 +202,33 @@ def generate_dashboard():
     # === HTML生成 ===
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
 
+    # P&L KPI値（直近月のデータ）
+    latest_revenue = 0
+    latest_profit = 0
+    latest_month_label = ""
+    if pl["revenue"]:
+        # 直近のゼロでないデータを探す
+        for i in range(len(pl["revenue"]) - 1, -1, -1):
+            if pl["revenue"][i] != 0:
+                latest_revenue = pl["revenue"][i]
+                latest_profit = pl["net_profit"][i] if i < len(pl["net_profit"]) else 0
+                latest_month_label = pl["months"][i] if i < len(pl["months"]) else ""
+                break
+
     # KPIカード
+    pl_kpi = ""
+    if latest_month_label:
+        pl_kpi = f"""
+      <div class="kpi-card">
+        <div class="kpi-value">&yen;{latest_revenue:,.0f}</div>
+        <div class="kpi-label">{latest_month_label}月 売上</div>
+      </div>
+      <div class="kpi-card {'accent-green' if latest_profit >= 0 else 'accent-red'}">
+        <div class="kpi-value">&yen;{latest_profit:,.0f}</div>
+        <div class="kpi-label">{latest_month_label}月 純利益</div>
+      </div>
+"""
+
     kpi_cards = f"""
     <div class="kpi-grid">
       <div class="kpi-card">
@@ -145,6 +247,7 @@ def generate_dashboard():
         <div class="kpi-value">&yen;{total_revenue:,.0f}</div>
         <div class="kpi-label">受注金額合計</div>
       </div>
+      {pl_kpi}
     </div>
     """
 
@@ -279,6 +382,12 @@ tr:hover td{{background:var(--warm)}}
 /* CHART */
 .chart-container{{position:relative;height:250px}}
 
+/* P&L */
+.kpi-card.accent-green{{background:var(--green);color:#fff}}
+.kpi-card.accent-green .kpi-label{{color:#c8f7c5}}
+.kpi-card.accent-red{{background:var(--red);color:#fff}}
+.kpi-card.accent-red .kpi-label{{color:#f5b7b1}}
+
 @media(max-width:768px){{
   .grid-2{{grid-template-columns:1fr}}
   .kpi-grid{{grid-template-columns:repeat(2,1fr)}}
@@ -296,6 +405,21 @@ tr:hover td{{background:var(--warm)}}
 
   <!-- KPI -->
   {kpi_cards}
+
+  <!-- P&L Section -->
+  <h2 class="section-title">P&amp;L（損益計算書）</h2>
+  <div class="card" style="margin-bottom:12px">
+    <h3>売上・コスト・利益 月次推移</h3>
+    <div class="chart-container" style="height:300px">
+      <canvas id="plChart"></canvas>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <h3>東海工測 vs 直取引 売上比率推移</h3>
+    <div class="chart-container" style="height:250px">
+      <canvas id="revenueBreakdownChart"></canvas>
+    </div>
+  </div>
 
   <!-- CRM Section -->
   <h2 class="section-title">CRM</h2>
@@ -363,6 +487,74 @@ tr:hover td{{background:var(--warm)}}
 </div>
 
 <script>
+// P&L Chart
+(function() {{
+  const plMonths = [{",".join(f'"{m}月"' for m in pl["months"])}];
+  const plRevenue = [{",".join(str(v) for v in pl["revenue"])}];
+  const plCost = [{",".join(str(v) for v in pl["cost"])}];
+  const plOpProfit = [{",".join(str(v) for v in pl["operating_profit"])}];
+  const plNetProfit = [{",".join(str(v) for v in pl["net_profit"])}];
+  const tokaiRev = [{",".join(str(v) for v in pl["tokai_revenue"])}];
+  const directRev = [{",".join(str(v) for v in pl["direct_revenue"])}];
+
+  if (plMonths.length > 0) {{
+    new Chart(document.getElementById('plChart'), {{
+      type: 'bar',
+      data: {{
+        labels: plMonths,
+        datasets: [
+          {{label:'売上', data:plRevenue, backgroundColor:'rgba(52,152,219,.7)', order:2}},
+          {{label:'コスト', data:plCost, backgroundColor:'rgba(231,76,60,.5)', order:3}},
+          {{label:'営業利益', data:plOpProfit, type:'line', borderColor:'#e8a838', backgroundColor:'transparent', borderWidth:2, pointRadius:4, tension:.3, order:1}},
+          {{label:'純利益', data:plNetProfit, type:'line', borderColor:'#27ae60', backgroundColor:'transparent', borderWidth:2, pointRadius:4, tension:.3, order:0}}
+        ]
+      }},
+      options: {{
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {{
+          legend: {{position:'top', labels: {{font: {{size:11}}}}}},
+          tooltip: {{callbacks: {{label: function(ctx) {{ return ctx.dataset.label + ': ¥' + ctx.parsed.y.toLocaleString(); }}}}}}
+        }},
+        scales: {{
+          y: {{
+            beginAtZero: true,
+            ticks: {{callback: function(v) {{ return '¥' + (v/10000).toFixed(0) + '万'; }}}}
+          }}
+        }}
+      }}
+    }});
+
+    // Revenue breakdown chart
+    new Chart(document.getElementById('revenueBreakdownChart'), {{
+      type: 'bar',
+      data: {{
+        labels: plMonths,
+        datasets: [
+          {{label:'東海工測', data:tokaiRev, backgroundColor:'rgba(52,152,219,.7)'}},
+          {{label:'直取引', data:directRev, backgroundColor:'rgba(232,168,56,.7)'}}
+        ]
+      }},
+      options: {{
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {{
+          legend: {{position:'top', labels: {{font: {{size:11}}}}}},
+          tooltip: {{callbacks: {{label: function(ctx) {{ return ctx.dataset.label + ': ¥' + ctx.parsed.y.toLocaleString(); }}}}}}
+        }},
+        scales: {{
+          x: {{stacked: true}},
+          y: {{
+            stacked: true,
+            ticks: {{callback: function(v) {{ return '¥' + (v/10000).toFixed(0) + '万'; }}}}
+          }}
+        }}
+      }}
+    }});
+  }}
+}})();
+
+// GA4 Trend Chart
 new Chart(document.getElementById('trendChart'), {{
   type: 'line',
   data: {{

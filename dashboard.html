@@ -45,6 +45,12 @@ tr:hover td{background:var(--warm)}
 /* CHART */
 .chart-container{position:relative;height:250px}
 
+/* P&L */
+.kpi-card.accent-green{background:var(--green);color:#fff}
+.kpi-card.accent-green .kpi-label{color:#c8f7c5}
+.kpi-card.accent-red{background:var(--red);color:#fff}
+.kpi-card.accent-red .kpi-label{color:#f5b7b1}
+
 @media(max-width:768px){
   .grid-2{grid-template-columns:1fr}
   .kpi-grid{grid-template-columns:repeat(2,1fr)}
@@ -55,7 +61,7 @@ tr:hover td{background:var(--warm)}
 
 <div class="header">
   <h1>TAS Dashboard</h1>
-  <span class="updated">更新: 2026-03-15 21:44</span>
+  <span class="updated">更新: 2026-03-16 00:37</span>
 </div>
 
 <div class="container">
@@ -68,7 +74,7 @@ tr:hover td{background:var(--warm)}
         <div class="kpi-label">商談数</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-value">319</div>
+        <div class="kpi-value">320</div>
         <div class="kpi-label">連絡先</div>
       </div>
       <div class="kpi-card">
@@ -79,8 +85,33 @@ tr:hover td{background:var(--warm)}
         <div class="kpi-value">&yen;0</div>
         <div class="kpi-label">受注金額合計</div>
       </div>
+      
+      <div class="kpi-card">
+        <div class="kpi-value">&yen;1,468,500</div>
+        <div class="kpi-label">2月 売上</div>
+      </div>
+      <div class="kpi-card accent-green">
+        <div class="kpi-value">&yen;540,704</div>
+        <div class="kpi-label">2月 純利益</div>
+      </div>
+
     </div>
     
+
+  <!-- P&L Section -->
+  <h2 class="section-title">P&amp;L（損益計算書）</h2>
+  <div class="card" style="margin-bottom:12px">
+    <h3>売上・コスト・利益 月次推移</h3>
+    <div class="chart-container" style="height:300px">
+      <canvas id="plChart"></canvas>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <h3>東海工測 vs 直取引 売上比率推移</h3>
+    <div class="chart-container" style="height:250px">
+      <canvas id="revenueBreakdownChart"></canvas>
+    </div>
+  </div>
 
   <!-- CRM Section -->
   <h2 class="section-title">CRM</h2>
@@ -96,26 +127,27 @@ tr:hover td{background:var(--warm)}
 
     </div>
     <div class="card">
-      <h3>温度感スコア（319件）</h3>
-      <div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:47.02194357366771%;background:#999"></div></div><span class="bar-value">150</span></div>
-<div class="bar-row"><span class="bar-label">Cold</span><div class="bar-track"><div class="bar-fill" style="width:31.974921630094045%;background:#3498db"></div></div><span class="bar-value">102</span></div>
-<div class="bar-row"><span class="bar-label">Warm</span><div class="bar-track"><div class="bar-fill" style="width:10.031347962382444%;background:#e8a838"></div></div><span class="bar-value">32</span></div>
-<div class="bar-row"><span class="bar-label">不在のため不明</span><div class="bar-track"><div class="bar-fill" style="width:9.404388714733543%;background:#95a5a6"></div></div><span class="bar-value">30</span></div>
-<div class="bar-row"><span class="bar-label">Hot</span><div class="bar-track"><div class="bar-fill" style="width:1.5673981191222568%;background:#c0392b"></div></div><span class="bar-value">5</span></div>
+      <h3>温度感スコア（320件）</h3>
+      <div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:47.1875%;background:#999"></div></div><span class="bar-value">151</span></div>
+<div class="bar-row"><span class="bar-label">Cold</span><div class="bar-track"><div class="bar-fill" style="width:31.874999999999996%;background:#3498db"></div></div><span class="bar-value">102</span></div>
+<div class="bar-row"><span class="bar-label">Warm</span><div class="bar-track"><div class="bar-fill" style="width:10.0%;background:#e8a838"></div></div><span class="bar-value">32</span></div>
+<div class="bar-row"><span class="bar-label">不在のため不明</span><div class="bar-track"><div class="bar-fill" style="width:9.375%;background:#95a5a6"></div></div><span class="bar-value">30</span></div>
+<div class="bar-row"><span class="bar-label">Hot</span><div class="bar-track"><div class="bar-fill" style="width:1.5625%;background:#c0392b"></div></div><span class="bar-value">5</span></div>
 
     </div>
   </div>
   <div class="grid-2" style="margin-top:12px">
     <div class="card">
       <h3>接触チャネル</h3>
-      <div class="bar-row"><span class="bar-label">訪問</span><div class="bar-track"><div class="bar-fill" style="width:52.97805642633229%;background:#e8a838"></div></div><span class="bar-value">169</span></div>
-<div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:41.37931034482759%;background:#e8a838"></div></div><span class="bar-value">132</span></div>
-<div class="bar-row"><span class="bar-label">土量計算機</span><div class="bar-track"><div class="bar-fill" style="width:5.6426332288401255%;background:#e8a838"></div></div><span class="bar-value">18</span></div>
+      <div class="bar-row"><span class="bar-label">訪問</span><div class="bar-track"><div class="bar-fill" style="width:52.81249999999999%;background:#e8a838"></div></div><span class="bar-value">169</span></div>
+<div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:41.25%;background:#e8a838"></div></div><span class="bar-value">132</span></div>
+<div class="bar-row"><span class="bar-label">土量計算機</span><div class="bar-track"><div class="bar-fill" style="width:5.625%;background:#e8a838"></div></div><span class="bar-value">18</span></div>
+<div class="bar-row"><span class="bar-label">問い合わせフォーム</span><div class="bar-track"><div class="bar-fill" style="width:0.3125%;background:#e8a838"></div></div><span class="bar-value">1</span></div>
 
     </div>
     <div class="card">
       <h3>流入元</h3>
-      <div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:94.35736677115987%;background:#3498db"></div></div><span class="bar-value">301</span></div><div class="bar-row"><span class="bar-label">土量計算機</span><div class="bar-track"><div class="bar-fill" style="width:5.6426332288401255%;background:#3498db"></div></div><span class="bar-value">18</span></div>
+      <div class="bar-row"><span class="bar-label">未設定</span><div class="bar-track"><div class="bar-fill" style="width:94.0625%;background:#3498db"></div></div><span class="bar-value">301</span></div><div class="bar-row"><span class="bar-label">土量計算機</span><div class="bar-track"><div class="bar-fill" style="width:5.625%;background:#3498db"></div></div><span class="bar-value">18</span></div><div class="bar-row"><span class="bar-label">Web検索</span><div class="bar-track"><div class="bar-fill" style="width:0.3125%;background:#3498db"></div></div><span class="bar-value">1</span></div>
     </div>
   </div>
 
@@ -136,21 +168,21 @@ tr:hover td{background:var(--warm)}
       <div style="max-height:400px;overflow-y:auto">
       <table>
         <thead><tr><th>ページ</th><th>PV</th><th>UU</th><th>直帰率</th></tr></thead>
-        <tbody><tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
-<tr><td></td><td>0</td><td>0</td><td>0%</td></tr>
+        <tbody><tr><td>/column/pointcloud-bim/warehouse-slab-flatness-jas</td><td>0</td><td>0</td><td>0.9231</td></tr>
+<tr><td>/column/earthwork-cost/earthwork-cost/</td><td>0</td><td>0</td><td>0.6269</td></tr>
+<tr><td>/column/earthwork-cost/drone-survey-vendor-selecti</td><td>0</td><td>0</td><td>0.5</td></tr>
+<tr><td>/column/earthwork-cost/embankment-cut-volume-truck</td><td>0</td><td>0</td><td>0.5</td></tr>
+<tr><td>/tools/woodchip-inventory-calculator/</td><td>0</td><td>0</td><td>0.875</td></tr>
+<tr><td>/column/earthwork-cost/grain-silo-inventory-3d-li-</td><td>0</td><td>0</td><td>0.3333</td></tr>
+<tr><td>/column/earthwork-cost/haul-cycle-optimization/</td><td>0</td><td>0</td><td>0.7143</td></tr>
+<tr><td>/column/earthwork-cost/pointcloud-volume-algorithm</td><td>0</td><td>0</td><td>0.6667</td></tr>
+<tr><td>/services/public-survey/</td><td>0</td><td>0</td><td>0.1429</td></tr>
+<tr><td>/cases/</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>/column/earthwork-cost/quarry-stockpile-volume-man</td><td>0</td><td>0</td><td>0.5</td></tr>
+<tr><td>/column/earthwork-cost/soil-estimate-template/</td><td>0</td><td>0</td><td>0.6667</td></tr>
+<tr><td>/column/earthwork-cost/ton-m3-conversion-soil-mois</td><td>0</td><td>0</td><td>0.6</td></tr>
+<tr><td>/column/earthwork-cost/zando-ukeire-compare/</td><td>0</td><td>0</td><td>0.5714</td></tr>
+<tr><td>/glossary/drone-photogrammetry-survey/</td><td>0</td><td>0</td><td>0</td></tr>
 </tbody>
       </table>
       </div>
@@ -159,16 +191,16 @@ tr:hover td{background:var(--warm)}
       <h3>流入経路</h3>
       <table>
         <thead><tr><th>チャネル</th><th>ソース</th><th>セッション</th><th>UU</th></tr></thead>
-        <tbody><tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
-<tr><td>その他</td><td></td><td>0</td><td>0</td></tr>
+        <tbody><tr><td>参照</td><td>digital-construction.jp</td><td>0</td><td>0</td></tr>
+<tr><td>参照</td><td>prtimes.jp</td><td>0</td><td>0</td></tr>
+<tr><td>参照</td><td>copilot.com</td><td>0</td><td>0</td></tr>
+<tr><td>参照</td><td>docs.google.com</td><td>0</td><td>0</td></tr>
+<tr><td>自然検索</td><td>duckduckgo</td><td>0</td><td>0</td></tr>
+<tr><td>参照</td><td>kusatsubase.com</td><td>0</td><td>0</td></tr>
+<tr><td>ダイレクト</td><td>(not set)</td><td>0</td><td>0</td></tr>
+<tr><td>その他</td><td>blog</td><td>0</td><td>0</td></tr>
+<tr><td>参照</td><td>initial.inc</td><td>0</td><td>0</td></tr>
+<tr><td>参照</td><td>m.facebook.com</td><td>0</td><td>0</td></tr>
 </tbody>
       </table>
     </div>
@@ -179,7 +211,22 @@ tr:hover td{background:var(--warm)}
     <div style="max-height:350px;overflow-y:auto">
     <table>
       <thead><tr><th>クエリ</th><th>クリック</th></tr></thead>
-      <tbody></tbody>
+      <tbody><tr><td>東海エアサービス</td><td>0</td></tr>
+<tr><td>東海エアサービス株式会社</td><td>0</td></tr>
+<tr><td>東海エアーサービス</td><td>0</td></tr>
+<tr><td>残土処分 計算方法</td><td>0</td></tr>
+<tr><td>4t ダンプ 積載量 m3 残土</td><td>0</td></tr>
+<tr><td>4tダンプ 残土積載量</td><td>0</td></tr>
+<tr><td>80坪</td><td>0</td></tr>
+<tr><td>qgis bim</td><td>0</td></tr>
+<tr><td>残土 計算方法</td><td>0</td></tr>
+<tr><td>残土の計算</td><td>0</td></tr>
+<tr><td>残土処分費 計算</td><td>0</td></tr>
+<tr><td>残土数量計算</td><td>0</td></tr>
+<tr><td>残土計算方法</td><td>0</td></tr>
+<tr><td>残土量計算</td><td>0</td></tr>
+<tr><td>10 トンダンプ 何 m3</td><td>0</td></tr>
+</tbody>
     </table>
     </div>
   </div>
@@ -187,14 +234,82 @@ tr:hover td{background:var(--warm)}
 </div>
 
 <script>
+// P&L Chart
+(function() {
+  const plMonths = ["3月","4月","5月","6月","7月","8月","9月","10月","11月","12月","1月","2月"];
+  const plRevenue = [522202.0,270369.0,237369.0,481789.0,1725119.0,347369.0,292369.0,669669.0,911669.0,1289200.0,4127200.0,1468500.0];
+  const plCost = [408902.0,455302.0,749866.0,749866.0,817150.0,901681.0,947611.0,1085292.0,1080576.0,1036882.0,1512892.0,766287.0];
+  const plOpProfit = [113300.0,-184933.0,-512497.0,-268077.0,907969.0,-554312.0,-655242.0,-415623.0,-168907.0,252318.0,2614308.0,702213.0];
+  const plNetProfit = [87241.0,-142398.0,-394623.0,-206419.0,699136.0,-426820.0,-504536.0,-320030.0,-130058.0,194285.0,2013017.0,540704.0];
+  const tokaiRev = [522202.0,237369.0,237369.0,237369.0,237369.0,237369.0,237369.0,237369.0,801669.0,481800.0,167200.0,0.0];
+  const directRev = [0.0,33000.0,0.0,244420.0,1487750.0,110000.0,55000.0,432300.0,110000.0,807400.0,3960000.0,1468500.0];
+
+  if (plMonths.length > 0) {
+    new Chart(document.getElementById('plChart'), {
+      type: 'bar',
+      data: {
+        labels: plMonths,
+        datasets: [
+          {label:'売上', data:plRevenue, backgroundColor:'rgba(52,152,219,.7)', order:2},
+          {label:'コスト', data:plCost, backgroundColor:'rgba(231,76,60,.5)', order:3},
+          {label:'営業利益', data:plOpProfit, type:'line', borderColor:'#e8a838', backgroundColor:'transparent', borderWidth:2, pointRadius:4, tension:.3, order:1},
+          {label:'純利益', data:plNetProfit, type:'line', borderColor:'#27ae60', backgroundColor:'transparent', borderWidth:2, pointRadius:4, tension:.3, order:0}
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {position:'top', labels: {font: {size:11}}},
+          tooltip: {callbacks: {label: function(ctx) { return ctx.dataset.label + ': ¥' + ctx.parsed.y.toLocaleString(); }}}
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {callback: function(v) { return '¥' + (v/10000).toFixed(0) + '万'; }}
+          }
+        }
+      }
+    });
+
+    // Revenue breakdown chart
+    new Chart(document.getElementById('revenueBreakdownChart'), {
+      type: 'bar',
+      data: {
+        labels: plMonths,
+        datasets: [
+          {label:'東海工測', data:tokaiRev, backgroundColor:'rgba(52,152,219,.7)'},
+          {label:'直取引', data:directRev, backgroundColor:'rgba(232,168,56,.7)'}
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {position:'top', labels: {font: {size:11}}},
+          tooltip: {callbacks: {label: function(ctx) { return ctx.dataset.label + ': ¥' + ctx.parsed.y.toLocaleString(); }}}
+        },
+        scales: {
+          x: {stacked: true},
+          y: {
+            stacked: true,
+            ticks: {callback: function(v) { return '¥' + (v/10000).toFixed(0) + '万'; }}
+          }
+        }
+      }
+    });
+  }
+})();
+
+// GA4 Trend Chart
 new Chart(document.getElementById('trendChart'), {
   type: 'line',
   data: {
-    labels: ["","","","","","","","","","","","","",""],
+    labels: ["202551","202552","202601","202602","202603","202604","202605","202606","202607","202608","202609","202610","202611"],
     datasets: [
-      {label:'PV', data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0], borderColor:'#e8a838', backgroundColor:'rgba(232,168,56,.1)', fill:true, tension:.3},
-      {label:'UU', data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0], borderColor:'#3498db', backgroundColor:'rgba(52,152,219,.1)', fill:true, tension:.3},
-      {label:'Session', data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0], borderColor:'#27ae60', backgroundColor:'rgba(39,174,96,.1)', fill:true, tension:.3}
+      {label:'PV', data:[121,92,21,247,195,410,264,480,246,313,217,311,323], borderColor:'#e8a838', backgroundColor:'rgba(232,168,56,.1)', fill:true, tension:.3},
+      {label:'UU', data:[89,67,15,141,127,174,184,244,184,205,157,241,234], borderColor:'#3498db', backgroundColor:'rgba(52,152,219,.1)', fill:true, tension:.3},
+      {label:'Session', data:[95,71,17,169,139,188,195,266,200,232,163,253,252], borderColor:'#27ae60', backgroundColor:'rgba(39,174,96,.1)', fill:true, tension:.3}
     ]
   },
   options: {
