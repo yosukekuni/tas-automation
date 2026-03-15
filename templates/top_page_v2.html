@@ -1,0 +1,535 @@
+<!-- TAS Top Page v2 — Data Consulting Positioning -->
+<!-- cache-bust __TIMESTAMP__ -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>東海エアサービス株式会社 | 現場の判断を、データで速くする</title>
+  <meta name="description" content="土量が合わない。手戻りが出る。数字の根拠がない。建設現場の困りごとを、正確なデータで解決します。185件超の実績。" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="東海エアサービス | 現場の判断を、データで速くする" />
+  <meta property="og:description" content="建設現場の困りごとを、正確なデータで解決。185件超の施工現場実績。" />
+  <meta property="og:image" content="https://tokaiair.com/wp-content/uploads/2026/03/hero-aerial-survey.jpg" />
+  <meta property="og:url" content="https://www.tokaiair.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script>window.dataLayer = window.dataLayer || [];</script>
+<style>
+:root{
+  --bg:#fff;--fg:#0f172a;--muted:#64748b;--subtle:#94a3b8;
+  --brand:#1647FB;--brand-dark:#0d2eb3;--accent:#f59e0b;
+  --surface:#f8fafc;--surface-2:#f1f5f9;--line:#e2e8f0;
+  --radius:16px;--radius-sm:10px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06);
+  --shadow:0 4px 24px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 48px rgba(0,0,0,.12);
+  --font:-apple-system,BlinkMacSystemFont,'Noto Sans JP','Segoe UI',sans-serif;
+  --font-serif:'Noto Serif JP',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font:16px/1.8 var(--font);color:var(--fg);background:var(--bg)}
+img{max-width:100%;display:block}
+a{color:var(--brand);text-decoration:none}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);font-weight:700}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:var(--radius-sm);font-weight:700;font-size:15px;border:none;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 2px 12px rgba(22,71,251,.3)}
+.btn-primary:hover{background:var(--brand-dark);transform:translateY(-1px);box-shadow:0 4px 20px rgba(22,71,251,.4)}
+.btn-outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+.btn-outline:hover{background:var(--brand);color:#fff}
+.btn-white{background:#fff;color:var(--fg);box-shadow:var(--shadow)}
+.btn-white:hover{transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+.btn-accent{background:var(--accent);color:var(--fg);font-weight:800}
+.btn-accent:hover{background:#d97706;transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(4px)}
+.btn-ghost:hover{background:rgba(255,255,255,.2)}
+
+/* ═══════════ HERO ═══════════ */
+.hero{
+  position:relative;min-height:85vh;display:flex;align-items:center;
+  background:linear-gradient(160deg,rgba(8,15,30,.88) 0%,rgba(22,71,251,.55) 100%),
+    url('https://tokaiair.com/wp-content/uploads/2026/03/hero-aerial-survey.jpg') center/cover no-repeat;
+  overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:120px;
+  background:linear-gradient(to top,var(--bg),transparent);pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;color:#fff;max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.85);backdrop-filter:blur(4px);margin-bottom:20px}
+.hero h1{font:900 clamp(32px,5vw,56px)/1.15 var(--font);letter-spacing:-.02em;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-lead{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:28px;max-width:560px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+.hero-stat{text-align:left}
+.hero-stat strong{display:block;font-size:28px;font-weight:900;color:#fff}
+.hero-stat span{font-size:13px;color:rgba(255,255,255,.65)}
+
+/* ═══════════ PAIN POINTS ═══════════ */
+.pain{padding:80px 0;background:var(--bg)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.pain-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;transition:all .2s}
+.pain-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--brand)}
+.pain-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--brand),#6366f1);display:grid;place-items:center;color:#fff;font-size:24px;margin-bottom:16px}
+.pain-card h3{font-size:18px;margin-bottom:8px;color:var(--fg)}
+.pain-card p{font-size:14px;color:var(--muted);line-height:1.8}
+.pain-card .solution{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--brand);font-weight:600}
+
+/* ═══════════ PROCESS ═══════════ */
+.process{padding:80px 0;background:var(--surface)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;position:relative}
+.process-steps::before{content:'';position:absolute;top:36px;left:12.5%;right:12.5%;height:2px;background:var(--line)}
+.step{text-align:center;position:relative;padding:0 16px}
+.step-num{width:72px;height:72px;border-radius:50%;background:var(--bg);border:2px solid var(--brand);display:grid;place-items:center;font-size:24px;font-weight:900;color:var(--brand);margin:0 auto 16px;position:relative;z-index:1}
+.step h3{font-size:16px;margin-bottom:6px}
+.step p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* ═══════════ RESULTS ═══════════ */
+.results{padding:80px 0;background:var(--fg);color:#fff}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:40px}
+.result-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:24px}
+.result-card h3{font-size:15px;color:var(--accent);margin-bottom:12px}
+.result-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.result-before{font-size:14px;color:rgba(255,255,255,.4);text-decoration:line-through}
+.result-arrow{color:var(--accent);font-size:18px;font-weight:700}
+.result-after{font-size:18px;font-weight:700;color:#fff}
+
+/* ═══════════ TRUST ═══════════ */
+.trust{padding:64px 0;background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.trust-item{text-align:center}
+.trust-num{font-size:42px;font-weight:900;color:var(--brand);line-height:1}
+.trust-label{font-size:13px;color:var(--muted);margin-top:4px}
+.trust-badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px}
+.trust-badge{padding:6px 16px;background:var(--surface);border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted);font-weight:600}
+
+/* ═══════════ TOOL CTA ═══════════ */
+.tool-cta{padding:80px 0;background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%)}
+.tool-cta-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.tool-cta h2{font-size:28px;color:var(--fg);margin-bottom:12px}
+.tool-cta p{color:var(--muted);margin-bottom:24px}
+.tool-features{display:grid;gap:8px;margin-bottom:24px}
+.tool-feature{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--fg)}
+.tool-feature::before{content:'✓';color:var(--brand);font-weight:700;font-size:16px}
+
+/* ═══════════ ESTIMATE FORM ═══════════ */
+.estimate{padding:80px 0;background:var(--surface)}
+.estimate-inner{max-width:640px;margin:0 auto;text-align:center}
+.estimate-form{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:32px;margin-top:24px;text-align:left;box-shadow:var(--shadow)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:700;color:var(--fg);margin-bottom:6px}
+.form-group select,.form-group input{width:100%;padding:12px 16px;border:1px solid var(--line);border-radius:var(--radius-sm);font-size:15px;font-family:var(--font);background:var(--bg);transition:border-color .15s}
+.form-group select:focus,.form-group input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(22,71,251,.1)}
+.form-msg{text-align:center;margin-top:12px;font-weight:600;display:none}
+
+/* ═══════════ CASES ═══════════ */
+.cases{padding:80px 0}
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.case-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:all .2s}
+.case-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.case-card img{width:100%;height:180px;object-fit:cover;background:var(--surface-2)}
+.case-body{padding:20px}
+.case-tag{font-size:11px;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.05em}
+.case-card h3{font-size:16px;margin:6px 0 8px}
+.case-card p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* ═══════════ FAQ ═══════════ */
+.faq{padding:80px 0;background:var(--surface)}
+.faq-list{max-width:800px;margin:40px auto 0}
+.faq-item{border-bottom:1px solid var(--line);padding:20px 0}
+.faq-q{font-weight:700;font-size:16px;color:var(--fg);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:'+';font-size:24px;color:var(--muted);transition:transform .2s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--muted);line-height:1.9;max-height:0;overflow:hidden;transition:max-height .3s}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px}
+
+/* ═══════════ FINAL CTA ═══════════ */
+.final-cta{padding:80px 0;background:linear-gradient(135deg,var(--fg) 0%,#1e293b 100%);color:#fff;text-align:center}
+.final-cta h2{font-size:clamp(24px,4vw,36px);margin-bottom:12px;color:#fff}
+.final-cta p{color:rgba(255,255,255,.7);margin-bottom:32px;font-size:18px}
+.final-cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ═══════════ FOOTER ═══════════ */
+.site-footer{padding:40px 0;border-top:1px solid var(--line);text-align:center}
+.footer-company{font-size:14px;color:var(--muted);line-height:2}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:768px){
+  .hero{min-height:auto;padding:80px 0 100px}
+  .hero-stats{gap:20px}
+  .hero-stat strong{font-size:22px}
+  .pain-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr;gap:24px}
+  .process-steps::before{display:none}
+  .results-grid{grid-template-columns:1fr}
+  .trust-grid{grid-template-columns:1fr 1fr}
+  .tool-cta-inner{grid-template-columns:1fr}
+  .cases-grid{grid-template-columns:1fr}
+  .final-cta-buttons{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+  <a href="#main" style="position:absolute;left:-9999px">本文へスキップ</a>
+  <main id="main">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-badge">施工現場の測量実績 185件超</div>
+    <h1>現場の判断を、<br><em>データで速くする。</em></h1>
+    <p class="hero-lead">
+      「土量が合わない」「手戻りが出る」「数字の根拠がない」<br>
+      建設現場の困りごとを、正確なデータで解決します。
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-accent" href="#estimate" data-gtm="hero:estimate">概算見積を30秒で取得</a>
+      <a class="btn btn-ghost" href="https://tokaiair.com/contact/" data-gtm="hero:contact">現場の課題を相談する</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>185+</strong><span>施工現場の実績</span></div>
+      <div class="hero-stat"><strong>60%</strong><span>測量工数削減</span></div>
+      <div class="hero-stat"><strong>最短翌日</strong><span>データ納品</span></div>
+      <div class="hero-stat"><strong>全国</strong><span>対応</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAIN POINTS ═══════════ -->
+<section class="pain">
+  <div class="container">
+    <p class="eyebrow">Problems We Solve</p>
+    <h2 style="font-size:28px;margin-top:8px">こんなお悩みはありませんか？</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">&#128200;</div>
+        <h3>土量の数字に根拠がない</h3>
+        <p>概算で出した切盛土量と実際が合わず、追加費用が発生。発注者への説明に苦慮している。</p>
+        <div class="solution">→ 高精度な地表面データで数量を確定</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">&#128260;</div>
+        <h3>手戻りが多い</h3>
+        <p>図面と現況の不一致に気づくのが施工後。やり直しで工期も費用も膨らむ。</p>
+        <div class="solution">→ 3次元データで施工前に差異を可視化</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">&#9200;</div>
+        <h3>測量に時間がかかりすぎる</h3>
+        <p>従来測量では数日かかる現場計測。その間、工事が止まる。</p>
+        <div class="solution">→ 半日の計測で翌日にデータ納品</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROCESS ═══════════ -->
+<section class="process">
+  <div class="container">
+    <div style="text-align:center">
+      <p class="eyebrow">How It Works</p>
+      <h2 style="font-size:28px;margin-top:8px">ご依頼の流れ</h2>
+      <p style="color:var(--muted);margin-top:8px">現場の課題を聞くところから始めます。</p>
+    </div>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>課題のヒアリング</h3>
+        <p>「何に困っているか」をお聞かせください。最適な計測手法をご提案します。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>現場計測</h3>
+        <p>最短半日で完了。工事の進捗を止めません。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>データ納品</h3>
+        <p>判断に使える形でお届け。生データではなく、意思決定に直結する形式で。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>活用サポート</h3>
+        <p>データの読み方、報告書への活用方法までフォローします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ RESULTS ═══════════ -->
+<section class="results">
+  <div class="container">
+    <div style="text-align:center">
+      <p class="eyebrow" style="color:var(--accent)">Results</p>
+      <h2 style="font-size:28px;margin-top:8px;color:#fff">データで変わること</h2>
+    </div>
+    <div class="results-grid">
+      <div>
+        <div class="result-card" style="margin-bottom:16px">
+          <h3>造成工事の出来形管理</h3>
+          <div class="result-row"><span class="result-before">検査準備2日</span><span class="result-arrow">→</span><span class="result-after">半日で完了</span></div>
+          <div class="result-row"><span class="result-before">目視+概算</span><span class="result-arrow">→</span><span class="result-after">±3cmの数値根拠</span></div>
+        </div>
+        <div class="result-card" style="margin-bottom:16px">
+          <h3>外壁調査</h3>
+          <div class="result-row"><span class="result-before">足場費¥200万</span><span class="result-arrow">→</span><span class="result-after">足場ゼロ</span></div>
+          <div class="result-row"><span class="result-before">2週間</span><span class="result-arrow">→</span><span class="result-after">1日で一次スクリーニング</span></div>
+        </div>
+        <div class="result-card">
+          <h3>在庫棚卸し（原料ヤード）</h3>
+          <div class="result-row"><span class="result-before">手計測+推定</span><span class="result-arrow">→</span><span class="result-after">3D体積計算</span></div>
+          <div class="result-row"><span class="result-before">月1回の人員手配</span><span class="result-arrow">→</span><span class="result-after">半日で自動化</span></div>
+        </div>
+      </div>
+      <div>
+        <img src="https://tokaiair.com/wp-content/uploads/2026/03/pointcloud-3d-survey-result.jpg" alt="3次元点群データによる現場計測の成果物" style="border-radius:var(--radius);width:100%;box-shadow:var(--shadow-lg)" />
+        <p style="margin-top:16px;font-size:14px;color:rgba(255,255,255,.6);text-align:center">実際の3次元点群データ（造成現場）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TRUST ═══════════ -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item"><div class="trust-num">185+</div><div class="trust-label">施工現場の実績</div></div>
+      <div class="trust-item"><div class="trust-num">±3cm</div><div class="trust-label">地表面の標準精度</div></div>
+      <div class="trust-item"><div class="trust-num">最短翌日</div><div class="trust-label">データ納品</div></div>
+      <div class="trust-item"><div class="trust-num">全国</div><div class="trust-label">対応エリア</div></div>
+    </div>
+    <div class="trust-badges">
+      <span class="trust-badge">測量業者登録 第(1)-37730号</span>
+      <span class="trust-badge">全省庁統一資格</span>
+      <span class="trust-badge">国交省包括許可</span>
+      <span class="trust-badge">i-Construction対応</span>
+      <span class="trust-badge">一等無人航空機操縦士</span>
+    </div>
+    <p style="text-align:center;margin-top:16px;font-size:14px;color:var(--muted)">高速道路・大型物流倉庫・商業施設・造成工事・工場プラントなど、大規模現場での実績が豊富です。</p>
+  </div>
+</section>
+
+<!-- ═══════════ TOOL CTA ═══════════ -->
+<section class="tool-cta">
+  <div class="container tool-cta-inner">
+    <div>
+      <p class="eyebrow" style="color:var(--fg)">Free Tool</p>
+      <h2>土量コスト、30秒で概算できます。</h2>
+      <p>体積と運搬条件を入力するだけ。ダンプ台数・処分費の概算がその場で出ます。</p>
+      <div class="tool-features">
+        <div class="tool-feature">ダンプ台数を車種別に自動計算</div>
+        <div class="tool-feature">運搬費・処分費の概算を即表示</div>
+        <div class="tool-feature">見積根拠としてExcelダウンロード可能</div>
+        <div class="tool-feature">会員登録不要・完全無料</div>
+      </div>
+      <a class="btn btn-primary" href="https://tokaiair.com/tools/earthwork/" data-gtm="tool:calc-cta" style="font-size:16px;padding:16px 32px">土量コスト計算機を使う</a>
+      <p style="margin-top:8px;font-size:12px;color:var(--muted)">主要メディア27媒体に掲載されました</p>
+    </div>
+    <div style="background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-lg)">
+      <div style="background:var(--surface-2);border-radius:var(--radius-sm);padding:20px;text-align:center">
+        <p style="font-size:48px;margin-bottom:8px">&#128202;</p>
+        <p style="font-size:14px;color:var(--muted);line-height:1.7">体積を入力 → ダンプ台数・費用を即算出<br>見積根拠としてそのまま提出可能</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ESTIMATE FORM ═══════════ -->
+<section class="estimate" id="estimate">
+  <div class="container estimate-inner">
+    <p class="eyebrow">Quick Estimate</p>
+    <h2 style="font-size:28px;margin-top:8px">概算見積を30秒で取得</h2>
+    <p style="color:var(--muted)">用途を選んでメールアドレスを入力するだけ。最短当日にお見積りをお送りします。</p>
+    <form class="estimate-form" id="estimateForm">
+      <div class="form-group">
+        <label>どんなデータが必要ですか？<span style="color:#ef4444;margin-left:4px">*</span></label>
+        <select id="estService" required>
+          <option value="">選択してください</option>
+          <option value="土量が合わない・数量を確定したい">土量が合わない・数量を確定したい</option>
+          <option value="図面と現況の差異を把握したい">図面と現況の差異を把握したい</option>
+          <option value="外壁の劣化箇所を見つけたい">外壁の劣化箇所を見つけたい</option>
+          <option value="現場を空撮で記録したい">現場を空撮で記録したい</option>
+          <option value="定期的に測量データがほしい">定期的に測量データがほしい</option>
+          <option value="その他・相談したい">その他・相談したい</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>現場の場所（任意）</label>
+        <input type="text" id="estAddress" placeholder="例: 愛知県名古屋市中区">
+      </div>
+      <div class="form-group">
+        <label>メールアドレス<span style="color:#ef4444;margin-left:4px">*</span></label>
+        <input type="email" id="estEmail" placeholder="example@company.co.jp" required>
+      </div>
+      <div style="text-align:center">
+        <button type="submit" class="btn btn-primary" id="estSubmit" style="width:100%;justify-content:center;padding:16px;font-size:16px">概算見積を受け取る</button>
+      </div>
+      <p class="form-msg" id="estMsg"></p>
+      <p style="text-align:center;margin-top:12px;font-size:12px;color:var(--muted)">最短当日にお見積りをお送りします。営業電話は一切しません。</p>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════ CASES ═══════════ -->
+<section class="cases">
+  <div class="container">
+    <div style="text-align:center">
+      <p class="eyebrow">Use Cases</p>
+      <h2 style="font-size:28px;margin-top:8px">こんな現場で使われています</h2>
+    </div>
+    <div class="cases-grid">
+      <a href="https://tokaiair.com/case-library/cases/" class="case-card" style="color:inherit;text-decoration:none" data-gtm="cases:earthwork">
+        <div style="height:180px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);display:grid;place-items:center;font-size:48px">&#127959;</div>
+        <div class="case-body">
+          <span class="case-tag">造成工事</span>
+          <h3>出来形管理を2日→半日に</h3>
+          <p>高精度な地表面データで切盛土量を確定。検査書類の作成工数を60%削減。</p>
+        </div>
+      </a>
+      <a href="https://tokaiair.com/case-library/cases/" class="case-card" style="color:inherit;text-decoration:none" data-gtm="cases:infrared">
+        <div style="height:180px;background:linear-gradient(135deg,#fef3c7,#fde68a);display:grid;place-items:center;font-size:48px">&#127970;</div>
+        <div class="case-body">
+          <span class="case-tag">外壁調査</span>
+          <h3>足場なしで広範囲をスクリーニング</h3>
+          <p>赤外線で危険箇所を一次スクリーニング。打診調査の範囲を最適化し、コストを50%削減。</p>
+        </div>
+      </a>
+      <a href="https://tokaiair.com/case-library/cases/" class="case-card" style="color:inherit;text-decoration:none" data-gtm="cases:inventory">
+        <div style="height:180px;background:linear-gradient(135deg,#d1fae5,#a7f3d0);display:grid;place-items:center;font-size:48px">&#127981;</div>
+        <div class="case-body">
+          <span class="case-tag">在庫棚卸し</span>
+          <h3>原料ヤードの体積を自動計測</h3>
+          <p>木質チップ・砕石の体積を3Dデータで正確に算出。月次の棚卸工数を大幅削減。</p>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a class="btn btn-outline" href="https://tokaiair.com/case-library/cases/" data-gtm="cases:more">事例をもっと見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="faq">
+  <div class="container">
+    <div style="text-align:center">
+      <p class="eyebrow">FAQ</p>
+      <h2 style="font-size:28px;margin-top:8px">よくあるご質問</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">どんな現場でも対応できますか？</div>
+        <div class="faq-a">はい。高速道路から工場プラント、造成現場、商業施設まで対応しています。山間部や市街地など、条件に応じた最適な計測手法をご提案します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">見積もりだけの依頼はできますか？</div>
+        <div class="faq-a">もちろんです。現場住所と用途をお伝えいただければ、最短当日にお見積りをお出しします。概算見積フォームからも30秒でご依頼いただけます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">納品データの形式は選べますか？</div>
+        <div class="faq-a">LandXML、IFC、CSV、GeoTIFF、PDFレポートなど、ご要望に応じた形式で納品します。BIM/CIM連携やi-Construction対応の書式にも対応しています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">測量の精度はどの程度ですか？</div>
+        <div class="faq-a">標準で±3cmの精度を実現しています。RTK/PPK補正、GCP配置、精度検証レポートの提出まで一貫して対応します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">官公庁案件にも対応していますか？</div>
+        <div class="faq-a">全省庁統一資格を取得しており、官公庁案件の実績も多数あります。精度管理表の作成や検定にも対応しています。</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a class="btn btn-outline" href="https://tokaiair.com/faq/" data-gtm="faq:more">FAQをもっと見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FINAL CTA ═══════════ -->
+<section class="final-cta">
+  <div class="container">
+    <h2>現場の困りごと、<br>まずはお聞かせください。</h2>
+    <p>「こういうデータがほしい」「こんな課題がある」だけでOK。<br>最適な方法をご提案します。</p>
+    <div class="final-cta-buttons">
+      <a class="btn btn-accent" href="#estimate" data-gtm="final:estimate" style="font-size:16px;padding:16px 32px">概算見積を30秒で取得</a>
+      <a class="btn btn-white" href="https://tokaiair.com/meeting-reserve/" data-gtm="final:booking" style="font-size:16px;padding:16px 32px">無料相談を予約する</a>
+      <a class="btn btn-ghost" href="tel:05071177141" data-gtm="final:tel" style="border-color:rgba(255,255,255,.3)">050-7117-7141</a>
+    </div>
+    <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.5)">東海エアサービス株式会社 | 測量業登録 第(1)-37730号 | 名古屋市名東区</p>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer">
+  <div class="container footer-company">
+    <p>東海エアサービス株式会社 | 〒465-0077 愛知県名古屋市名東区植園町1-9-3</p>
+    <p><a href="https://tokaiair.com/company/">会社情報</a> | <a href="https://tokaiair.com/privacy-policy/">プライバシーポリシー</a> | <a href="https://tokaiair.com/terms/">利用規約</a></p>
+    <p style="margin-top:8px">&copy; 2026 東海エアサービス株式会社</p>
+  </div>
+</footer>
+
+  </main>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');if(id==='#')return;
+    const el=document.querySelector(id);if(!el)return;
+    e.preventDefault();window.scrollTo({top:el.offsetTop-72,behavior:'smooth'});
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>q.parentElement.classList.toggle('open'));
+});
+
+// GTM dataLayer
+document.querySelectorAll('[data-gtm]').forEach(el=>{
+  el.addEventListener('click',()=>{
+    window.dataLayer.push({event:'cta_click',cta_id:el.getAttribute('data-gtm'),cta_text:(el.innerText||'').trim()});
+  });
+});
+
+// Estimate form
+(function(){
+  var form=document.getElementById('estimateForm');
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var svc=document.getElementById('estService').value;
+    var addr=document.getElementById('estAddress').value;
+    var email=document.getElementById('estEmail').value;
+    var msg=document.getElementById('estMsg');
+    var btn=document.getElementById('estSubmit');
+    if(!svc||!email){msg.style.display='block';msg.style.color='#ef4444';msg.textContent='用途とメールアドレスは必須です。';return;}
+    btn.disabled=true;btn.textContent='送信中...';
+    fetch('https://tas-lark-bot.yosuke-toyoda.workers.dev/tas-estimate',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({service:svc,address:addr,email:email})
+    }).then(function(){
+      msg.style.display='block';msg.style.color='var(--accent)';msg.textContent='ありがとうございます。最短当日にお見積りをお送りします。';
+      form.querySelectorAll('select,input').forEach(function(i){i.disabled=true;});btn.style.display='none';
+      window.dataLayer.push({event:'form_submit',form_id:'quick_estimate',service:svc});
+    }).catch(function(){
+      msg.style.display='block';msg.style.color='#ef4444';msg.textContent='送信に失敗しました。050-7117-7141 までお電話ください。';
+      btn.disabled=false;btn.textContent='概算見積を受け取る';
+    });
+  });
+})();
+
+// Latest news dynamic load
+(function(){
+  fetch('/wp-json/wp/v2/posts?per_page=3&_embed=1').then(r=>r.json()).then(posts=>{
+    // Inject into cases section if needed
+  }).catch(()=>{});
+})();
+</script>
+
+</body>
+</html>
