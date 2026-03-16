@@ -64,6 +64,26 @@ LP_CONFIG = {
         "slug": "consultant",
         "label": "コンサルタント向けLP",
     },
+    "government": {
+        "page_id": 6880,
+        "industry": "官公庁",
+        "slug": "government",
+        "label": "官公庁向けLP",
+    },
+    "real-estate": {
+        "page_id": 6882,
+        "industry": "不動産",
+        "industry_aliases": ["デベロッパー", "リアルティ"],
+        "slug": "real-estate",
+        "label": "不動産向けLP",
+    },
+    "inspection": {
+        "page_id": 6884,
+        "industry": "その他",
+        "industry_aliases": [],
+        "slug": "inspection",
+        "label": "点検向けLP",
+    },
 }
 
 # 業種分類キーワード（order_classifier.pyと同期）

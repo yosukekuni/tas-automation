@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-03-16T20:00:09.539042",
+  "pipeline": {
+    "ヒアリング": {
+      "count": 388,
+      "amount": 0.0
+    },
+    "リード獲得": {
+      "count": 85,
+      "amount": 0.0
+    },
+    "受注": {
+      "count": 1,
+      "amount": 0.0
+    },
+    "営業見込みなし": {
+      "count": 52,
+      "amount": 0.0
+    },
+    "不在": {
+      "count": 61,
+      "amount": 0.0
+    },
+    "見積検討": {
+      "count": 1,
+      "amount": 0.0
+    }
+  },
+  "rep_kpi": {
+    "その他": {
+      "total_deals": 588,
+      "won": 1,
+      "lost": 0,
+      "in_progress": 587,
+      "total_amount": 0.0,
+      "won_amount": 0.0,
+      "avg_deal_size": 0,
+      "win_rate": 100.0,
+      "avg_won_size": 0
+    }
+  },
+  "temperature": {
+    "未設定": 588
+  },
+  "monthly": {},
+  "total_deals": 588
+}
