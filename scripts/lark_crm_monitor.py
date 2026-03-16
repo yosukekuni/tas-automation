@@ -13,6 +13,8 @@ Usage:
   python3 lark_crm_monitor.py --weekly     # 週次サマリー（ステージ進捗率・アクション実行率）
   python3 lark_crm_monitor.py --stages     # ステージ変更検知のみ実行（受注/失注ハンドラ）
   python3 lark_crm_monitor.py --github     # GitHub Actions障害チェックのみ
+  python3 lark_crm_monitor.py --order-sync # 受注台帳-商談ファジーマッチング（dry-run）
+  python3 lark_crm_monitor.py --temp-decay # 温度感自動降格候補（dry-run）
   python3 lark_crm_monitor.py --dry-run    # 全チェック実行（通知送信なし、コンソール出力のみ）
 
 通知先:
@@ -2164,6 +2166,20 @@ def main():
         print("Running GitHub Actions health check...")
         count = check_github_actions_health()
         print(f"GitHub Actions failures notified: {count}")
+        return
+
+    if "--order-sync" in args:
+        print("Running order-deal sync (dry-run)...")
+        from crm_order_sync import run_order_sync
+        execute = "--execute" in args
+        run_order_sync(execute=execute)
+        return
+
+    if "--temp-decay" in args:
+        print("Running temperature decay analysis (dry-run)...")
+        from crm_order_sync import run_temp_decay
+        execute = "--execute" in args
+        run_temp_decay(execute=execute)
         return
 
     # Default: single check (new records + overdue + hot/warm + new deal fields + stagnant + stage transitions)
