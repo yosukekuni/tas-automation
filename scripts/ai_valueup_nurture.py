@@ -123,8 +123,12 @@ def get_all_leads(token, table_id):
         if page_token:
             url += f"&page_token={page_token}"
         res = api_get(token, url)
-        data = res.get("data", {})
-        records.extend(data.get("items", []))
+        if res.get("code") and res["code"] != 0:
+            print(f"  API応答エラー: code={res.get('code')} msg={res.get('msg', '')[:200]}")
+            break
+        data = res.get("data") or {}
+        items = data.get("items") or []
+        records.extend(items)
         if not data.get("has_more"):
             break
         page_token = data.get("page_token")
