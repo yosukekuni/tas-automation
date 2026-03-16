@@ -37,8 +37,9 @@ jobs:
           path: |
             scripts/nurturing_state.json
             scripts/nurturing_queue.json
-          key: nurturing-state-${{ github.run_id }}
+          key: nurturing-state-v3-${{ github.run_id }}
           restore-keys: |
+            nurturing-state-v3-
             nurturing-state-
 
       - name: Run nurturing
@@ -57,4 +58,4 @@ jobs:
           path: |
             scripts/nurturing_state.json
             scripts/nurturing_queue.json
-          key: nurturing-state-${{ github.run_id }}
+          key: nurturing-state-v3-${{ github.run_id }}

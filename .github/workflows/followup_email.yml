@@ -24,8 +24,24 @@ jobs:
           LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
         run: python scripts/setup_config.py
 
+      - name: Restore cooldown state
+        uses: actions/cache/restore@v5
+        with:
+          path: scripts/followup_cooldown.json
+          key: followup-cooldown-v1-${{ github.run_id }}
+          restore-keys: |
+            followup-cooldown-v1-
+            followup-cooldown-
+
       - name: Generate follow-up emails
         run: python scripts/auto_followup_email.py
+
+      - name: Save cooldown state
+        uses: actions/cache/save@v5
+        if: always()
+        with:
+          path: scripts/followup_cooldown.json
+          key: followup-cooldown-v1-${{ github.run_id }}
 
       - name: Upload drafts
         uses: actions/upload-artifact@v7

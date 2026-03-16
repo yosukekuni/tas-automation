@@ -63,7 +63,13 @@ TABLE_EMAIL_LOG = "tblfBahatPZMJEM5"
 CEO_OPEN_ID = "ou_d2e2e520a442224ea9d987c6186341ce"
 
 # セーフガード設定
-MAX_SENDS_PER_DAY = 5          # 1日の送信上限
+MAX_SENDS_PER_DAY = 15         # 1日の送信上限（5→15に引き上げ）
+
+# テスト・無効レコードの除外パターン
+EXCLUDE_PATTERNS = [
+    "test", "annai", "テスト", "dummy", "sample",
+    "@example.com", "@test.com",
+]
 
 
 def run_email_review(subject, body, to_email, from_email="info@tokaiair.com"):
@@ -893,14 +899,35 @@ def scan_and_queue():
 
     # 初回実行チェック
     if not state.get("initialized"):
-        log("  初回実行: 既存レコードを処理済みとしてマーク")
-        state["inquiry_processed_ids"] = [c.get("record_id", "") for c in contacts]
-        state["delivery_processed_ids"] = [o.get("record_id", "") for o in orders]
+        log("  初回実行: 30日以上前のレコードを処理済みとしてマーク（直近30日は対象）")
+        cutoff = datetime.now() - timedelta(days=30)
+        old_contact_ids = []
+        for c in contacts:
+            created = c.get("created_time")
+            if isinstance(created, (int, float)) and created > 0:
+                created_dt = datetime.fromtimestamp(created / 1000)
+                if created_dt < cutoff:
+                    old_contact_ids.append(c.get("record_id", ""))
+            else:
+                # 作成日時不明の場合は処理済みとする
+                old_contact_ids.append(c.get("record_id", ""))
+        old_order_ids = []
+        for o in orders:
+            created = o.get("created_time")
+            if isinstance(created, (int, float)) and created > 0:
+                created_dt = datetime.fromtimestamp(created / 1000)
+                if created_dt < cutoff:
+                    old_order_ids.append(o.get("record_id", ""))
+            else:
+                old_order_ids.append(o.get("record_id", ""))
+        state["inquiry_processed_ids"] = old_contact_ids
+        state["delivery_processed_ids"] = old_order_ids
         state["initialized"] = True
         state["last_scan"] = datetime.now().isoformat()
         save_state(state)
-        log("  次回以降、新規レコードをキューに追加します。")
-        return
+        log(f"  処理済みマーク: 連絡先{len(old_contact_ids)}件 / 受注{len(old_order_ids)}件")
+        log(f"  直近30日の連絡先{len(contacts) - len(old_contact_ids)}件をナーチャリング対象として続行")
+        # 初回でも直近レコードは処理するため、returnしない
 
     inquiry_processed = set(state.get("inquiry_processed_ids", []))
     delivery_processed = set(state.get("delivery_processed_ids", []))
@@ -916,6 +943,14 @@ def scan_and_queue():
 
         info = extract_contact_info(contact_rec)
         if not info["email"] or "@" not in info["email"]:
+            inquiry_processed.add(rid)
+            continue
+
+        # テスト・無効レコード除外
+        email_lower = info["email"].lower()
+        name_lower = (info["name"] or "").lower()
+        if any(p in email_lower or p in name_lower for p in EXCLUDE_PATTERNS):
+            log(f"  除外（テスト/無効）: {info['name']} <{info['email']}>")
             inquiry_processed.add(rid)
             continue
 

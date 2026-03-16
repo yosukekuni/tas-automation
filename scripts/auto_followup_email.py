@@ -26,6 +26,8 @@ from collections import defaultdict
 SCRIPT_DIR = Path(__file__).parent
 CONFIG_FILE = SCRIPT_DIR / "automation_config.json"
 OUTPUT_DIR = SCRIPT_DIR / "followup_drafts"
+COOLDOWN_FILE = SCRIPT_DIR / "followup_cooldown.json"
+COOLDOWN_DAYS = 7  # 同一商談へのメール生成間隔（日）
 
 with open(CONFIG_FILE) as f:
     CONFIG = json.load(f)
@@ -425,6 +427,38 @@ def notify_rep_via_webhook(text):
         return False
 
 
+def load_cooldown():
+    """クールダウン状態を読み込み"""
+    if COOLDOWN_FILE.exists():
+        try:
+            with open(COOLDOWN_FILE) as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError):
+            pass
+    return {}
+
+
+def save_cooldown(state):
+    """クールダウン状態を保存"""
+    with open(COOLDOWN_FILE, "w", encoding="utf-8") as f:
+        json.dump(state, f, ensure_ascii=False, indent=2)
+
+
+def is_in_cooldown(cooldown_state, record_id):
+    """クールダウン期間内かチェック"""
+    entry = cooldown_state.get(record_id)
+    if not entry:
+        return False
+    last_date_str = entry.get("last_generated", "")
+    if not last_date_str:
+        return False
+    try:
+        last_date = datetime.fromisoformat(last_date_str)
+        return (datetime.now() - last_date).days < COOLDOWN_DAYS
+    except ValueError:
+        return False
+
+
 def main():
     args = sys.argv[1:]
     send_mode = "--send" in args
@@ -473,7 +507,16 @@ def main():
     OUTPUT_DIR.mkdir(exist_ok=True)
     generated = []
 
+    # クールダウン管理
+    cooldown_state = load_cooldown()
+    skipped_cooldown = 0
+
     for t in targets:
+        # クールダウンチェック（特定商談指定時はスキップしない）
+        if not specific_deal and is_in_cooldown(cooldown_state, t["record_id"]):
+            skipped_cooldown += 1
+            continue
+
         print(f"\n{'='*60}")
         print(f"  生成中: {t['deal_name']}")
 
@@ -544,6 +587,12 @@ def main():
             "email_text": email_text,
         })
 
+        # クールダウン記録
+        cooldown_state[t["record_id"]] = {
+            "deal_name": t["deal_name"],
+            "last_generated": datetime.now().isoformat(),
+        }
+
         # 送信モード
         if send_mode and contact.get("email"):
             # 件名抽出
@@ -563,9 +612,12 @@ def main():
 
         time.sleep(1)  # API rate limit
 
+    # クールダウン保存
+    save_cooldown(cooldown_state)
+
     # サマリー通知
-    summary = f"📧 フォローメール自動生成完了\n\n"
-    summary += f"対象: {len(generated)}件\n"
+    summary = f"フォローメール自動生成完了\n\n"
+    summary += f"生成: {len(generated)}件 / クールダウンスキップ: {skipped_cooldown}件\n"
     for g in generated:
         summary += f"  - {g['deal']} → {g['contact_email'] or '(メール不明)'}\n"
     summary += f"\nドラフト保存先: {OUTPUT_DIR}/"
