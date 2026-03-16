@@ -510,6 +510,29 @@ def build_report(rep_name, rep_deals, untouched_accounts, contacts):
     hot_deals = rep_deals.get("hot", [])
     warm_deals = rep_deals.get("warm", [])
 
+    # ── 今週のフォロー優先リスト ──
+    follow_priority = []
+    for deal in hot_deals + warm_deals:
+        if deal["overdue"] or not deal["next_date"]:
+            follow_priority.append(deal)
+
+    if follow_priority:
+        # 超過を先、未設定を後にソート
+        follow_priority.sort(key=lambda d: (0 if d["overdue"] else 1, d["company"]))
+        lines.append(f"⚡ 今週のフォロー優先リスト: {len(follow_priority)} 件")
+        lines.append(f"  （次アクション日が超過 or 未設定の Hot/Warm 商談）")
+        lines.append("")
+        for i, deal in enumerate(follow_priority, 1):
+            if deal["overdue"]:
+                status = f"⚠ 超過（{deal['next_date']}）"
+            else:
+                status = "📌 日付未設定"
+            action_str = f"  → {deal['next_action']}" if deal["next_action"] else ""
+            lines.append(f"  {i}. [{deal['temp']}] {deal['company']}  {status}{action_str}")
+        lines.append("")
+        lines.append(f"{'─'*40}")
+        lines.append("")
+
     # AI生成の上限（API呼び出し数を制御）
     MAX_HOT_AI = 5    # Hot商談: AI生成は上位5件
     MAX_WARM_AI = 5   # Warm商談: AI生成は上位5件
