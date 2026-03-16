@@ -80,8 +80,17 @@ def get_lead_table_id():
     if TABLE_IDS_FILE.exists():
         with open(TABLE_IDS_FILE) as f:
             ids = json.load(f)
-        return ids.get("AI_VU_リード")
+        return ids.get("TOMOSHI_リード")
     return None
+
+
+def get_tomoshi_base_token():
+    """Get TOMOSHI Base token (separate from TAS CRM)"""
+    if TABLE_IDS_FILE.exists():
+        with open(TABLE_IDS_FILE) as f:
+            ids = json.load(f)
+        return ids.get("TOMOSHI_BASE_TOKEN", CRM_BASE_TOKEN)
+    return CRM_BASE_TOKEN
 
 
 def main():
@@ -89,7 +98,7 @@ def main():
 
     table_id = get_lead_table_id()
     if not table_id:
-        print("  AI_VU_リード テーブル未作成。スキップ。")
+        print("  TOMOSHI_リード テーブル未作成。スキップ。")
         return
 
     token = get_token()
@@ -97,7 +106,8 @@ def main():
     known_ids = set(state.get("known_ids", []))
 
     # Fetch all leads
-    url = f"/bitable/v1/apps/{CRM_BASE_TOKEN}/tables/{table_id}/records?page_size=500"
+    base_token = get_tomoshi_base_token()
+    url = f"/bitable/v1/apps/{base_token}/tables/{table_id}/records?page_size=500"
     res = api_get(token, url)
     records = res.get("data", {}).get("items", [])
 

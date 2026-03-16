@@ -96,20 +96,30 @@ def api_post(token, path, body):
 
 
 def get_lead_table_id():
-    """Get AI_VU_リード table ID"""
+    """Get TOMOSHI_リード table ID"""
     if TABLE_IDS_FILE.exists():
         with open(TABLE_IDS_FILE) as f:
             ids = json.load(f)
-        return ids.get("AI_VU_リード")
+        return ids.get("TOMOSHI_リード")
     return None
 
 
+def get_tomoshi_base_token():
+    """Get TOMOSHI Base token (separate from TAS CRM)"""
+    if TABLE_IDS_FILE.exists():
+        with open(TABLE_IDS_FILE) as f:
+            ids = json.load(f)
+        return ids.get("TOMOSHI_BASE_TOKEN", CRM_BASE_TOKEN)
+    return CRM_BASE_TOKEN
+
+
 def get_all_leads(token, table_id):
-    """Fetch all leads from AI_VU_リード table"""
+    """Fetch all leads from TOMOSHI_リード table"""
+    base_token = get_tomoshi_base_token()
     records = []
     page_token = None
     while True:
-        url = f"/bitable/v1/apps/{CRM_BASE_TOKEN}/tables/{table_id}/records?page_size=500"
+        url = f"/bitable/v1/apps/{base_token}/tables/{table_id}/records?page_size=500"
         if page_token:
             url += f"&page_token={page_token}"
         res = api_get(token, url)
@@ -463,7 +473,7 @@ def main():
     table_id = get_lead_table_id()
 
     if not table_id:
-        print("  ✗ AI_VU_リード テーブルIDが見つかりません")
+        print("  ✗ TOMOSHI_リード テーブルIDが見つかりません")
         print("  先に ai_valueup_crm_setup.py を実行してください")
         sys.exit(1)
 
