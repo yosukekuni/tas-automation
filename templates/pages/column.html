@@ -148,54 +148,94 @@
   </div>
 </div>
 
+<div id="columnLoadMore" style="display:none;text-align:center;padding:32px 0">
+  <button onclick="loadMorePosts()" style="background:var(--brand,#1647FB);color:#fff;border:none;padding:14px 40px;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:opacity .2s">もっと読む</button>
+  <p id="columnCount" style="margin-top:8px;font-size:13px;color:var(--gray-mid,#888)"></p>
+</div>
+
 <script>
 (function() {
   var grid = document.getElementById('columnGrid');
   var loading = document.getElementById('columnLoading');
+  var loadMoreDiv = document.getElementById('columnLoadMore');
+  var countEl = document.getElementById('columnCount');
+  var allPosts = [];
+  var shown = 0;
+  var PER_LOAD = 12;
+  var totalPosts = 0;
 
-  fetch('/wp-json/wp/v2/posts?per_page=12&_embed=1')
-    .then(function(res) { return res.json(); })
-    .then(function(posts) {
-      loading.style.display = 'none';
-      if (!posts.length) {
-        grid.innerHTML = '<p style="text-align:center;color:var(--gray-mid);padding:40px;">記事がまだありません。</p>';
-        return;
-      }
-      var html = '';
-      posts.forEach(function(post) {
-        var thumb = '';
-        var featuredMedia = post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0];
-        if (featuredMedia && featuredMedia.source_url) {
-          thumb = '<img class="column-thumb" src="' + featuredMedia.source_url + '" alt="' + (post.title.rendered || '') + '" loading="lazy">';
+  function renderCard(post) {
+    var thumb = '';
+    var featuredMedia = post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0];
+    if (featuredMedia && featuredMedia.source_url) {
+      thumb = '<img class="column-thumb" src="' + featuredMedia.source_url + '" alt="' + (post.title.rendered || '') + '" loading="lazy">';
+    } else {
+      thumb = '<div class="column-thumb-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M8.5 10C9.328 10 10 9.328 10 8.5C10 7.672 9.328 7 8.5 7C7.672 7 7 7.672 7 8.5C7 9.328 7.672 10 8.5 10Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M21 15L16 10L5 21" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/></svg></div>';
+    }
+    var categories = post._embedded && post._embedded['wp:term'] && post._embedded['wp:term'][0];
+    var catHtml = '';
+    if (categories && categories.length > 0) {
+      catHtml = '<span class="column-category">' + categories[0].name + '</span>';
+    }
+    var date = new Date(post.date);
+    var dateStr = date.getFullYear() + '.' + String(date.getMonth()+1).padStart(2,'0') + '.' + String(date.getDate()).padStart(2,'0');
+    var excerpt = post.excerpt ? post.excerpt.rendered.replace(/<[^>]+>/g, '').substring(0, 100) : '';
+    if (excerpt.length >= 100) excerpt += '...';
+    return '<a href="' + post.link + '" class="column-card">'
+      + thumb
+      + '<div class="column-body">'
+      + '<div class="column-meta">' + catHtml + '<span>' + dateStr + '</span></div>'
+      + '<h3 class="column-title">' + post.title.rendered + '</h3>'
+      + '<p class="column-excerpt">' + excerpt + '</p>'
+      + '<span class="column-readmore">続きを読む <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5.25 3.5L8.75 7L5.25 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
+      + '</div></a>';
+  }
+
+  function showPosts(count) {
+    var end = Math.min(shown + count, allPosts.length);
+    var html = '';
+    for (var i = shown; i < end; i++) {
+      html += renderCard(allPosts[i]);
+    }
+    grid.insertAdjacentHTML('beforeend', html);
+    shown = end;
+    countEl.textContent = shown + ' / ' + totalPosts + ' 件表示中';
+    if (shown >= allPosts.length) {
+      loadMoreDiv.style.display = 'none';
+    }
+  }
+
+  window.loadMorePosts = function() { showPosts(PER_LOAD); };
+
+  // Fetch all posts (paginated)
+  function fetchAll(page, acc) {
+    fetch('/wp-json/wp/v2/posts?per_page=100&page=' + page + '&_embed=1')
+      .then(function(res) {
+        totalPosts = parseInt(res.headers.get('X-WP-Total') || '0');
+        return res.json();
+      })
+      .then(function(posts) {
+        acc = acc.concat(posts);
+        if (posts.length === 100) {
+          fetchAll(page + 1, acc);
         } else {
-          thumb = '<div class="column-thumb-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M8.5 10C9.328 10 10 9.328 10 8.5C10 7.672 9.328 7 8.5 7C7.672 7 7 7.672 7 8.5C7 9.328 7.672 10 8.5 10Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M21 15L16 10L5 21" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/></svg></div>';
+          allPosts = acc;
+          loading.style.display = 'none';
+          if (!allPosts.length) {
+            grid.innerHTML = '<p style="text-align:center;color:var(--gray-mid);padding:40px;">記事がまだありません。</p>';
+            return;
+          }
+          showPosts(PER_LOAD);
+          if (allPosts.length > PER_LOAD) {
+            loadMoreDiv.style.display = 'block';
+          }
         }
-
-        var categories = post._embedded && post._embedded['wp:term'] && post._embedded['wp:term'][0];
-        var catHtml = '';
-        if (categories && categories.length > 0) {
-          catHtml = '<span class="column-category">' + categories[0].name + '</span>';
-        }
-
-        var date = new Date(post.date);
-        var dateStr = date.getFullYear() + '.' + String(date.getMonth()+1).padStart(2,'0') + '.' + String(date.getDate()).padStart(2,'0');
-
-        var excerpt = post.excerpt ? post.excerpt.rendered.replace(/<[^>]+>/g, '').substring(0, 100) : '';
-        if (excerpt.length >= 100) excerpt += '...';
-
-        html += '<a href="' + post.link + '" class="column-card">'
-          + thumb
-          + '<div class="column-body">'
-          + '<div class="column-meta">' + catHtml + '<span>' + dateStr + '</span></div>'
-          + '<h3 class="column-title">' + post.title.rendered + '</h3>'
-          + '<p class="column-excerpt">' + excerpt + '</p>'
-          + '<span class="column-readmore">続きを読む <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5.25 3.5L8.75 7L5.25 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
-          + '</div></a>';
+      })
+      .catch(function() {
+        loading.innerHTML = '記事の読み込みに失敗しました。ページを再読み込みしてください。';
       });
-      grid.innerHTML = html;
-    })
-    .catch(function() {
-      loading.innerHTML = '記事の読み込みに失敗しました。ページを再読み込みしてください。';
-    });
+  }
+
+  fetchAll(1, []);
 })();
 </script>
