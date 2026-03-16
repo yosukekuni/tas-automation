@@ -65,7 +65,14 @@ BASE_DIR = Path("/home/user/tokaiair/payroll")
 
 # Lark API設定
 LARK_API_BASE = "https://open.larksuite.com/open-apis"
-CRM_BASE_TOKEN = "BodWbgw6DaHP8FspBTYjT8qSpOe"
+# Load CRM_BASE_TOKEN from config (not hardcoded)
+_config_file = SCRIPT_DIR / "automation_config.json"
+if _config_file.exists():
+    with open(_config_file) as _f:
+        _cfg = json.load(_f)
+    CRM_BASE_TOKEN = _cfg["lark"]["crm_base_token"]
+else:
+    CRM_BASE_TOKEN = os.environ.get("CRM_BASE_TOKEN", "BodWbgw6DaHP8FspBTYjT8qSpOe")
 TABLE_ORDERS = "tbldLj2iMJYocct6"
 TABLE_EXPENSE_LOG = "tbliYwPFbxxINAfk"  # 経費精算ログテーブル
 

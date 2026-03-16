@@ -13,9 +13,10 @@ on:
 jobs:
   report:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -44,7 +45,7 @@ jobs:
         run: python scripts/weekly_sales_report.py --send ${{ inputs.rep && format('--rep {0}', inputs.rep) || '' }}
 
       - name: Upload reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: weekly-reports-${{ github.run_number }}
           path: scripts/weekly_reports/

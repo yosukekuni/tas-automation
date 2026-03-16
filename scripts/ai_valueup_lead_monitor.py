@@ -109,7 +109,12 @@ def main():
     base_token = get_tomoshi_base_token()
     url = f"/bitable/v1/apps/{base_token}/tables/{table_id}/records?page_size=500"
     res = api_get(token, url)
-    records = res.get("data", {}).get("items", [])
+    data = res.get("data") or {}
+    records = data.get("items") or []
+
+    if not records:
+        total = data.get("total", 0)
+        print(f"  レコード0件 (total={total})")
 
     new_leads = []
     for rec in records:

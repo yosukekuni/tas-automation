@@ -12,8 +12,9 @@ on:
 jobs:
   nurture:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup config
         env:
@@ -27,7 +28,7 @@ jobs:
         run: python3 scripts/setup_config.py
 
       - name: Restore state
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: scripts/ai_valueup_nurture_state.json
           key: ai-vu-nurture-state-
@@ -43,7 +44,7 @@ jobs:
           fi
 
       - name: Save state
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: scripts/ai_valueup_nurture_state.json
           key: ai-vu-nurture-state-${{ github.run_id }}

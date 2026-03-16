@@ -34,13 +34,28 @@ KEYWORDS = [
     "レーザー", "写真測量", "i-Construction", "i-construction",
     "不陸", "地形測量", "航空", "空中写真", "LiDAR", "lidar",
     "MMS", "地上レーザ", "ICT", "無人航空機",
+    # 2026-03-16 追加: 赤外線調査・構造物点検・i-Con関連
+    "赤外線", "外壁調査", "建物調査",
+    "橋梁点検", "護岸点検", "無人化", "空撮",
 ]
 
-LARK_APP_ID = "cli_a92d697b1df89e1b"
-LARK_APP_SECRET = "d6ZNyoAJbXN679ybZhC9vhCNxV4IcJFo"
-OWNER_OPEN_ID = "ou_d2e2e520a442224ea9d987c6186341ce"
+# 業種カテゴリに以下が含まれる場合はキーワード不問で自動マッチ
+CATEGORY_AUTO_MATCH = ["測量"]
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Load credentials from automation_config.json (not hardcoded)
+_config_path = os.path.join(SCRIPT_DIR, "automation_config.json")
+if os.path.exists(_config_path):
+    with open(_config_path) as _f:
+        _cfg = json.load(_f)
+    LARK_APP_ID = _cfg["lark"]["app_id"]
+    LARK_APP_SECRET = _cfg["lark"]["app_secret"]
+else:
+    LARK_APP_ID = os.environ.get("LARK_APP_ID", "")
+    LARK_APP_SECRET = os.environ.get("LARK_APP_SECRET", "")
+
+OWNER_OPEN_ID = "ou_d2e2e520a442224ea9d987c6186341ce"
 LOG_FILE = os.path.join(SCRIPT_DIR, "bid_scanner.log")
 STATE_FILE = os.path.join(SCRIPT_DIR, "bid_scanner_state.json")
 
@@ -277,7 +292,7 @@ def scan_ebisc(days=7):
                 bid_method = bid.get("bid_method", "")
                 search_text = f"{title} {category} {bid_method}"
 
-                if matches_keywords(search_text):
+                if matches_keywords(search_text, category=category):
                     results.append({
                         "案件名": title,
                         "発注者": bid.get("agency", "") or label,
@@ -390,8 +405,17 @@ def scan_nagoya():
 # ---------------------------------------------------------------------------
 # Keyword matching
 # ---------------------------------------------------------------------------
-def matches_keywords(text):
-    """Check if text contains any of the target keywords (case-insensitive)."""
+def matches_keywords(text, category=""):
+    """Check if text contains any of the target keywords (case-insensitive).
+    Also auto-matches if category contains any CATEGORY_AUTO_MATCH terms.
+    """
+    # Auto-match by category (e.g. 業種 = "測量" → always match)
+    if category:
+        cat_lower = category.lower()
+        for cat_kw in CATEGORY_AUTO_MATCH:
+            if cat_kw.lower() in cat_lower:
+                return True
+
     text_lower = text.lower()
     for kw in KEYWORDS:
         if kw.lower() in text_lower:

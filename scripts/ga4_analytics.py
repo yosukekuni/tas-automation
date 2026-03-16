@@ -732,8 +732,17 @@ def print_dashboard(ga4_data, gsc_data):
 # ── Lark Base API ─────────────────────────────────────────────────────
 LARK_API_BASE = "https://open.larksuite.com/open-apis"
 
-# Web分析Base
-WEB_ANALYTICS_BASE_TOKEN = "Vy65bp8Wia7UkZs8CWCjPSqJpyf"
+# Web分析Base (load from config if available, fallback to env)
+def _load_web_analytics_token():
+    for cp in [Path(__file__).parent / "automation_config.json",
+               Path("/mnt/c/Users/USER/Documents/_data/automation_config.json")]:
+        if cp.exists():
+            with open(cp) as f:
+                cfg = json.load(f)
+            return cfg.get("lark", {}).get("web_analytics_base_token", "")
+    return os.environ.get("WEB_ANALYTICS_BASE_TOKEN", "")
+
+WEB_ANALYTICS_BASE_TOKEN = _load_web_analytics_token() or "Vy65bp8Wia7UkZs8CWCjPSqJpyf"
 TABLE_PAGE_ANALYSIS = "tbluRdPdhuyjH5a3"     # GA4_ページ分析
 TABLE_WEEKLY_TREND = "tblYHA6j48u7TiZj"       # GA4_週次トレンド
 TABLE_TRAFFIC_SOURCE = "tbl8fBPQMxlF2JyJ"     # GA4_流入経路

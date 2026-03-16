@@ -17,10 +17,20 @@ from datetime import datetime, timedelta
 from collections import Counter, defaultdict
 from pathlib import Path
 
-# ── Config ──
-APP_ID = "cli_a92d697b1df89e1b"
-APP_SECRET = "d6ZNyoAJbXN679ybZhC9vhCNxV4IcJFo"
-BASE_TOKEN = "BodWbgw6DaHP8FspBTYjT8qSpOe"
+# ── Config (from automation_config.json, not hardcoded) ──
+_SCRIPT_DIR = Path(__file__).parent
+_CONFIG_FILE = _SCRIPT_DIR / "automation_config.json"
+if _CONFIG_FILE.exists():
+    with open(_CONFIG_FILE) as _f:
+        _cfg = json.load(_f)
+    APP_ID = _cfg["lark"]["app_id"]
+    APP_SECRET = _cfg["lark"]["app_secret"]
+    BASE_TOKEN = _cfg["lark"]["crm_base_token"]
+else:
+    import os as _os
+    APP_ID = _os.environ.get("LARK_APP_ID", "")
+    APP_SECRET = _os.environ.get("LARK_APP_SECRET", "")
+    BASE_TOKEN = _os.environ.get("CRM_BASE_TOKEN", "")
 
 TABLES = {
     "取引先": "tblTfGScQIdLTYxA",

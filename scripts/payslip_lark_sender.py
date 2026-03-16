@@ -37,7 +37,15 @@ except ImportError:
 # ==================== 設定 ====================
 SCRIPT_DIR = Path(__file__).parent
 LARK_API_BASE = "https://open.larksuite.com/open-apis"
-CRM_BASE_TOKEN = "BodWbgw6DaHP8FspBTYjT8qSpOe"
+# Load CRM_BASE_TOKEN from config (not hardcoded)
+_config_file = SCRIPT_DIR / "automation_config.json"
+if _config_file.exists():
+    with open(_config_file) as _f:
+        import json as _json
+        _cfg = _json.load(_f)
+    CRM_BASE_TOKEN = _cfg["lark"]["crm_base_token"]
+else:
+    CRM_BASE_TOKEN = os.environ.get("CRM_BASE_TOKEN", "BodWbgw6DaHP8FspBTYjT8qSpOe")
 TABLE_PAYROLL = "tbllGwzN1GWwdd4L"
 
 # 送信先マッピング

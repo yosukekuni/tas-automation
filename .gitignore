@@ -12,3 +12,6 @@ scripts/thankyou_queue.json
 scripts/quote_followup_state.json
 scripts/crm_monitor_state.json
 backups/20260316_*
+# Backup files (may contain credentials)
+*.bak
+*.bak.*
