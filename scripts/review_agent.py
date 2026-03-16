@@ -33,8 +33,8 @@ REVIEW_PROFILES = {
     "article": {
         "name": "記事公開チェック",
         "checks": [
-            "ダークモード(黒背景)でテーブルのテキストが読めるか。is-style-stripesのストライプ行のコントラスト",
-            "テーブルのヘッダー(thead)に適切な背景色があるか",
+            "ダークモード(黒背景)でテーブルのテキストが読めるか。is-style-stripesのストライプ行のコントラスト。ただしCSS変数(var(--xxx))使用時はテーマ側で対応済みと判断しWARNINGに留める",
+            "テーブルのヘッダー(thead)に適切な背景色があるか。注意: WordPressはthead/tbody/caption/scopeタグを保存時に除去するため、これらの欠落はWARNING（CRITICALにしない）",
             "内部リンク・外部リンクが存在する場合、URLが妥当か（/soil-volume/ 等の壊れたパスがないか）",
             "CTAセクション（お問い合わせ・電話番号・予約リンク）が記事末尾に存在するか",
             "構造化データ(JSON-LD)がある場合、JSONとして正しいか",
@@ -44,7 +44,7 @@ REVIEW_PROFILES = {
             "電話番号がtel:リンクになっているか",
             "TOMOSHIとTASのブランドが混在していないか（tomoshi.jpの記事にtokaiair、またはその逆）",
         ],
-        "severity_guide": "表示崩れ・リンク切れ・ブランド混在はCRITICAL。SEO系はWARNING。"
+        "severity_guide": "表示崩れ・リンク切れ・ブランド混在はCRITICAL。SEO系・アクセシビリティ構造（thead/scope欠落）・リンク先の存在未確認・H階層の軽微な問題はWARNING。CRITICALは実際にユーザーに害がある問題のみ。"
     },
     "email": {
         "name": "メール送信チェック",

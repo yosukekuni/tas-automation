@@ -59,7 +59,8 @@ LP_CONFIG = {
     },
     "consultant": {
         "page_id": 6149,
-        "industry": "コンサルタント",
+        "industry": "建設コンサルタント",
+        "industry_aliases": ["コンサルタント", "コンサル"],
         "slug": "consultant",
         "label": "コンサルタント向けLP",
     },
@@ -335,10 +336,18 @@ def main():
     for lp_key in lps_to_update:
         lp = LP_CONFIG[lp_key]
         industry = lp["industry"]
-        lp_stats = stats.get(industry, {"count": 0, "companies": 0, "avg_price": 0})
+        aliases = lp.get("industry_aliases", [])
+        lp_stats = stats.get(industry, None)
+        if lp_stats is None:
+            for alias in aliases:
+                lp_stats = stats.get(alias, None)
+                if lp_stats:
+                    break
+        if lp_stats is None:
+            lp_stats = {"count": 0, "companies": 0, "avg_price": 0}
 
         print(f"\n  --- {lp['label']} (ID: {lp['page_id']}) ---")
-        print(f"  業種: {industry}")
+        print(f"  業種: {industry} (aliases: {aliases})")
         print(f"  受注件数: {lp_stats['count']}件")
         print(f"  取引先数: {lp_stats['companies']}社")
         print(f"  平均単価: {lp_stats['avg_price']:,}円")
@@ -408,7 +417,15 @@ def main():
     for lp_key in lps_to_update:
         lp = LP_CONFIG[lp_key]
         industry = lp["industry"]
-        lp_stats = stats.get(industry, {"count": 0, "companies": 0})
+        aliases = lp.get("industry_aliases", [])
+        lp_stats = stats.get(industry, None)
+        if lp_stats is None:
+            for alias in aliases:
+                lp_stats = stats.get(alias, None)
+                if lp_stats:
+                    break
+        if lp_stats is None:
+            lp_stats = {"count": 0, "companies": 0}
         print(f"  {lp['label']}: {lp_stats['count']}件 / {lp_stats['companies']}社")
 
     print("\n完了")
