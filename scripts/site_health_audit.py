@@ -66,8 +66,8 @@ def send_lark_dm(token, text):
     )
     try:
         urllib.request.urlopen(req)
-    except:
-        pass
+    except Exception as e:
+        print(f"  Lark DM error: {e}")
 
 
 def wp_get(endpoint, params=None):
@@ -89,7 +89,8 @@ def fetch_page(url):
         })
         with urllib.request.urlopen(req, timeout=15) as r:
             return r.read().decode("utf-8", errors="replace")
-    except:
+    except Exception as e:
+        print(f"  Fetch error [{url}]: {e}")
         return ""
 
 
@@ -115,7 +116,7 @@ def extract_meta(html):
                         schemas.append(item.get("@type", ""))
                 else:
                     schemas.append(j.get("@type", ""))
-        except:
+        except (json.JSONDecodeError, ValueError):
             pass
 
     # Check for author info

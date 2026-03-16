@@ -268,7 +268,8 @@ def send_webhook(text):
     try:
         urllib.request.urlopen(req)
         return True
-    except:
+    except Exception as e:
+        print(f"  Webhook error: {e}")
         return False
 
 
@@ -385,7 +386,7 @@ def generate_report(period="week"):
             try:
                 rd["total_amount"] += float(amt)
                 rd["deals_with_amount"] += 1
-            except:
+            except (ValueError, TypeError):
                 pass
 
     # Build report

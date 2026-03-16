@@ -420,7 +420,8 @@ def notify_rep_via_webhook(text):
     try:
         urllib.request.urlopen(req)
         return True
-    except:
+    except Exception as e:
+        print(f"  Webhook error: {e}")
         return False
 
 

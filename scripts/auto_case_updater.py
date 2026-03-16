@@ -72,8 +72,8 @@ def send_lark_dm(token, text):
     )
     try:
         urllib.request.urlopen(req)
-    except:
-        pass
+    except Exception as e:
+        print(f"  Lark DM error: {e}")
 
 
 def lark_list_records(token, table_id, filter_expr=None, page_size=500):
@@ -148,8 +148,8 @@ def geocode(query):
             results = json.loads(r.read())
             if results:
                 return float(results[0]['lat']), float(results[0]['lon'])
-    except:
-        pass
+    except Exception as e:
+        print(f"  Geocoding error: {e}")
     return None, None
 
 
@@ -161,7 +161,8 @@ def get_satellite_image(lat, lon, case_idx):
     try:
         with urllib.request.urlopen(req, timeout=15) as r:
             img_data = r.read()
-    except:
+    except Exception as e:
+        print(f"  Mapbox image fetch error: {e}")
         return ""
 
     # Upload to WordPress
@@ -180,7 +181,8 @@ def get_satellite_image(lat, lon, case_idx):
         with urllib.request.urlopen(req, timeout=30) as r:
             result = json.loads(r.read())
             return result.get('source_url', '')
-    except:
+    except Exception as e:
+        print(f"  WP media upload error: {e}")
         return ""
 
 
