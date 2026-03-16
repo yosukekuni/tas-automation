@@ -362,6 +362,127 @@ def extract_seasonal_targets(orders, accounts, contacts, email_logs, deals, segm
     return targets
 
 
+def extract_warm_deal_targets(deals, accounts, contacts, email_logs, existing_targets):
+    """
+    Warm以上の商談から季節メール対象を抽出。
+    既存の受注実績ベース対象と重複しないもののみ追加。
+    """
+    now = datetime.now()
+    cutoff = now - timedelta(days=DUPLICATE_WINDOW_DAYS)
+    cutoff_ms = int(cutoff.timestamp() * 1000)
+
+    # 既存対象のメールアドレスを収集（重複排除用）
+    existing_emails = {t["contact_email"].lower() for t in existing_targets if t.get("contact_email")}
+    existing_account_ids = {t["account_id"] for t in existing_targets if t.get("account_id")}
+
+    # メールログから60日以内の送信先を収集
+    recent_emails = set()
+    for rec in email_logs:
+        f = rec.get("fields", {})
+        sent_date = f.get("送信日時")
+        if isinstance(sent_date, (int, float)) and sent_date >= cutoff_ms:
+            addr = str(f.get("宛先メール", "") or "").lower()
+            if addr:
+                recent_emails.add(addr)
+
+    # 取引先IDから会社名を引くためのマップ
+    account_name_map = {}
+    for rec in accounts:
+        rid = rec.get("record_id", "")
+        name = str(rec.get("fields", {}).get("会社名", "") or "")
+        if rid and name:
+            account_name_map[rid] = name
+
+    warm_targets = []
+    seen_accounts = set()
+
+    for rec in deals:
+        f = rec.get("fields", {})
+
+        # Warm以上のみ
+        temp = str(f.get("温度感スコア", "") or "")
+        if temp not in ("Hot", "Warm"):
+            continue
+
+        # 失注・不在は除外
+        stage = str(f.get("商談ステージ", "") or "")
+        if stage in ("失注", "不在", ""):
+            continue
+
+        # 取引先ID取得
+        account_links = f.get("取引先", [])
+        account_id = ""
+        if isinstance(account_links, list):
+            for link in account_links:
+                if isinstance(link, dict):
+                    account_id = link.get("record_id", "")
+                elif isinstance(link, str):
+                    account_id = link
+
+        # 既にターゲットに含まれている取引先はスキップ
+        if account_id and account_id in existing_account_ids:
+            continue
+        if account_id and account_id in seen_accounts:
+            continue
+
+        account_name = account_name_map.get(account_id, "")
+        if not account_name:
+            # 商談名や新規取引先名からフォールバック
+            account_name = str(f.get("商談名", "") or f.get("新規取引先名", "") or "")
+        if not account_name:
+            continue
+
+        # 連絡先検索
+        contact = find_contact_for_account(contacts, account_name)
+        if not contact or not contact.get("email") or "@" not in contact.get("email", ""):
+            continue
+
+        # 60日重複排除
+        if contact["email"].lower() in recent_emails:
+            continue
+        if contact["email"].lower() in existing_emails:
+            continue
+
+        # 担当営業
+        rep_name = ""
+        rep_field = f.get("担当営業", [])
+        if isinstance(rep_field, list):
+            for p in rep_field:
+                if isinstance(p, dict):
+                    rep_name = p.get("name", "")
+                elif isinstance(p, str):
+                    rep_name = p
+
+        # 商材情報
+        product_raw = f.get("商材種別", f.get("商材", ""))
+        if isinstance(product_raw, list):
+            product = ", ".join(str(p) for p in product_raw)
+        else:
+            product = str(product_raw or "")
+
+        if account_id:
+            seen_accounts.add(account_id)
+        existing_emails.add(contact["email"].lower())
+
+        warm_targets.append({
+            "account_id": account_id,
+            "account_name": account_name,
+            "segment": f"Warm({temp})",
+            "rep_name": rep_name,
+            "orders": [product] if product else ["ドローン測量（商談中）"],
+            "contact_name": contact["name"],
+            "contact_title": contact["title"],
+            "contact_email": contact["email"],
+            "contact_company": contact["company"],
+        })
+
+    # 最大件数制限（既存分と合わせて）
+    remaining = MAX_TARGETS - len(existing_targets)
+    if remaining <= 0:
+        return []
+    return warm_targets[:remaining]
+
+
 def find_contact_for_account(contacts, account_name):
     """取引先名から連絡先を検索"""
     if not account_name:
@@ -665,8 +786,12 @@ def main():
             if name:
                 segments[name] = "A"
 
-    # 対象顧客抽出
+    # 対象顧客抽出（受注実績 + Warm以上の商談）
     targets = extract_seasonal_targets(orders, accounts, contacts, email_logs, deals, segments)
+    warm_targets = extract_warm_deal_targets(deals, accounts, contacts, email_logs, targets)
+    if warm_targets:
+        log(f"  Warm以上商談からの追加対象: {len(warm_targets)}件")
+        targets.extend(warm_targets)
 
     if not targets:
         log("\n  対象顧客なし")

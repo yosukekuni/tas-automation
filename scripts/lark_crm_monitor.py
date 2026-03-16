@@ -14,6 +14,7 @@ Usage:
   python3 lark_crm_monitor.py --stages     # ステージ変更検知のみ実行（受注/失注ハンドラ）
   python3 lark_crm_monitor.py --github     # GitHub Actions障害チェックのみ
   python3 lark_crm_monitor.py --order-sync # 受注台帳-商談ファジーマッチング（dry-run）
+  python3 lark_crm_monitor.py --phone-remind # 電話対応後の商談報告リマインド
   python3 lark_crm_monitor.py --temp-decay # 温度感自動降格候補（dry-run）
   python3 lark_crm_monitor.py --dry-run    # 全チェック実行（通知送信なし、コンソール出力のみ）
 
@@ -1753,6 +1754,132 @@ def handle_deal_lost(token, record, fields):
         )
 
 
+def check_phone_deal_reminder():
+    """電話着信後の商談報告リマインド
+
+    商談テーブルに新規レコードが登録されてから30分以内に
+    ヒアリング内容・温度感・ステージが未入力の場合、
+    担当営業にLark Botでリマインド通知を送信する。
+
+    15分おきのcron実行で、30分経過した未完了レコードを検出。
+    同一レコードには1日1回のみ通知。
+    """
+    token = lark_get_token()
+    all_deals = fetch_all_deals(token)
+    state = load_state()
+    now = datetime.now()
+
+    # 通知済みレコードを追跡（日次リセット）
+    today_key = now.strftime("%Y-%m-%d")
+    notified_phone = state.get("phone_deal_notified", {})
+    if notified_phone.get("_date") != today_key:
+        notified_phone = {"_date": today_key}
+
+    junk_patterns = ["テスト", "test", "サンプル", "sample", "ダミー"]
+    incomplete = []
+
+    for rec in all_deals:
+        fields = rec.get("fields", {})
+        rec_id = rec.get("record_id", "")
+
+        # 商談日から作成時刻を推定
+        deal_date = fields.get("商談日", "")
+        if not isinstance(deal_date, (int, float)) or deal_date <= 0:
+            continue
+        try:
+            created = datetime.fromtimestamp(deal_date / 1000)
+        except (ValueError, OSError):
+            continue
+
+        # 30分～6時間前のレコードが対象（30分猶予後、6時間以内）
+        minutes_ago = (now - created).total_seconds() / 60
+        if minutes_ago < 30 or minutes_ago > 360:
+            continue
+
+        # 既に通知済みならスキップ
+        if rec_id in notified_phone:
+            continue
+
+        deal_name = resolve_deal_name(fields)
+        if not deal_name or any(p in str(deal_name).lower() for p in junk_patterns):
+            continue
+
+        # 未入力フィールドチェック
+        hearing_raw = fields.get("ヒアリング内容（まとめ）", "")
+        if isinstance(hearing_raw, list) and hearing_raw:
+            hearing = hearing_raw[0].get("text", "") if isinstance(hearing_raw[0], dict) else str(hearing_raw[0])
+        else:
+            hearing = str(hearing_raw or "")
+
+        stage = str(fields.get("商談ステージ", "") or "")
+        temp = str(fields.get("温度感スコア", "") or "")
+        next_action = str(fields.get("次アクション", "") or "")
+
+        missing = []
+        if not hearing.strip():
+            missing.append("ヒアリング内容")
+        if not stage:
+            missing.append("ステージ")
+        if not temp:
+            missing.append("温度感")
+        if not next_action:
+            missing.append("次アクション")
+
+        # 少なくとも2項目以上未入力の場合のみリマインド
+        if len(missing) < 2:
+            continue
+
+        sales_rep = extract_sales_rep(fields)
+        elapsed_min = int(minutes_ago)
+        incomplete.append({
+            "record_id": rec_id,
+            "deal_name": deal_name,
+            "sales_rep": sales_rep,
+            "missing": missing,
+            "elapsed_min": elapsed_min,
+        })
+        notified_phone[rec_id] = True
+
+    print(f"[PHONE REMINDER] 商談報告未完了: {len(incomplete)}件")
+
+    if incomplete:
+        # グループ通知
+        lines = [f"📞 商談報告リマインド（{len(incomplete)}件）\n"]
+        for d in incomplete:
+            lines.append(
+                f"  {d['deal_name']}（{d['sales_rep'] or '担当未設定'}）"
+                f"— 経過{d['elapsed_min']}分 — 未入力: {', '.join(d['missing'])}"
+            )
+        lines.append("\n→ 電話対応後は30分以内に商談報告を完了してください。")
+
+        send_notification(
+            token,
+            "📞 商談報告リマインド",
+            "\n".join(lines),
+            priority="normal"
+        )
+
+        # 個別担当者へのBot通知
+        for d in incomplete:
+            rep_cfg = SALES_REPS.get(d["sales_rep"]) or {}
+            msg = (
+                f"📞 商談報告リマインド\n"
+                f"案件: {d['deal_name']}\n"
+                f"経過: {d['elapsed_min']}分\n"
+                f"未入力: {', '.join(d['missing'])}\n\n"
+                f"電話対応後の商談報告をお願いします。"
+            )
+            if not DRY_RUN:
+                if isinstance(rep_cfg, dict) and rep_cfg.get("open_id"):
+                    lark_send_bot_message(token, rep_cfg["open_id"], msg, id_type="open_id")
+                elif isinstance(rep_cfg, dict) and rep_cfg.get("email"):
+                    send_email_notification(rep_cfg["email"], "【リマインド】商談報告未完了", msg)
+
+    state["phone_deal_notified"] = notified_phone
+    save_state(state)
+    return len(incomplete)
+
+
 def check_stage_transitions(all_deals=None, token=None):
     """商談ステージ変更を検知し、受注/失注ハンドラを実行する。
 
@@ -2120,6 +2247,7 @@ def main():
                 check_for_new_records()
                 check_hot_warm_no_action()
                 check_new_deal_missing_fields()
+                check_phone_deal_reminder()
                 check_stage_transitions()
                 check_github_actions_health()
             except Exception as e:
@@ -2175,6 +2303,12 @@ def main():
         run_order_sync(execute=execute)
         return
 
+    if "--phone-remind" in args:
+        print("Running phone deal reminder check...")
+        count = check_phone_deal_reminder()
+        print(f"Found {count} incomplete deal reports")
+        return
+
     if "--temp-decay" in args:
         print("Running temperature decay analysis (dry-run)...")
         from crm_order_sync import run_temp_decay
@@ -2215,6 +2349,13 @@ def main():
         check_stage_transitions()
     except Exception as e:
         print(f"[ERROR] Stage transition check failed: {e}")
+
+    # (f) 電話対応後の商談報告リマインド — 15分毎
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] Checking for incomplete phone deal reports...")
+    try:
+        check_phone_deal_reminder()
+    except Exception as e:
+        print(f"[ERROR] Phone deal reminder check failed: {e}")
 
     # (b2) フォローリマインド — 朝1回（8:00-9:00）
     current_hour = datetime.now().hour

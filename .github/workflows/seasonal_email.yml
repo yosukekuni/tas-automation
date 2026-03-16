@@ -1,6 +1,11 @@
 name: Seasonal Survey Planning Email
 
 on:
+  schedule:
+    # 4月第1週 月曜 9:00 JST (= 0:00 UTC)
+    - cron: '0 0 1-7 4 1'
+    # 10月第1週 月曜 9:00 JST (= 0:00 UTC)
+    - cron: '0 0 1-7 10 1'
   workflow_dispatch:
     inputs:
       season:
@@ -45,7 +50,10 @@ jobs:
           MODE="${{ github.event.inputs.mode }}"
           ARGS=""
           if [ -n "$SEASON" ]; then ARGS="$ARGS --season $SEASON"; fi
-          if [ "$MODE" = "send" ]; then
+          # スケジュール実行時は --send（手動時はinputに従う）
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            ARGS="$ARGS --send"
+          elif [ "$MODE" = "send" ]; then
             ARGS="$ARGS --send"
           elif [ "$MODE" = "list" ]; then
             ARGS="$ARGS --list"
