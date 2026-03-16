@@ -26,6 +26,12 @@ jobs:
           TASK_BASE_TOKEN: ${{ secrets.TASK_BASE_TOKEN }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
           GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+          FREEE_ACCESS_TOKEN: ${{ secrets.FREEE_ACCESS_TOKEN }}
+          FREEE_COMPANY_ID: ${{ secrets.FREEE_COMPANY_ID }}
+          FREEE_CLIENT_ID: ${{ secrets.FREEE_CLIENT_ID }}
+          FREEE_CLIENT_SECRET: ${{ secrets.FREEE_CLIENT_SECRET }}
+          FREEE_REFRESH_TOKEN: ${{ secrets.FREEE_REFRESH_TOKEN }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
         run: |
           python scripts/setup_config.py
           echo "$GOOGLE_SA_JSON" > /tmp/google_sa.json

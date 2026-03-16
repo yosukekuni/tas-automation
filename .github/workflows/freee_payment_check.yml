@@ -1,0 +1,35 @@
+name: freee Payment Check (Weekday 10AM JST)
+
+on:
+  schedule:
+    - cron: '0 1 * * 1-5'  # 01:00 UTC = 10:00 JST, Mon-Fri
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          FREEE_ACCESS_TOKEN: ${{ secrets.FREEE_ACCESS_TOKEN }}
+          FREEE_COMPANY_ID: ${{ secrets.FREEE_COMPANY_ID }}
+          FREEE_CLIENT_ID: ${{ secrets.FREEE_CLIENT_ID }}
+          FREEE_CLIENT_SECRET: ${{ secrets.FREEE_CLIENT_SECRET }}
+          FREEE_REFRESH_TOKEN: ${{ secrets.FREEE_REFRESH_TOKEN }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Check payment status
+        run: python scripts/freee_payment_checker.py --check-only

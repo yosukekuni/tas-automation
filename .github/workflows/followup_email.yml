@@ -33,8 +33,8 @@ jobs:
             followup-cooldown-v1-
             followup-cooldown-
 
-      - name: Generate follow-up emails
-        run: python scripts/auto_followup_email.py
+      - name: Generate and send follow-up emails
+        run: python scripts/auto_followup_email.py --send
 
       - name: Save cooldown state
         uses: actions/cache/save@v5

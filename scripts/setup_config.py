@@ -31,6 +31,14 @@ config = {
     "mapbox": {
         "token": os.environ.get("MAPBOX_TOKEN", ""),
     },
+    "freee": {
+        "access_token": os.environ.get("FREEE_ACCESS_TOKEN", ""),
+        "company_id": os.environ.get("FREEE_COMPANY_ID", ""),
+        "client_id": os.environ.get("FREEE_CLIENT_ID", ""),
+        "client_secret": os.environ.get("FREEE_CLIENT_SECRET", ""),
+        "refresh_token": os.environ.get("FREEE_REFRESH_TOKEN", ""),
+        "redirect_uri": os.environ.get("FREEE_REDIRECT_URI", "urn:ietf:wg:oauth:2.0:oob"),
+    },
 }
 
 out = Path(__file__).parent / "automation_config.json"

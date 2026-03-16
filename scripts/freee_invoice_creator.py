@@ -310,6 +310,41 @@ def format_yen(amount):
 
 
 # ──────────────────────────────────────────────
+# 通知
+# ──────────────────────────────────────────────
+def notify_unmatched_partners(config, candidates):
+    """取引先未登録の候補をLark Webhookで通知"""
+    unmatched_list = [c for c in candidates if not c["partner_id"]]
+    if not unmatched_list:
+        return
+
+    webhook_url = config.get("notifications", {}).get("lark_webhook_url", "")
+    if not webhook_url or webhook_url.startswith("${"):
+        return  # Webhook未設定
+
+    lines = ["[freee請求書] 取引先未登録の案件があります:"]
+    for c in unmatched_list:
+        lines.append(f"  - {c['company']} / {c['case_name'][:30]} / {format_yen(c['amount'])}円")
+    lines.append("\nPARTNER_MAPへの追加が必要です。")
+
+    body = json.dumps({
+        "msg_type": "text",
+        "content": {"text": "\n".join(lines)},
+    }).encode()
+
+    try:
+        req = urllib.request.Request(
+            webhook_url, data=body,
+            headers={"Content-Type": "application/json"},
+        )
+        with urllib.request.urlopen(req) as resp:
+            pass
+        print("  取引先未登録の通知を送信しました。")
+    except Exception as e:
+        print(f"  [WARN] Lark通知送信失敗: {e}")
+
+
+# ──────────────────────────────────────────────
 # メイン処理
 # ──────────────────────────────────────────────
 def get_existing_freee_invoices(config):
@@ -338,16 +373,37 @@ def get_existing_freee_invoices(config):
 
 def check_duplicate(candidate, existing_invoices):
     """既存freee請求書との重複チェック
+    partner_id + 金額 + 請求日（30日以内）で判定。
+    同一取引先に同額の別案件がある場合の誤判定を防止する。
     Returns: 重複する請求書番号 or None
     """
     for inv in existing_invoices:
-        # partner_id一致 + 金額一致 = 重複と判断
-        if inv.get("partner_id") == candidate["partner_id"]:
-            if inv.get("total_amount") == candidate["amount"]:
-                return inv.get("invoice_number")
-            # 税抜金額との比較
-            if inv.get("amount_excluding_tax") == candidate["amount"]:
-                return inv.get("invoice_number")
+        # partner_id一致が前提
+        if inv.get("partner_id") != candidate["partner_id"]:
+            continue
+
+        # 金額一致チェック（税込 or 税抜）
+        amount_match = False
+        if inv.get("total_amount") == candidate["amount"]:
+            amount_match = True
+        elif inv.get("amount_excluding_tax") == candidate["amount"]:
+            amount_match = True
+
+        if not amount_match:
+            continue
+
+        # 請求日が近い場合のみ重複とみなす（30日以内）
+        inv_billing = inv.get("billing_date", "")
+        if inv_billing and candidate.get("billing_date"):
+            try:
+                inv_date = date.fromisoformat(inv_billing)
+                cand_date = date.fromisoformat(candidate["billing_date"])
+                if abs((inv_date - cand_date).days) > 30:
+                    continue  # 請求日が30日以上離れていれば別案件
+            except (ValueError, TypeError):
+                pass  # 日付解析失敗時は金額一致のみで判定
+
+        return inv.get("invoice_number")
     return None
 
 
@@ -457,13 +513,13 @@ def main():
     config = load_config()
 
     # 1. Lark CRM受注台帳を取得
-    print("\n[1/4] CRM受注台帳取得...")
+    print("\n[1/5] CRM受注台帳取得...")
     lark_token = lark_get_token(config)
     all_records = lark_list_records(lark_token, ORDER_TABLE_ID)
     print(f"  全レコード: {len(all_records)}件")
 
     # 2. 請求書作成候補を抽出
-    print("\n[2/4] 請求書作成候補の抽出...")
+    print("\n[2/5] 請求書作成候補の抽出...")
     candidates = find_invoice_candidates(all_records)
     print(f"  候補: {len(candidates)}件")
 
@@ -473,7 +529,7 @@ def main():
         return
 
     # 2.5. 既存freee請求書と重複チェック
-    print("\n[2.5/4] 既存freee請求書との重複チェック...")
+    print("\n[2.5/5] 既存freee請求書との重複チェック...")
     existing_invoices, config = get_existing_freee_invoices(config)
     print(f"  既存請求書: {len(existing_invoices)}件")
 
@@ -513,12 +569,16 @@ def main():
     print(f"\n  合計: {format_yen(total_amount)}円")
     print(f"  取引先マッチ: {matched}件 / 未マッチ: {unmatched}件")
 
+    # 取引先未登録の通知
+    if unmatched > 0:
+        notify_unmatched_partners(config, candidates)
+
     if check_only:
         print("\n[CHECK-ONLY] 候補確認完了。")
         return
 
     # 3. バックアップ
-    print("\n[3/4] バックアップ...")
+    print("\n[3/5] バックアップ...")
     backup_path = BACKUP_DIR / f"{timestamp}_invoice_create_candidates.json"
     with open(backup_path, "w", encoding="utf-8") as f:
         json.dump(candidates, f, ensure_ascii=False, indent=2)
@@ -530,7 +590,7 @@ def main():
         return
 
     # 4. freee請求書作成
-    print("\n[4/4] freee請求書作成...")
+    print("\n[4/5] freee請求書作成...")
     results = []
     success = 0
     fail = 0
@@ -561,6 +621,42 @@ def main():
             results.append({"candidate": c, "status": "fail", "error": error})
 
         time.sleep(0.5)  # Rate limit
+
+    # 5. CRM受注台帳にfreee請求書番号を書き戻し（既存備考を保持）
+    print("\n[5/5] CRM受注台帳へ請求書番号を書き戻し...")
+    # record_id -> 既存備考値のマップを構築
+    record_memo_map = {}
+    for rec in all_records:
+        rid = rec.get("record_id")
+        memo_val = extract_text(rec.get("fields", {}).get("備考", ""))
+        record_memo_map[rid] = memo_val
+
+    writeback_count = 0
+    for r in results:
+        if r["status"] == "success" and r.get("invoice_number"):
+            record_id = r["candidate"]["record_id"]
+            inv_num = r["invoice_number"]
+            new_memo = f"freee請求書: {inv_num}"
+            existing_memo = record_memo_map.get(record_id, "").strip()
+            if existing_memo:
+                # 既存備考に同じ請求書番号が含まれていたらスキップ
+                if inv_num in existing_memo:
+                    print(f"  SKIP: {record_id} (既に記載済み: {inv_num})")
+                    writeback_count += 1
+                    continue
+                # 既存備考の末尾に追記
+                new_memo = f"{existing_memo}\n{new_memo}"
+            ok = lark_update_record(
+                lark_token, ORDER_TABLE_ID, record_id,
+                {"備考": new_memo}
+            )
+            if ok:
+                writeback_count += 1
+                print(f"  OK: {record_id} <- {inv_num}")
+            else:
+                print(f"  NG: {record_id} <- {inv_num}")
+            time.sleep(0.3)
+    print(f"  書き戻し完了: {writeback_count}件")
 
     # ログ保存
     log_path = BACKUP_DIR / f"{timestamp}_invoice_create_log.json"

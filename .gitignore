@@ -11,7 +11,8 @@ scripts/thankyou_state.json
 scripts/thankyou_queue.json
 scripts/quote_followup_state.json
 scripts/crm_monitor_state.json
-backups/20260316_*
+# Session backups (contain raw HTML/JSON snapshots, not needed in repo)
+backups/
 # Backup files (may contain credentials)
 *.bak
 *.bak.*

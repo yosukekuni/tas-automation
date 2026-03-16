@@ -14,6 +14,8 @@ Sections:
   3. CRMアラート要約
   4. GA4 前日PV（TOP5ページ）
   5. 入札情報新着
+  6. freee未請求サマリー
+  7. freee未入金サマリー
 """
 
 import json
@@ -699,6 +701,133 @@ def build_bid_news():
         return f"■ 入札情報\n  [取得失敗: {e}]"
 
 
+# ── Section 6: freee未請求サマリー ──
+def build_freee_unbilled_summary():
+    """freee_invoice_creator.pyのロジックで未請求案件数を表示"""
+    try:
+        sys.path.insert(0, str(SCRIPT_DIR))
+        try:
+            from freee_invoice_creator import (
+                load_config as freee_load_config,
+                lark_get_token as freee_lark_token,
+                lark_list_records as freee_lark_list,
+                find_invoice_candidates,
+                format_yen,
+                ORDER_TABLE_ID,
+            )
+            config = freee_load_config()
+            token = freee_lark_token(config)
+            records = freee_lark_list(token, ORDER_TABLE_ID)
+            candidates = find_invoice_candidates(records)
+
+            lines = [f"■ freee未請求 ({len(candidates)}件)"]
+            if not candidates:
+                lines.append("  未請求案件なし")
+                return "\n".join(lines)
+
+            total = sum(c["amount"] for c in candidates)
+            matched = sum(1 for c in candidates if c["partner_id"])
+            unmatched = len(candidates) - matched
+            lines.append(f"  合計: {format_yen(total)}円")
+            lines.append(f"  取引先マッチ済: {matched}件 / 未マッチ: {unmatched}件")
+            for c in candidates[:3]:
+                status = "OK" if c["partner_id"] else "!未マッチ"
+                lines.append(f"  {c['company'][:15]} / {format_yen(c['amount'])}円 [{status}]")
+            if len(candidates) > 3:
+                lines.append(f"  ...他 {len(candidates) - 3}件")
+            return "\n".join(lines)
+
+        except ImportError as e:
+            # Fallback: subprocess
+            import subprocess
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT_DIR / "freee_invoice_creator.py"), "--check-only"],
+                capture_output=True, text=True, timeout=120,
+            )
+            output = result.stdout
+            if "請求書作成対象の案件はありません" in output:
+                return "■ freee未請求 (0件)\n  未請求案件なし"
+            # Parse candidate count from output
+            for line in output.split("\n"):
+                if "候補:" in line:
+                    return f"■ freee未請求\n  {line.strip()}"
+            return f"■ freee未請求\n  {output[-200:]}"
+
+    except Exception as e:
+        return f"■ freee未請求\n  [取得失敗: {e}]"
+
+
+# ── Section 7: freee未入金サマリー ──
+def build_freee_unpaid_summary():
+    """freee_payment_checker.pyのロジックで未入金・期限超過を表示"""
+    try:
+        sys.path.insert(0, str(SCRIPT_DIR))
+        try:
+            from freee_payment_checker import (
+                load_config as pay_load_config,
+                get_all_freee_invoices,
+                format_yen,
+            )
+            from datetime import date as _date
+            config = pay_load_config()
+            all_invoices, config = get_all_freee_invoices(config)
+            unsettled = [inv for inv in all_invoices if inv.get("payment_status") != "settled"]
+
+            today = _date.today()
+            overdue = []
+            for inv in unsettled:
+                pd_str = inv.get("payment_date", "")
+                if pd_str:
+                    try:
+                        pd = _date.fromisoformat(pd_str)
+                        if pd < today:
+                            overdue.append(inv)
+                    except (ValueError, TypeError):
+                        pass
+
+            lines = [f"■ freee未入金 ({len(unsettled)}件)"]
+            if not unsettled:
+                lines.append("  未入金なし")
+                return "\n".join(lines)
+
+            total = sum(inv.get("total_amount", 0) for inv in unsettled)
+            lines.append(f"  未入金合計: {format_yen(total)}円")
+
+            if overdue:
+                overdue_total = sum(inv.get("total_amount", 0) for inv in overdue)
+                lines.append(f"  [!!] 期限超過: {len(overdue)}件 ({format_yen(overdue_total)}円)")
+                for inv in overdue[:3]:
+                    lines.append(
+                        f"    {inv.get('partner_name', '')[:15]} / "
+                        f"{format_yen(inv.get('total_amount', 0))}円 / "
+                        f"期限: {inv.get('payment_date', '')}"
+                    )
+                if len(overdue) > 3:
+                    lines.append(f"    ...他 {len(overdue) - 3}件")
+            else:
+                lines.append("  期限超過なし")
+
+            return "\n".join(lines)
+
+        except ImportError:
+            import subprocess
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT_DIR / "freee_payment_checker.py"), "--check-only"],
+                capture_output=True, text=True, timeout=120,
+            )
+            output = result.stdout
+            lines = ["■ freee未入金"]
+            for line in output.split("\n"):
+                if "未入金:" in line or "支払期限超過:" in line:
+                    lines.append(f"  {line.strip()}")
+            if len(lines) == 1:
+                lines.append("  (詳細取得不可)")
+            return "\n".join(lines)
+
+    except Exception as e:
+        return f"■ freee未入金\n  [取得失敗: {e}]"
+
+
 # ── Report formatter ──
 def format_report(sections):
     now = datetime.now()
@@ -734,20 +863,26 @@ def main():
     # Build each section independently
     sections = []
 
-    print("  [1/5] 商談サマリー取得中...")
+    print("  [1/7] 商談サマリー取得中...")
     sections.append(build_deal_summary(lark_token))
 
-    print("  [2/5] タスク概要取得中...")
+    print("  [2/7] タスク概要取得中...")
     sections.append(build_task_overview(lark_token))
 
-    print("  [3/5] CRMアラート取得中...")
+    print("  [3/7] CRMアラート取得中...")
     sections.append(build_crm_alerts(lark_token))
 
-    print("  [4/5] GA4データ取得中...")
+    print("  [4/7] GA4データ取得中...")
     sections.append(build_ga4_summary())
 
-    print("  [5/5] 入札情報取得中...")
+    print("  [5/7] 入札情報取得中...")
     sections.append(build_bid_news())
+
+    print("  [6/7] freee未請求チェック中...")
+    sections.append(build_freee_unbilled_summary())
+
+    print("  [7/7] freee未入金チェック中...")
+    sections.append(build_freee_unpaid_summary())
 
     # Format final report
     report = format_report(sections)
