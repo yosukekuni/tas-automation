@@ -251,10 +251,10 @@ async function handleTasEstimate(request, env) {
     });
   }
 
-  const { service, address, email } = formData;
-  if (!service || !email) {
+  const { service, address, email, name, phone, company, message, referral } = formData;
+  if (!email) {
     return new Response(
-      JSON.stringify({ error: "service and email are required" }),
+      JSON.stringify({ error: "email is required" }),
       { status: 400, headers: corsHeaders }
     );
   }
@@ -271,15 +271,26 @@ async function handleTasEstimate(request, env) {
     const baseToken = "BodWbgw6DaHP8FspBTYjT8qSpOe"; // TAS CRM Base
     const tableId = "tblN53hFIQoo4W8j"; // 連絡先テーブル
 
+    // Map referral code to Japanese label
+    const referralMap = {
+      "web_search": "Web検索", "referral": "紹介", "bid_site": "入札情報サイト",
+      "sns": "SNS", "tool": "土量計算機", "column": "コラム記事", "other": "その他",
+    };
+    const referralLabel = referralMap[referral] || referral || "Web検索";
+
+    const isFullForm = !!name; // Full contact form vs quick estimate
     const fields = {
-      "会社名": "",
-      "氏名": email.split("@")[0],
+      "会社名": company || "",
+      "氏名": name || email.split("@")[0],
       "メールアドレス": email,
+      "電話番号": phone || "",
       "現場名": address || "",
-      "接触チャネル": "問い合わせフォーム",
-      "流入元": "Web検索",
+      "接触チャネル": isFullForm ? "問い合わせフォーム" : "概算見積",
+      "流入元": referralLabel,
       "営業フェーズ": "未接触",
-      "お問い合わせ内容（自由記述）": "【概算見積依頼】用途: " + service + (address ? " / 現場: " + address : ""),
+      "お問い合わせ内容（自由記述）": isFullForm
+        ? (message || "") + (service ? "\n【依頼内容】" + service : "")
+        : "【概算見積依頼】用途: " + (service || "") + (address ? " / 現場: " + address : ""),
     };
 
     const resp = await fetch(
