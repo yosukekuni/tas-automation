@@ -10,6 +10,7 @@ config = {
         "app_secret": os.environ.get("LARK_APP_SECRET", ""),
         "crm_base_token": os.environ.get("CRM_BASE_TOKEN", ""),
         "web_analytics_base_token": os.environ.get("WEB_ANALYTICS_BASE_TOKEN", ""),
+        "task_base_token": os.environ.get("TASK_BASE_TOKEN", ""),
     },
     "google": {
         "service_account_json": "/tmp/google_sa.json",

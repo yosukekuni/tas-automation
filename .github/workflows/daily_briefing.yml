@@ -1,0 +1,42 @@
+name: Daily Morning Briefing (7AM JST)
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # 22:00 UTC = 07:00 JST
+  workflow_dispatch:
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install cryptography for JWT signing
+        run: pip install cryptography
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          TASK_BASE_TOKEN: ${{ secrets.TASK_BASE_TOKEN }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+        run: |
+          python scripts/setup_config.py
+          echo "$GOOGLE_SA_JSON" > /tmp/google_sa.json
+
+      - name: Generate and send morning briefing
+        run: python scripts/daily_briefing.py
+
+      - name: Upload report log
+        uses: actions/upload-artifact@v4
+        with:
+          name: briefing-${{ github.run_number }}
+          path: scripts/daily_briefing.log
+          retention-days: 14
+        if: always()
