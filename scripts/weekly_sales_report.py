@@ -223,7 +223,7 @@ def classify_deals_by_rep(deals):
         if amount:
             try:
                 amount_str = f"¥{float(amount):,.0f}"
-            except:
+            except (ValueError, TypeError):
                 pass
 
         deal_info = {
