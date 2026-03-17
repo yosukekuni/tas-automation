@@ -28,6 +28,8 @@ from calendar import monthrange
 
 SCRIPT_DIR = Path(__file__).parent
 CONFIG_FILE = Path("/mnt/c/Users/USER/Documents/_data/automation_config.json")
+if not CONFIG_FILE.exists():
+    CONFIG_FILE = SCRIPT_DIR / "automation_config.json"
 BACKUP_DIR = SCRIPT_DIR.parent / "backups"
 BACKUP_DIR.mkdir(exist_ok=True)
 DATA_DIR = SCRIPT_DIR / "data"
