@@ -1,0 +1,35 @@
+name: KPI Dashboard Sync (Daily 9AM JST)
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 00:00 UTC = 09:00 JST
+  workflow_dispatch:
+
+jobs:
+  kpi-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          WEB_ANALYTICS_BASE_TOKEN: ${{ secrets.WEB_ANALYTICS_BASE_TOKEN }}
+          TASK_BASE_TOKEN: ${{ secrets.TASK_BASE_TOKEN }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+          FREEE_ACCESS_TOKEN: ${{ secrets.FREEE_ACCESS_TOKEN }}
+          FREEE_COMPANY_ID: ${{ secrets.FREEE_COMPANY_ID }}
+          FREEE_CLIENT_ID: ${{ secrets.FREEE_CLIENT_ID }}
+          FREEE_CLIENT_SECRET: ${{ secrets.FREEE_CLIENT_SECRET }}
+          FREEE_REFRESH_TOKEN: ${{ secrets.FREEE_REFRESH_TOKEN }}
+          FREEE_REDIRECT_URI: ${{ secrets.FREEE_REDIRECT_URI }}
+        run: python scripts/setup_config.py
+
+      - name: Run KPI Dashboard Sync
+        run: python scripts/kpi_dashboard_sync.py

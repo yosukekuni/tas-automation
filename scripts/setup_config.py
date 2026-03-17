@@ -33,7 +33,7 @@ config = {
     },
     "freee": {
         "access_token": os.environ.get("FREEE_ACCESS_TOKEN", ""),
-        "company_id": os.environ.get("FREEE_COMPANY_ID", ""),
+        "company_id": int(os.environ.get("FREEE_COMPANY_ID", "0") or "0"),
         "client_id": os.environ.get("FREEE_CLIENT_ID", ""),
         "client_secret": os.environ.get("FREEE_CLIENT_SECRET", ""),
         "refresh_token": os.environ.get("FREEE_REFRESH_TOKEN", ""),
