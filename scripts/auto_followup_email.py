@@ -46,7 +46,7 @@ TABLE_ACCOUNTS = "tblTfGScQIdLTYxA"
 REP_SIGNATURES = {
     "新美 光": {
         "display": "新美 光",
-        "email": "niimi@tokaiair.com",
+        "email": "h.niimi@tokaiair.com",
         "phone": "",
     },
     "ユーザー550372": {
