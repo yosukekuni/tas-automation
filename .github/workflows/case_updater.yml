@@ -25,5 +25,5 @@ jobs:
           MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
         run: python scripts/setup_config.py
 
-      - name: Update case page
+      - name: Generate and deploy case page (v2 - industry filters + site names)
         run: python scripts/auto_case_updater.py --notify

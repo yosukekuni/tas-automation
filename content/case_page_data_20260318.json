@@ -1,0 +1,173 @@
+{
+  "summary": {
+    "total_won": 45,
+    "total_revenue": 18521217.0,
+    "industries": 4,
+    "generated_at": "2026-03-18T07:55:17.739289"
+  },
+  "sections": [
+    {
+      "industry": "ゼネコン",
+      "display": {
+        "icon": "fa-building",
+        "color": "#1565C0",
+        "label": "建設会社",
+        "description": "大手ゼネコン・建設会社様の現場空撮実績"
+      },
+      "count": 25,
+      "total_revenue_range": "20-50万円",
+      "services": {
+        "現場空撮": 25
+      },
+      "cases": [
+        {
+          "site_name": "ららぽーと安城 (2025年春開業)",
+          "region": "東海エリア",
+          "service": "現場空撮",
+          "amount_range": "300-500万円",
+          "description": "ららぽーと安城 (2025年春開業)",
+          "client_label": "建設会社"
+        },
+        {
+          "site_name": "名古屋埠頭",
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "50-100万円",
+          "description": "名古屋埠頭",
+          "client_label": "建設会社"
+        },
+        {
+          "site_name": "ラ・サール岩塚Ⅱ",
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "50-100万円",
+          "description": "ラ・サール岩塚Ⅱ",
+          "client_label": "建設会社"
+        },
+        {
+          "site_name": "",
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "50-100万円",
+          "description": "建設現場の定期空撮記録",
+          "client_label": "建設会社"
+        },
+        {
+          "site_name": "ららぽーと安城（新築）",
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "20-50万円",
+          "description": "ららぽーと安城（新築）",
+          "client_label": "建設会社"
+        }
+      ]
+    },
+    {
+      "industry": "建設コンサルタント",
+      "display": {
+        "icon": "fa-drafting-compass",
+        "color": "#2E7D32",
+        "label": "建設コンサルタント",
+        "description": "建設コンサルタント様のドローン測量実績"
+      },
+      "count": 1,
+      "total_revenue_range": "300-500万円",
+      "services": {
+        "ドローン測量": 1
+      },
+      "cases": [
+        {
+          "site_name": "",
+          "region": "東海エリア",
+          "service": "ドローン測量",
+          "amount_range": "300-500万円",
+          "description": "ドローン測量による出来形管理",
+          "client_label": "建設コンサルタント"
+        }
+      ]
+    },
+    {
+      "industry": "不動産",
+      "display": {
+        "icon": "fa-home",
+        "color": "#6A1B9A",
+        "label": "不動産",
+        "description": "不動産デベロッパー様の眺望撮影実績"
+      },
+      "count": 1,
+      "total_revenue_range": "5万円未満",
+      "services": {
+        "その他": 1
+      },
+      "cases": [
+        {
+          "site_name": "",
+          "region": "東京都",
+          "service": "その他",
+          "amount_range": "5万円未満",
+          "description": "ドローン撮影業務",
+          "client_label": "不動産"
+        }
+      ]
+    },
+    {
+      "industry": "その他",
+      "display": {
+        "icon": "fa-briefcase",
+        "color": "#455A64",
+        "label": "その他の業種",
+        "description": "多様な業種でのドローン活用実績"
+      },
+      "count": 18,
+      "total_revenue_range": "20-50万円",
+      "services": {
+        "その他": 3,
+        "現場空撮": 13,
+        "ドローン測量": 1,
+        "点検": 1
+      },
+      "cases": [
+        {
+          "site_name": "大同マシナリー",
+          "region": "東海エリア",
+          "service": "現場空撮",
+          "amount_range": "100-300万円",
+          "description": "大同マシナリー",
+          "client_label": "その他の業種"
+        },
+        {
+          "site_name": "新南愛知カントリークラブ 美浜コース",
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "20-50万円",
+          "description": "新南愛知カントリークラブ 美浜コース",
+          "client_label": "その他の業種"
+        },
+        {
+          "site_name": "",
+          "region": "東海エリア",
+          "service": "その他",
+          "amount_range": "20-50万円",
+          "description": "ドローン撮影業務",
+          "client_label": "その他の業種"
+        },
+        {
+          "site_name": "サンクチュアリコート高山 アートギャラリーリゾート",
+          "region": "東海エリア",
+          "service": "現場空撮",
+          "amount_range": "20-50万円",
+          "description": "サンクチュアリコート高山 アートギャラリーリゾート",
+          "client_label": "その他の業種"
+        },
+        {
+          "site_name": "",
+          "region": "東海エリア",
+          "service": "現場空撮",
+          "amount_range": "10-20万円",
+          "description": "建設現場の定期空撮記録",
+          "client_label": "その他の業種"
+        }
+      ]
+    }
+  ]
+}

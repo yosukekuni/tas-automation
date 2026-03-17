@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
-事例ページHTML生成スクリプト
+事例ページHTML生成スクリプト（ローカルCSV版）
 受注台帳の分類データから業種別×サービス別の匿名化された事例ページHTMLを生成
 
 匿名化ルール:
-  - 顧客名非公開（業種+地域で表記）
+  - 顧客名（取引先名）: 匿名（業種表記）
+  - 現場名: そのまま表示OK（公知の施設名・現場名）
   - 金額は範囲表記
-  - 現場名から固有名詞を除去
+
+注: 本番運用は auto_case_updater.py（Lark CRM直接取得版）を使用
+    このスクリプトはローカルCSVからのテスト・プレビュー用
 
 Usage:
   python3 case_page_generator.py --dry-run     # HTML生成のみ（WP更新なし）
@@ -163,48 +166,71 @@ def extract_region(case_name):
     return "東海エリア"
 
 
-def anonymize_case_name(case_name, industry, service):
-    """案件名を完全匿名化（固有名詞を一切含まない業務内容の説明に変換）
+def extract_site_name(case_name, client_name):
+    """案件名から現場名を抽出（取引先名_現場名 のパターン）
 
-    社外秘ルール: 顧客名・現場名・施設名は一切出さない
+    ルール: 現場名はそのまま表示OK（ユーザー承認済み）
+    郵便番号や住所番地のみの場合は汎用表記にする
     """
-    # サービス種別と業種から汎用的な説明を生成
-    SERVICE_DESCRIPTIONS = {
-        "現場空撮": [
-            "建設現場の定期空撮記録",
-            "工事進捗記録のドローン空撮",
-            "施設建設現場の空撮撮影",
-            "大規模工事現場の定期撮影",
-            "商業施設建設現場の記録撮影",
-        ],
-        "ドローン測量": [
-            "ドローン測量による出来形管理",
-            "UAV測量による3D地形データ取得",
-            "ドローン写真測量・点群データ生成",
-            "土量計測のドローン測量",
-            "広域ドローン測量業務",
-        ],
-        "眺望撮影": [
-            "建設予定地の眺望シミュレーション撮影",
-            "マンション高層階からの眺望撮影",
-            "不動産物件の眺望確認撮影",
-        ],
-        "点検": [
-            "施設のドローン点検",
-            "高所設備のドローン外壁点検",
-            "インフラ施設のドローン点検撮影",
-        ],
-        "その他": [
-            "ドローン活用業務",
-            "ドローン撮影業務",
-            "空撮映像制作",
-        ],
-    }
+    if not case_name:
+        return ""
 
-    descriptions = SERVICE_DESCRIPTIONS.get(service, SERVICE_DESCRIPTIONS["その他"])
-    # Use hash of case_name to pick a consistent description
-    idx = hash(case_name) % len(descriptions)
-    return descriptions[idx]
+    # アンダースコアで分割
+    parts = case_name.split("_")
+    if len(parts) >= 2:
+        site = parts[-1].strip()
+    else:
+        # 取引先名が案件名に含まれる場合、それを除去して残りを現場名に
+        if client_name and client_name in case_name:
+            site = case_name.replace(client_name, "").strip()
+            site = re.sub(r'^[\s_・\-]+', '', site)
+        else:
+            site = ""
+
+    # 郵便番号のみ（〒XXX-XXXX）→ 空
+    if re.match(r'^〒?\d{3}-?\d{4}$', site):
+        return ""
+
+    # 住所番地のみ（数字-数字パターン）→ 空
+    if re.match(r'^[\d\-]+$', site):
+        return ""
+
+    # 英語住所パターン（"1 Chome-..." など）→ 空
+    if re.match(r'^\d+\s+Chome', site, re.IGNORECASE):
+        return ""
+
+    # 「町名+番地」パターン（例: 河芸町東千里600, 潤田1071）→ 空
+    if re.match(r'^.{2,6}(町|丁目).{1,10}\d+', site):
+        return ""
+    if re.match(r'^[\u4e00-\u9fff]{1,6}\d{2,}', site):
+        return ""
+
+    # 番地のみ（例: 小木南２丁目１９−1, 丸岡町舛田２０−1-1）→ 空
+    if re.search(r'[０-９\d]{2,}[−\-]', site):
+        return ""
+
+    return site
+
+
+def get_case_description(case_name, client_name, service):
+    """現場名があれば表示、なければサービス種別の汎用説明を返す
+
+    匿名化ルール:
+      - 顧客名（取引先名）: 絶対に出さない
+      - 現場名: そのまま表示OK
+    """
+    site = extract_site_name(case_name, client_name)
+    if site:
+        return site
+
+    GENERIC = {
+        "現場空撮": "建設現場の定期空撮記録",
+        "ドローン測量": "ドローン測量による出来形管理",
+        "眺望撮影": "建設予定地の眺望シミュレーション撮影",
+        "点検": "施設のドローン点検",
+        "その他": "ドローン撮影業務",
+    }
+    return GENERIC.get(service, "ドローン撮影業務")
 
 
 def load_data():
@@ -270,11 +296,15 @@ def build_case_page_data(records):
             if client in seen_clients:
                 continue
             seen_clients.add(client)
+            site_name = extract_site_name(case["案件名"], case["取引先名"])
+            description = get_case_description(case["案件名"], case["取引先名"], case["サービス"])
             selected.append({
+                "site_name": site_name,
                 "region": case["地域"],
                 "service": SERVICE_DISPLAY.get(case["サービス"], {}).get("label", case["サービス"]),
                 "amount_range": anonymize_amount(case["受注金額"]),
-                "description": anonymize_case_name(case["案件名"], ind, case["サービス"]),
+                "description": description,
+                "client_label": INDUSTRY_DISPLAY.get(ind, INDUSTRY_DISPLAY["その他"])["label"],
             })
             if len(selected) >= 5:
                 break
@@ -351,13 +381,19 @@ def generate_html(page_data):
 
         cases_html = []
         for i, case in enumerate(section["cases"]):
+            site_display = ""
+            if case.get("site_name"):
+                site_display = (
+                    f'<div style="font-size: 15px; font-weight: bold; color: #222; '
+                    f'margin-bottom: 6px;">{case["site_name"]}</div>'
+                )
             cases_html.append(f"""
       <div class="case-card" style="background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
           <span style="background: {display['color']}; color: #fff; padding: 3px 10px; border-radius: 4px; font-size: 12px;">{case['service']}</span>
           <span style="color: #666; font-size: 13px;">{case['region']}</span>
         </div>
-        <p style="font-size: 14px; color: #333; margin: 8px 0;">{case['description']}</p>
+        {site_display}<p style="font-size: 14px; color: #555; margin: 4px 0 8px 0;">{case.get('client_label', '')}の案件</p>
         <div style="font-size: 13px; color: #888; border-top: 1px solid #f0f0f0; padding-top: 8px; margin-top: 8px;">
           契約金額帯: {case['amount_range']}
         </div>
@@ -392,8 +428,11 @@ def generate_html(page_data):
 <!-- CTA -->
 <div style="background: #f8f9fa; border: 2px solid #1a3c6e; border-radius: 12px; padding: 40px; text-align: center; margin-top: 40px;">
   <h3 style="font-size: 22px; color: #1a3c6e; margin-bottom: 12px;">お見積り・ご相談は無料です</h3>
-  <p style="color: #666; margin-bottom: 20px;">現場の課題に合わせた最適なプランをご提案します。<br>まずはお気軽にお問い合わせください。</p>
-  <a href="/contact/" style="display: inline-block; background: #1a3c6e; color: #fff; padding: 14px 40px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: bold;">お問い合わせはこちら</a>
+  <p style="color: #555; margin-bottom: 20px;">現場の課題に合わせた最適なプランをご提案します。<br>まずはお気軽にお問い合わせください。</p>
+  <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+    <a href="/contact/" style="display: inline-block; background: #1a3c6e; color: #fff; padding: 14px 40px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: bold;">お問い合わせはこちら</a>
+    <a href="tel:052-627-7010" style="display: inline-block; background: #fff; color: #1a3c6e; padding: 14px 40px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: bold; border: 2px solid #1a3c6e;">052-627-7010</a>
+  </div>
 </div>
 """)
 
