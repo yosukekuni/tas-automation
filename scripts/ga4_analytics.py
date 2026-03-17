@@ -26,8 +26,10 @@ GA4_PROPERTY_ID = "499408061"
 SITE_URL = "https://www.tokaiair.com/"
 SITE_URL_SC_DOMAIN = "sc-domain:tokaiair.com"
 SERVICE_ACCOUNT_EMAIL = "service-account@drive-organizer-489313.iam.gserviceaccount.com"
-DATA_DIR = Path(r"/mnt/c/Users/USER/Documents/_data")
-OUTPUT_DIR = DATA_DIR / "lark_import"
+# Detect environment: GitHub Actions uses GITHUB_ACTIONS=true
+_IS_CI = os.environ.get("GITHUB_ACTIONS") == "true"
+DATA_DIR = Path(os.environ.get("GITHUB_WORKSPACE", "/mnt/c/Users/USER/Documents/_data")) if _IS_CI else Path(r"/mnt/c/Users/USER/Documents/_data")
+OUTPUT_DIR = Path("/tmp/lark_import") if _IS_CI else DATA_DIR / "lark_import"
 SCOPES = "https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/webmasters.readonly"
 
 TODAY = datetime.now()
