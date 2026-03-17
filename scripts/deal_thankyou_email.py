@@ -183,8 +183,11 @@ def load_state():
 
 
 def save_state(state):
-    if len(state.get("processed_ids", [])) > 500:
-        state["processed_ids"] = state["processed_ids"][-300:]
+    # Keep all IDs to prevent re-processing old deals
+    # (Trimming to 300 caused 288 old deals to be re-detected every run)
+    # Only trim if truly excessive (>2000)
+    if len(state.get("processed_ids", [])) > 2000:
+        state["processed_ids"] = state["processed_ids"][-1500:]
     with open(STATE_FILE, "w") as f:
         json.dump(state, f, ensure_ascii=False, indent=2)
 
@@ -478,19 +481,39 @@ def queue_new_deals(specific_deal=None):
         save_state(state)
         return
 
-    print(f"\n  新規商談: {len(new_deals)}件")
+    print(f"\n  新規商談: {len(new_deals)}件 (処理済みID: {len(processed_ids)}件, 全商談: {len(deals)}件)")
     queued = 0
+    skip_reasons = {"old_date": 0, "no_date": 0, "cold": 0, "bad_stage": 0, "no_email": 0, "duplicate": 0, "gen_error": 0}
 
     for rec in new_deals:
         rid = rec.get("record_id", "")
         fields = rec.get("fields", {})
 
-        # 商談名の取得（list of text objects対応）
+        # 商談名の取得（list of text objects対応 + フォーム投入レコード対応）
         deal_name_raw = fields.get("商談名", "")
         if isinstance(deal_name_raw, list) and deal_name_raw and isinstance(deal_name_raw[0], dict):
-            deal_name = deal_name_raw[0].get("text", "") or "(名前なし)"
+            deal_name = deal_name_raw[0].get("text", "") or ""
         else:
-            deal_name = str(deal_name_raw or "(名前なし)")
+            deal_name = str(deal_name_raw or "")
+        # フォームから投入されたレコードは商談名が空。新規取引先名/取引先名で補完
+        if not deal_name:
+            deal_name = str(fields.get("新規取引先名", "") or "")
+        if not deal_name:
+            # 取引先リンクからテキスト取得を試みる
+            account_links = fields.get("取引先", [])
+            if isinstance(account_links, list):
+                for link in account_links:
+                    if isinstance(link, dict):
+                        text_arr = link.get("text_arr", [])
+                        if text_arr:
+                            deal_name = str(text_arr[0])
+                            break
+                        text = link.get("text", "")
+                        if text:
+                            deal_name = str(text)
+                            break
+        if not deal_name:
+            deal_name = "(名前なし)"
 
         print(f"\n  商談: {deal_name}")
 
@@ -500,25 +523,32 @@ def queue_new_deals(specific_deal=None):
             deal_dt = datetime.fromtimestamp(deal_date / 1000)
             days_ago = (datetime.now() - deal_dt).days
             if days_ago > 3:
-                print(f"  → 商談日が{days_ago}日前。スキップ。")
+                print(f"  -> 商談日が{days_ago}日前({deal_dt.strftime('%Y-%m-%d')})。スキップ。")
+                skip_reasons["old_date"] += 1
                 processed_ids.add(rid)
                 continue
+            else:
+                print(f"  -> 商談日: {deal_dt.strftime('%Y-%m-%d')} ({days_ago}日前) OK")
         else:
-            print(f"  → 商談日なし。スキップ。")
+            print(f"  -> 商談日なし (type={type(deal_date).__name__}, val={deal_date})。スキップ。")
+            skip_reasons["no_date"] += 1
             processed_ids.add(rid)
             continue
 
         # 温度感チェック: Cold・不在は除外
+        # ただし「営業見込みなし」ステージでも飛び込み訪問のお礼は送る場合がある
         temp = str(fields.get("温度感スコア", "") or "")
         if temp in ("Cold", "不在のため不明"):
-            print(f"  → 温度感「{temp}」。スキップ。")
+            print(f"  -> 温度感「{temp}」。スキップ。")
+            skip_reasons["cold"] += 1
             processed_ids.add(rid)
             continue
 
-        # ステージチェック: 不在・失注・納品完了は除外
+        # ステージチェック: 不在・失注・納品完了・営業見込みなしは除外
         stage = str(fields.get("商談ステージ", "") or "")
-        if stage in ("不在", "失注", "納品完了"):
-            print(f"  → ステージ「{stage}」。スキップ。")
+        if stage in ("不在", "失注", "納品完了", "営業見込みなし"):
+            print(f"  -> ステージ「{stage}」。スキップ。")
+            skip_reasons["bad_stage"] += 1
             processed_ids.add(rid)
             continue
 
@@ -541,15 +571,17 @@ def queue_new_deals(specific_deal=None):
         # 顧客メール検索
         contact = find_customer_email(contacts, accounts, fields)
         if not contact or not contact.get("email"):
-            print(f"  → メールアドレスなし。スキップ。")
+            print(f"  -> メールアドレスなし。スキップ。")
+            skip_reasons["no_email"] += 1
             processed_ids.add(rid)
             continue
 
-        print(f"  → 宛先: {contact['company']} {contact['name']} <{contact['email']}>")
+        print(f"  -> 宛先: {contact['company']} {contact['name']} <{contact['email']}>")
 
         # 重複チェック: 同一メールアドレスに過去N日以内に送信済み
         if is_duplicate_email(queue, contact["email"]):
-            print(f"  → 過去{DUPLICATE_WINDOW_DAYS}日以内に送信済み。スキップ。")
+            print(f"  -> 過去{DUPLICATE_WINDOW_DAYS}日以内に送信済み。スキップ。")
+            skip_reasons["duplicate"] += 1
             processed_ids.add(rid)
             continue
 
@@ -557,7 +589,8 @@ def queue_new_deals(specific_deal=None):
         try:
             email_text = generate_thankyou_email(fields, contact, rep_info)
         except Exception as e:
-            print(f"  → メール生成エラー: {e}")
+            print(f"  -> メール生成エラー: {e}")
+            skip_reasons["gen_error"] += 1
             processed_ids.add(rid)
             continue
 
@@ -608,6 +641,13 @@ def queue_new_deals(specific_deal=None):
     save_queue(queue)
 
     print(f"\n  キュー追加: {queued}件 / 合計キュー: {len([q for q in queue if q['status'] == 'pending'])}件")
+    print(f"  処理済みID: {len(processed_ids)}件")
+    skip_total = sum(skip_reasons.values())
+    if skip_total > 0:
+        print(f"  スキップ内訳: 古い商談={skip_reasons['old_date']}, 日付なし={skip_reasons['no_date']}, "
+              f"Cold/不在={skip_reasons['cold']}, ステージ除外={skip_reasons['bad_stage']}, "
+              f"メールなし={skip_reasons['no_email']}, 重複={skip_reasons['duplicate']}, "
+              f"生成エラー={skip_reasons['gen_error']}")
 
 
 # ── 送信モード: キューから送信時刻が来たものを送信 ──

@@ -221,8 +221,9 @@ def load_state():
 
 
 def save_state(state):
-    if len(state.get("processed_ids", [])) > 500:
-        state["processed_ids"] = state["processed_ids"][-300:]
+    # Keep all IDs to prevent re-processing (trimming to 300 caused re-detection loop)
+    if len(state.get("processed_ids", [])) > 2000:
+        state["processed_ids"] = state["processed_ids"][-1500:]
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=2)
 
