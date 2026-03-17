@@ -1,0 +1,149 @@
+{
+  "summary": {
+    "total_won": 45,
+    "total_revenue": 18521217.0,
+    "industries": 4,
+    "generated_at": "2026-03-17T22:45:38.726986"
+  },
+  "sections": [
+    {
+      "industry": "ゼネコン",
+      "display": {
+        "icon": "fa-building",
+        "color": "#1565C0",
+        "label": "建設会社",
+        "description": "大手ゼネコン・建設会社様の現場空撮実績"
+      },
+      "count": 25,
+      "total_revenue_range": "20-50万円",
+      "services": {
+        "現場空撮": 25
+      },
+      "cases": [
+        {
+          "region": "東海エリア",
+          "service": "現場空撮",
+          "amount_range": "300-500万円",
+          "description": "大規模工事現場の定期撮影"
+        },
+        {
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "50-100万円",
+          "description": "施設建設現場の空撮撮影"
+        },
+        {
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "50-100万円",
+          "description": "施設建設現場の空撮撮影"
+        },
+        {
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "50-100万円",
+          "description": "商業施設建設現場の記録撮影"
+        },
+        {
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "20-50万円",
+          "description": "建設現場の定期空撮記録"
+        }
+      ]
+    },
+    {
+      "industry": "建設コンサルタント",
+      "display": {
+        "icon": "fa-drafting-compass",
+        "color": "#2E7D32",
+        "label": "建設コンサルタント",
+        "description": "建設コンサルタント様のドローン測量実績"
+      },
+      "count": 1,
+      "total_revenue_range": "300-500万円",
+      "services": {
+        "ドローン測量": 1
+      },
+      "cases": [
+        {
+          "region": "東海エリア",
+          "service": "ドローン測量",
+          "amount_range": "300-500万円",
+          "description": "広域ドローン測量業務"
+        }
+      ]
+    },
+    {
+      "industry": "不動産",
+      "display": {
+        "icon": "fa-home",
+        "color": "#6A1B9A",
+        "label": "不動産",
+        "description": "不動産デベロッパー様の眺望撮影実績"
+      },
+      "count": 1,
+      "total_revenue_range": "5万円未満",
+      "services": {
+        "その他": 1
+      },
+      "cases": [
+        {
+          "region": "東京都",
+          "service": "その他",
+          "amount_range": "5万円未満",
+          "description": "空撮映像制作"
+        }
+      ]
+    },
+    {
+      "industry": "その他",
+      "display": {
+        "icon": "fa-briefcase",
+        "color": "#455A64",
+        "label": "その他の業種",
+        "description": "多様な業種でのドローン活用実績"
+      },
+      "count": 18,
+      "total_revenue_range": "20-50万円",
+      "services": {
+        "その他": 3,
+        "現場空撮": 13,
+        "ドローン測量": 1,
+        "点検": 1
+      },
+      "cases": [
+        {
+          "region": "東海エリア",
+          "service": "現場空撮",
+          "amount_range": "100-300万円",
+          "description": "工事進捗記録のドローン空撮"
+        },
+        {
+          "region": "愛知県",
+          "service": "現場空撮",
+          "amount_range": "20-50万円",
+          "description": "工事進捗記録のドローン空撮"
+        },
+        {
+          "region": "東海エリア",
+          "service": "その他",
+          "amount_range": "20-50万円",
+          "description": "ドローン撮影業務"
+        },
+        {
+          "region": "東海エリア",
+          "service": "現場空撮",
+          "amount_range": "20-50万円",
+          "description": "商業施設建設現場の記録撮影"
+        },
+        {
+          "region": "東海エリア",
+          "service": "現場空撮",
+          "amount_range": "10-20万円",
+          "description": "商業施設建設現場の記録撮影"
+        }
+      ]
+    }
+  ]
+}
