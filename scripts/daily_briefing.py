@@ -401,22 +401,29 @@ def build_crm_alerts(token):
         overdue_actions.sort(key=lambda x: -x["days"])
         stagnant_deals.sort(key=lambda x: -x["days"])
 
-        total_alerts = len(overdue_actions) + len(stagnant_deals) + len(data_quality)
-        lines = [f"■ CRMアラート ({total_alerts}件)"]
+        # Separate Hot/Warm (actionable) from Cold/None (bulk stale)
+        hot_warm_overdue = [a for a in overdue_actions if a["temp"] in ("Hot", "Warm")]
+        cold_overdue = [a for a in overdue_actions if a["temp"] not in ("Hot", "Warm")]
 
-        if total_alerts == 0:
+        actionable = len(hot_warm_overdue) + len(data_quality)
+        lines = [f"■ CRMアラート (要対応: {actionable}件 / 全体: {len(overdue_actions) + len(stagnant_deals) + len(data_quality)}件)"]
+
+        if actionable == 0 and not overdue_actions and not stagnant_deals:
             lines.append("  アラートなし")
             return "\n".join(lines)
 
-        if overdue_actions:
-            lines.append(f"  [!] 期限超過アクション: {len(overdue_actions)}件")
-            for a in overdue_actions[:3]:
-                lines.append(f"    -> {a['company']} ({a['days']}日超過) [{a['temp'] or '-'}]")
+        # Show Hot/Warm overdue first (these are actionable)
+        if hot_warm_overdue:
+            lines.append(f"  [!!] Hot/Warm期限超過: {len(hot_warm_overdue)}件")
+            for a in hot_warm_overdue[:5]:
+                lines.append(f"    -> {a['company']} ({a['days']}日超過) [{a['temp']}]")
+
+        # Show cold overdue as summary only (not individually)
+        if cold_overdue:
+            lines.append(f"  [i] その他期限超過: {len(cold_overdue)}件 (大半がヒアリング/不在ステージ)")
 
         if stagnant_deals:
-            lines.append(f"  [!] 停滞商談(14日+): {len(stagnant_deals)}件")
-            for s in stagnant_deals[:3]:
-                lines.append(f"    -> {s['company']} ({s['days']}日) {s['stage']}")
+            lines.append(f"  [i] 停滞商談(14日+): {len(stagnant_deals)}件")
 
         if data_quality:
             lines.append(f"  [!] データ品質: {len(data_quality)}件")
@@ -503,10 +510,12 @@ def _get_google_access_token(key_path):
             os.unlink(kf_path)
 
     # Exchange JWT for access token
-    token_data = urllib.parse.urlencode({
-        "grant_type": "urn:ietf:params:oauth:grant_type:jwt-bearer",
-        "assertion": jwt_token,
-    }).encode()
+    # Note: urlencode percent-encodes colons in grant_type, which Google rejects.
+    # Construct body manually with pre-encoded grant_type.
+    token_data = (
+        "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer"
+        f"&assertion={jwt_token}"
+    ).encode()
     req = urllib.request.Request(
         "https://oauth2.googleapis.com/token",
         data=token_data,

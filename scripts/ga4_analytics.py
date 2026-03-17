@@ -177,10 +177,12 @@ def get_access_token(key_path):
             os.unlink(kf_path)
 
     # Exchange JWT for access token
-    token_data = urllib.parse.urlencode({
-        "grant_type": "urn:ietf:params:oauth:grant_type:jwt-bearer",
-        "assertion": jwt_token,
-    }).encode()
+    # Note: urlencode percent-encodes colons in grant_type, which Google rejects.
+    # Construct body manually with pre-encoded grant_type.
+    token_data = (
+        "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer"
+        f"&assertion={jwt_token}"
+    ).encode()
 
     req = urllib.request.Request(
         "https://oauth2.googleapis.com/token",
