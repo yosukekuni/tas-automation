@@ -318,6 +318,16 @@ def generate_thankyou_email(deal_fields, contact, rep_info):
     if next_action:
         context += f"\n【次のアクション】\n{next_action}\n"
 
+    temp = str(deal_fields.get("温度感スコア", "") or "")
+    is_cold = temp in ("Cold", "不在のため不明", "")
+
+    tone_instruction = ""
+    if is_cold:
+        tone_instruction = """10. 温度感が低い（Cold/不在）商談なので、軽めのお礼にする。
+    売り込みは一切しない。「本日はお時間いただきありがとうございました」程度。
+    次のステップには触れず「何かございましたらお気軽にご連絡ください」で締める。
+    本文は200文字以内。"""
+
     prompt = f"""あなたは{COMPANY_INFO['name']}の営業担当 {rep_info['display']} として、
 本日の商談（打ち合わせ）後の顧客向けサンクスメールを作成してください。
 
@@ -333,6 +343,7 @@ def generate_thankyou_email(deal_fields, contact, rep_info):
 7. 本文は300文字以内。簡潔に。
 8. AIっぽい表現を避ける。普通のビジネスメールの文体で。
 9. 「つきましては」「さて」等の堅すぎる接続詞は使わない
+{tone_instruction}
 
 【出力形式】
 件名：〇〇〇
@@ -535,18 +546,9 @@ def queue_new_deals(specific_deal=None):
             processed_ids.add(rid)
             continue
 
-        # 温度感チェック: Cold・不在は除外
-        # ただし「営業見込みなし」ステージでも飛び込み訪問のお礼は送る場合がある
-        temp = str(fields.get("温度感スコア", "") or "")
-        if temp in ("Cold", "不在のため不明"):
-            print(f"  -> 温度感「{temp}」。スキップ。")
-            skip_reasons["cold"] += 1
-            processed_ids.add(rid)
-            continue
-
-        # ステージチェック: 不在・失注・納品完了・営業見込みなしは除外
+        # ステージチェック: 失注・納品完了のみ除外（不在・Coldでもお礼は送る）
         stage = str(fields.get("商談ステージ", "") or "")
-        if stage in ("不在", "失注", "納品完了", "営業見込みなし"):
+        if stage in ("失注", "納品完了"):
             print(f"  -> ステージ「{stage}」。スキップ。")
             skip_reasons["bad_stage"] += 1
             processed_ids.add(rid)
