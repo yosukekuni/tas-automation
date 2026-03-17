@@ -15,6 +15,14 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Restore bid scanner state
+        uses: actions/cache@v4
+        with:
+          path: scripts/bid_scanner_state.json
+          key: bid-scanner-state-${{ github.run_id }}
+          restore-keys: |
+            bid-scanner-state-
+
       - name: Setup config
         env:
           LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
