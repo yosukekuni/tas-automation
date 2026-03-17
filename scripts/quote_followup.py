@@ -456,8 +456,7 @@ def main():
 
     if not targets:
         log("見積提出ステージの案件なし。終了。")
-        if mode_notify:
-            send_lark_dm(token, "見積フォロー: 対象案件なし")
+        # 対象なし時はLark DM送信しない（ノイズ削減）
         return
 
     # 状態ファイル読み込み
@@ -520,8 +519,7 @@ def main():
 
     if not followup_actions:
         log("フォロー送信が必要な案件なし（全て送信済みまたは期間外）")
-        if mode_notify:
-            send_lark_dm(token, "見積フォロー: 本日送信対象なし（全案件送信済み or 期間外）")
+        # 対象なし時はLark DM送信しない（ノイズ削減）
         return
 
     if mode_list:

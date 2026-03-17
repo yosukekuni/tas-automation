@@ -933,33 +933,22 @@ def check_overdue_actions():
         print("[OK] 期限超過のHot/Warm案件なし")
         return 0
 
-    # === Immediate notification: Hot deals + Warm deals with actionable detail ===
-    if urgent_deals or warm_deals:
+    # === Immediate notification: Hot deals only (Warm は週次サマリーのみ) ===
+    if urgent_deals:
         notify_lines = ["🔔 要フォローアップ：期限超過アクション\n"]
 
-        if urgent_deals:
-            top = urgent_deals[:5]
-            notify_lines.append(f"■ Hot案件 超過中（{len(urgent_deals)}件）")
-            for d in top:
-                notify_lines.append(f"・{d['deal_name']}（{d['sales_rep']}）→ {d['next_action']}【{d['overdue_days']}日超過】")
-            if len(urgent_deals) > 5:
-                notify_lines.append(f"  ... 他{len(urgent_deals)-5}件")
-            notify_lines.append("")
-
-        if warm_deals:
-            warm_sorted = sorted(warm_deals, key=lambda x: x["overdue_days"], reverse=True)
-            top_warm = warm_sorted[:5]
-            notify_lines.append(f"■ Warm案件 超過中（{len(warm_deals)}件）")
-            for d in top_warm:
-                notify_lines.append(f"・{d['deal_name']}（{d['sales_rep']}）→ {d['next_action']}【{d['overdue_days']}日超過】")
-            if len(warm_deals) > 5:
-                notify_lines.append(f"  ... 他{len(warm_deals)-5}件")
-            notify_lines.append("")
+        top = urgent_deals[:5]
+        notify_lines.append(f"■ Hot案件 超過中（{len(urgent_deals)}件）")
+        for d in top:
+            notify_lines.append(f"・{d['deal_name']}（{d['sales_rep']}）→ {d['next_action']}【{d['overdue_days']}日超過】")
+        if len(urgent_deals) > 5:
+            notify_lines.append(f"  ... 他{len(urgent_deals)-5}件")
+        notify_lines.append("")
 
         full_msg = "\n".join(notify_lines)
 
         if DRY_RUN:
-            print(f"  [DRY-RUN] グループチャット+CEO DM: Hot{len(urgent_deals)}件/Warm{len(warm_deals)}件 (送信スキップ)")
+            print(f"  [DRY-RUN] グループチャット+CEO DM: Hot{len(urgent_deals)}件 (送信スキップ)")
             print(full_msg)
         else:
             # Group chat notification
@@ -967,13 +956,13 @@ def check_overdue_actions():
             # CEO DM
             sent = lark_send_bot_message(token, CEO_OPEN_ID, full_msg, id_type="open_id")
             if sent:
-                print(f"  グループチャット+CEO DM送信: Hot{len(urgent_deals)}件/Warm{len(warm_deals)}件")
+                print(f"  グループチャット+CEO DM送信: Hot{len(urgent_deals)}件")
             else:
                 lark_send_bot_message(token, CEO_EMAIL, full_msg, id_type="email")
 
-            # Per-rep DM for their overdue items
+            # Per-rep DM for their overdue Hot items only
             overdue_by_rep = {}
-            for d in urgent_deals + warm_deals:
+            for d in urgent_deals:
                 rep = d["sales_rep"] or "未割当"
                 overdue_by_rep.setdefault(rep, []).append(d)
             for rep_name, rep_deals in overdue_by_rep.items():
@@ -993,7 +982,7 @@ def check_overdue_actions():
                     send_email_notification(rep_email, f"【要対応】期限超過フォロー{len(rep_deals)}件", rep_msg)
                     print(f"  {rep_name}にメール送信({rep_email}): 期限超過{len(rep_deals)}件")
     else:
-        print("  Hot/Warm案件の期限超過なし — 即時通知スキップ")
+        print("  Hot案件の期限超過なし — 即時通知スキップ")
 
     # === Stale deals: log only (30日超過は週次サマリーで別途対応) ===
     if stale_deals:
@@ -2184,14 +2173,19 @@ def check_github_actions_health():
             elif failed_steps:
                 error_summary = f"失敗ステップ: {', '.join(failed_steps)}"
 
+        # 自動復旧済みの場合は通知スキップ（ログ出力のみ）
+        if auto_recovered:
+            print(f"  [AUTO-RECOVERED] {workflow_name} — 直近成功あり、通知スキップ")
+            notified_failures.add(run_id)
+            continue
+
         # 通知メッセージ組み立て
-        status_label = "⚠️ 自動復旧済み" if auto_recovered else "🔴 要確認"
-        subject = f"【GitHub Actions {status_label}】{workflow_name}"
+        subject = f"【GitHub Actions 🔴 要確認】{workflow_name}"
         body_parts = [
             f"ワークフロー: {workflow_name}",
             f"ブランチ: {head_branch}",
             f"実行日時: {created_at}",
-            f"ステータス: {'自動復旧済み（直近成功）' if auto_recovered else 'failure'}",
+            f"ステータス: failure",
             f"",
             f"■ エラー原因: {cause}",
             f"■ エラー概要:",

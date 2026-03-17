@@ -219,8 +219,7 @@ def main():
 
     if not auto_tasks:
         print("[TaskProcessor] No auto-processable tasks found")
-        report = f"[TaskProcessor] {datetime.now(JST).strftime('%m/%d %H:%M')}\n未着手: {len(tasks)}件\n自動処理可能: 0件\n人手待ち: {len(human_tasks)}件"
-        notify(report)
+        # 自動処理対象がない場合はWebhook通知しない（ノイズ削減）
         return
 
     # Process auto tasks with Claude analysis
