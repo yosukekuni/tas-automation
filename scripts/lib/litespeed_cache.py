@@ -29,6 +29,8 @@ import json
 import urllib.request
 import urllib.error
 
+from lib.retry import urlopen_with_retry
+
 
 def purge_all(base_url, auth, timeout=15):
     """全キャッシュをパージする。
@@ -86,7 +88,7 @@ def _do_purge(url, auth, payload, timeout):
     )
 
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
+        with urlopen_with_retry(req, timeout=timeout, max_retries=3) as r:
             resp = json.loads(r.read())
             success = resp.get("success", False)
             message = resp.get("message", "不明")

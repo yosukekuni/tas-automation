@@ -25,6 +25,8 @@ import time
 import urllib.request
 import urllib.error
 
+from lib.retry import urlopen_with_retry
+
 # デフォルトの Lark API ベースURL
 LARK_API_BASE = "https://open.larksuite.com/open-apis"
 
@@ -49,7 +51,7 @@ def lark_get_token(cfg):
         data=data,
         headers={"Content-Type": "application/json"},
     )
-    with urllib.request.urlopen(req, timeout=15) as r:
+    with urlopen_with_retry(req, timeout=15) as r:
         return json.loads(r.read())["tenant_access_token"]
 
 
@@ -104,7 +106,7 @@ def lark_list_records(token, table_id, base_token=None, cfg=None,
 
         for attempt in range(max_retries):
             try:
-                with urllib.request.urlopen(req, timeout=30) as r:
+                with urlopen_with_retry(req, timeout=30, max_retries=2) as r:
                     body = r.read()
                     if not body:
                         print(f"[WARN] Empty response (attempt {attempt + 1}/{max_retries}), retrying...")
@@ -151,7 +153,7 @@ def lark_get_record_count(token, table_id, base_token=None, cfg=None):
     url = (f"{LARK_API_BASE}/bitable/v1/apps/{base_token}"
            f"/tables/{table_id}/records?page_size=1")
     req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
-    with urllib.request.urlopen(req, timeout=15) as r:
+    with urlopen_with_retry(req, timeout=15) as r:
         result = json.loads(r.read())
         return result.get("data", {}).get("total", 0)
 
@@ -187,7 +189,7 @@ def lark_update_record(token, table_id, record_id, fields,
         },
         method="PUT",
     )
-    with urllib.request.urlopen(req, timeout=15) as r:
+    with urlopen_with_retry(req, timeout=15) as r:
         return json.loads(r.read())
 
 
@@ -219,7 +221,7 @@ def lark_create_record(token, table_id, fields, base_token=None, cfg=None):
             "Content-Type": "application/json",
         },
     )
-    with urllib.request.urlopen(req, timeout=15) as r:
+    with urlopen_with_retry(req, timeout=15) as r:
         return json.loads(r.read())
 
 
@@ -257,7 +259,7 @@ def send_lark_dm(token, open_id, text, max_chunk_size=1900):
             },
         )
         try:
-            with urllib.request.urlopen(req, timeout=15) as r:
+            with urlopen_with_retry(req, timeout=15) as r:
                 result = json.loads(r.read())
                 if result.get("code") != 0:
                     print(f"  Lark DM error: {result.get('msg', 'unknown')}")
@@ -299,7 +301,7 @@ def send_lark_bot_message(token, user_identifier, text, id_type="email"):
         },
     )
     try:
-        with urllib.request.urlopen(req, timeout=15) as r:
+        with urlopen_with_retry(req, timeout=15) as r:
             result = json.loads(r.read())
             if result.get("code") == 0:
                 return True
@@ -332,7 +334,7 @@ def send_lark_webhook(cfg, text):
         headers={"Content-Type": "application/json"},
     )
     try:
-        urllib.request.urlopen(req, timeout=15)
+        urlopen_with_retry(req, timeout=15).close()
         return True
     except Exception as e:
         print(f"  Lark Webhook error: {e}")

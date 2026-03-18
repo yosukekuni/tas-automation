@@ -32,6 +32,10 @@ from datetime import datetime, date, timedelta
 from pathlib import Path
 from collections import defaultdict
 
+# Exponential Backoff: 全API呼び出しにリトライ機能を適用
+import sys as _sys; _sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
+from lib.retry import patch_urlopen; patch_urlopen()
+
 SCRIPT_DIR = Path(__file__).parent
 sys.path.insert(0, str(SCRIPT_DIR))
 

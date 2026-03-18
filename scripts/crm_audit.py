@@ -17,6 +17,10 @@ from datetime import datetime, timedelta
 from collections import Counter, defaultdict
 from pathlib import Path
 
+# Exponential Backoff: 全API呼び出しにリトライ機能を適用
+import sys as _sys; _sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
+from lib.retry import patch_urlopen; patch_urlopen()
+
 # ── Config (from automation_config.json, not hardcoded) ──
 _SCRIPT_DIR = Path(__file__).parent
 _CONFIG_FILE = _SCRIPT_DIR / "automation_config.json"

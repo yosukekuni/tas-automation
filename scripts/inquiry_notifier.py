@@ -33,6 +33,10 @@ import urllib.error
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+# Exponential Backoff: 全API呼び出しにリトライ機能を適用
+import sys as _sys; _sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
+from lib.retry import patch_urlopen; patch_urlopen()
+
 # ── 定数 ──
 SCRIPT_DIR = Path(__file__).parent
 STATE_FILE = SCRIPT_DIR / "inquiry_notifier_state.json"

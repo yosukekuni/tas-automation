@@ -28,6 +28,8 @@ import time
 import urllib.request
 import urllib.error
 
+from lib.retry import urlopen_with_retry
+
 
 def _wp_request(url, auth, data=None, method=None, timeout=30):
     """WordPress REST API への共通リクエスト処理。
@@ -57,7 +59,7 @@ def _wp_request(url, auth, data=None, method=None, timeout=30):
     else:
         req = urllib.request.Request(url, headers=headers, method=method or "GET")
 
-    with urllib.request.urlopen(req, timeout=timeout) as r:
+    with urlopen_with_retry(req, timeout=timeout) as r:
         return json.loads(r.read())
 
 

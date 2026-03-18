@@ -31,6 +31,10 @@ import urllib.error
 from datetime import datetime, timedelta
 from pathlib import Path
 
+# Exponential Backoff: 全API呼び出しにリトライ機能を適用
+import sys as _sys; _sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
+from lib.retry import patch_urlopen; patch_urlopen()
+
 SCRIPT_DIR = Path(__file__).parent
 CONFIG_FILE = SCRIPT_DIR / "automation_config.json"
 STATE_FILE = SCRIPT_DIR / "post_delivery_followup_state.json"
@@ -90,10 +94,8 @@ MAX_SENDS_PER_DAY = 5          # 1日の送信上限
 DUPLICATE_WINDOW_DAYS = 60     # 同一メールアドレスへの重複防止期間（フォローは長めに）
 
 # Google口コミURL（東海エアサービス）
-# GBP口コミ直リンク: https://search.google.com/local/writereview?placeid=PLACE_ID
-# TODO: Google Maps で「東海エアサービス」検索→PlaceIDを取得して設定
-# PlaceID取得: https://developers.google.com/maps/documentation/places/web-service/place-id
-GOOGLE_REVIEW_URL = "https://www.google.com/maps/place/東海エアサービス株式会社/review"
+# GBP口コミ直リンク: PlaceID=ChIJpWtJVIV8A2ARUqf4gLPIFTQ (2026-03-18取得)
+GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJpWtJVIV8A2ARUqf4gLPIFTQ"
 
 COMPANY_INFO = {
     "name": "東海エアサービス株式会社",

@@ -27,6 +27,10 @@ import urllib.error
 from datetime import datetime, timedelta
 from pathlib import Path
 
+# Exponential Backoff: 全API呼び出しにリトライ機能を適用
+import sys as _sys; _sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
+from lib.retry import patch_urlopen; patch_urlopen()
+
 SCRIPT_DIR = Path(__file__).parent
 CONFIG_FILE = SCRIPT_DIR / "automation_config.json"
 STATE_FILE = SCRIPT_DIR / "delivery_thankyou_state.json"
@@ -134,7 +138,9 @@ COMPANY_INFO = {
 
 # リピート割引
 REPEAT_DISCOUNT_PERCENT = 5
-SURVEY_URL = "https://www.tokaiair.com/survey/"  # TODO: 実際のアンケートURLに差し替え
+# アンケートURL: /survey/ は404を返すため無効化 (2026-03-18確認)
+# アンケートページが作成されたら再設定する
+SURVEY_URL = ""  # 無効: /survey/ は存在しない
 
 
 # ── Logging ──
@@ -448,6 +454,12 @@ def generate_delivery_email(order_info, contact, rep_info):
     case_name = order_info["case_name"]
     product = order_info["product"] or "ドローン測量"
 
+    survey_section = ""
+    if SURVEY_URL:
+        survey_section = f"""
+   c) アンケートのお願い（以下URLへ誘導）
+      アンケートURL: {SURVEY_URL}"""
+
     prompt = f"""あなたは{COMPANY_INFO['name']}の営業担当 {rep_info['display']} として、
 納品完了後の顧客向けサンクスメールを作成してください。
 
@@ -466,9 +478,7 @@ def generate_delivery_email(order_info, contact, rep_info):
       - ドローン測量: 点群データの保存・バックアップ推奨、座標系の確認
       - 赤外線調査: 報告書の読み方、経年比較の重要性
       - 空撮: 高解像度データの活用方法
-   b) 次回ご依頼時に{REPEAT_DISCOUNT_PERCENT}%割引のリピーター特典
-   c) アンケートのお願い（以下URLへ誘導）
-      アンケートURL: {SURVEY_URL}
+   b) 次回ご依頼時に{REPEAT_DISCOUNT_PERCENT}%割引のリピーター特典{survey_section}
 4. 押し売りしない。感謝と今後のサポート姿勢を伝える
 5. 本文は400文字以内。簡潔かつ丁寧に。
 6. AIっぽい表現を避ける。普通のビジネスメールの文体で。

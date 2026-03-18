@@ -8,6 +8,10 @@ E-E-A-T強化デプロイスクリプト
 import json, sys, os, base64, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 
+# Exponential Backoff: 全API呼び出しにリトライ機能を適用
+import sys as _sys; _sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
+from lib.retry import patch_urlopen; patch_urlopen()
+
 CONFIG_PATH = "/mnt/c/Users/USER/Documents/_data/automation_config.json"
 TOP_PAGE_PATH = "/mnt/c/Users/USER/Documents/_data/tas-automation/templates/top_page_final.html"
 TEMPLATE_PATH = "/mnt/c/Users/USER/Documents/_data/tas-automation/templates/page_template.html"

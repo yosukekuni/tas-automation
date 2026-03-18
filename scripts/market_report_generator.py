@@ -44,7 +44,7 @@ TABLE_ORDERS = "tbldLj2iMJYocct6"
 
 # WordPress固定ページID（初回は手動作成してIDを記入）
 # TODO: ページ作成後にIDを設定
-MARKET_REPORT_PAGE_ID = None
+MARKET_REPORT_PAGE_ID = 7159
 
 # 業種分類マッピング
 INDUSTRY_MAP = {

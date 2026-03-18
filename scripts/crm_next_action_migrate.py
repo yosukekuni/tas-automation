@@ -20,6 +20,10 @@ from datetime import datetime
 from pathlib import Path
 from collections import Counter
 
+# Exponential Backoff: 全API呼び出しにリトライ機能を適用
+import sys as _sys; _sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
+from lib.retry import patch_urlopen; patch_urlopen()
+
 SCRIPT_DIR = Path(__file__).parent
 BACKUP_DIR = SCRIPT_DIR.parent / "backups"
 BACKUP_DIR.mkdir(exist_ok=True)

@@ -25,6 +25,10 @@ import urllib.error
 from pathlib import Path
 from datetime import datetime
 
+# lib をパスに追加
+sys.path.insert(0, str(Path(__file__).parent))
+from lib.retry import urlopen_with_retry
+
 SCRIPT_DIR = Path(__file__).parent
 
 # ── Config ──
@@ -180,7 +184,7 @@ def safe_update_page(page_id, content, profile=None, dry_run=False):
     )
     with _get_waf_context(cfg):
         try:
-            with urllib.request.urlopen(req, timeout=30) as r:
+            with urlopen_with_retry(req, timeout=30) as r:
                 resp = json.loads(r.read())
                 print(f"  更新完了: page {resp.get('id')}")
                 _purge_cache(cfg, f"page {page_id}")
@@ -229,7 +233,7 @@ def safe_update_option(key, value, profile=None, dry_run=False):
     )
     with _get_waf_context(cfg):
         try:
-            with urllib.request.urlopen(req, timeout=15) as r:
+            with urlopen_with_retry(req, timeout=15) as r:
                 resp = json.loads(r.read())
                 print(f"  更新完了: {resp}")
                 _purge_cache(cfg, f"option tas_{key}")
@@ -275,7 +279,7 @@ def safe_update_snippet(snippet_id, code, profile="css", dry_run=False):
     )
     with _get_waf_context(cfg):
         try:
-            with urllib.request.urlopen(req, timeout=15) as r:
+            with urlopen_with_retry(req, timeout=15) as r:
                 resp = json.loads(r.read())
                 print(f"  更新完了: Snippet {resp.get('id', snippet_id)}")
                 _purge_cache(cfg, f"snippet {snippet_id}")
@@ -320,7 +324,7 @@ def safe_update_global_styles(styles_css, dry_run=False):
     )
     with _get_waf_context(cfg):
         try:
-            with urllib.request.urlopen(req, timeout=15) as r:
+            with urlopen_with_retry(req, timeout=15) as r:
                 resp = json.loads(r.read())
                 print(f"  更新完了")
                 _purge_cache(cfg, "global-styles")

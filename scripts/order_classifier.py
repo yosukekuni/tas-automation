@@ -18,6 +18,10 @@ from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
 
+# Exponential Backoff: 全API呼び出しにリトライ機能を適用
+import sys as _sys; _sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
+from lib.retry import patch_urlopen; patch_urlopen()
+
 CONFIG_FILE = Path("/mnt/c/Users/USER/Documents/_data/automation_config.json")
 OUTPUT_DIR = Path("/mnt/c/Users/USER/Documents/_data/tas-automation/data")
 
