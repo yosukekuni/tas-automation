@@ -229,6 +229,49 @@ def calc_send_time(detected_at=None):
 
 
 # ── 連絡先からメールアドレス検索 ──
+def _normalize_company(name):
+    """会社名を正規化して比較しやすくする（株式会社/有限会社等を除去）"""
+    import re
+    if not name:
+        return ""
+    # 法人格を除去
+    normalized = re.sub(r'(株式会社|有限会社|合同会社|一般社団法人|公益社団法人|（株）|\(株\))', '', name)
+    # 空白・全角スペースを除去
+    normalized = re.sub(r'[\s\u3000]+', '', normalized)
+    return normalized.strip()
+
+
+def _company_match(name_a, name_b):
+    """会社名の柔軟なマッチング（双方向部分一致 + 正規化比較）"""
+    if not name_a or not name_b:
+        return False
+    # そのまま部分一致（どちらかが含まれればOK）
+    if name_a in name_b or name_b in name_a:
+        return True
+    # 正規化して比較
+    norm_a = _normalize_company(name_a)
+    norm_b = _normalize_company(name_b)
+    if not norm_a or not norm_b:
+        return False
+    if norm_a in norm_b or norm_b in norm_a:
+        return True
+    return False
+
+
+def _extract_contact_info(contact_record):
+    """連絡先レコードからメール・氏名・会社名・役職を抽出"""
+    cf = contact_record.get("fields", {})
+    email = str(cf.get("メールアドレス", "") or "")
+    if not email or "@" not in email:
+        return None
+    return {
+        "email": email,
+        "name": str(cf.get("氏名", "") or ""),
+        "company": str(cf.get("会社名", "") or ""),
+        "title": str(cf.get("役職", "") or ""),
+    }
+
+
 def find_customer_email(contacts, accounts, deal_fields):
     # 1. 商談に直接リンクされた連絡先
     contact_links = deal_fields.get("連絡先", [])
@@ -238,16 +281,11 @@ def find_customer_email(contacts, accounts, deal_fields):
                 rid = link.get("record_id", "")
                 for c in contacts:
                     if c.get("record_id") == rid:
-                        email = str(c.get("fields", {}).get("メールアドレス", "") or "")
-                        if email and "@" in email:
-                            return {
-                                "email": email,
-                                "name": str(c.get("fields", {}).get("氏名", "") or ""),
-                                "company": str(c.get("fields", {}).get("会社名", "") or ""),
-                                "title": str(c.get("fields", {}).get("役職", "") or ""),
-                            }
+                        info = _extract_contact_info(c)
+                        if info:
+                            return info
 
-    # 2. 取引先リンクから連絡先を検索
+    # 2. 取引先リンクから会社名を取得→連絡先を会社名で検索
     account_links = deal_fields.get("取引先", [])
     account_name = ""
     if isinstance(account_links, list):
@@ -259,34 +297,31 @@ def find_customer_email(contacts, accounts, deal_fields):
                         account_name = str(a.get("fields", {}).get("会社名", "") or "")
                         break
 
+    # 取引先リンクがない場合、新規取引先名フィールドも試す
+    if not account_name:
+        account_name = str(deal_fields.get("新規取引先名", "") or "")
+
     if account_name:
         for c in contacts:
-            cf = c.get("fields", {})
-            company = str(cf.get("会社名", "") or "")
-            if account_name and account_name in company:
-                email = str(cf.get("メールアドレス", "") or "")
-                if email and "@" in email:
-                    return {
-                        "email": email,
-                        "name": str(cf.get("氏名", "") or ""),
-                        "company": company,
-                        "title": str(cf.get("役職", "") or ""),
-                    }
+            company = str(c.get("fields", {}).get("会社名", "") or "")
+            if _company_match(account_name, company):
+                info = _extract_contact_info(c)
+                if info:
+                    return info
 
-    # 3. 商談名から推測
-    deal_name = str(deal_fields.get("商談名", "") or "")
-    for c in contacts:
-        cf = c.get("fields", {})
-        company = str(cf.get("会社名", "") or "")
-        if company and company in deal_name:
-            email = str(cf.get("メールアドレス", "") or "")
-            if email and "@" in email:
-                return {
-                    "email": email,
-                    "name": str(cf.get("氏名", "") or ""),
-                    "company": company,
-                    "title": str(cf.get("役職", "") or ""),
-                }
+    # 3. 商談名から推測（連絡先の会社名が商談名に含まれているか）
+    deal_name_raw = deal_fields.get("商談名", "")
+    if isinstance(deal_name_raw, list) and deal_name_raw and isinstance(deal_name_raw[0], dict):
+        deal_name = deal_name_raw[0].get("text", "") or ""
+    else:
+        deal_name = str(deal_name_raw or "")
+    if deal_name:
+        for c in contacts:
+            company = str(c.get("fields", {}).get("会社名", "") or "")
+            if company and _company_match(company, deal_name):
+                info = _extract_contact_info(c)
+                if info:
+                    return info
 
     return None
 
@@ -546,9 +581,9 @@ def queue_new_deals(specific_deal=None):
             processed_ids.add(rid)
             continue
 
-        # ステージチェック: 失注・納品完了のみ除外（不在・Coldでもお礼は送る）
+        # ステージチェック: 不在・失注・納品完了は除外（不在=名刺なし=メールなし）
         stage = str(fields.get("商談ステージ", "") or "")
-        if stage in ("失注", "納品完了"):
+        if stage in ("不在", "失注", "納品完了"):
             print(f"  -> ステージ「{stage}」。スキップ。")
             skip_reasons["bad_stage"] += 1
             processed_ids.add(rid)
@@ -816,13 +851,27 @@ def main():
         send_queued_emails(dry_run="--dry-run" in args)
         return
 
-    if "--queue" in args or "--deal" in args or not args:
+    if "--find-deals" in args:
+        # 商談名で検索して record_id を表示（--deal オプション用）
+        search_term = ""
+        idx = args.index("--find-deals")
+        if idx + 1 < len(args):
+            search_term = args[idx + 1]
+        find_deals_by_name(search_term)
+        return
+
+    if "--queue" in args or "--deal" in args or "--deal-name" in args or not args:
         specific_deal = None
+        deal_names = []
         if "--deal" in args:
             idx = args.index("--deal")
             if idx + 1 < len(args):
                 specific_deal = args[idx + 1]
-        queue_new_deals(specific_deal)
+        if "--deal-name" in args:
+            idx = args.index("--deal-name")
+            if idx + 1 < len(args):
+                deal_names = [n.strip() for n in args[idx + 1].split(",")]
+        queue_new_deals(specific_deal, deal_names=deal_names)
         return
 
     if "--dry-run" in args:
