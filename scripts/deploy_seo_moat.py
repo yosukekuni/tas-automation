@@ -3,7 +3,7 @@
 SEO堀構築施策 一括デプロイスクリプト
 
 5施策を順次WordPressにデプロイする:
-  1. 地域別LP 41ページ
+  1. 地域別LP 53ページ
   2. 費用比較ツール（固定ページ: drone-survey-cost-comparison）
   3. 実績統計ページ（固定ページ: drone-survey-statistics）
   4. 市場レポートページ（固定ページ: drone-survey-market-report）
@@ -190,7 +190,7 @@ def wp_inject_scripts_via_store(cfg, page_id, scripts):
 def deploy_area_pages(cfg, dry_run=False):
     """41地域LPをWordPressにデプロイ（scriptタグ分離）"""
     log("=" * 60)
-    log("Step 1: 地域別LP 41ページ デプロイ")
+    log("Step 1: 地域別LP 53ページ デプロイ")
     log("=" * 60)
 
     from programmatic_seo_generator import MUNICIPALITIES, generate_page_html, fetch_crm_stats

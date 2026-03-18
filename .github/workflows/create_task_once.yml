@@ -1,0 +1,21 @@
+name: Create Task Once (Referral Partner Program)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-task:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Create Lark Task
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+        run: python scripts/create_task_once.py
