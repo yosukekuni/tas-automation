@@ -1,0 +1,48 @@
+name: Inquiry Notifier (5min)
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Restore state
+        uses: actions/cache/restore@v5
+        with:
+          path: scripts/inquiry_notifier_state.json
+          key: inquiry-notifier-state-
+          restore-keys: |
+            inquiry-notifier-state-
+
+      - name: Run Inquiry Notifier
+        env:
+          LARK_IMAP_HOST: imap.larksuite.com
+          LARK_IMAP_PORT: '993'
+          LARK_IMAP_USER: info@tokaiair.com
+          LARK_IMAP_PASS: ${{ secrets.LARK_IMAP_PASS }}
+          INQUIRY_MODE: imap
+        run: python scripts/inquiry_notifier.py --imap
+
+      - name: Save state
+        uses: actions/cache/save@v5
+        if: always()
+        with:
+          path: scripts/inquiry_notifier_state.json
+          key: inquiry-notifier-state-${{ github.run_id }}
