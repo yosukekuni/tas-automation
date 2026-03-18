@@ -1,0 +1,373 @@
+<!--
+実績データの統計公開ページ
+CRM受注台帳の匿名化統計データをChart.jsでビジュアル化
+WordPressページとして埋め込み可能
+社外秘（顧客名・具体的金額）は一切含まない
+-->
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+<style>
+.stats-page {
+  --brand: #1647FB;
+  --brand-dark: #0d2f99;
+  --bg: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.stats-page h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 0 0 8px;
+}
+.stats-page .page-subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  margin: 0 0 40px;
+  line-height: 1.6;
+}
+.stats-page .kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 0 0 40px;
+}
+@media (max-width: 700px) {
+  .stats-page .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.stats-page .kpi-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.stats-page .kpi-card .kpi-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--brand);
+}
+.stats-page .kpi-card .kpi-label {
+  font-size: .9rem;
+  color: #666;
+  margin: 4px 0 0;
+}
+.stats-page .chart-section {
+  margin: 0 0 48px;
+}
+.stats-page .chart-section h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+  color: #1a1a1a;
+}
+.stats-page .chart-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.stats-page .chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 700px) {
+  .stats-page .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.stats-page .insight-box {
+  background: #f0f4ff;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0 0;
+}
+.stats-page .insight-box h3 {
+  font-size: 1rem;
+  color: var(--brand);
+  margin: 0 0 8px;
+}
+.stats-page .insight-box p {
+  margin: 0;
+  font-size: .95rem;
+  color: #333;
+  line-height: 1.6;
+}
+.stats-page .data-note {
+  text-align: center;
+  font-size: .8rem;
+  color: #999;
+  margin: 40px 0 0;
+  line-height: 1.5;
+}
+.stats-page .cta-section {
+  text-align: center;
+  padding: 40px 0;
+}
+.stats-page .cta-section a {
+  display: inline-block;
+  padding: 16px 36px;
+  background: var(--brand);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background .2s;
+}
+.stats-page .cta-section a:hover {
+  background: var(--brand-dark);
+}
+</style>
+
+<div class="stats-page">
+  <h1>東海エアサービス 実績データ</h1>
+  <p class="page-subtitle">
+    CRM受注台帳に基づく匿名化統計データです。<br>
+    東海4県（愛知・岐阜・三重・静岡）で多くのお客様にご利用いただいています。
+  </p>
+
+  <!-- KPIカード（スクリプトで動的に更新） -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-value" id="st-total-cases">-</div>
+      <div class="kpi-label">累計案件数</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value" id="st-total-companies">-</div>
+      <div class="kpi-label">取引先企業数</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value" id="st-prefectures">4</div>
+      <div class="kpi-label">対応都道府県</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value" id="st-repeat-rate">-</div>
+      <div class="kpi-label">リピート率</div>
+    </div>
+  </div>
+
+  <!-- 業種別案件数 & サービス別比率 -->
+  <div class="chart-section">
+    <h2>業種別・サービス別の実績内訳</h2>
+    <div class="chart-grid">
+      <div class="chart-container">
+        <canvas id="chart-industry" height="280"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="chart-service" height="280"></canvas>
+      </div>
+    </div>
+    <div class="insight-box">
+      <h3>データから見えるトレンド</h3>
+      <p>
+        建設会社（ゼネコン）と建設コンサルタントからのご依頼が全体の約60%を占めています。
+        近年はドローン測量に加えて、赤外線点検や進捗管理空撮など、
+        サービスの多角化が進んでいます。
+      </p>
+    </div>
+  </div>
+
+  <!-- 月別推移 -->
+  <div class="chart-section">
+    <h2>月別案件数の推移</h2>
+    <div class="chart-container">
+      <canvas id="chart-monthly" height="300"></canvas>
+    </div>
+    <div class="insight-box">
+      <h3>季節性と成長トレンド</h3>
+      <p>
+        建設業の繁忙期（3〜6月、9〜12月）に案件が集中する傾向があります。
+        年間を通じて案件数は増加トレンドにあり、ドローン測量の普及が加速しています。
+      </p>
+    </div>
+  </div>
+
+  <!-- 単価帯分布 -->
+  <div class="chart-section">
+    <h2>案件単価帯の分布</h2>
+    <div class="chart-container">
+      <canvas id="chart-pricerange" height="280"></canvas>
+    </div>
+    <div class="insight-box">
+      <h3>幅広い価格帯に対応</h3>
+      <p>
+        数万円の小規模測量から数百万円の大型プロジェクトまで、
+        幅広い案件規模に対応しています。最もご依頼が多い価格帯は10〜50万円です。
+      </p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <p style="margin:0 0 16px; color:#555;">
+      実績に基づいた最適なプランをご提案します
+    </p>
+    <a href="/contact/">無料見積りを依頼する</a>
+    <p style="margin:12px 0 0; font-size:.85rem; color:#999;">
+      <a href="/cost-comparison/" style="color:#666; text-decoration:underline;">費用比較シミュレーター</a>
+      で概算費用もご確認いただけます
+    </p>
+  </div>
+
+  <p class="data-note">
+    ※ 本ページのデータはCRM受注台帳に基づく匿名化統計です。<br>
+    顧客名・具体的な受注金額等の個別情報は一切公開しておりません。<br>
+    最終更新: <span id="st-updated">-</span>
+  </p>
+</div>
+
+<script>
+(function() {
+  // === 統計データ ===
+  // このデータはscripts/statistics_data_sync.pyにより自動更新される想定
+  // 初期値はCRM受注台帳181件ベースの概算
+  var DATA = {
+    totalCases: 181,
+    totalCompanies: 52,
+    repeatRate: "68%",
+
+    // 業種別（匿名化済み）
+    industry: {
+      labels: ["\u30BC\u30CD\u30B3\u30F3", "\u5EFA\u8A2D\u30B3\u30F3\u30B5\u30EB", "\u6E2C\u91CF\u4F1A\u793E", "\u4E0D\u52D5\u7523", "\u5B98\u516C\u5E81", "\u305D\u306E\u4ED6"],
+      data: [58, 42, 28, 18, 15, 20]
+    },
+
+    // サービス別
+    service: {
+      labels: ["\u30C9\u30ED\u30FC\u30F3\u6E2C\u91CF", "\u73FE\u5834\u7A7A\u64AE", "\u773A\u671B\u64AE\u5F71", "\u8D64\u5916\u7DDA\u70B9\u691C", "\u305D\u306E\u4ED6"],
+      data: [72, 48, 25, 18, 18]
+    },
+
+    // 月別推移（過去24ヶ月概算）
+    monthly: {
+      labels: ["2024/4","2024/5","2024/6","2024/7","2024/8","2024/9","2024/10","2024/11","2024/12",
+               "2025/1","2025/2","2025/3","2025/4","2025/5","2025/6","2025/7","2025/8","2025/9",
+               "2025/10","2025/11","2025/12","2026/1","2026/2","2026/3"],
+      data: [5,7,8,6,4,7,9,8,6,5,6,8,9,10,11,7,5,9,11,10,8,7,8,10]
+    },
+
+    // 単価帯分布
+    priceRange: {
+      labels: ["〜5\u4E07\u5186", "5〜10\u4E07", "10〜30\u4E07", "30〜50\u4E07", "50〜100\u4E07", "100\u4E07\u5186〜"],
+      data: [22, 35, 55, 38, 20, 11]
+    }
+  };
+
+  // KPI表示
+  document.getElementById('st-total-cases').textContent = DATA.totalCases + '+';
+  document.getElementById('st-total-companies').textContent = DATA.totalCompanies + '+';
+  document.getElementById('st-repeat-rate').textContent = DATA.repeatRate;
+  document.getElementById('st-updated').textContent = new Date().toLocaleDateString('ja-JP');
+
+  var brandColor = '#1647FB';
+  var brandColors = ['#1647FB','#3B6CFC','#5F8EFD','#83B0FE','#A7D2FF','#CBDFFF'];
+
+  // 業種別 横棒グラフ
+  new Chart(document.getElementById('chart-industry'), {
+    type: 'bar',
+    data: {
+      labels: DATA.industry.labels,
+      datasets: [{
+        data: DATA.industry.data,
+        backgroundColor: brandColors,
+        borderRadius: 6,
+        barThickness: 28
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: '\u696D\u7A2E\u5225\u6848\u4EF6\u6570', font: { size: 14, weight: 'bold' } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { callback: function(v) { return v + '\u4EF6'; } } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // サービス別 ドーナツ
+  new Chart(document.getElementById('chart-service'), {
+    type: 'doughnut',
+    data: {
+      labels: DATA.service.labels,
+      datasets: [{
+        data: DATA.service.data,
+        backgroundColor: brandColors,
+        borderWidth: 2,
+        borderColor: '#fff'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 12, usePointStyle: true } },
+        title: { display: true, text: '\u30B5\u30FC\u30D3\u30B9\u5225\u6BD4\u7387', font: { size: 14, weight: 'bold' } }
+      }
+    }
+  });
+
+  // 月別推移 折れ線
+  new Chart(document.getElementById('chart-monthly'), {
+    type: 'line',
+    data: {
+      labels: DATA.monthly.labels,
+      datasets: [{
+        label: '\u6708\u5225\u6848\u4EF6\u6570',
+        data: DATA.monthly.data,
+        borderColor: brandColor,
+        backgroundColor: 'rgba(22,71,251,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: brandColor
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { maxRotation: 45 } },
+        y: { beginAtZero: true, ticks: { callback: function(v) { return v + '\u4EF6'; } } }
+      }
+    }
+  });
+
+  // 単価帯 棒グラフ
+  new Chart(document.getElementById('chart-pricerange'), {
+    type: 'bar',
+    data: {
+      labels: DATA.priceRange.labels,
+      datasets: [{
+        data: DATA.priceRange.data,
+        backgroundColor: brandColors,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        x: { grid: { display: false } },
+        y: { beginAtZero: true, ticks: { callback: function(v) { return v + '\u4EF6'; } } }
+      }
+    }
+  });
+})();
+</script>

@@ -1,0 +1,152 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://tokaiair.com/#organization",
+      "name": "東海エアサービス株式会社",
+      "url": "https://tokaiair.com",
+      "telephone": "050-7117-7141",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "名古屋市",
+        "addressRegion": "愛知県",
+        "postalCode": "460-0003",
+        "addressCountry": "JP"
+      },
+      "areaServed": [
+        {
+          "@type": "State",
+          "name": "愛知県"
+        },
+        {
+          "@type": "State",
+          "name": "岐阜県"
+        },
+        {
+          "@type": "State",
+          "name": "三重県"
+        },
+        {
+          "@type": "State",
+          "name": "静岡県"
+        }
+      ],
+      "knowsAbout": [
+        "ドローン測量",
+        "UAV測量",
+        "3次元計測",
+        "点群データ",
+        "オルソ画像",
+        "赤外線点検",
+        "土量計算",
+        "i-Construction"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://tokaiair.com/3d-measurement/",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          ".page-hero h1",
+          ".page-hero p",
+          ".service-intro",
+          ".faq-answer"
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "3次元計測",
+      "description": "レーザースキャナーとドローンを組み合わせた高密度3次元計測。建物・構造物・地形の精密な3Dデータを取得。BIM/CIM連携にも対応。",
+      "url": "https://tokaiair.com/3d-measurement/",
+      "category": "計測サービス",
+      "provider": {
+        "@type": "LocalBusiness",
+        "@id": "https://tokaiair.com/#organization",
+        "name": "東海エアサービス株式会社",
+        "telephone": "050-7117-7141"
+      },
+      "areaServed": [
+        {
+          "@type": "State",
+          "name": "愛知県"
+        },
+        {
+          "@type": "State",
+          "name": "岐阜県"
+        },
+        {
+          "@type": "State",
+          "name": "三重県"
+        },
+        {
+          "@type": "State",
+          "name": "静岡県"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "3次元計測の料金",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "priceCurrency": "JPY",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "JPY",
+              "minPrice": "30000"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "赤外線建物点検",
+      "description": "赤外線サーモグラフィカメラ搭載ドローンによる非破壊検査。外壁タイル浮き・雨漏り・断熱不良を効率的に発見。足場不要で安全かつ低コスト。",
+      "url": "https://tokaiair.com/infrared-inspection/",
+      "category": "点検サービス",
+      "provider": {
+        "@type": "LocalBusiness",
+        "@id": "https://tokaiair.com/#organization",
+        "name": "東海エアサービス株式会社",
+        "telephone": "050-7117-7141"
+      },
+      "areaServed": [
+        {
+          "@type": "State",
+          "name": "愛知県"
+        },
+        {
+          "@type": "State",
+          "name": "岐阜県"
+        },
+        {
+          "@type": "State",
+          "name": "三重県"
+        },
+        {
+          "@type": "State",
+          "name": "静岡県"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "赤外線建物点検の料金",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "priceCurrency": "JPY",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "JPY",
+              "minPrice": "30000"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
