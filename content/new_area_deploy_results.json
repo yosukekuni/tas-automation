@@ -1,0 +1,74 @@
+[
+  {
+    "city": "あま市",
+    "slug": "ama",
+    "page_id": 7256,
+    "url": "https://tokaiair.com/ama/"
+  },
+  {
+    "city": "犬山市",
+    "slug": "inuyama",
+    "page_id": 7258,
+    "url": "https://tokaiair.com/inuyama/"
+  },
+  {
+    "city": "知立市",
+    "slug": "chiryu",
+    "page_id": 7260,
+    "url": "https://tokaiair.com/chiryu/"
+  },
+  {
+    "city": "稲沢市",
+    "slug": "inazawa",
+    "page_id": 7262,
+    "url": "https://tokaiair.com/inazawa/"
+  },
+  {
+    "city": "江南市",
+    "slug": "konan",
+    "page_id": 7264,
+    "url": "https://tokaiair.com/konan/"
+  },
+  {
+    "city": "日進市",
+    "slug": "nisshin",
+    "page_id": 7266,
+    "url": "https://tokaiair.com/nisshin/"
+  },
+  {
+    "city": "長久手市",
+    "slug": "nagakute",
+    "page_id": 7268,
+    "url": "https://tokaiair.com/nagakute/"
+  },
+  {
+    "city": "みよし市",
+    "slug": "miyoshi",
+    "page_id": 7270,
+    "url": "https://tokaiair.com/miyoshi/"
+  },
+  {
+    "city": "知多市",
+    "slug": "chita",
+    "page_id": 7272,
+    "url": "https://tokaiair.com/chita/"
+  },
+  {
+    "city": "常滑市",
+    "slug": "tokoname",
+    "page_id": 7274,
+    "url": "https://tokaiair.com/tokoname/"
+  },
+  {
+    "city": "蒲郡市",
+    "slug": "gamagori",
+    "page_id": 7276,
+    "url": "https://tokaiair.com/gamagori/"
+  },
+  {
+    "city": "北名古屋市",
+    "slug": "kitanagoya",
+    "page_id": 7278,
+    "url": "https://tokaiair.com/kitanagoya/"
+  }
+]
