@@ -286,7 +286,7 @@ def _extract_contact_info(contact_record):
 
 def find_customer_email(contacts, accounts, deal_fields):
     # 1. 商談に直接リンクされた連絡先
-    contact_links = deal_fields.get("連絡先", [])
+    contact_links = deal_fields.get("主連絡先", [])
     if isinstance(contact_links, list):
         for link in contact_links:
             if isinstance(link, dict):

@@ -111,16 +111,24 @@ def normalize_company(name):
 
 
 def company_match(name_a, name_b):
-    """会社名の柔軟マッチング"""
+    """会社名の柔軟マッチング（双方向部分一致、最低2文字以上で部分一致）"""
     if not name_a or not name_b:
         return False
-    if name_a in name_b or name_b in name_a:
+    if name_a == name_b:
+        return True
+    if len(name_a) >= 2 and name_a in name_b:
+        return True
+    if len(name_b) >= 2 and name_b in name_a:
         return True
     norm_a = normalize_company(name_a)
     norm_b = normalize_company(name_b)
     if not norm_a or not norm_b:
         return False
-    if norm_a in norm_b or norm_b in norm_a:
+    if norm_a == norm_b:
+        return True
+    if len(norm_a) >= 2 and norm_a in norm_b:
+        return True
+    if len(norm_b) >= 2 and norm_b in norm_a:
         return True
     return False
 
@@ -233,7 +241,7 @@ def main():
 
     for rec in deals:
         fields = rec.get("fields", {})
-        contact_links = fields.get("連絡先", [])
+        contact_links = fields.get("主連絡先", [])
         has_contact = False
         if isinstance(contact_links, list) and contact_links:
             for link in contact_links:
@@ -270,7 +278,7 @@ def main():
         snapshot_data.append({
             "record_id": rec.get("record_id", ""),
             "deal_name": get_deal_name(rec.get("fields", {})),
-            "contact_links_before": rec.get("fields", {}).get("連絡先", []),
+            "contact_links_before": rec.get("fields", {}).get("主連絡先", []),
         })
     with open(snapshot_file, "w", encoding="utf-8") as f:
         json.dump(snapshot_data, f, ensure_ascii=False, indent=2)
@@ -295,7 +303,7 @@ def main():
 
         # 最初のマッチを使用（複数ある場合は全て表示）
         best = matches[0]
-        contact_ids = [{"record_id": m["record_id"]} for m in matches]
+        contact_ids = [m["record_id"] for m in matches]
 
         if dry_run:
             match_info = ", ".join(f"{m['name']}({m['email']}, {m['match_type']})" for m in matches)
@@ -305,7 +313,7 @@ def main():
             print(f"  [修復] {deal_name} → {best['name']}({best['email']})", end="")
             # 連絡先リンクフィールドを更新
             success = update_record(token, TABLE_DEALS, rid, {
-                "連絡先": contact_ids
+                "主連絡先": contact_ids
             })
             if success:
                 print(" ... OK")
