@@ -39,6 +39,11 @@ config = {
         "refresh_token": os.environ.get("FREEE_REFRESH_TOKEN", ""),
         "redirect_uri": os.environ.get("FREEE_REDIRECT_URI", "urn:ietf:wg:oauth:2.0:oob"),
     },
+    "lolipop": {
+        "domain": os.environ.get("LOLIPOP_DOMAIN", "tokaiair.com"),
+        "password": os.environ.get("LOLIPOP_PASSWORD", ""),
+        "waf_url": os.environ.get("LOLIPOP_WAF_URL", ""),
+    },
 }
 
 out = Path(__file__).parent / "automation_config.json"

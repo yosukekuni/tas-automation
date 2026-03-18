@@ -4,6 +4,7 @@ WordPress安全デプロイラッパー
 
 全てのWordPress書き込み操作は、このモジュール経由で行う。
 review_agent.pyによる事前チェックを強制し、CRITICALなら中止+CEO通知。
+ロリポップWAF自動制御: デプロイ前にWAF OFF → デプロイ後にWAF ON（try/finallyで保証）。
 
 Usage (他スクリプトから):
     from wp_safe_deploy import safe_update_page, safe_update_option, safe_update_snippet
@@ -44,6 +45,26 @@ def get_wp_auth(cfg):
 
 def get_wp_base(cfg):
     return cfg["wordpress"]["base_url"].replace("/wp/v2", "")
+
+
+# ── WAF Control ──
+def _has_waf_config(cfg):
+    """ロリポップWAF設定が存在するか確認"""
+    lolipop = cfg.get("lolipop", {})
+    return bool(lolipop.get("domain")) and bool(lolipop.get("password"))
+
+
+def _get_waf_context(cfg):
+    """WAFコンテキストマネージャを返す。設定がなければダミーを返す。"""
+    if _has_waf_config(cfg):
+        try:
+            sys.path.insert(0, str(SCRIPT_DIR / "lib"))
+            from lolipop_waf import waf_context
+            return waf_context(cfg)
+        except ImportError as e:
+            print(f"  [WAF] モジュール読み込み失敗: {e} - WAF手動操作にフォールバック")
+    from contextlib import nullcontext
+    return nullcontext(False)
 
 
 # ── Review Agent ──
@@ -119,7 +140,7 @@ def safe_update_page(page_id, content, profile=None, dry_run=False):
         print(f"  [DRY-RUN] 更新スキップ")
         return True
 
-    # Execute
+    # Execute (WAF OFF → deploy → WAF ON)
     cfg = load_config()
     wp_auth = get_wp_auth(cfg)
     wp_base = cfg["wordpress"]["base_url"]
@@ -132,14 +153,15 @@ def safe_update_page(page_id, content, profile=None, dry_run=False):
                  "Content-Type": "application/json"},
         method="POST"
     )
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            resp = json.loads(r.read())
-            print(f"  更新完了: page {resp.get('id')}")
-            return True
-    except urllib.error.HTTPError as e:
-        print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
-        return False
+    with _get_waf_context(cfg):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                resp = json.loads(r.read())
+                print(f"  更新完了: page {resp.get('id')}")
+                return True
+        except urllib.error.HTTPError as e:
+            print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
+            return False
 
 
 def safe_update_option(key, value, profile=None, dry_run=False):
@@ -166,7 +188,7 @@ def safe_update_option(key, value, profile=None, dry_run=False):
         print(f"  [DRY-RUN] 更新スキップ")
         return True
 
-    # Execute
+    # Execute (WAF OFF → deploy → WAF ON)
     cfg = load_config()
     wp_auth = get_wp_auth(cfg)
     wp_base = get_wp_base(cfg)
@@ -179,14 +201,15 @@ def safe_update_option(key, value, profile=None, dry_run=False):
         headers={"Authorization": f"Basic {wp_auth}",
                  "Content-Type": "application/json"}
     )
-    try:
-        with urllib.request.urlopen(req, timeout=15) as r:
-            resp = json.loads(r.read())
-            print(f"  更新完了: {resp}")
-            return True
-    except urllib.error.HTTPError as e:
-        print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
-        return False
+    with _get_waf_context(cfg):
+        try:
+            with urllib.request.urlopen(req, timeout=15) as r:
+                resp = json.loads(r.read())
+                print(f"  更新完了: {resp}")
+                return True
+        except urllib.error.HTTPError as e:
+            print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
+            return False
 
 
 def safe_update_snippet(snippet_id, code, profile="css", dry_run=False):
@@ -210,7 +233,7 @@ def safe_update_snippet(snippet_id, code, profile="css", dry_run=False):
         print(f"  [DRY-RUN] 更新スキップ")
         return True
 
-    # Execute
+    # Execute (WAF OFF → deploy → WAF ON)
     cfg = load_config()
     wp_auth = get_wp_auth(cfg)
     wp_base = get_wp_base(cfg)
@@ -223,14 +246,15 @@ def safe_update_snippet(snippet_id, code, profile="css", dry_run=False):
                  "Content-Type": "application/json"},
         method="PUT"
     )
-    try:
-        with urllib.request.urlopen(req, timeout=15) as r:
-            resp = json.loads(r.read())
-            print(f"  更新完了: Snippet {resp.get('id', snippet_id)}")
-            return True
-    except urllib.error.HTTPError as e:
-        print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
-        return False
+    with _get_waf_context(cfg):
+        try:
+            with urllib.request.urlopen(req, timeout=15) as r:
+                resp = json.loads(r.read())
+                print(f"  更新完了: Snippet {resp.get('id', snippet_id)}")
+                return True
+        except urllib.error.HTTPError as e:
+            print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
+            return False
 
 
 def safe_update_global_styles(styles_css, dry_run=False):
@@ -253,6 +277,7 @@ def safe_update_global_styles(styles_css, dry_run=False):
         print(f"  [DRY-RUN] 更新スキップ")
         return True
 
+    # Execute (WAF OFF → deploy → WAF ON)
     cfg = load_config()
     wp_auth = get_wp_auth(cfg)
     wp_base = cfg["wordpress"]["base_url"]
@@ -265,14 +290,15 @@ def safe_update_global_styles(styles_css, dry_run=False):
                  "Content-Type": "application/json"},
         method="POST"
     )
-    try:
-        with urllib.request.urlopen(req, timeout=15) as r:
-            resp = json.loads(r.read())
-            print(f"  更新完了")
-            return True
-    except urllib.error.HTTPError as e:
-        print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
-        return False
+    with _get_waf_context(cfg):
+        try:
+            with urllib.request.urlopen(req, timeout=15) as r:
+                resp = json.loads(r.read())
+                print(f"  更新完了")
+                return True
+        except urllib.error.HTTPError as e:
+            print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
+            return False
 
 
 # ── CLI ──
