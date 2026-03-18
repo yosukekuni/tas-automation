@@ -11,15 +11,18 @@
   - 15:00以降に報告 → 翌営業日8:30に送信
 
 Usage:
-  python3 deal_thankyou_email.py --queue     # 新規商談→キュー保存
-  python3 deal_thankyou_email.py --send      # キューから送信
-  python3 deal_thankyou_email.py --dry-run   # キュー内容を表示（送信しない）
-  python3 deal_thankyou_email.py --list      # キュー一覧
-  python3 deal_thankyou_email.py --deal ID   # 特定商談のみ処理（即キュー追加）
+  python3 deal_thankyou_email.py --queue          # 新規商談→キュー保存
+  python3 deal_thankyou_email.py --send           # キューから送信
+  python3 deal_thankyou_email.py --dry-run        # キュー内容を表示（送信しない）
+  python3 deal_thankyou_email.py --list           # キュー一覧
+  python3 deal_thankyou_email.py --deal ID        # 特定商談のみ処理（即キュー追加）
+  python3 deal_thankyou_email.py --deal-name "豊建,鶴田石材,徳倉建設"  # 商談名で検索→キュー追加
+  python3 deal_thankyou_email.py --find-deals 豊建  # 商談名で検索→record_id表示
 """
 
 import json
 import os
+import re
 import sys
 import time
 import base64
@@ -231,7 +234,6 @@ def calc_send_time(detected_at=None):
 # ── 連絡先からメールアドレス検索 ──
 def _normalize_company(name):
     """会社名を正規化して比較しやすくする（株式会社/有限会社等を除去）"""
-    import re
     if not name:
         return ""
     # 法人格を除去
@@ -485,8 +487,56 @@ def count_sent_today(queue):
                and q.get("sent_at", "").startswith(today))
 
 
+# ── 商談名で検索（--find-deals 用）──
+def find_deals_by_name(search_term):
+    """商談名・取引先名で検索して record_id を表示"""
+    print(f"商談検索: '{search_term}'")
+    token = lark_get_token()
+    deals = get_all_records(token, TABLE_DEALS)
+    accounts = get_all_records(token, TABLE_ACCOUNTS)
+
+    found = 0
+    for rec in deals:
+        fields = rec.get("fields", {})
+        rid = rec.get("record_id", "")
+
+        # 商談名
+        deal_name_raw = fields.get("商談名", "")
+        if isinstance(deal_name_raw, list) and deal_name_raw and isinstance(deal_name_raw[0], dict):
+            deal_name = deal_name_raw[0].get("text", "") or ""
+        else:
+            deal_name = str(deal_name_raw or "")
+
+        # 取引先名
+        account_name = ""
+        account_links = fields.get("取引先", [])
+        if isinstance(account_links, list):
+            for link in account_links:
+                if isinstance(link, dict):
+                    for a in accounts:
+                        if a.get("record_id") == link.get("record_id", ""):
+                            account_name = str(a.get("fields", {}).get("会社名", "") or "")
+                            break
+
+        new_account = str(fields.get("新規取引先名", "") or "")
+
+        # 検索
+        names = [deal_name, account_name, new_account]
+        if any(search_term in n for n in names if n):
+            deal_date = fields.get("商談日", 0)
+            date_str = ""
+            if isinstance(deal_date, (int, float)) and deal_date > 0:
+                date_str = datetime.fromtimestamp(deal_date / 1000).strftime('%Y-%m-%d')
+            stage = str(fields.get("商談ステージ", "") or "")
+            temp = str(fields.get("温度感スコア", "") or "")
+            print(f"  {rid} | {deal_name or account_name or new_account} | {date_str} | {stage} | {temp}")
+            found += 1
+
+    print(f"\n  {found}件見つかりました")
+
+
 # ── キューモード: 新規商談→メール生成→キュー保存 ──
-def queue_new_deals(specific_deal=None):
+def queue_new_deals(specific_deal=None, deal_names=None):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] 商談サンクスメール: キュー追加チェック")
 
     token = lark_get_token()
@@ -501,6 +551,38 @@ def queue_new_deals(specific_deal=None):
     accounts = get_all_records(token, TABLE_ACCOUNTS)
     print(f"  商談: {len(deals)}件 / 連絡先: {len(contacts)}件 / 取引先: {len(accounts)}件")
 
+    # deal_names指定時: 商談名・取引先名で検索してrecord_idを特定
+    deal_name_ids = set()
+    if deal_names:
+        for rec in deals:
+            fields = rec.get("fields", {})
+            rid = rec.get("record_id", "")
+            # 商談名
+            dn_raw = fields.get("商談名", "")
+            if isinstance(dn_raw, list) and dn_raw and isinstance(dn_raw[0], dict):
+                dn = dn_raw[0].get("text", "") or ""
+            else:
+                dn = str(dn_raw or "")
+            # 取引先名
+            acct_name = ""
+            acct_links = fields.get("取引先", [])
+            if isinstance(acct_links, list):
+                for link in acct_links:
+                    if isinstance(link, dict):
+                        for a in accounts:
+                            if a.get("record_id") == link.get("record_id", ""):
+                                acct_name = str(a.get("fields", {}).get("会社名", "") or "")
+                                break
+            new_acct = str(fields.get("新規取引先名", "") or "")
+            # マッチ判定
+            for search_name in deal_names:
+                if any(search_name in n for n in [dn, acct_name, new_acct] if n):
+                    deal_name_ids.add(rid)
+                    print(f"  名前検索ヒット: '{search_name}' → {rid} ({dn or acct_name or new_acct})")
+        if not deal_name_ids:
+            print(f"  指定された商談名に一致する商談が見つかりません: {deal_names}")
+            return
+
     # 新規商談を検出
     new_deals = []
     for rec in deals:
@@ -509,11 +591,15 @@ def queue_new_deals(specific_deal=None):
             if rid == specific_deal:
                 new_deals.append(rec)
             continue
+        if deal_name_ids:
+            if rid in deal_name_ids:
+                new_deals.append(rec)
+            continue
         if rid not in processed_ids:
             new_deals.append(rec)
 
-    # 初回実行: 全件を処理済みにする
-    if not state.get("last_check"):
+    # 初回実行: 全件を処理済みにする（--deal/--deal-name指定時はスキップ）
+    if not state.get("last_check") and not specific_deal and not deal_name_ids:
         print(f"\n  初回実行: {len(deals)}件を処理済みとしてマーク")
         state["processed_ids"] = [r.get("record_id", "") for r in deals]
         state["last_check"] = datetime.now().isoformat()
@@ -563,12 +649,13 @@ def queue_new_deals(specific_deal=None):
 
         print(f"\n  商談: {deal_name}")
 
-        # 商談日チェック: 直近3日以内のみ対象
+        # 商談日チェック: 直近3日以内のみ対象（--deal/--deal-name指定時はスキップ）
+        is_manual = specific_deal or deal_name_ids
         deal_date = fields.get("商談日", 0)
         if isinstance(deal_date, (int, float)) and deal_date > 0:
             deal_dt = datetime.fromtimestamp(deal_date / 1000)
             days_ago = (datetime.now() - deal_dt).days
-            if days_ago > 3:
+            if days_ago > 3 and not is_manual:
                 print(f"  -> 商談日が{days_ago}日前({deal_dt.strftime('%Y-%m-%d')})。スキップ。")
                 skip_reasons["old_date"] += 1
                 processed_ids.add(rid)
@@ -576,10 +663,13 @@ def queue_new_deals(specific_deal=None):
             else:
                 print(f"  -> 商談日: {deal_dt.strftime('%Y-%m-%d')} ({days_ago}日前) OK")
         else:
-            print(f"  -> 商談日なし (type={type(deal_date).__name__}, val={deal_date})。スキップ。")
-            skip_reasons["no_date"] += 1
-            processed_ids.add(rid)
-            continue
+            if not is_manual:
+                print(f"  -> 商談日なし (type={type(deal_date).__name__}, val={deal_date})。スキップ。")
+                skip_reasons["no_date"] += 1
+                processed_ids.add(rid)
+                continue
+            else:
+                print(f"  -> 商談日なし（手動指定のためスキップしません）")
 
         # ステージチェック: 不在・失注・納品完了は除外（不在=名刺なし=メールなし）
         stage = str(fields.get("商談ステージ", "") or "")
