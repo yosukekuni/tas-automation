@@ -5,6 +5,8 @@ WordPress安全デプロイラッパー
 全てのWordPress書き込み操作は、このモジュール経由で行う。
 review_agent.pyによる事前チェックを強制し、CRITICALなら中止+CEO通知。
 ロリポップWAF自動制御: デプロイ前にWAF OFF → デプロイ後にWAF ON（try/finallyで保証）。
+LiteSpeedキャッシュ自動パージ: デプロイ成功時に tas/v1/purge-cache 経由で全キャッシュパージ。
+パージ失敗でもデプロイは中断しない（警告のみ）。
 
 Usage (他スクリプトから):
     from wp_safe_deploy import safe_update_page, safe_update_option, safe_update_snippet
@@ -45,6 +47,29 @@ def get_wp_auth(cfg):
 
 def get_wp_base(cfg):
     return cfg["wordpress"]["base_url"].replace("/wp/v2", "")
+
+
+# ── LiteSpeed Cache Purge ──
+def _purge_cache(cfg, context="deploy"):
+    """デプロイ後のLiteSpeedキャッシュパージ（失敗しても警告のみ）。
+
+    Args:
+        cfg: automation_config辞書
+        context: ログ表示用のコンテキスト名
+    """
+    try:
+        sys.path.insert(0, str(SCRIPT_DIR / "lib"))
+        from litespeed_cache import purge_all
+        wp_auth = get_wp_auth(cfg)
+        wp_base = get_wp_base(cfg)
+        print(f"  [Cache] LiteSpeed キャッシュパージ実行中... ({context})")
+        result = purge_all(wp_base, wp_auth)
+        if result["success"]:
+            print(f"  [Cache] パージ完了")
+        else:
+            print(f"  [Cache] パージ警告: {result['message']}（デプロイは成功済み）")
+    except Exception as e:
+        print(f"  [Cache] パージスキップ: {e}（デプロイは成功済み）")
 
 
 # ── WAF Control ──
@@ -158,6 +183,7 @@ def safe_update_page(page_id, content, profile=None, dry_run=False):
             with urllib.request.urlopen(req, timeout=30) as r:
                 resp = json.loads(r.read())
                 print(f"  更新完了: page {resp.get('id')}")
+                _purge_cache(cfg, f"page {page_id}")
                 return True
         except urllib.error.HTTPError as e:
             print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
@@ -206,6 +232,7 @@ def safe_update_option(key, value, profile=None, dry_run=False):
             with urllib.request.urlopen(req, timeout=15) as r:
                 resp = json.loads(r.read())
                 print(f"  更新完了: {resp}")
+                _purge_cache(cfg, f"option tas_{key}")
                 return True
         except urllib.error.HTTPError as e:
             print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
@@ -251,6 +278,7 @@ def safe_update_snippet(snippet_id, code, profile="css", dry_run=False):
             with urllib.request.urlopen(req, timeout=15) as r:
                 resp = json.loads(r.read())
                 print(f"  更新完了: Snippet {resp.get('id', snippet_id)}")
+                _purge_cache(cfg, f"snippet {snippet_id}")
                 return True
         except urllib.error.HTTPError as e:
             print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
@@ -295,6 +323,7 @@ def safe_update_global_styles(styles_css, dry_run=False):
             with urllib.request.urlopen(req, timeout=15) as r:
                 resp = json.loads(r.read())
                 print(f"  更新完了")
+                _purge_cache(cfg, "global-styles")
                 return True
         except urllib.error.HTTPError as e:
             print(f"  更新失敗: {e.code} {e.read().decode()[:200]}")
