@@ -48,7 +48,7 @@ jobs:
           if [ -n "$MODE" ]; then
             python scripts/email_nurturing_sequences.py --$MODE
           else
-            python scripts/email_nurturing_sequences.py --scan --send
+            python scripts/email_nurturing_sequences.py --scan
           fi
 
       - name: Save state
