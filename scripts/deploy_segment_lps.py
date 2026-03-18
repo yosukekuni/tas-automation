@@ -167,7 +167,7 @@ def cta_secondary(text, href):
     )
 
 
-def cta_tool(text="土量計算ツールを試す", href="/earthwork-calculator/"):
+def cta_tool(text="土量計算ツールを試す", href="/tools/earthwork/calculator/"):
     return (
         f'<a href="{href}" style="display:inline-block;padding:12px 28px;'
         f'background:#f0f4ff;color:{BRAND_COLOR};text-decoration:none;'

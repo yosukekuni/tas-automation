@@ -493,9 +493,9 @@ def generate_page_html(city, prefecture, stats):
     </a>
   </div>
   <p style="margin:16px 0 0; font-size:.85rem; opacity:.7;">
-    <a href="/earthwork-calculator/" style="color:#fff; text-decoration:underline;">土量計算ツールを試す</a>
+    <a href="/tools/earthwork/calculator/" style="color:#fff; text-decoration:underline;">土量計算ツールを試す</a>
     &nbsp;|&nbsp;
-    <a href="/cost-comparison/" style="color:#fff; text-decoration:underline;">費用比較シミュレーター</a>
+    <a href="/drone-survey-cost-comparison/" style="color:#fff; text-decoration:underline;">費用比較シミュレーター</a>
   </p>
 </section>
 
@@ -503,12 +503,12 @@ def generate_page_html(city, prefecture, stats):
 <section style="padding:32px 20px; max-width:900px; margin:0 auto;">
   <h2 style="font-size:1.2rem; font-weight:700; margin:0 0 16px; color:#1a1a1a;">関連ページ</h2>
   <ul style="margin:0; padding:0 0 0 20px; line-height:2;">
-    <li><a href="/uav-survey/" style="color:{BRAND_COLOR};">ドローン測量サービス詳細</a></li>
-    <li><a href="/3d-measurement/" style="color:{BRAND_COLOR};">3次元計測サービス</a></li>
-    <li><a href="/case-library/" style="color:{BRAND_COLOR};">実績事例一覧</a></li>
-    <li><a href="/cost-comparison/" style="color:{BRAND_COLOR};">費用比較シミュレーター</a></li>
+    <li><a href="/services/uav-survey/" style="color:{BRAND_COLOR};">ドローン測量サービス詳細</a></li>
+    <li><a href="/services/3d-measurement/" style="color:{BRAND_COLOR};">3次元計測サービス</a></li>
+    <li><a href="/case-library/cases/" style="color:{BRAND_COLOR};">実績事例一覧</a></li>
+    <li><a href="/drone-survey-cost-comparison/" style="color:{BRAND_COLOR};">費用比較シミュレーター</a></li>
     <li><a href="/faq/" style="color:{BRAND_COLOR};">よくあるご質問</a></li>
-    <li><a href="/statistics/" style="color:{BRAND_COLOR};">実績データ統計</a></li>
+    <li><a href="/drone-survey-statistics/" style="color:{BRAND_COLOR};">実績データ統計</a></li>
   </ul>
 </section>
 """

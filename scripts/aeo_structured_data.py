@@ -51,17 +51,17 @@ PAGES = {
     },
     "uav-survey": {
         "page_id": 4831,
-        "url": f"{SITE_URL}/uav-survey/",
+        "url": f"{SITE_URL}/services/uav-survey/",
         "title": "ドローン測量サービス",
     },
     "3d-measurement": {
         "page_id": 4843,
-        "url": f"{SITE_URL}/3d-measurement/",
+        "url": f"{SITE_URL}/services/3d-measurement/",
         "title": "3次元計測サービス",
     },
     "infrared-inspection": {
         "page_id": 4834,
-        "url": f"{SITE_URL}/infrared-inspection/",
+        "url": f"{SITE_URL}/services/infrared-inspection/",
         "title": "赤外線点検サービス",
     },
     "services": {
@@ -200,25 +200,25 @@ def build_service_schemas():
         {
             "name": "ドローン測量（UAV測量）",
             "description": "高精度RTK-GNSS対応ドローンを使用した3次元測量。点群データ・オルソ画像・3Dモデルを短工期で納品。造成現場・建設用地・道路・河川など幅広い現場に対応。",
-            "url": f"{SITE_URL}/uav-survey/",
+            "url": f"{SITE_URL}/services/uav-survey/",
             "category": "測量サービス",
         },
         {
             "name": "3次元計測",
             "description": "レーザースキャナーとドローンを組み合わせた高密度3次元計測。建物・構造物・地形の精密な3Dデータを取得。BIM/CIM連携にも対応。",
-            "url": f"{SITE_URL}/3d-measurement/",
+            "url": f"{SITE_URL}/services/3d-measurement/",
             "category": "計測サービス",
         },
         {
             "name": "赤外線建物点検",
             "description": "赤外線サーモグラフィカメラ搭載ドローンによる非破壊検査。外壁タイル浮き・雨漏り・断熱不良を効率的に発見。足場不要で安全かつ低コスト。",
-            "url": f"{SITE_URL}/infrared-inspection/",
+            "url": f"{SITE_URL}/services/infrared-inspection/",
             "category": "点検サービス",
         },
         {
             "name": "土量計算",
             "description": "ドローン測量で取得した点群データから正確な切土・盛土量を算出。従来の断面法と比較して高精度な体積計算が可能。",
-            "url": f"{SITE_URL}/earthwork-calculator/",
+            "url": f"{SITE_URL}/tools/earthwork/calculator/",
             "category": "測量サービス",
         },
         {
@@ -426,7 +426,7 @@ def generate_aeo_content_snippets():
   <p style="font-size:.85rem; color:#666; line-height:1.5;">
     ※ 上記は一般的な目安です。地形・精度要件・納品物により変動します。<br>
     正確なお見積りは<a href="/contact/" style="color:#1647FB;">お問い合わせフォーム</a>からご依頼ください。
-    <a href="/cost-comparison/" style="color:#1647FB;">費用比較シミュレーター</a>で概算もご確認いただけます。
+    <a href="/drone-survey-cost-comparison/" style="color:#1647FB;">費用比較シミュレーター</a>で概算もご確認いただけます。
   </p>
 </section>
 

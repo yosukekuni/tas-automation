@@ -58,7 +58,7 @@ TEL: 052-720-5885
 MAIL: info@tokaiair.com
 
 ▼ 土量計算ツール（無料）
-https://www.tokaiair.com/earthwork-calculator/
+https://www.tokaiair.com/tools/earthwork/calculator/
 
 ▼ 東海エリア ドローン測量 市場レポート
 https://www.tokaiair.com/drone-survey-market-report/
@@ -216,7 +216,7 @@ QR_DESIGNS = {
         "placement": "見積書フッター",
     },
     "tokaiair_pamphlet": {
-        "url": "https://www.tokaiair.com/earthwork-calculator/?utm_source=pamphlet&utm_medium=qr",
+        "url": "https://www.tokaiair.com/tools/earthwork/calculator/?utm_source=pamphlet&utm_medium=qr",
         "text": "無料 土量計算ツール",
         "placement": "パンフレット最終ページ",
     },
