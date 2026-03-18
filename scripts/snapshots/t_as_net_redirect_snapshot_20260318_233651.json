@@ -1,0 +1,6 @@
+{
+  "timestamp": "20260318_233651",
+  "action": "t-as.net_redirect_setup",
+  "robots_txt_before": "User-agent: *\r\nDisallow: /wp-admin/\r\nAllow: /wp-admin/admin-ajax.php\r\n\r\nSitemap: https://t-as.net/sitemap.xml\r\nSitemap: https://t-as.net/sitemap.rss\n",
+  "redirect_test_before": null
+}

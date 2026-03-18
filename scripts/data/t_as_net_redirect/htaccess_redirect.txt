@@ -1,0 +1,24 @@
+# t-as.net -> tokaiair.com 301 Redirect
+# Deployed: 2026-03-18 23:36
+# Purpose: Retire t-as.net, consolidate SEO to tokaiair.com
+
+RewriteEngine On
+
+# Specific URL mappings for pages with different slugs
+RewriteRule ^soil-volume/?$ https://tokaiair.com/tools/earthwork [R=301,L]
+RewriteRule ^soil-volume-nagoya/?$ https://tokaiair.com/tools/earthwork [R=301,L]
+RewriteRule ^soil-volume-gifu/?$ https://tokaiair.com/tools/earthwork [R=301,L]
+RewriteRule ^soil-volume-mie/?$ https://tokaiair.com/tools/earthwork [R=301,L]
+RewriteRule ^soil-volume-shizuoka/?$ https://tokaiair.com/tools/earthwork [R=301,L]
+RewriteRule ^fee_soil-volume/?$ https://tokaiair.com/tools/earthwork [R=301,L]
+RewriteRule ^fee/?$ https://tokaiair.com/contact [R=301,L]
+RewriteRule ^workflow/?$ https://tokaiair.com/contact [R=301,L]
+RewriteRule ^infrared-survey/?$ https://tokaiair.com/ [R=301,L]
+RewriteRule ^corresponding-area/?$ https://tokaiair.com/ [R=301,L]
+RewriteRule ^privacy/?$ https://tokaiair.com/privacy-policy [R=301,L]
+RewriteRule ^customers-voice/?$ https://tokaiair.com/ [R=301,L]
+RewriteRule ^actual-introduction/?$ https://tokaiair.com/case-library [R=301,L]
+
+# Catch-all: redirect everything else to same path on tokaiair.com
+RewriteCond %{HTTP_HOST} ^(www\.)?t-as\.net$ [NC]
+RewriteRule ^(.*)$ https://tokaiair.com/$1 [R=301,L]

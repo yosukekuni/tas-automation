@@ -1,0 +1,15 @@
+{
+  "soil-volume": "tools/earthwork",
+  "soil-volume-nagoya": "tools/earthwork",
+  "soil-volume-gifu": "tools/earthwork",
+  "soil-volume-mie": "tools/earthwork",
+  "soil-volume-shizuoka": "tools/earthwork",
+  "fee_soil-volume": "tools/earthwork",
+  "fee": "contact",
+  "workflow": "contact",
+  "infrared-survey": "",
+  "corresponding-area": "",
+  "privacy": "privacy-policy",
+  "customers-voice": "",
+  "actual-introduction": "case-library"
+}

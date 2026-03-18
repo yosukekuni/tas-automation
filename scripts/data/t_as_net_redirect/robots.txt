@@ -1,0 +1,8 @@
+# t-as.net - Retired site
+# All traffic redirected to tokaiair.com via 301
+# This robots.txt serves as a backup crawl block
+
+User-agent: *
+Disallow: /
+
+# No sitemap - site retired
