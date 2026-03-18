@@ -1,0 +1,50 @@
+[
+  {
+    "category": "業界メディア",
+    "name": "事業承継ひろば",
+    "url": "https://jigyoshokei.go.jp/",
+    "type": "事例掲載",
+    "steps": [
+      "事業承継・引継ぎ支援センター経由で事例提出",
+      "「AI活用による事業承継支援」として掲載依頼"
+    ],
+    "priority": "高",
+    "status": "未着手"
+  },
+  {
+    "category": "業界メディア",
+    "name": "M&A Online",
+    "url": "https://maonline.jp/",
+    "type": "寄稿",
+    "steps": [
+      "寄稿提案メール送信",
+      "「AI×事業承継で属人化リスクを可視化」テーマ"
+    ],
+    "priority": "中",
+    "status": "未着手"
+  },
+  {
+    "category": "公的機関",
+    "name": "中小企業庁 事業承継ポータル",
+    "url": "https://shoukei.smrj.go.jp/",
+    "type": "支援機関登録",
+    "steps": [
+      "事業承継支援機関としての登録申請",
+      "AI活用のユニークな支援手法をPR"
+    ],
+    "priority": "高",
+    "status": "未着手"
+  },
+  {
+    "category": "地域メディア",
+    "name": "名古屋商工会議所",
+    "url": "https://www.nagoya-cci.or.jp/",
+    "type": "セミナー開催・紹介",
+    "steps": [
+      "事業承継セミナー登壇の打診",
+      "「AI活用で事業承継を加速」テーマ"
+    ],
+    "priority": "高",
+    "status": "未着手"
+  }
+]

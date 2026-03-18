@@ -1,0 +1,64 @@
+name: Monthly Market Report
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # 毎月1日 9:00 JST
+  workflow_dispatch:
+
+env:
+  LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+  LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+  CRM_BASE_TOKEN: ${{ secrets.CRM_BASE_TOKEN }}
+  WP_USER: ${{ secrets.WP_USER }}
+  WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+  INDEXNOW_API_KEY: ${{ secrets.INDEXNOW_API_KEY }}
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Write config
+        run: |
+          cat > scripts/automation_config.json << 'CONF'
+          {
+            "lark": {
+              "app_id": "${{ secrets.LARK_APP_ID }}",
+              "app_secret": "${{ secrets.LARK_APP_SECRET }}",
+              "crm_base_token": "${{ secrets.CRM_BASE_TOKEN }}"
+            },
+            "wordpress": {
+              "base_url": "https://tokaiair.com/wp-json/wp/v2",
+              "user": "${{ secrets.WP_USER }}",
+              "app_password": "${{ secrets.WP_APP_PASSWORD }}"
+            },
+            "indexnow": {
+              "api_key": "${{ secrets.INDEXNOW_API_KEY }}"
+            }
+          }
+          CONF
+
+      - name: Generate market report
+        run: |
+          cd scripts
+          python3 market_report_generator.py --generate --stats-json
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-report-${{ github.run_id }}
+          path: |
+            /tmp/market_report.html
+            scripts/data/market_report_stats.json
+          retention-days: 90

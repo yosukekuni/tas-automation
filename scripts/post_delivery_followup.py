@@ -90,8 +90,10 @@ MAX_SENDS_PER_DAY = 5          # 1日の送信上限
 DUPLICATE_WINDOW_DAYS = 60     # 同一メールアドレスへの重複防止期間（フォローは長めに）
 
 # Google口コミURL（東海エアサービス）
-# TODO: 実際のGoogle Business Profile口コミURLに差し替え
-GOOGLE_REVIEW_URL = "https://g.page/r/tokaiair/review"
+# GBP口コミ直リンク: https://search.google.com/local/writereview?placeid=PLACE_ID
+# TODO: Google Maps で「東海エアサービス」検索→PlaceIDを取得して設定
+# PlaceID取得: https://developers.google.com/maps/documentation/places/web-service/place-id
+GOOGLE_REVIEW_URL = "https://www.google.com/maps/place/東海エアサービス株式会社/review"
 
 COMPANY_INFO = {
     "name": "東海エアサービス株式会社",

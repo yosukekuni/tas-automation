@@ -1,0 +1,38 @@
+{
+  "tokaiair_x": [
+    {
+      "type": "実績紹介",
+      "template": "ドローン測量の現場から。\n{area_name}で{area_size}の測量を実施しました。\n\n従来の人力測量と比較して:\n- 作業時間: 約{time_saving}\n- コスト: 約{cost_saving}\n\n詳しい費用目安はこちら\nhttps://www.tokaiair.com/drone-survey-market-report/\n\n#ドローン測量 #建設DX #土量計算 #東海エリア"
+    },
+    {
+      "type": "知見共有",
+      "template": "【ドローン測量Tips】{tip_title}\n\n{tip_content}\n\n当社の実績データに基づく費用目安は市場レポートで公開中:\nhttps://www.tokaiair.com/drone-survey-market-report/\n\n#ドローン測量 #建設DX #i-Construction"
+    },
+    {
+      "type": "データ発信",
+      "template": "東海エリアのドローン測量、当社実績ベースの統計データを公開しています。\n\n- 業種別の平均単価\n- 面積帯別のコスト目安\n- 季節変動トレンド\n\n「ドローン測量の相場感が分からない」方はご参考に:\nhttps://www.tokaiair.com/drone-survey-market-report/\n\n#ドローン測量 #費用相場"
+    }
+  ],
+  "tokaiair_linkedin": [
+    {
+      "type": "ソートリーダーシップ",
+      "template": "建設業界のDX推進において、ドローン測量はもはや「特殊技術」ではなく「標準ツール」になりつつあります。\n\n当社（東海エアサービス株式会社）では、これまでの測量実績データを市場レポートとして公開しています。\n\nなぜ自社データを公開するのか？\n- 業界全体の透明性向上に貢献したい\n- 「相場が分からない」という導入障壁を下げたい\n- 実績データこそが最も信頼できる情報源\n\nレポートはこちら:\nhttps://www.tokaiair.com/drone-survey-market-report/\n\n#建設DX #ドローン測量 #iConstruction #東海エリア"
+    }
+  ],
+  "tomoshi_x": [
+    {
+      "type": "課題提起",
+      "template": "「社長が倒れたら会社が止まる」\n\nこの状態を放置していませんか？\n\n属人化リスクは目に見えないからこそ危険。\nAIで定量化すると、思わぬリスクが見えてきます。\n\n無料診断はこちら:\nhttps://tomoshi.jp/risk-assessment/\n\n#事業承継 #属人化 #中小企業 #経営リスク"
+    },
+    {
+      "type": "知見共有",
+      "template": "事業承継で最も見落とされがちなリスク:\n「暗黙知の喪失」\n\nマニュアルに書けない判断基準、人脈、ノウハウ。\nこれらを引き継げるかが承継成否を分けます。\n\nTOMOSHIではAIを活用して暗黙知を可視化。\nhttps://tomoshi.jp/\n\n#事業承継 #AI活用 #暗黙知"
+    }
+  ],
+  "tomoshi_linkedin": [
+    {
+      "type": "ソートリーダーシップ",
+      "template": "事業承継の本質的課題は「人」と「知識」の引き継ぎです。\n\n財務・法務の承継は専門家がいますが、\n「この取引先にはこう対応する」\n「この現場ではこう判断する」\nといった暗黙知の承継は手つかずのまま。\n\nTOMOSHIでは、AI技術を活用してこの暗黙知を構造化・可視化し、\n承継リスクの定量評価を行っています。\n\nhttps://tomoshi.jp/\n\n#事業承継 #中小企業 #AI #DX"
+    }
+  ]
+}

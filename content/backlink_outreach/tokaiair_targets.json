@@ -1,0 +1,150 @@
+[
+  {
+    "category": "業界メディア",
+    "name": "DRONE.jp",
+    "url": "https://www.drone.jp/",
+    "type": "プレスリリース掲載",
+    "steps": [
+      "お問い合わせフォームからプレスリリース掲載依頼",
+      "「ドローン測量の実績データ公開」をニュースバリューとして提案",
+      "市場レポートページへのリンクを含める"
+    ],
+    "priority": "高",
+    "status": "未着手"
+  },
+  {
+    "category": "業界メディア",
+    "name": "ドローンジャーナル",
+    "url": "https://dronejournal.impress.co.jp/",
+    "type": "取材依頼・寄稿",
+    "steps": [
+      "編集部に取材提案メール送信",
+      "テーマ: 「中小測量会社のドローン活用実態」",
+      "自社データに基づく記事を寄稿提案"
+    ],
+    "priority": "高",
+    "status": "未着手"
+  },
+  {
+    "category": "業界メディア",
+    "name": "建設ITワールド",
+    "url": "https://ken-it.world/",
+    "type": "事例掲載",
+    "steps": [
+      "掲載依頼フォームから応募",
+      "「ドローン測量×DX」の事例として提案"
+    ],
+    "priority": "中",
+    "status": "未着手"
+  },
+  {
+    "category": "業界メディア",
+    "name": "日経クロステック",
+    "url": "https://xtech.nikkei.com/",
+    "type": "プレスリリース",
+    "steps": [
+      "PR TIMESまたは直接プレスリリース配信",
+      "「東海エリア初のドローン測量市場レポート公開」として配信"
+    ],
+    "priority": "中",
+    "status": "未着手"
+  },
+  {
+    "category": "公的機関",
+    "name": "名古屋商工会議所",
+    "url": "https://www.nagoya-cci.or.jp/",
+    "type": "会員企業紹介・事業者検索登録",
+    "steps": [
+      "会員であれば事業者検索に自社情報登録",
+      "「ドローン測量」カテゴリでの登録申請",
+      "会報誌への寄稿打診"
+    ],
+    "priority": "高",
+    "status": "未着手"
+  },
+  {
+    "category": "公的機関",
+    "name": "愛知県産業振興課",
+    "url": "https://www.pref.aichi.jp/sangyoshinko/",
+    "type": "事業者データベース登録",
+    "steps": [
+      "あいちの技術・製品ガイドへの登録申請",
+      "ドローン測量を得意技術として申請"
+    ],
+    "priority": "中",
+    "status": "未着手"
+  },
+  {
+    "category": "公的機関",
+    "name": "中小企業基盤整備機構（J-Net21）",
+    "url": "https://j-net21.smrj.go.jp/",
+    "type": "事例掲載",
+    "steps": [
+      "「ビジネスQ&A」「事例集」への掲載依頼",
+      "「ドローン活用で測量効率化」のテーマで応募"
+    ],
+    "priority": "中",
+    "status": "未着手"
+  },
+  {
+    "category": "公的機関",
+    "name": "国土交通省 i-Construction",
+    "url": "https://www.mlit.go.jp/tec/i-construction/",
+    "type": "活用事例",
+    "steps": [
+      "i-Construction事例集への掲載申請",
+      "国交省の地方整備局担当にコンタクト"
+    ],
+    "priority": "高",
+    "status": "未着手"
+  },
+  {
+    "category": "地域メディア",
+    "name": "名古屋経済新聞",
+    "url": "https://nagoya.keizai.biz/",
+    "type": "プレスリリース掲載",
+    "steps": [
+      "プレスリリース投稿フォームから送信",
+      "「名古屋発ドローン測量会社がデータレポート公開」"
+    ],
+    "priority": "中",
+    "status": "未着手"
+  },
+  {
+    "category": "地域メディア",
+    "name": "中部経済新聞",
+    "url": "https://www.chukei-news.co.jp/",
+    "type": "取材依頼",
+    "steps": [
+      "編集部にプレスリリース送付",
+      "中部エリアのDX事例として提案"
+    ],
+    "priority": "低",
+    "status": "未着手"
+  },
+  {
+    "category": "比較サイト",
+    "name": "ドローン測量比較まとめ系ブログ",
+    "url": "検索で特定",
+    "type": "掲載依頼",
+    "steps": [
+      "Google で「ドローン測量 おすすめ」「ドローン測量 比較」を検索",
+      "まとめ記事の著者にメールで掲載依頼",
+      "自社の強み（実績データ公開・東海エリア特化）を訴求"
+    ],
+    "priority": "中",
+    "status": "未着手"
+  },
+  {
+    "category": "比較サイト",
+    "name": "EMEAO!（エミーオ）",
+    "url": "https://emeao.jp/",
+    "type": "サービス登録",
+    "steps": [
+      "ドローン測量カテゴリでの事業者登録",
+      "対応エリア: 愛知・岐阜・三重・静岡"
+    ],
+    "priority": "低",
+    "status": "未着手"
+  }
+]
