@@ -1,0 +1,168 @@
+{
+  "timestamp": "2026-03-18T23:35:23.901155",
+  "summary": {
+    "posts": 74,
+    "pages": 68,
+    "unique_internal_links": 114,
+    "ok": 113,
+    "broken": 1,
+    "redirects": 0
+  },
+  "broken_links": [
+    {
+      "url": "https://tokaiair.com/services/dx-consulting/",
+      "status": 404,
+      "sources": [
+        "土量コスト計算機"
+      ]
+    }
+  ],
+  "redirect_links": [],
+  "deploy_page_results": {
+    "/drone-survey-cost-comparison/": {
+      "status": 200,
+      "title": "ドローン測量 費用比較シミュレーター | 東海エアサービス - 東海エアサービス株式会社",
+      "meta_description": null,
+      "json_ld_valid": true,
+      "json_ld_count": 5,
+      "json_ld_types": [
+        "unknown",
+        "ProfessionalService",
+        "Person",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "content_length": 87222,
+      "broken_internal": []
+    },
+    "/drone-survey-statistics/": {
+      "status": 200,
+      "title": "東海エアサービス 実績データ統計 | ドローン測量 - 東海エアサービス株式会社",
+      "meta_description": null,
+      "json_ld_valid": true,
+      "json_ld_count": 5,
+      "json_ld_types": [
+        "unknown",
+        "ProfessionalService",
+        "Person",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "content_length": 84265,
+      "broken_internal": []
+    },
+    "/drone-survey-market-report/": {
+      "status": 200,
+      "title": "東海エリア ドローン測量 市場レポート（自社実績ベース）| 東海エアサービス - 東海エアサービス株式会社",
+      "meta_description": null,
+      "json_ld_valid": true,
+      "json_ld_count": 5,
+      "json_ld_types": [
+        "unknown",
+        "ProfessionalService",
+        "Person",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "content_length": 78165,
+      "broken_internal": []
+    },
+    "/nagoya/": {
+      "status": 200,
+      "title": "名古屋市のドローン測量 | 東海エアサービス株式会社 - 東海エアサービス株式会社",
+      "meta_description": null,
+      "json_ld_valid": true,
+      "json_ld_count": 6,
+      "json_ld_types": [
+        "unknown",
+        "ProfessionalService",
+        "Person",
+        "Organization",
+        "BreadcrumbList",
+        "unknown"
+      ],
+      "content_length": 88720,
+      "broken_internal": []
+    },
+    "/toyota/": {
+      "status": 200,
+      "title": "豊田市のドローン測量 | 東海エアサービス株式会社 - 東海エアサービス株式会社",
+      "meta_description": null,
+      "json_ld_valid": true,
+      "json_ld_count": 6,
+      "json_ld_types": [
+        "unknown",
+        "ProfessionalService",
+        "Person",
+        "Organization",
+        "BreadcrumbList",
+        "unknown"
+      ],
+      "content_length": 88612,
+      "broken_internal": []
+    },
+    "/gifu-city/": {
+      "status": 200,
+      "title": "岐阜市のドローン測量 | 東海エアサービス株式会社 - 東海エアサービス株式会社",
+      "meta_description": null,
+      "json_ld_valid": true,
+      "json_ld_count": 6,
+      "json_ld_types": [
+        "unknown",
+        "ProfessionalService",
+        "Person",
+        "Organization",
+        "BreadcrumbList",
+        "unknown"
+      ],
+      "content_length": 88527,
+      "broken_internal": []
+    },
+    "/tsu/": {
+      "status": 200,
+      "title": "津市のドローン測量 | 東海エアサービス株式会社 - 東海エアサービス株式会社",
+      "meta_description": null,
+      "json_ld_valid": true,
+      "json_ld_count": 6,
+      "json_ld_types": [
+        "unknown",
+        "ProfessionalService",
+        "Person",
+        "Organization",
+        "BreadcrumbList",
+        "unknown"
+      ],
+      "content_length": 88371,
+      "broken_internal": []
+    },
+    "/shizuoka-city/": {
+      "status": 200,
+      "title": "静岡市のドローン測量 | 東海エアサービス株式会社 - 東海エアサービス株式会社",
+      "meta_description": null,
+      "json_ld_valid": true,
+      "json_ld_count": 6,
+      "json_ld_types": [
+        "unknown",
+        "ProfessionalService",
+        "Person",
+        "Organization",
+        "BreadcrumbList",
+        "unknown"
+      ],
+      "content_length": 88577,
+      "broken_internal": []
+    },
+    "/case-library/cases/": {
+      "status": 200,
+      "title": "事例・資料｜東海エアサービス株式会社",
+      "meta_description": "東海エアサービスは、ドローン測量・3次元データによる建設現場の課題を解決するデータコンサルティング会社です。施工実績185件超。翌日納品対応。",
+      "json_ld_valid": true,
+      "json_ld_count": 1,
+      "json_ld_types": [
+        "unknown"
+      ],
+      "content_length": 47699,
+      "broken_internal": []
+    }
+  }
+}
