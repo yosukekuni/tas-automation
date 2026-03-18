@@ -1,0 +1,57 @@
+name: Claude Code Tech Catchup (Weekly)
+
+on:
+  schedule:
+    - cron: '0 23 * * 0'  # 23:00 UTC Sunday = 08:00 JST Monday
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'DRY RUN（通知しない）'
+        required: false
+        default: 'false'
+      force:
+        description: '差分なくても通知する'
+        required: false
+        default: 'false'
+
+jobs:
+  catchup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Restore scan state
+        uses: actions/cache@v4
+        with:
+          path: scripts/claude_tech_catchup_state.json
+          key: claude-tech-catchup-state-${{ github.run_id }}
+          restore-keys: |
+            claude-tech-catchup-state-
+
+      - name: Setup config
+        env:
+          LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LARK_WEBHOOK_URL: ${{ secrets.LARK_WEBHOOK_URL }}
+        run: python scripts/setup_config.py
+
+      - name: Run tech catchup scan
+        run: |
+          FLAGS=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then FLAGS="$FLAGS --dry-run"; fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then FLAGS="$FLAGS --force"; fi
+          python scripts/claude_tech_catchup.py $FLAGS
+
+      - name: Save scan state artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: catchup-state-${{ github.run_number }}
+          path: scripts/claude_tech_catchup_state.json
+          retention-days: 14
+        if: always()
