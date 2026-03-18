@@ -247,15 +247,25 @@ def _company_match(name_a, name_b):
     """会社名の柔軟なマッチング（双方向部分一致 + 正規化比較）"""
     if not name_a or not name_b:
         return False
-    # そのまま部分一致（どちらかが含まれればOK）
-    if name_a in name_b or name_b in name_a:
+    # 完全一致
+    if name_a == name_b:
+        return True
+    # そのまま部分一致（含まれる側が2文字以上の場合のみ）
+    if len(name_a) >= 2 and name_a in name_b:
+        return True
+    if len(name_b) >= 2 and name_b in name_a:
         return True
     # 正規化して比較
     norm_a = _normalize_company(name_a)
     norm_b = _normalize_company(name_b)
     if not norm_a or not norm_b:
         return False
-    if norm_a in norm_b or norm_b in norm_a:
+    # 正規化後も最低2文字以上でないと部分一致しない（「豊」が「豊建」にマッチする等を防止）
+    if norm_a == norm_b:
+        return True
+    if len(norm_a) >= 2 and norm_a in norm_b:
+        return True
+    if len(norm_b) >= 2 and norm_b in norm_a:
         return True
     return False
 
@@ -358,21 +368,29 @@ def generate_thankyou_email(deal_fields, contact, rep_info):
     temp = str(deal_fields.get("温度感スコア", "") or "")
     is_cold = temp in ("Cold", "不在のため不明", "")
 
+    # 商談日から「本日」か「先日」かを判定
+    deal_date_val = deal_fields.get("商談日", 0)
+    timing_word = "先日"
+    if isinstance(deal_date_val, (int, float)) and deal_date_val > 0:
+        deal_dt = datetime.fromtimestamp(deal_date_val / 1000)
+        if (datetime.now() - deal_dt).days == 0:
+            timing_word = "本日"
+
     tone_instruction = ""
     if is_cold:
-        tone_instruction = """10. 温度感が低い（Cold/不在）商談なので、軽めのお礼にする。
-    売り込みは一切しない。「本日はお時間いただきありがとうございました」程度。
+        tone_instruction = f"""10. 温度感が低い（Cold）商談なので、軽めのお礼にする。
+    売り込みは一切しない。「{timing_word}はお時間いただきありがとうございました」程度。
     次のステップには触れず「何かございましたらお気軽にご連絡ください」で締める。
     本文は200文字以内。"""
 
     prompt = f"""あなたは{COMPANY_INFO['name']}の営業担当 {rep_info['display']} として、
-本日の商談（打ち合わせ）後の顧客向けサンクスメールを作成してください。
+{timing_word}の商談（打ち合わせ）後の顧客向けサンクスメールを作成してください。
 
 {context}
 
 【メール作成ルール】
 1. 件名は「件名：」で始める
-2. 本日の商談（訪問・打ち合わせ）へのお礼で始める
+2. {timing_word}の商談（訪問・打ち合わせ）へのお礼で始める
 3. ヒアリング内容があれば、それに基づいた具体的な内容を含める
 4. 次のステップがあれば触れる（見積、資料送付、現場確認等）
 5. 次のステップがなければ「何かございましたらお気軽にご連絡ください」で締める
@@ -380,6 +398,8 @@ def generate_thankyou_email(deal_fields, contact, rep_info):
 7. 本文は300文字以内。簡潔に。
 8. AIっぽい表現を避ける。普通のビジネスメールの文体で。
 9. 「つきましては」「さて」等の堅すぎる接続詞は使わない
+10. 絶対に使ってはいけない表現: 「お疲れ様です」「お疲れ様でした」（社内向け表現のため顧客には失礼）
+11. 顧客向けの適切な表現を使う: 「お世話になっております」「お時間いただきありがとうございました」
 {tone_instruction}
 
 【出力形式】
@@ -615,6 +635,7 @@ def queue_new_deals(specific_deal=None, deal_names=None):
 
     print(f"\n  新規商談: {len(new_deals)}件 (処理済みID: {len(processed_ids)}件, 全商談: {len(deals)}件)")
     queued = 0
+    batch_emails = set()  # 同一バッチ内の重複防止
     skip_reasons = {"old_date": 0, "no_date": 0, "cold": 0, "bad_stage": 0, "no_email": 0, "duplicate": 0, "gen_error": 0}
 
     for rec in new_deals:
@@ -705,9 +726,14 @@ def queue_new_deals(specific_deal=None, deal_names=None):
 
         print(f"  -> 宛先: {contact['company']} {contact['name']} <{contact['email']}>")
 
-        # 重複チェック: 同一メールアドレスに過去N日以内に送信済み
+        # 重複チェック: 同一メールアドレスに過去N日以内に送信済み or 今バッチで既にキュー追加済み
         if is_duplicate_email(queue, contact["email"]):
             print(f"  -> 過去{DUPLICATE_WINDOW_DAYS}日以内に送信済み。スキップ。")
+            skip_reasons["duplicate"] += 1
+            processed_ids.add(rid)
+            continue
+        if contact["email"] in batch_emails:
+            print(f"  -> 同一バッチ内で {contact['email']} に既にキュー追加済み。スキップ。")
             skip_reasons["duplicate"] += 1
             processed_ids.add(rid)
             continue
@@ -742,6 +768,7 @@ def queue_new_deals(specific_deal=None, deal_names=None):
         }
         queue.append(queue_item)
         processed_ids.add(rid)
+        batch_emails.add(contact["email"])
         queued += 1
 
         print(f"  → キュー追加。送信予定: {send_at}")
