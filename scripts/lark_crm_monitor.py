@@ -575,8 +575,12 @@ def check_action_reminders():
     today_str = now.strftime("%Y-%m-%d")
 
     # State: avoid duplicate reminders within same day
+    # crm_monitor_state.json に統合（reminder_state.json も後方互換で読み込む）
     reminder_state_file = SCRIPT_DIR / "reminder_state.json"
-    if reminder_state_file.exists():
+    main_state = load_state()
+    if "reminder_notified" in main_state:
+        reminder_state = main_state["reminder_notified"]
+    elif reminder_state_file.exists():
         with open(reminder_state_file) as f:
             reminder_state = json.load(f)
     else:
@@ -750,11 +754,11 @@ def check_action_reminders():
     else:
         lark_send_bot_message(token, CEO_OPEN_ID, group_msg, id_type="open_id")
 
-    # Save state (skip in dry-run to avoid blocking real sends)
+    # Save state into crm_monitor_state.json (skip in dry-run to avoid blocking real sends)
     if not DRY_RUN:
         reminder_state["sent_ids"].extend(sent_ids)
-        with open(reminder_state_file, "w") as f:
-            json.dump(reminder_state, f, ensure_ascii=False, indent=2)
+        main_state["reminder_notified"] = reminder_state
+        save_state(main_state)
 
     return len(all_reminders)
 
@@ -825,8 +829,12 @@ def check_overdue_actions():
     warm_deals = []      # Warm + 1-30日超過 → 週次サマリーのみ
 
     # State: avoid duplicate overdue notifications (1日1回まで per record)
+    # crm_monitor_state.json に統合（overdue_state.json も後方互換で読み込む）
+    state = load_state()
     overdue_state_file = SCRIPT_DIR / "overdue_state.json"
-    if overdue_state_file.exists():
+    if "overdue_notified" in state:
+        overdue_state = state["overdue_notified"]
+    elif overdue_state_file.exists():
         with open(overdue_state_file) as f:
             overdue_state = json.load(f)
     else:
@@ -908,11 +916,13 @@ def check_overdue_actions():
 
         if overdue_days > 30:
             stale_deals.append(deal_info)
+            overdue_state["notified_ids"].append(record_id)
         elif temp == "Hot":
             urgent_deals.append(deal_info)
             overdue_state["notified_ids"].append(record_id)
         else:
             warm_deals.append(deal_info)
+            overdue_state["notified_ids"].append(record_id)
 
     # Sort urgent by overdue days
     urgent_deals.sort(key=lambda x: x["overdue_days"], reverse=True)
@@ -993,10 +1003,10 @@ def check_overdue_actions():
     print(f"  30日超過(要判断): {len(stale_deals)}件")
     print(f"{'='*60}\n")
 
-    # Save overdue state (prevent duplicate notifications)
+    # Save overdue state into crm_monitor_state.json (prevent duplicate notifications)
     if not DRY_RUN:
-        with open(overdue_state_file, "w") as f:
-            json.dump(overdue_state, f, ensure_ascii=False)
+        state["overdue_notified"] = overdue_state
+        save_state(state)
 
     # Write to log
     log_file = SCRIPT_DIR / "crm_notifications.log"
@@ -1898,6 +1908,15 @@ def check_stage_transitions(all_deals=None, token=None):
 
     if is_first_run:
         print(f"[STAGE] 初回実行: {len(current_snapshot)}件のスナップショットを作成")
+        state["stage_snapshot"] = current_snapshot
+        state["stage_snapshot_updated"] = datetime.now().isoformat()
+        save_state(state)
+        return 0
+
+    # キャッシュ破損ガード: 前回スナップショットが現在の50%未満の場合はINITモード
+    # （キャッシュ消失後の古いデータ混入による誤検知を防ぐ）
+    if len(prev_snapshot) < len(current_snapshot) * 0.5:
+        print(f"[STAGE] キャッシュ不整合検知: 前回={len(prev_snapshot)}件 / 現在={len(current_snapshot)}件 → スナップショット再構築")
         state["stage_snapshot"] = current_snapshot
         state["stage_snapshot_updated"] = datetime.now().isoformat()
         save_state(state)
