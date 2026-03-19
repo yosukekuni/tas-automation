@@ -355,30 +355,17 @@ def send_notification(token, subject, body, priority="normal", sales_rep_name=No
 
 
 def notify_all_sales_reps(token, subject, body):
-    """連絡先テーブル新規レコード: 全営業に通知（担当未割当時）"""
+    """連絡先テーブル新規レコード: 担当未割当時はCEOのみに通知（営業への通知量削減）"""
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
-    full_msg = f"{subject}\n{now}\n\n{body}"
+    full_msg = f"{subject}\n{now}\n\n{body}\n\n※担当未割当 — CRMで担当者を設定してください"
 
     if DRY_RUN:
-        print("[DRY-RUN: 全営業通知スキップ]")
+        print("[DRY-RUN: 未割当通知スキップ]")
         return
 
-    # 重複送信防止: 一意の営業のみ通知
-    notified = set()
-    for rep_name, rep_cfg in SALES_REPS.items():
-        if not isinstance(rep_cfg, dict):
-            continue
-        rep_id = rep_cfg.get("open_id") or rep_cfg.get("email")
-        if rep_id in notified:
-            continue
-        notified.add(rep_id)
-
-        if rep_cfg.get("open_id"):
-            lark_send_bot_message(token, rep_cfg["open_id"], full_msg, id_type="open_id")
-            print(f"  [営業通知] {rep_name}: Lark DM送信")
-        elif rep_cfg.get("email"):
-            send_email_notification(rep_cfg["email"], f"【新規リード】{subject}", full_msg)
-            print(f"  [営業通知] {rep_name}: メール送信 ({rep_cfg['email']})")
+    # 担当未設定 → CEOのみ通知（営業には届けない。疲弊防止）
+    lark_send_bot_message(token, CEO_OPEN_ID, full_msg, id_type="open_id")
+    print(f"  [未割当通知] CEO only（営業への全員通知は廃止）")
 
 
 # ── Main Logic ──

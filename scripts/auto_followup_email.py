@@ -629,8 +629,9 @@ def main():
     print(f"\n{'='*60}")
     print(summary)
 
-    # Webhook通知
-    notify_rep_via_webhook(summary)
+    # Webhook通知: 生成件数が1件以上の時のみ送信（ゼロ件サマリーのノイズ削減）
+    if len(generated) > 0:
+        notify_rep_via_webhook(summary)
 
     # ログ保存
     log_file = SCRIPT_DIR / "followup_email.log"

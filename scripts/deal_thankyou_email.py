@@ -896,18 +896,8 @@ def send_queued_emails(dry_run=False):
             sent += 1
             print(f"  ✅ 送信完了")
 
-            # 担当営業に通知
-            if item.get("rep_open_id"):
-                send_lark_dm(token, item["rep_open_id"],
-                    f"📧 サンクスメール送信完了\n\n"
-                    f"商談: {item['deal_name']}\n"
-                    f"宛先: {item['to_name']} 様\n"
-                    f"メール: {item['to_email']}\n"
-                    f"件名: {item['subject']}")
-
-            # CEO通知
-            send_lark_dm(token, CEO_OPEN_ID,
-                f"📧 サンクスメール送信: {item['deal_name']} → {item['to_email']}")
+            # 送信完了DM廃止（通知疲弊対策。ログのみ記録）
+            print(f"  [LOG] サンクスメール送信: {item['deal_name']} → {item['to_email']}")
         else:
             item["status"] = "failed"
             item["failed_at"] = now.isoformat()

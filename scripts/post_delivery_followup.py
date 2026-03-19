@@ -764,18 +764,8 @@ def send_queued_emails(dry_run=False):
             except Exception as e:
                 log(f"メールログ記録エラー: {e}")
 
-            # 担当営業に通知
-            if item.get("rep_open_id"):
-                send_lark_dm(token, item["rep_open_id"],
-                    f"納品後フォローメール送信完了\n\n"
-                    f"案件: {item['case_name']}\n"
-                    f"宛先: {item['to_name']} 様\n"
-                    f"メール: {item['to_email']}\n"
-                    f"件名: {item['subject']}")
-
-            # CEO通知
-            send_lark_dm(token, CEO_OPEN_ID,
-                f"納品後フォローメール送信: {item['case_name']} -> {item['to_email']}")
+            # 送信完了は営業への個別DM不要（ログのみ。通知疲弊対策）
+            log(f"納品後フォローメール送信完了: {item['case_name']} -> {item['to_email']}")
         else:
             item["status"] = "failed"
             item["failed_at"] = now.isoformat()
